@@ -1,5 +1,5 @@
 ---
-import { ClientRouter } from 'astro:transitions';
+// ClientRouter removed — caused blank page issues with script reinitialization
 
 export interface Props {
   title?: string;
@@ -86,8 +86,6 @@ const jsonLd = JSON.stringify({
     <!-- JSON-LD -->
     <script type="application/ld+json" is:inline set:html={jsonLd} />
 
-    <!-- View Transitions -->
-    <ClientRouter />
 
     <style is:global>
       :root {
