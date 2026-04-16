@@ -56,7 +56,7 @@ const boats = [
       { label: 'Upper Deck', value: 'Bedouin corner + dining' },
       { label: 'Ideal for', value: 'Retreats & getaways' },
     ],
-    hero: '/images/veda_2.jpg',
+    hero: '/images/veda2_main.jpg',
     gallery: [
       '/images/egypte-veda-88-van-577-2000x1333.jpg',
       '/images/egypte-veda-43-van-577-2000x1250.jpg',
@@ -200,13 +200,13 @@ const boats = [
           <div class="reveal" style={bi % 2 === 1 ? 'direction: ltr;' : ''}>
             <div class="flex items-center gap-4 mb-6">
               <span class="h-px w-8 bg-gold/40"></span>
-              <p class={`font-sans text-[10px] tracking-[0.3em] uppercase ${boat.taglineColor}`}>{boat.length} · {boat.capacity}</p>
+              <p class={`font-sans text-[14px] tracking-[0.3em] uppercase ${boat.taglineColor}`}>{boat.length} · {boat.capacity}</p>
             </div>
-            <h2 class={`font-serif text-5xl md:text-6xl font-light tracking-tight leading-none mb-3 ${boat.headingColor}`}>
+            <h2 class={`font-serif text-5xl md:text-6xl uppercase font-light tracking-tight leading-none mb-3 ${boat.headingColor}`}>
               {boat.name}
             </h2>
-            <p class={`font-sans text-[11px] tracking-[0.28em] uppercase mb-8 ${boat.taglineColor}`}>{boat.tagline}</p>
-            <p class={`font-sans text-base font-light leading-relaxed max-w-lg mb-10 ${boat.bodyColor}`}>
+            <p class={`font-sans text-[12px] tracking-[0.28em] uppercase mb-8 ${boat.taglineColor}`}>{boat.tagline}</p>
+            <p class={`font-sans text-base leading-relaxed max-w-lg mb-10 ${boat.bodyColor}`}>
               {boat.desc}
             </p>
 
@@ -214,8 +214,8 @@ const boats = [
             <div class={`grid grid-cols-2 sm:grid-cols-3 gap-0 border-t ${boat.specBorder}`}>
               {boat.specs.map((spec, si) => (
                 <div class={`border-b border-r ${boat.specBorder} px-4 py-4 ${si % 3 === 2 ? 'border-r-0' : ''}`}>
-                  <p class={`font-sans text-[10px] tracking-[0.22em] uppercase mb-1 ${boat.specLabel}`}>{spec.label}</p>
-                  <p class={`font-sans text-sm font-light ${boat.specValue}`}>{spec.value}</p>
+                  <p class={`font-sans text-[12px] tracking-[0.22em] uppercase mb-1 ${boat.specLabel}`}>{spec.label}</p>
+                  <p class={`font-sans text-base font-light ${boat.specValue}`}>{spec.value}</p>
                 </div>
               ))}
             </div>
@@ -223,7 +223,7 @@ const boats = [
             <div class="mt-8">
               <a
                 href="mailto:reservation@veda-egypt.com?subject=Enquiry%20about%20{boat.name}&body=Hi%2C%20I%27m%20interested%20in%20{boat.name}.%0A%0ADates%3A%20%0AGuests%3A%20%0A"
-                class={`inline-flex items-center gap-3 font-sans text-[11px] tracking-[0.22em] uppercase px-6 py-3.5 transition-all duration-300 group ${
+                class={`inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase px-6 py-3.5 transition-all duration-300 group ${
                   boat.ctaStyle === 'dark'
                     ? 'bg-gold hover:bg-gold-light text-black font-semibold'
                     : 'bg-gold hover:bg-gold-light text-black font-semibold'
