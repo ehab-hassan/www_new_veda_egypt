@@ -1,0 +1,157 @@
+---
+// Testimonials — LIGHT section (warm beige bg), large quotes, emotional, centered
+
+const testimonials = [
+  {
+    quote:
+      'When I boarded the boat in Luxor, I transformed in a second from a frowning person to a smiling one. Such a tastefully adapted traditional boat — incredible warmth and caring crew.',
+    name: 'Owen',
+    image: '/images/photo-2019-03-14-13.40.25-400x600.jpg',
+  },
+  {
+    quote:
+      "VEDA's understated luxury, smart cuisine, and extremely accommodating staff made the experience extra special. My personal discovery was the temples — each one had a unique gift to offer.",
+    name: 'Helena',
+    image: '/images/photo-2019-03-14-13.40.37-400x250.jpg',
+  },
+  {
+    quote:
+      "It's not just a retreat with healthy eating and relaxing sessions — it's a spiritual experience where you are invited to open your heart and mind. I will leave feeling so uplifted.",
+    name: 'Adnan',
+    image: '/images/photo-2019-03-23-11.17.08-400x250.jpg',
+  },
+  {
+    quote:
+      'The experience has changed something inside of me. Time stands still there. It was a total regeneration — moments of my life I will remember forever.',
+    name: 'Eloise',
+    image: '/images/image1-1-400x526.jpg',
+  },
+];
+---
+
+<section id="testimonials" class="relative bg-warm-beige py-28 overflow-hidden">
+
+  <!-- Oversized decorative quote mark — background -->
+  <div class="absolute top-8 left-4 lg:left-8 select-none pointer-events-none">
+    <span class="font-serif text-[18rem] leading-none text-ink/[0.09]">"</span>
+  </div>
+
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-12 text-center">
+
+    <!-- Section header -->
+    <div class="flex items-center justify-center gap-4 mb-16 reveal">
+      <span class="h-px w-10 bg-gold/50"></span>
+      <p class="font-sans text-sm tracking-ultra uppercase text-gold">What Our Guests Say</p>
+      <span class="h-px w-10 bg-gold/50"></span>
+    </div>
+
+    <!-- Testimonials slider -->
+    <div id="testimonialsTrack">
+      {testimonials.map((t, i) => (
+        <div class={`testimonial-slide ${i === 0 ? 'active' : ''}`} data-index={i}>
+
+          <!-- Photo — centered, small, circular -->
+          <div class="flex justify-center mb-8 reveal">
+            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gold/30">
+              <img
+                src={t.image}
+                alt={t.name}
+                class="w-full h-full object-cover grayscale"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Large quote -->
+          <blockquote class="reveal reveal-delay-1">
+            <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-ink font-light leading-[1.45] tracking-tight max-w-3xl mx-auto">
+              "{t.quote}"
+            </p>
+          </blockquote>
+
+          <!-- Attribution -->
+          <div class="flex items-center justify-center gap-3 mt-10 reveal reveal-delay-2">
+            <span class="h-px w-8 bg-gold/50"></span>
+            <p class="font-sans text-sm tracking-ultra uppercase text-gold">{t.name}</p>
+            <span class="h-px w-8 bg-gold/50"></span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-center gap-6 mt-16 reveal reveal-delay-3">
+      <!-- Prev -->
+      <button
+        id="prevTestimonial"
+        class="w-10 h-10 border border-ink/15 hover:border-gold text-ink-light hover:text-gold transition-all duration-300 flex items-center justify-center"
+        aria-label="Previous"
+      >
+        ←
+      </button>
+
+      <!-- Dots -->
+      <div class="flex gap-2" id="testimonialDots">
+        {testimonials.map((_, i) => (
+          <button
+            class={`testimonial-dot h-px transition-all duration-300 ${i === 0 ? 'bg-gold w-10' : 'bg-ink/20 w-5'}`}
+            data-target={i}
+            aria-label={`Go to testimonial ${i + 1}`}
+          ></button>
+        ))}
+      </div>
+
+      <!-- Next -->
+      <button
+        id="nextTestimonial"
+        class="w-10 h-10 border border-ink/15 hover:border-gold text-ink-light hover:text-gold transition-all duration-300 flex items-center justify-center"
+        aria-label="Next"
+      >
+        →
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-slide { display: none; }
+  .testimonial-slide.active {
+    display: block;
+    animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots = document.querySelectorAll('.testimonial-dot');
+  let current = 0;
+
+  function goTo(index: number) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('bg-gold', 'w-10');
+    dots[current].classList.add('bg-ink/20', 'w-5');
+
+    current = (index + slides.length) % slides.length;
+
+    slides[current].classList.add('active');
+    dots[current].classList.add('bg-gold', 'w-10');
+    dots[current].classList.remove('bg-ink/20', 'w-5');
+  }
+
+  document.getElementById('nextTestimonial')?.addEventListener('click', () => goTo(current + 1));
+  document.getElementById('prevTestimonial')?.addEventListener('click', () => goTo(current - 1));
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const target = parseInt((dot as HTMLElement).dataset.target || '0');
+      goTo(target);
+    });
+  });
+
+  setInterval(() => goTo(current + 1), 7000);
+</script>

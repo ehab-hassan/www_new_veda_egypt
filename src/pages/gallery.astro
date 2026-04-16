@@ -1,0 +1,258 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const categories = ['All', 'The Nile', 'Experiences', 'People'];
+
+// Exact 36 images from veda-egypt.com/gallery.html, logically classified
+const images = [
+  // ── The Nile: boats, temples, landscapes, river scenes ──
+  { src: '/images/dsc1037-2-1280x800.jpg',                  cat: 'The Nile',    caption: 'Kom Ombo at dawn' },
+  { src: '/images/aswan-temple-1280x800.jpg',               cat: 'The Nile',    caption: 'Philae Temple, Aswan' },
+  { src: '/images/aswan-temples-1280x800.jpg',              cat: 'The Nile',    caption: 'Nubian temples' },
+  { src: '/images/egypte-veda-139-van-577-1280x800.jpg',    cat: 'The Nile',    caption: 'Dahbiya sailing south' },
+  { src: '/images/dsc-340-1280x800.jpg',                    cat: 'The Nile',    caption: 'The Nile at dusk' },
+  { src: '/images/egypte-veda-490-van-577-2-1280x800.jpg',  cat: 'The Nile',    caption: 'Sunset on the water' },
+  { src: '/images/photo-2019-03-21-13.19.43-1280x800.jpg',  cat: 'The Nile',    caption: 'Sailing to Aswan' },
+  { src: '/images/dsc-265-1280x800.jpg',                    cat: 'The Nile',    caption: 'Corridor of the gods' },
+  { src: '/images/dsc-397-1280x800.jpg',                    cat: 'The Nile',    caption: 'River landscape' },
+  { src: '/images/dsc-918-1280x800.jpg',                    cat: 'The Nile',    caption: 'Golden hour on water' },
+  { src: '/images/egypte-veda-156-van-577-1280x800.jpg',    cat: 'The Nile',    caption: 'Dahbiya at anchor' },
+  { src: '/images/dsc-1531-1280x800.jpg',                   cat: 'The Nile',    caption: 'Traditional sails' },
+  { src: '/images/photo-2022-07-21-00-05-52-1024x640.jpg',  cat: 'The Nile',    caption: 'Sunrise mist' },
+  { src: '/images/dsc-1462-1-1280x800.jpg',                 cat: 'The Nile',    caption: 'Morning light' },
+  { src: '/images/dsc-2200-2-1280x800.jpg',                 cat: 'The Nile',    caption: 'Calm waters' },
+  { src: '/images/dsc-921-1280x800.jpg',                    cat: 'The Nile',    caption: 'Temple of Edfu' },
+  { src: '/images/dsc-1657-1-1280x800.jpg',                 cat: 'The Nile',    caption: 'Sacred columns' },
+  { src: '/images/dsc-2186-1280x800.jpg',                   cat: 'The Nile',    caption: 'River reflections' },
+  { src: '/images/dsc-1612-1-1280x800.jpg',                 cat: 'The Nile',    caption: 'Temple at golden hour' },
+  { src: '/images/dsc-1797-pano-1280x800.jpg',              cat: 'The Nile',    caption: 'Nile panorama' },
+  { src: '/images/dsc-40-1280x800.jpg',                     cat: 'The Nile',    caption: 'Early morning sail' },
+  { src: '/images/egypte-veda-198-van-577-1280x800.jpg',    cat: 'The Nile',    caption: 'Onboard the dahbiya' },
+  { src: '/images/egypte-veda-248-van-577-2-1280x800.jpg',  cat: 'The Nile',    caption: 'Boat on the river' },
+  { src: '/images/karnak-1280x800.jpg',                     cat: 'The Nile',    caption: 'Karnak Temple, Luxor' },
+  { src: '/images/egypte-veda-309-van-577-1-1280x800.jpg',  cat: 'The Nile',    caption: 'Deck at sunset' },
+
+  // ── Experiences: yoga, food, wellness, light show, working ──
+  { src: '/images/lightshow-1280x800.jpg',                  cat: 'Experiences', caption: 'Sound & light show' },
+  { src: '/images/group-eating-1280x800.jpg',               cat: 'Experiences', caption: 'Shared organic meals' },
+  { src: '/images/yoga-on-deck-1280x800.jpg',               cat: 'Experiences', caption: 'Morning yoga on deck' },
+  { src: '/images/yoga-on-deck-3-1280x800.jpg',             cat: 'Experiences', caption: 'Yoga at sunrise' },
+  { src: '/images/working-on-deck-1280x800.jpg',            cat: 'Experiences', caption: 'Working in stillness' },
+  { src: '/images/yoga-on-deck-2-1280x800.jpg',             cat: 'Experiences', caption: 'Flow on the Nile' },
+  { src: '/images/photo-2022-07-21-00-07-26-1280x960.jpeg', cat: 'Experiences', caption: 'Meditation retreat' },
+  { src: '/images/photo-2022-07-21-00-06-57-1024x461.jpeg', cat: 'Experiences', caption: 'Panoramic deck session' },
+  { src: '/images/photo-2022-07-21-00-06-13-1024x640.jpeg', cat: 'Experiences', caption: 'Wellness on water' },
+  { src: '/images/photo-2022-07-21-00-06-4-1024x682.jpeg',  cat: 'Experiences', caption: 'Organic cuisine' },
+
+  // ── People: crew, guests, founders ──
+  { src: '/images/weynand-andreas-1280x800.jpg',            cat: 'People',      caption: 'Weynand & Andreas — the founders' },
+];
+---
+
+<MainLayout
+  title="Gallery — VEDA Egypt"
+  description="Photographs from life aboard VEDA's dahabiyas — the Nile, temples, wellness and more."
+>
+
+  <!-- Page hero -->
+  <div class="relative bg-void pt-36 pb-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img src="/images/egypte-veda-214-van-577-2000x709.jpg" alt="" class="w-full h-full object-cover object-center"/>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-transparent to-void"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold">Visual Stories</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-ivory font-light tracking-tight leading-tight">
+        The Gallery
+      </h1>
+      <p class="font-sans text-md text-warm-gray mt-4 font-light">
+        Life aboard the Nile — captured.
+      </p>
+    </div>
+  </div>
+
+  <!-- Gallery section -->
+  <div class="bg-void min-h-screen pb-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 py-12" id="gallery-filters">
+        {categories.map((cat, i) => (
+          <button
+            class={`gallery-filter font-sans text-[12px] tracking-[0.25em] uppercase px-5 py-2.5 border transition-all duration-300 ${i === 0 ? 'border-gold text-gold bg-gold/8' : 'border-white/10 text-warm-gray hover:border-gold/50 hover:text-ivory'}`}
+            data-filter={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Masonry grid -->
+      <div class="gallery-grid columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 space-y-3" id="gallery-grid">
+        {images.map((img, i) => (
+          <div
+            class="gallery-item break-inside-avoid relative group cursor-zoom-in overflow-hidden"
+            data-category={img.cat}
+            style={`animation-delay: ${(i % 12) * 0.05}s`}
+          >
+            <img
+              src={img.src}
+              alt={img.caption}
+              class="w-full block transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-void/85 via-void/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+              <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-gold mb-1">{img.cat}</p>
+              <p class="font-serif text-sm text-ivory font-light">{img.caption}</p>
+            </div>
+            <!-- Lightbox trigger overlay -->
+            <button
+              class="gallery-lb-btn absolute inset-0 w-full h-full opacity-0"
+              data-src={img.src}
+              data-caption={img.caption}
+              aria-label={`View ${img.caption}`}
+            ></button>
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="gallery-empty" class="hidden text-center py-24">
+        <p class="font-serif text-2xl text-ivory/30 font-light">No images in this category yet.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-void/97 backdrop-blur-sm flex items-center justify-center hidden" aria-modal="true" role="dialog">
+    <button id="lb-close" class="absolute top-6 right-8 text-ivory/50 hover:text-ivory font-sans text-xs tracking-ultra uppercase flex items-center gap-2 transition-colors" aria-label="Close">
+      Close <span class="text-lg leading-none">×</span>
+    </button>
+    <button id="lb-prev" class="absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 w-11 h-11 border border-white/15 hover:border-gold/60 text-ivory/50 hover:text-gold flex items-center justify-center transition-all" aria-label="Previous">←</button>
+    <button id="lb-next" class="absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 w-11 h-11 border border-white/15 hover:border-gold/60 text-ivory/50 hover:text-gold flex items-center justify-center transition-all" aria-label="Next">→</button>
+
+    <div class="flex flex-col items-center max-w-5xl w-full px-16">
+      <img id="lb-img" src="" alt="" class="max-h-[78vh] max-w-full object-contain lb-image"/>
+      <p id="lb-caption" class="font-serif text-base text-ivory/70 font-light mt-4 text-center"></p>
+    </div>
+  </div>
+
+</MainLayout>
+
+<style>
+  .gallery-item {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: galleryFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes galleryFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .gallery-item.hidden-item {
+    display: none;
+  }
+  .gallery-filter.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(160,124,58,0.08);
+  }
+  .lb-image {
+    animation: lbFade 0.3s ease both;
+  }
+  @keyframes lbFade {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  /* Uniform gallery-item bg to prevent FOUC */
+  .gallery-item { background: #0e1a0e; }
+</style>
+
+<script>
+  // ── Filter ──────────────────────────────────────────
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.gallery-filter');
+  const items      = document.querySelectorAll<HTMLElement>('.gallery-item');
+  const empty      = document.getElementById('gallery-empty');
+  function applyFilter(cat: string) {
+    filterBtns.forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === cat);
+    });
+    let visible = 0;
+    items.forEach(item => {
+      const match = cat === 'All' || item.dataset.category === cat;
+      item.classList.toggle('hidden-item', !match);
+      if (match) visible++;
+    });
+    empty?.classList.toggle('hidden', visible > 0);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter || 'All'));
+  });
+
+  // ── Lightbox ─────────────────────────────────────────
+  const lightbox  = document.getElementById('lightbox')!;
+  const lbImg     = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('lb-caption')!;
+  const lbClose   = document.getElementById('lb-close')!;
+  const lbPrev    = document.getElementById('lb-prev')!;
+  const lbNext    = document.getElementById('lb-next')!;
+
+  let lbItems: { src: string; caption: string }[] = [];
+  let lbCurrent = 0;
+
+  function buildLbItems() {
+    lbItems = Array.from(document.querySelectorAll<HTMLButtonElement>('.gallery-lb-btn'))
+      .filter(btn => !btn.closest('.gallery-item')?.classList.contains('hidden-item'))
+      .map(btn => ({ src: btn.dataset.src || '', caption: btn.dataset.caption || '' }));
+  }
+
+  function openLb(src: string, caption: string) {
+    buildLbItems();
+    lbCurrent = lbItems.findIndex(i => i.src === src);
+    showLbSlide(lbCurrent);
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLbSlide(index: number) {
+    lbCurrent = (index + lbItems.length) % lbItems.length;
+    lbImg.src = lbItems[lbCurrent].src;
+    lbImg.alt = lbItems[lbCurrent].caption;
+    lbCaption.textContent = lbItems[lbCurrent].caption;
+    // re-trigger animation
+    lbImg.classList.remove('lb-image');
+    void lbImg.offsetWidth;
+    lbImg.classList.add('lb-image');
+  }
+
+  function closeLb() {
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.gallery-lb-btn').forEach(btn => {
+    btn.addEventListener('click', () => openLb(btn.dataset.src!, btn.dataset.caption!));
+  });
+
+  lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', () => showLbSlide(lbCurrent - 1));
+  lbNext.addEventListener('click', () => showLbSlide(lbCurrent + 1));
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLb();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowLeft')  showLbSlide(lbCurrent - 1);
+    if (e.key === 'ArrowRight') showLbSlide(lbCurrent + 1);
+  });
+</script>

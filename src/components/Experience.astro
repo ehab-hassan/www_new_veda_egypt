@@ -1,0 +1,165 @@
+---
+// Experience / About — "Who We Are" — editorial luxury split layout
+import whoWeImg from '../images/who_we.jpg';
+---
+
+<section id="experience" class="relative bg-warm-beige overflow-hidden">
+
+  <!-- ─── Main Split Grid ─────────────────────────────── -->
+  <div class="relative grid lg:grid-cols-[1fr_52%] min-h-[65vh]">
+
+    <!-- LEFT: Content column -->
+    <div class="relative flex flex-col justify-center py-16 lg:py-20 z-10 pl-6 pr-8 lg:pr-12 lg:pl-[max(3rem,calc((100vw-80rem)/2+3rem))]">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-4 mb-12 reveal-left">
+        <span class="gold-line"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold">Who We Are</p>
+      </div>
+
+      <!-- Headline -->
+      <h2 class="reveal font-serif text-4xl md:text-5xl lg:text-6xl font-light text-ink leading-[1.08] tracking-tight mb-2">
+        There is no other
+      </h2>
+      <h2 class="reveal reveal-delay-1 font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08] tracking-tight mb-2">
+        experience
+      </h2>
+      <h2 class="reveal reveal-delay-2 font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08] tracking-tight mb-10">
+        <em class="italic text-gold">like us on the Nile.</em>
+      </h2>
+
+      <!-- Gold ornament -->
+      <div class="flex items-center gap-3 mb-8 reveal reveal-delay-2">
+        <span class="w-12 h-px bg-gold/50"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold/40 flex-shrink-0"></span>
+        <span class="w-5 h-px bg-gold/20"></span>
+      </div>
+
+      <!-- Body copy -->
+      <p class="font-sans text-base md:text-[1.05rem] text-ink-mid font-light leading-[1.85] max-w-[420px] reveal reveal-delay-3 mb-5">
+        VEDA offers unique, authentic, and private cruises with organic food,
+        green energy, and a warm-hearted crew. Every journey is shaped entirely
+        around you — your pace, your curiosity, your spirit.
+      </p>
+      <!-- <p class="font-sans text-sm text-ink-light/65 font-light leading-relaxed max-w-[380px] reveal reveal-delay-3 mb-14">
+        We don't do package tours. We curate living poetry — slow mornings on golden water,
+        temples at dusk, meals grown by local hands.
+      </p> -->
+
+      <!-- CTA link -->
+      <div class="reveal reveal-delay-4">
+        <a
+          href="#dahabiyas"
+          class="inline-flex items-center gap-4 font-sans text-[14px] tracking-[0.25em] uppercase text-ink-mid hover:text-gold transition-colors duration-400 group"
+        >
+          <span>Discover Our Fleet</span>
+          <span class="w-8 h-px bg-current transition-all duration-500 group-hover:w-16"></span>
+        </a>
+      </div>
+
+      <!-- Corner gold accent — bottom left -->
+      <!-- <div class="absolute bottom-10 left-8 md:left-14 lg:left-16 xl:left-24 pointer-events-none opacity-40">
+        <div class="w-6 h-px bg-gold mb-0.5"></div>
+        <div class="w-px h-6 bg-gold"></div>
+      </div> -->
+      <div class="mt-10 pt-2 border-t border-gold/20 reveal"></div>
+      <!-- ─── Stats Band ──────────────────────────────────── -->
+      <div class="relative z-10">
+        <div class="max-w-7xl mx-auto py-8">
+          <div class="grid grid-cols-3 gap-0 reveal reveal-delay-2">
+    
+            <!-- Stat 1 -->
+            <div class="flex flex-col items-start pr-6 lg:pr-12">
+              <p class="font-serif text-4xl md:text-5xl text-gold font-light leading-none mb-2">4</p>
+              <p class="font-sans text-[12px] tracking-[0.2em] uppercase text-ink font-medium mb-1">Dahabiyas</p>
+              <p class="font-sans text-[12px] text-ink-mid font-light hidden sm:block">Private vessels</p>
+            </div>
+    
+            <!-- Stat 2 -->
+            <div class="flex flex-col items-start border-l border-gold/15 px-6 lg:px-12">
+              <p class="font-serif text-4xl md:text-5xl text-gold font-light leading-none mb-2">28<span class="text-2xl md:text-3xl">+</span></p>
+              <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-ink font-medium mb-1">Guests Max</p>
+              <p class="font-sans text-[12px] text-ink-mid font-light hidden sm:block">Intimate scale</p>
+            </div>
+    
+            <!-- Stat 3 -->
+            <div class="flex flex-col items-start border-l border-gold/15 pl-6 lg:pl-12">
+              <p class="font-serif text-4xl md:text-5xl text-gold font-light leading-none mb-2">100<span class="text-2xl md:text-3xl">%</span></p>
+              <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-ink font-medium mb-1">Solar Power</p>
+              <p class="font-sans text-[12px] text-ink-mid font-light hidden sm:block">Green energy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Image column -->
+    <div class="relative h-[70vw] lg:h-auto overflow-hidden who-we-image-col">
+      <!-- The image -->
+      <img
+        src={whoWeImg.src}
+        alt="The VEDA Experience — Sailing the Nile"
+        class="w-full h-full object-cover object-center who-we-img"
+        loading="lazy"
+      />
+
+      <!-- Atmospheric gradient overlays -->
+      <div class="absolute inset-0 bg-gradient-to-r from-warm-beige via-transparent to-transparent opacity-60 lg:opacity-100"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-warm-beige/30 via-transparent to-transparent"></div>
+
+      <!-- Caption bottom-right -->
+      <div class="absolute bottom-8 right-8 text-right reveal reveal-delay-3">
+        <p class="font-sans text-[9px] tracking-[0.3em] uppercase text-warm-gray/60">The Nile · Egypt</p>
+      </div>
+
+      <!-- Vertical label -->
+      <div class="absolute top-1/2 right-6 -translate-y-1/2 hidden xl:flex flex-col items-center gap-3 opacity-30">
+        <span class="w-px h-16 bg-gold"></span>
+        <p class="font-sans text-[8px] tracking-[0.4em] uppercase text-ink -rotate-90 whitespace-nowrap">Since 2012</p>
+        <span class="w-px h-16 bg-gold"></span>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+<style>
+  /* Image slow-zoom on section enter */
+  .who-we-img {
+    transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(1.06);
+  }
+
+  .who-we-image-col.in-view .who-we-img {
+    transform: scale(1);
+  }
+
+  /* Subtle hover parallax */
+  @media (hover: hover) {
+    .who-we-image-col:hover .who-we-img {
+      transform: scale(1.03);
+      transition-duration: 2s;
+    }
+  }
+</style>
+
+<script>
+  // Trigger image zoom when section enters viewport
+  const imageCol = document.querySelector('.who-we-image-col');
+  if (imageCol) {
+    const imgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            imgObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    imgObserver.observe(imageCol);
+  }
+</script>

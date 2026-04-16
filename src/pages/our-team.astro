@@ -1,0 +1,129 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const team = [
+  {
+    name: 'Isabelle Peeters',
+    role: 'Awareness Coach',
+    image: '/images/20181215-14-44-2520181215-95121-1048x1570.jpeg',
+    bio: 'Isabelle holds a law degree and MBA. Two years after setting up her legal solutions firm, a progressed form of Lyme disease called her to a halt. Years of conventional medicine made her completely bedridden. She recovered through organic food, biological medicine, energy healing, and meditation. Her passion is helping people grow in awareness and understand their own power.',
+  },
+  {
+    name: 'Daniela Nikolova',
+    role: 'Energy Healing',
+    image: '/images/whatsapp-image-2019-04-07-at-09.35.24-510x766.jpg',
+    bio: 'Daniela is an energy healer and integrative nutrition health coach. Following an autoimmune diagnosis, she explored many healing modalities and fully recovered through energy healing. She now helps clients achieve balance, awareness, and alignment on all levels — physical, mental, emotional, and spiritual.',
+  },
+  {
+    name: 'Dave De Belder',
+    role: 'Nutritional Healing',
+    image: '/images/whatsapp-image-2019-08-06-at-15.19.03-510x907.jpeg',
+    bio: 'Trained under renowned chefs including Jonnie Boer and Ferran & Albert Adrià. Dave opened multiple Michelin-rated restaurants in Belgium and Australia. In 2015 he needed a radical change and moved to Ibiza. He now teaches the transformative impact of organic, local food on the body, mind, and soul.',
+  },
+];
+
+const founders = [
+  {
+    name: 'Weynand & Andreas',
+    role: 'Founders',
+    image: '/images/weynand-andreas-1280x800.jpg',
+    bio: 'The hearts behind VEDA. Weynand and Andreas created a vision of conscious, authentic travel on the Nile — where luxury meets purpose, and every journey is a transformation.',
+    wide: true,
+  },
+];
+---
+
+<MainLayout
+  title="Our Team — VEDA Egypt"
+  description="Meet the healers, therapists, and founders behind VEDA Egypt's conscious Nile journeys."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/team-1920x1080.jpg" alt="" class="w-full h-full object-cover object-center opacity-25"/>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/50 via-void/30 to-void"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[10px] tracking-[0.32em] uppercase text-gold">The People</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Our Healers<br /><em class="italic text-gold-pale">&amp; Therapists</em>
+      </h1>
+      <p class="font-sans text-sm text-warm-gray font-light max-w-xs mx-auto leading-relaxed">
+        Taking your awareness to the next level.
+      </p>
+    </div>
+  </div>
+
+  <!-- Team section -->
+  <div class="bg-void pb-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+
+
+      <!-- Therapists header -->
+      <div class="flex items-center gap-4 mb-12 reveal">
+        <span class="h-px w-10 bg-gold/40"></span>
+        <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold/70">Healers & Therapists</p>
+      </div>
+
+      <!-- Team grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {team.map((member, i) => (
+          <article class={`group relative overflow-hidden rounded-lg bg-forest-mid reveal reveal-delay-${i + 1} flex flex-col`}>
+
+            <!-- Portrait -->
+            <div class="relative overflow-hidden" style="aspect-ratio: 3/4;">
+              <img
+                src={member.image}
+                alt={member.name}
+                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <!-- Gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-forest-mid/95 via-forest-mid/20 to-transparent"></div>
+              <!-- Gold accent line on hover -->
+              <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-7 flex flex-col flex-1">
+              <p class="font-sans text-[9px] tracking-[0.28em] uppercase text-gold mb-2">{member.role}</p>
+              <h3 class="font-serif text-2xl text-ivory font-light leading-tight mb-4">{member.name}</h3>
+              <div class="h-px w-8 bg-gold/30 mb-4"></div>
+              <p class="font-sans text-sm text-warm-gray font-light leading-relaxed flex-1">{member.bio}</p>
+            </div>
+
+          </article>
+        ))}
+      </div>
+
+      <!-- Closing quote -->
+      <div class="mt-28 text-center reveal">
+        <div class="flex items-center justify-center gap-4 mb-8">
+          <span class="h-px w-16 bg-gold/20"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-gold/30"></span>
+          <span class="h-px w-16 bg-gold/20"></span>
+        </div>
+        <blockquote class="font-serif text-2xl md:text-3xl text-ivory/50 font-light italic leading-relaxed max-w-2xl mx-auto">
+          "Each healer on board brings a piece of the journey that no temple or sunset can offer — the journey within."
+        </blockquote>
+        <div class="mt-10">
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-[10px] tracking-[0.25em] uppercase px-7 py-3.5 transition-all duration-300 hover:bg-gold/5"
+          >
+            Join a Journey
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</MainLayout>

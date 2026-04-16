@@ -1,0 +1,215 @@
+---
+// Hero Section — Fullscreen slider, 3 slides (slide 0 = video), auto-advance + manual controls
+import heroVideo from '../images/hero_1.mp4';
+import greenImage from '../images/green.jpg';
+
+const slides = [
+  {
+    type: 'video',
+    src: heroVideo,
+    eyebrow: 'Nile Journeys · Egypt',
+    heading: ['Sail the Nile.', 'Experience', 'something real.'],
+    sub: 'Private, authentic, and conscious journeys in Egypt.',
+  },
+  {
+    type: 'image',
+    src: '/images/photo-2019-03-11-18.02.48-1280x851.jpg',
+    eyebrow: 'Exclusive Experiences',
+    heading: ['Exclusive &', 'authentic', 'experiences.'],
+    sub: 'VEDA crew guides you to the most impressive, high-energy places on the Nile.',
+  },
+  {
+    type: 'image',
+    src: greenImage.src,
+    eyebrow: 'Green & Organic',
+    heading: ['Green.', 'Organic.', 'Alive.'],
+    sub: 'Solar-powered boats. Local cuisine. The first truly green journey on the Nile.',
+  },
+];
+---
+
+<section id="hero" class="relative w-full h-screen min-h-[640px] overflow-hidden">
+
+  <!-- Slide backgrounds -->
+  {slides.map((slide, i) => (
+    <div
+      class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out"
+      data-slide={i}
+      style={i === 0 ? 'opacity:1;' : 'opacity:0;'}
+    >
+      {slide.type === 'video' ? (
+        <video
+          src={slide.src}
+          class="w-full h-full object-cover object-center"
+          autoplay
+          muted
+          loop
+          playsinline
+        />
+      ) : (
+        <img
+          src={slide.src}
+          alt={slide.eyebrow}
+          class="w-full h-full object-cover object-center"
+          style="animation: heroScale 22s ease-in-out infinite alternate;"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      )}
+    </div>
+  ))}
+
+  <!-- Overlay — light, image breathes -->
+  <div class="absolute inset-0 bg-gradient-to-t from-void/80 via-void/20 to-transparent pointer-events-none"></div>
+  <!-- Top gradient for nav legibility -->
+  <div class="absolute inset-0 bg-gradient-to-b from-void/70 via-transparent to-transparent pointer-events-none"></div>
+  <!-- Left-to-right gradient: strong on text side, fully clear on right so boat stays visible -->
+  <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.10) 55%, transparent 75%);"></div>
+
+  <!-- Slide content -->
+  <div class="relative z-10 flex flex-col justify-end h-full max-w-7xl mx-auto px-6 lg:px-12 pb-24 lg:pb-32">
+
+    {slides.map((slide, i) => (
+      <div
+        class="hero-content absolute bottom-24 lg:bottom-32 left-6 lg:left-12 right-6 lg:right-12 max-w-7xl transition-all duration-700"
+        data-content={i}
+        style={i === 0 ? 'opacity:1; transform:translateY(0);' : 'opacity:0; transform:translateY(20px); pointer-events:none;'}
+      >
+        <!-- Gold line -->
+        <span class="gold-line mb-8 block" style="animation: fadeInUp 1s 0.3s both;"></span>
+
+        <!-- Eyebrow -->
+        <p class="font-sans text-sm tracking-mega uppercase text-gold-light mb-6"
+          style="animation: fadeInUp 1s 0.5s both;">
+          {slide.eyebrow}
+        </p>
+
+        <!-- Heading -->
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[0.95] tracking-tight max-w-4xl mb-8"
+          style="animation: fadeInUp 1s 0.7s both; text-shadow: 0 2px 24px rgba(0,0,0,0.35);">
+          {slide.heading[0]}<br />
+          <em class="italic text-gold-pale">{slide.heading[1]}</em><br />
+          {slide.heading[2]}
+        </h1>
+
+        <!-- Subtext -->
+        <p class="font-sans text-sm md:text-base text-ivory/90 font-light max-w-sm leading-relaxed mb-12"
+          style="animation: fadeInUp 1s 0.9s both;">
+          {slide.sub}
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4" style="animation: fadeInUp 1s 1.1s both;">
+          <a href="#dahabiyas"
+            class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300">
+            Explore Dahabiyas
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+          <a href="#contact"
+            class="group inline-flex items-center gap-3 border border-white/25 hover:border-white/50 text-white/75 hover:text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300 hover:bg-white/5 backdrop-blur-sm">
+            Plan Your Journey
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Slide indicators — bottom center -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+    {slides.map((_, i) => (
+      <button
+        class="hero-dot transition-all duration-400 rounded-full"
+        data-target={i}
+        aria-label={`Go to slide ${i + 1}`}
+        style={i === 0
+          ? 'width:28px; height:3px; background:rgba(200,168,92,0.9); border-radius:2px;'
+          : 'width:8px; height:3px; background:rgba(255,255,255,0.3); border-radius:2px;'}
+      ></button>
+    ))}
+  </div>
+
+  <!-- Prev / Next arrows -->
+  <button id="heroPrev"
+    class="absolute left-5 lg:left-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center border border-white/20 hover:border-white/50 text-white/60 hover:text-white transition-all duration-300 hover:bg-white/5 backdrop-blur-sm"
+    aria-label="Previous slide">
+    ←
+  </button>
+  <button id="heroNext"
+    class="absolute right-5 lg:right-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center border border-white/20 hover:border-white/50 text-white/60 hover:text-white transition-all duration-300 hover:bg-white/5 backdrop-blur-sm"
+    aria-label="Next slide">
+    →
+  </button>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 right-8 md:right-12 z-10 flex flex-col items-center gap-3"
+    style="animation: fadeIn 1s 1.5s both;">
+    <span class="font-sans text-xs tracking-ultra uppercase text-white/30 [writing-mode:vertical-lr]">Scroll</span>
+    <div class="w-px h-16 bg-gradient-to-b from-gold-light/50 to-transparent relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full bg-gold-light" style="height: 40%; animation: scrollLine 2s ease-in-out infinite;"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes heroScale {
+    from { transform: scale(1.0); }
+    to   { transform: scale(1.08); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollLine {
+    0%   { top: -40%; }
+    100% { top: 140%; }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
+  const contents = document.querySelectorAll<HTMLElement>('.hero-content');
+  const dots = document.querySelectorAll<HTMLElement>('.hero-dot');
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    // Hide current
+    slides[current].style.opacity = '0';
+    contents[current].style.opacity = '0';
+    contents[current].style.transform = 'translateY(20px)';
+    contents[current].style.pointerEvents = 'none';
+    dots[current].style.width = '8px';
+    dots[current].style.background = 'rgba(255,255,255,0.3)';
+
+    current = (index + slides.length) % slides.length;
+
+    // Show next
+    slides[current].style.opacity = '1';
+    contents[current].style.opacity = '1';
+    contents[current].style.transform = 'translateY(0)';
+    contents[current].style.pointerEvents = 'auto';
+    dots[current].style.width = '28px';
+    dots[current].style.background = 'rgba(200,168,92,0.9)';
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 6000);
+  }
+
+  document.getElementById('heroNext')?.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+  document.getElementById('heroPrev')?.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.target || '0'));
+      startTimer();
+    });
+  });
+
+  startTimer();
+</script>

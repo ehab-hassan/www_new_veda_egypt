@@ -1,0 +1,150 @@
+---
+// Dahabiyas Section — LIGHT section (soft green bg, ink text), cinematic cards
+import veda1Img from '../images/veda_1.jpg';
+import parallaxImg from '../images/test.png';
+import veda2Img from '../images/veda_2.jpg';
+import veda3Img from '../images/veda_3.jpg';
+import veda4Img from '../images/veda_4.jpg';
+
+const boats = [
+  {
+    name: 'Veda 1',
+    tagline: 'The Grand Flagship',
+    capacity: 'Up to 20 guests',
+    rooms: '6 rooms · 4 suites',
+    detail: 'Private balconies. Ensuite bathrooms. Elevated elegance.',
+    image: veda1Img.src,
+    href: '#',
+  },
+  {
+    name: 'Veda 2',
+    tagline: 'The Intimate Voyager',
+    capacity: 'Up to 20 guests',
+    rooms: '8 rooms · 2 suites',
+    detail: 'Balcony views. Personal space. A home on water.',
+    image: veda2Img.src,
+    href: '#',
+  },
+  {
+    name: 'Veda 3',
+    tagline: 'The Private Retreat',
+    capacity: 'Up to 10 guests',
+    rooms: '5 rooms',
+    detail: 'Intimate scale. Exclusive feel. Pure river life.',
+    image: veda3Img.src,
+    href: '#',
+  },
+  {
+    name: 'Veda 4',
+    tagline: 'The Majestic',
+    capacity: 'Up to 28 guests',
+    rooms: '10 rooms · 4 suites',
+    detail: 'The largest VEDA. Balconies. Ensuite. Grandeur.',
+    image: veda4Img.src,
+    href: '#',
+  },
+];
+---
+
+<section id="dahabiyas" class="relative bg-soft-green py-28 lg:py-44 overflow-hidden">
+
+  <!-- Parallax background image -->
+  <div id="dahabiyas-parallax" class="absolute inset-0 pointer-events-none">
+    <img
+      src={parallaxImg.src}
+      alt=""
+      class="w-full h-[130%] object-cover object-center opacity-30"
+      style="will-change: transform;"
+      id="dahabiyas-parallax-img"
+      loading="lazy"
+      aria-hidden="true"
+    />
+  </div>
+  <!-- Soft overlay so content stays readable -->
+  <div class="absolute inset-0 bg-soft-green/60 pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-8">
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="gold-line"></span>
+          <p class="font-sans text-sm tracking-ultra uppercase text-gold-muted">Our Fleet</p>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ink font-light tracking-tight leading-tight">
+          The VEDA<br />
+          <em class="italic text-gold">Dahabiyas</em>
+        </h2>
+      </div>
+      <p class="font-sans text-lg text-ink-mid max-w-xs leading-relaxed reveal reveal-delay-2">
+        Peaceful platforms built for your retreat. Each boat a world unto itself.
+      </p>
+    </div>
+
+    <!-- Boat cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {boats.map((boat, i) => (
+        <article class={`group overflow-hidden rounded-lg bg-forest cursor-pointer reveal reveal-delay-${i + 1} flex flex-col`}>
+          <!-- Image -->
+          <div class="relative overflow-hidden" style="aspect-ratio: 3/3;">
+            <img
+              src={boat.image}
+              alt={boat.name}
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <!-- Hover: subtle warm wash -->
+            <div class="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+
+          <!-- Content panel — below image -->
+          <div class="flex flex-col flex-1 p-5">
+            <h3 class="uppercase font-serif text-2xl text-white font-light leading-tight mb-1">{boat.name}</h3>
+            <p class="font-sans text-[12px] tracking-[0.22em] uppercase text-gold mb-3">{boat.tagline}</p>
+            <p class="font-sans text-sm text-white/80 font-light leading-relaxed mb-5 flex-1">
+              {boat.rooms}. {boat.detail}
+            </p>
+            <a
+              href={boat.href}
+              class="inline-flex items-center gap-2 font-sans text-[9px] tracking-[0.2em] uppercase text-white/50 hover:text-gold transition-colors duration-300 group/link"
+            >
+              <span>Explore {boat.name}</span>
+              <span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom link -->
+    <div class="flex justify-center mt-14 reveal">
+      <a
+        href="/dahabiyas"
+        class="group inline-flex items-center gap-3 font-sans text-sm tracking-ultra uppercase text-ink-light hover:text-gold-muted transition-colors duration-300"
+      >
+        <span class="h-px w-10 bg-current transition-all duration-300 group-hover:w-16"></span>
+        View All Dahabiyas
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const section = document.getElementById('dahabiyas');
+  const img = document.getElementById('dahabiyas-parallax-img') as HTMLElement | null;
+
+  if (section && img) {
+    const onScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const sectionH = section.offsetHeight;
+      // progress: 0 when top enters viewport, 1 when bottom leaves
+      const progress = 1 - (rect.bottom / (sectionH + window.innerHeight));
+      // shift image -15% to +15% vertically
+      const shift = (progress - 0.5) * 30;
+      img.style.transform = `translateY(${shift}%)`;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

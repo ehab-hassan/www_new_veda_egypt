@@ -1,0 +1,167 @@
+---
+// PressFeature.astro — CNN Press Feature · editorial luxury treatment
+---
+
+<section id="press" class="relative bg-void border-t border-gold/10 py-24 overflow-hidden">
+
+  <!-- Subtle noise grain overlay -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.035]" style="background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/></svg>'); background-size:200px;"></div>
+
+  <!-- Ambient glow -->
+  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[400px] pointer-events-none" style="background:radial-gradient(ellipse at center, rgba(160,124,58,0.06) 0%, transparent 70%);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- ── Eyebrow ─────────────────────── -->
+    <div class="flex items-center gap-5 mb-16 reveal">
+      <span class="h-px w-8 bg-gold/40"></span>
+      <p class="font-sans text-[14px] tracking-[0.4em] uppercase text-gold/70">As Featured On</p>
+    </div>
+
+    <!-- ── Two-column layout ──────────────────────────── -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-center">
+
+      <!-- LEFT: Text content -->
+      <div class="reveal-left">
+
+        <!-- CNN Badge -->
+        <!-- <div class="inline-flex items-center gap-4 mb-10">
+          <div class="relative px-6 py-2.5 border border-gold/30 cnn-badge">
+            <span class="font-serif text-5xl tracking-[0.25em] text-gold font-light">CNN</span>
+            <span class="absolute top-[-3px] left-[-3px] w-1.5 h-1.5 bg-gold/60"></span>
+            <span class="absolute top-[-3px] right-[-3px] w-1.5 h-1.5 bg-gold/60"></span>
+            <span class="absolute bottom-[-3px] left-[-3px] w-1.5 h-1.5 bg-gold/60"></span>
+            <span class="absolute bottom-[-3px] right-[-3px] w-1.5 h-1.5 bg-gold/60"></span>
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-gold/20 to-transparent"></div>
+        </div> -->
+
+        <!-- Title -->
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory font-light leading-tight tracking-tight mb-6">
+          Veda on <em class="italic text-gold-pale">CNN</em>
+        </h2>
+
+        <!-- Divider -->
+        <div class="h-px w-10 bg-gold/30 mb-7"></div>
+
+        <!-- Body text -->
+        <p class="font-sans text-sm text-warm-gray font-light leading-relaxed mb-5 max-w-sm">
+          CNN's Destination Egypt visited the Veda boats to give you a first hand impression of what awaits you when cruising the Nile.
+        </p>
+
+        <!-- Timestamp note -->
+        <div class="inline-flex items-center gap-3 bg-forest-mid border border-gold/15 px-4 py-3">
+          <!-- Play icon -->
+          <span class="flex-shrink-0 w-6 h-6 rounded-full border border-gold/40 flex items-center justify-center">
+            <svg width="8" height="9" viewBox="0 0 8 9" fill="none">
+              <path d="M1.5 1.5L6.5 4.5L1.5 7.5V1.5Z" fill="rgba(201,168,92,0.8)"/>
+            </svg>
+          </span>
+          <p class="font-sans text-xs text-warm-gray/80 font-light">
+            See the boats, founders &amp; team in action from the
+            <span class="text-gold font-medium">7:40 mark</span>
+          </p>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="mt-12 pt-8 border-t border-gold/10">
+          <p class="font-serif text-xl md:text-2xl italic text-ivory/80 font-light leading-relaxed">
+            "The future of Nile travel is here."
+          </p>
+          <!-- <p class="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/35 mt-3">— CNN Travel</p> -->
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Video -->
+      <div class="reveal reveal-delay-2">
+
+        <!-- Outer glow border -->
+        <div class="relative p-px" style="background:linear-gradient(135deg, rgba(160,124,58,0.35) 0%, rgba(160,124,58,0.04) 40%, rgba(160,124,58,0.04) 60%, rgba(160,124,58,0.25) 100%);">
+
+          <div class="relative bg-forest-mid overflow-hidden" style="aspect-ratio:16/9;">
+
+            <!-- Play overlay -->
+            <div id="video-overlay" class="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer video-overlay-bg" onclick="document.getElementById('vimeo-frame').src += '&autoplay=1'; this.style.display='none'">
+              <div class="relative mb-5">
+                <div class="w-20 h-20 rounded-full border border-gold/40 flex items-center justify-center play-ring">
+                  <div class="w-14 h-14 rounded-full border border-gold/20 flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M7 4.5L15.5 10L7 15.5V4.5Z" fill="rgba(201,168,92,0.9)"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="absolute inset-0 rounded-full border border-gold/20 play-pulse" style="animation-delay:0s;"></div>
+                <div class="absolute inset-0 rounded-full border border-gold/10 play-pulse" style="animation-delay:0.6s;"></div>
+              </div>
+              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold/70">Watch Interview</p>
+            </div>
+
+            <!-- Vimeo iframe -->
+            <iframe
+              id="vimeo-frame"
+              src="https://player.vimeo.com/video/371621672?h=7538a6c48e&color=a07c3a&title=0&byline=0&portrait=0"
+              class="absolute inset-0 w-full h-full"
+              style="border:0;"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              title="VEDA Egypt — CNN Interview"
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <!-- Corner accents -->
+          <span class="absolute -top-px -left-px w-8 h-px bg-gold/60"></span>
+          <span class="absolute -top-px -left-px w-px h-8 bg-gold/60"></span>
+          <span class="absolute -top-px -right-px w-8 h-px bg-gold/60"></span>
+          <span class="absolute -top-px -right-px w-px h-8 bg-gold/60"></span>
+          <span class="absolute -bottom-px -left-px w-8 h-px bg-gold/60"></span>
+          <span class="absolute -bottom-px -left-px w-px h-8 bg-gold/60"></span>
+          <span class="absolute -bottom-px -right-px w-8 h-px bg-gold/60"></span>
+          <span class="absolute -bottom-px -right-px w-px h-8 bg-gold/60"></span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cnn-badge {
+    transition: border-color 0.4s ease;
+  }
+  .cnn-badge:hover {
+    border-color: rgba(160, 124, 58, 0.55);
+  }
+
+  .video-overlay-bg {
+    background: linear-gradient(
+      to bottom,
+      rgba(7, 11, 7, 0.55) 0%,
+      rgba(7, 11, 7, 0.30) 40%,
+      rgba(7, 11, 7, 0.55) 100%
+    );
+    transition: background 0.3s ease;
+  }
+  .video-overlay-bg:hover {
+    background: rgba(7, 11, 7, 0.20);
+  }
+
+  .play-ring {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  }
+  .video-overlay-bg:hover .play-ring {
+    transform: scale(1.1);
+    border-color: rgba(201, 168, 92, 0.7);
+  }
+
+  @keyframes pulsate {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    50%  { transform: scale(1.6); opacity: 0; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .play-pulse {
+    animation: pulsate 2.5s ease-out infinite;
+  }
+</style>

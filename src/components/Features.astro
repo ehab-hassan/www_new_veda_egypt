@@ -1,0 +1,83 @@
+---
+// Features Section — DARK section (forest bg, light text)
+const features = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="10" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M6 27c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+    title: 'Personalised',
+    subtitle: 'Your journey, your rules.',
+    description:
+      'From the length of your stay to every stop along the Nile — every detail is yours to shape. We offer guidance, never a script.',
+    image: '/images/photo-2019-03-11-20.38.43-676x450.jpg',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 4L5 10v12l11 6 11-6V10L16 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M16 4v18M5 10l11 6 11-6" stroke="currentColor" stroke-width="1.5"/>
+    </svg>`,
+    title: 'Authentic',
+    subtitle: 'Real Egypt, not a postcard.',
+    description:
+      'Barbecues on deserted islands. Private moments in ancient temples. The VEDA crew brings you to places that pulse with real energy.',
+    image: '/images/img-20180416-163539-947-676x450.jpg',
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 4C11 9 7 13 7 18a9 9 0 0018 0c0-5-4-9-9-14z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M16 28V16M16 16l-4-4M16 16l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+    title: 'Green',
+    subtitle: 'The first solar Nile boat.',
+    description:
+      'Local cuisine, fresh juices, natural cleaning products, and solar-powered engines. We care for the river that carries us.',
+    image: '/images/photo-2019-04-03-08-27-31-436x291.jpg',
+  },
+];
+---
+
+<section id="features" class="bg-forest py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- Section header -->
+    <div class="flex flex-col items-center text-center mb-20 reveal">
+      <span class="gold-line mb-6 mx-auto"></span>
+      <p class="font-sans text-sm tracking-ultra uppercase text-gold-light mb-5">What Makes Us Different</p>
+      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight">
+        Three principles.<br /><em class="italic text-gold-pale">One experience.</em>
+      </h2>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {features.map((feature, i) => (
+        <article class={`group relative overflow-hidden reveal reveal-delay-${i + 1}`}>
+          <!-- Image -->
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img
+              src={feature.image}
+              alt={feature.title}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-106"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/30 to-transparent"></div>
+            <!-- Icon -->
+            <div class="absolute top-5 left-5 text-gold-light/70 group-hover:text-gold-light transition-colors duration-300">
+              <Fragment set:html={feature.icon} />
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="bg-forest-mid border border-gold/10 group-hover:border-gold/25 transition-all duration-500 p-8">
+            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-3">{feature.subtitle}</p>
+            <h3 class="font-serif text-2xl text-ivory font-light mb-4">{feature.title}</h3>
+            <p class="font-sans text-sm text-warm-gray leading-relaxed">{feature.description}</p>
+            <div class="mt-6 h-px bg-gold/15 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gold origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
