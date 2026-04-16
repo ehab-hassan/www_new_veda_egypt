@@ -177,9 +177,26 @@ const boats = [
       <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-ivory font-light tracking-tight leading-tight mb-6">
         Our Dahabiyas
       </h1>
-      <p class="font-sans text-base text-white/70 font-light max-w-md mx-auto leading-relaxed">
+      <p class="font-sans text-base text-white/70 font-light max-w-md mx-auto leading-relaxed mb-10">
         Dahabiyas are traditional sailing boats of the Nile — peaceful, private, and entirely yours.
       </p>
+
+      <!-- Quick-jump buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        {boats.map((boat) => (
+          <a
+            href={`#${boat.id}`}
+            class="group flex items-center gap-2.5 border border-gold/30 hover:border-gold bg-white/5 hover:bg-gold/10 px-5 py-2.5 transition-all duration-300"
+          >
+            <span class="font-sans text-[10px] tracking-[0.25em] uppercase text-ivory/70 group-hover:text-gold transition-colors duration-300">
+              {boat.name}
+            </span>
+            <span class="font-sans text-[9px] text-gold/50 group-hover:text-gold/80 transition-colors duration-300 hidden sm:inline">
+              {boat.tagline}
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 
