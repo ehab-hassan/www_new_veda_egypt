@@ -24,6 +24,7 @@ const serveSiblingImages = {
 };
 
 export default defineConfig({
+  site: 'https://www.veda-egypt.com',
   integrations: [tailwind()],
   vite: {
     plugins: [serveSiblingImages]

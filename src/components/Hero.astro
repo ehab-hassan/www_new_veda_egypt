@@ -1,26 +1,39 @@
 ---
 // Hero Section — Fullscreen slider, 3 slides (slide 0 = video), auto-advance + manual controls
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import heroVideo from '../images/hero_1.mp4';
-import greenImage from '../images/green.jpg';
+import heroPosterImg from '../images/photo-2019-03-11-18.02.48-1280x851.jpg';
+import slide1Img from '../images/photo-2019-03-11-18.02.48-1280x851.jpg';
+import slide2Img from '../images/green.jpg';
 
-const slides = [
+interface Slide {
+  type: 'video' | 'image';
+  videoSrc?: string;
+  imageSrc?: ImageMetadata;
+  eyebrow: string;
+  heading: [string, string, string];
+  sub: string;
+}
+
+const slides: Slide[] = [
   {
     type: 'video',
-    src: heroVideo,
+    videoSrc: heroVideo,
     eyebrow: 'Nile Journeys · Egypt',
     heading: ['Sail the Nile.', 'Experience', 'something real.'],
     sub: 'Private, authentic, and conscious journeys in Egypt.',
   },
   {
     type: 'image',
-    src: '/images/photo-2019-03-11-18.02.48-1280x851.jpg',
+    imageSrc: slide1Img,
     eyebrow: 'Exclusive Experiences',
     heading: ['Exclusive &', 'authentic', 'experiences.'],
     sub: 'VEDA crew guides you to the most impressive, high-energy places on the Nile.',
   },
   {
     type: 'image',
-    src: greenImage.src,
+    imageSrc: slide2Img,
     eyebrow: 'Green & Organic',
     heading: ['Green.', 'Organic.', 'Alive.'],
     sub: 'Solar-powered boats. Local cuisine. The first truly green journey on the Nile.',
@@ -39,22 +52,26 @@ const slides = [
     >
       {slide.type === 'video' ? (
         <video
-          src={slide.src}
+          src={slide.videoSrc}
+          poster={heroPosterImg.src}
           class="w-full h-full object-cover object-center"
           autoplay
           muted
           loop
           playsinline
+          preload="metadata"
         />
-      ) : (
-        <img
-          src={slide.src}
+      ) : slide.imageSrc ? (
+        <Image
+          src={slide.imageSrc}
           alt={slide.eyebrow}
           class="w-full h-full object-cover object-center"
           style="animation: heroScale 22s ease-in-out infinite alternate;"
           loading={i === 0 ? 'eager' : 'lazy'}
+          widths={[768, 1280, 1920]}
+          sizes="100vw"
         />
-      )}
+      ) : null}
     </div>
   ))}
 

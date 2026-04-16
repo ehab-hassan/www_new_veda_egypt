@@ -1,29 +1,41 @@
 ---
 // Dahabiyas Section — LIGHT section (soft green bg, ink text), cinematic cards
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import veda1Img from '../images/veda_1.jpg';
 import parallaxImg from '../images/test.png';
 import veda2Img from '../images/veda_2.jpg';
 import veda3Img from '../images/veda_3.jpg';
 import veda4Img from '../images/veda_4.jpg';
 
-const boats = [
+interface Boat {
+  name: string;
+  tagline: string;
+  capacity: string;
+  rooms: string;
+  detail: string;
+  image: ImageMetadata;
+  href: string;
+}
+
+const boats: Boat[] = [
   {
     name: 'Veda 1',
     tagline: 'The Grand Flagship',
     capacity: 'Up to 20 guests',
-    rooms: '6 rooms · 4 suites',
+    rooms: '10 rooms · 4 suites',
     detail: 'Private balconies. Ensuite bathrooms. Elevated elegance.',
-    image: veda1Img.src,
-    href: '#',
+    image: veda1Img,
+    href: '/dahabiyas#veda-1',
   },
   {
     name: 'Veda 2',
     tagline: 'The Intimate Voyager',
     capacity: 'Up to 20 guests',
-    rooms: '8 rooms · 2 suites',
-    detail: 'Balcony views. Personal space. A home on water.',
-    image: veda2Img.src,
-    href: '#',
+    rooms: '10 rooms · 2 suites',
+    detail: 'Bedouin corner. Sun deck. A home on water.',
+    image: veda2Img,
+    href: '/dahabiyas#veda-2',
   },
   {
     name: 'Veda 3',
@@ -31,17 +43,17 @@ const boats = [
     capacity: 'Up to 10 guests',
     rooms: '5 rooms',
     detail: 'Intimate scale. Exclusive feel. Pure river life.',
-    image: veda3Img.src,
-    href: '#',
+    image: veda3Img,
+    href: '/dahabiyas#veda-3',
   },
   {
     name: 'Veda 4',
-    tagline: 'The Majestic',
+    tagline: 'The Solar Spirit',
     capacity: 'Up to 28 guests',
-    rooms: '10 rooms · 4 suites',
+    rooms: '14 rooms · 4 suites',
     detail: 'The largest VEDA. Balconies. Ensuite. Grandeur.',
-    image: veda4Img.src,
-    href: '#',
+    image: veda4Img,
+    href: '/dahabiyas#veda-4',
   },
 ];
 ---
@@ -50,8 +62,8 @@ const boats = [
 
   <!-- Parallax background image -->
   <div id="dahabiyas-parallax" class="absolute inset-0 pointer-events-none">
-    <img
-      src={parallaxImg.src}
+    <Image
+      src={parallaxImg}
       alt=""
       class="w-full h-[130%] object-cover object-center opacity-30"
       style="will-change: transform;"
@@ -86,7 +98,7 @@ const boats = [
         <article class={`group overflow-hidden rounded-lg bg-forest cursor-pointer reveal reveal-delay-${i + 1} flex flex-col`}>
           <!-- Image -->
           <div class="relative overflow-hidden" style="aspect-ratio: 3/3;">
-            <img
+            <Image
               src={boat.image}
               alt={boat.name}
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

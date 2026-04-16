@@ -1,5 +1,6 @@
 ---
 // Experience / About — "Who We Are" — editorial luxury split layout
+import { Image } from 'astro:assets';
 import whoWeImg from '../images/who_we.jpg';
 ---
 
@@ -96,8 +97,8 @@ import whoWeImg from '../images/who_we.jpg';
     <!-- RIGHT: Image column -->
     <div class="relative h-[70vw] lg:h-auto overflow-hidden who-we-image-col">
       <!-- The image -->
-      <img
-        src={whoWeImg.src}
+      <Image
+        src={whoWeImg}
         alt="The VEDA Experience — Sailing the Nile"
         class="w-full h-full object-cover object-center who-we-img"
         loading="lazy"

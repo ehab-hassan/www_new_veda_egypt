@@ -1,13 +1,50 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 export interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
   title = 'VEDA Egypt — Sail the Nile. Experience Something Real.',
-  description = 'Private, authentic, and conscious journeys along the Nile. Luxury dahbiyas, wellness retreats, and sacred Egypt.',
+  description = 'Private, authentic, and conscious journeys along the Nile. Luxury dahabiyas, wellness retreats, and sacred Egypt.',
+  ogImage = '/images/photo-2019-03-11-18.02.48-1280x851.jpg',
 } = Astro.props;
+
+const siteURL = Astro.site ?? new URL('https://www.veda-egypt.com');
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const ogImageAbsolute = new URL(ogImage, siteURL).toString();
+
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Dahabiyas', href: '/dahabiyas' },
+  { label: 'Plan Your Visit', href: '/plan-your-visit' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Our Team', href: '/our-team' },
+  { label: 'Contact', href: '/#contact' },
+];
+
+function isActive(href: string) {
+  if (href.includes('#')) return false;
+  return pathname === href || (href !== '/' && pathname.startsWith(href));
+}
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: 'VEDA Egypt',
+  url: 'https://www.veda-egypt.com',
+  logo: 'https://www.veda-egypt.com/brand_assets/veda-logo.png',
+  description,
+  address: { '@type': 'PostalAddress', addressCountry: 'EG' },
+  sameAs: [
+    'https://www.instagram.com/veda_retreats',
+    'https://www.facebook.com/vedaretreats',
+  ],
+});
 ---
 
 <!doctype html>
@@ -16,16 +53,42 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:site_name" content="VEDA Egypt" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <!-- Favicon -->
     <link rel="icon" href="/brand_assets/veda-logo.png" type="image/png" />
+
     <title>{title}</title>
 
-    <!-- Fonts -->
+    <!-- Fonts — trimmed to used weights only -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
+
+    <!-- View Transitions -->
+    <ClientRouter />
 
     <style is:global>
       :root {
@@ -43,34 +106,35 @@ const {
         --ink-light: #6b7264;
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html { background-color: var(--warm-beige); color: var(--ink); }
+
+      ::selection { background: var(--gold); color: #fff; }
+
+      /* Focus visible — global accessible ring */
+      :focus-visible {
+        outline: 1.5px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 1px;
       }
 
-      html {
-        background-color: var(--warm-beige);
-        color: var(--ink);
-      }
+      /* Custom scrollbar — webkit */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: var(--warm-beige); }
+      ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-      ::selection {
-        background: var(--gold);
-        color: #fff;
-      }
+      /* Custom scrollbar — Firefox */
+      html { scrollbar-width: thin; scrollbar-color: var(--gold) var(--warm-beige); }
 
-      /* Scroll reveal animations */
+      /* Scroll reveal */
       .reveal {
         opacity: 0;
         transform: translateY(32px);
         transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
           transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
       }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
 
       .reveal-left {
         opacity: 0;
@@ -78,11 +142,7 @@ const {
         transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
           transform 1s cubic-bezier(0.16, 1, 0.3, 1);
       }
-
-      .reveal-left.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
       .reveal-right {
         opacity: 0;
@@ -90,16 +150,15 @@ const {
         transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
           transform 1s cubic-bezier(0.16, 1, 0.3, 1);
       }
+      .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-      .reveal-right.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-1 { transition-delay: 0.10s; }
       .reveal-delay-2 { transition-delay: 0.22s; }
       .reveal-delay-3 { transition-delay: 0.34s; }
       .reveal-delay-4 { transition-delay: 0.46s; }
+      .reveal-delay-5 { transition-delay: 0.58s; }
+      .reveal-delay-6 { transition-delay: 0.70s; }
+      .reveal-delay-7 { transition-delay: 0.82s; }
 
       /* Gold divider */
       .gold-line {
@@ -109,22 +168,83 @@ const {
         background: var(--gold);
       }
 
-      /* Custom scrollbar */
-      ::-webkit-scrollbar { width: 4px; }
-      ::-webkit-scrollbar-track { background: var(--warm-beige); }
-      ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+      /* Reduced motion — disable all animations */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+        .reveal,
+        .reveal-left,
+        .reveal-right {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* Hamburger bars */
+      .bar {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: rgba(240, 235, 224, 0.75);
+        border-radius: 1px;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.25s ease,
+          background-color 0.2s ease;
+      }
+      #menu-toggle:hover .bar { background: var(--gold); }
+      #menu-toggle.is-open .bar-1 { transform: translateY(7.5px) rotate(45deg); background: var(--ivory); }
+      #menu-toggle.is-open .bar-2 { opacity: 0; transform: scaleX(0); }
+      #menu-toggle.is-open .bar-3 { transform: translateY(-7.5px) rotate(-45deg); background: var(--ivory); }
+
+      /* Mobile menu overlay */
+      #mobile-menu {
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0.4s;
+      }
+      #mobile-menu.menu-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #mobile-menu.menu-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      #mobile-menu nav a {
+        transition: color 0.25s, transform 0.25s;
+        display: inline-block;
+      }
+      #mobile-menu nav a:hover { transform: translateX(6px); }
     </style>
   </head>
 
   <body class="bg-warm-beige font-sans antialiased">
+
+    <!-- Skip to main content -->
+    <a
+      href="#main-content"
+      class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-[100] focus-visible:bg-gold focus-visible:text-white focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:tracking-wide"
+    >
+      Skip to main content
+    </a>
+
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
       <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-3 group">
+        <a href="/" class="flex items-center gap-3 group z-10">
           <img
             src="/brand_assets/veda-logo.png"
             alt="VEDA"
+            width="40"
+            height="40"
             class="h-10 w-10 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
           />
           <span class="font-serif text-xl tracking-ultra text-ivory/90 group-hover:text-ivory transition-colors">
@@ -134,17 +254,16 @@ const {
 
         <!-- Desktop Nav -->
         <ul class="hidden md:flex items-center gap-8">
-          {[
-            { label: 'Dahabiyas', href: '/dahabiyas' },
-            { label: 'Plan Your Visit', href: '/plan-your-visit' },
-            { label: 'Gallery', href: '/gallery' },
-            { label: 'Our Team', href: '/our-team' },
-            { label: 'Contact', href: '#contact' },
-          ].map((item) => (
+          {navItems.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="font-sans text-xs tracking-ultra uppercase text-ivory hover:text-gold transition-colors duration-300"
+                class={`font-sans text-xs tracking-ultra uppercase transition-colors duration-300 ${
+                  isActive(item.href)
+                    ? 'text-gold'
+                    : 'text-ivory/80 hover:text-gold'
+                }`}
+                aria-current={isActive(item.href) ? 'page' : undefined}
               >
                 {item.label}
               </a>
@@ -152,10 +271,10 @@ const {
           ))}
         </ul>
 
-        <!-- CTA -->
+        <!-- Desktop CTA -->
         <a
-          href="#contact"
-          class="hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 transition-all duration-300"
+          href="/#contact"
+          class="hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20"
         >
           Plan Your Journey
         </a>
@@ -163,51 +282,84 @@ const {
         <!-- Mobile Hamburger -->
         <button
           id="menu-toggle"
-          class="md:hidden flex flex-col gap-1.5 p-2 group"
-          aria-label="Menu"
+          class="md:hidden flex flex-col justify-center gap-[6px] p-2 z-10"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button"
         >
-          <span class="block w-6 h-px bg-ivory/70 group-hover:bg-gold transition-colors duration-300"></span>
-          <span class="block w-4 h-px bg-ivory/70 group-hover:bg-gold transition-colors duration-300 ml-auto"></span>
-          <span class="block w-6 h-px bg-ivory/70 group-hover:bg-gold transition-colors duration-300"></span>
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
         </button>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-forest/95 backdrop-blur-sm border-t border-gold/10 px-6 pb-6"
-      >
-        <ul class="flex flex-col gap-5 pt-6">
-          {[
-            { label: 'Dahabiyas', href: '/dahabiyas' },
-            { label: 'Plan Your Visit', href: '/plan-your-visit' },
-            { label: 'Gallery', href: '/gallery' },
-            { label: 'Our Team', href: '/our-team' },
-            { label: 'Contact', href: '#contact' },
-          ].map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class="font-sans text-xs tracking-ultra uppercase text-ivory/70 hover:text-gold transition-colors duration-300"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a
-              href="#contact"
-              class="inline-flex border border-gold/40 text-gold text-xs tracking-ultra uppercase px-5 py-2.5"
-            >
-              Plan Your Journey
-            </a>
-          </li>
-        </ul>
       </div>
     </nav>
 
+    <!-- Mobile Menu — full screen overlay -->
+    <div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation menu"
+      class="menu-hidden fixed inset-0 z-[60] flex flex-col bg-void/98 backdrop-blur-md"
+    >
+      <!-- Menu header -->
+      <div class="flex items-center justify-between h-20 px-6 border-b border-gold/10">
+        <a href="/" class="flex items-center gap-3 group" tabindex="-1">
+          <img
+            src="/brand_assets/veda-logo.png"
+            alt="VEDA"
+            width="40"
+            height="40"
+            class="h-10 w-10 object-contain opacity-90"
+          />
+          <span class="font-serif text-xl tracking-ultra text-ivory/90">VEDA</span>
+        </a>
+        <button
+          id="menu-close"
+          aria-label="Close menu"
+          type="button"
+          class="p-2 text-ivory/60 hover:text-gold transition-colors"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="flex-1 flex flex-col justify-center px-8 gap-2">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`font-serif text-4xl py-3 border-b border-gold/10 transition-colors ${
+              isActive(item.href) ? 'text-gold' : 'text-ivory/80 hover:text-gold'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Bottom CTA + contact -->
+      <div class="px-8 pb-12 pt-6 border-t border-gold/10">
+        <a
+          href="/#contact"
+          class="block w-full text-center bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase py-4 transition-all duration-300"
+        >
+          Plan Your Journey
+        </a>
+        <div class="mt-5 flex flex-col gap-1">
+          <a href="mailto:reservation@veda-egypt.com" class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+            reservation@veda-egypt.com
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Main content -->
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 
@@ -215,10 +367,11 @@ const {
     <footer class="bg-void border-t border-gold/10 pt-20 pb-10">
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
           <!-- Brand -->
           <div>
             <div class="flex items-center gap-3 mb-5">
-              <img src="/brand_assets/veda-logo.png" alt="VEDA" class="h-10 w-10 object-contain opacity-80" />
+              <img src="/brand_assets/veda-logo.png" alt="VEDA" width="40" height="40" class="h-10 w-10 object-contain opacity-80" />
               <span class="font-serif text-xl tracking-ultra text-ivory/80">VEDA</span>
             </div>
             <p class="font-sans text-sm text-warm-gray leading-relaxed">
@@ -243,13 +396,15 @@ const {
           <div>
             <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-5">Explore</p>
             <ul class="space-y-2">
-              {['Dahabiyas', 'Plan Your Visit', 'Gallery', 'Our Team', 'VEDA Kids'].map((item) => (
+              {[
+                { label: 'Dahabiyas', href: '/dahabiyas' },
+                { label: 'Plan Your Visit', href: '/plan-your-visit' },
+                { label: 'Gallery', href: '/gallery' },
+                { label: 'Our Team', href: '/our-team' },
+              ].map((item) => (
                 <li>
-                  <a
-                    href="#"
-                    class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors"
-                  >
-                    {item}
+                  <a href={item.href} class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -260,41 +415,46 @@ const {
           <div>
             <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-5">Stay Connected</p>
             <p class="font-sans text-sm text-warm-gray mb-4 leading-relaxed">
-              Receive rare updates. No noise.
+              Receive our seasonal letter. No noise.
             </p>
-            <form class="flex gap-2">
+            <form class="flex gap-2" aria-label="Newsletter signup">
+              <label for="newsletter-email" class="sr-only">Email address</label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="Your email"
-                class="flex-1 bg-void/60 border border-gold/20 text-ivory text-sm px-4 py-2.5 placeholder:text-warm-gray/50 focus:outline-none focus:border-gold/50 transition-colors"
+                autocomplete="email"
+                class="flex-1 bg-void/60 border border-gold/20 text-ivory text-sm px-4 py-2.5 placeholder:text-warm-gray/60 focus:outline-none focus:border-gold/60 transition-colors"
               />
               <button
                 type="submit"
+                aria-label="Subscribe"
                 class="bg-gold/10 border border-gold/40 hover:bg-gold/20 text-gold text-xs tracking-ultra uppercase px-4 py-2.5 transition-all duration-300"
               >
                 →
               </button>
             </form>
+            <p class="font-sans text-xs text-warm-gray/60 mt-2">No spam. Unsubscribe anytime.</p>
 
             <!-- Social -->
             <div class="flex gap-3 mt-6">
-              <a href="http://www.instagram.com/veda_retreats" target="_blank" rel="noopener" aria-label="Instagram"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/50 text-warm-gray/60 hover:text-gold transition-all duration-300 hover:bg-gold/5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <a href="https://www.instagram.com/veda_retreats" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on Instagram"
+                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <circle cx="12" cy="12" r="4"/>
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
                 </svg>
               </a>
-              <a href="https://www.facebook.com/vedaretreats" target="_blank" rel="noopener" aria-label="Facebook"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/50 text-warm-gray/60 hover:text-gold transition-all duration-300 hover:bg-gold/5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <a href="https://www.facebook.com/vedaretreats" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on Facebook"
+                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                 </svg>
               </a>
-              <a href="https://x.com" target="_blank" rel="noopener" aria-label="X (Twitter)"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/50 text-warm-gray/60 hover:text-gold transition-all duration-300 hover:bg-gold/5">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on X"
+                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </a>
@@ -304,22 +464,20 @@ const {
 
         <!-- Bottom bar -->
         <div class="border-t border-gold/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p class="font-sans text-xs text-warm-gray/50">
+          <p class="font-sans text-xs text-warm-gray/60">
             © {new Date().getFullYear()} VEDA Egypt. All rights reserved.
           </p>
           <div class="flex gap-5">
-            {['Impressum', 'Privacy Policy', 'Terms & Conditions'].map((item) => (
-              <a href="#" class="font-sans text-xs text-warm-gray/50 hover:text-warm-gray transition-colors">
-                {item}
-              </a>
-            ))}
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Impressum</a>
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Privacy Policy</a>
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>
     </footer>
 
     <script>
-      // Navbar scroll effect
+      // ── Navbar scroll effect ──────────────────────────────────────
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 60) {
@@ -327,16 +485,75 @@ const {
         } else {
           navbar?.classList.remove('bg-void/95', 'backdrop-blur-md', 'border-b', 'border-gold/10', 'shadow-xl');
         }
-      });
+      }, { passive: true });
 
-      // Mobile menu
-      const menuToggle = document.getElementById('menu-toggle');
+      // ── Mobile menu ───────────────────────────────────────────────
+      const menuToggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
       const mobileMenu = document.getElementById('mobile-menu');
+      const menuClose  = document.getElementById('menu-close');
+
+      function openMenu() {
+        if (!mobileMenu || !menuToggle) return;
+        mobileMenu.classList.remove('menu-hidden');
+        mobileMenu.classList.add('menu-visible');
+        menuToggle.classList.add('is-open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.setAttribute('aria-label', 'Close menu');
+        document.body.style.overflow = 'hidden';
+        // Move focus inside menu
+        const firstLink = mobileMenu.querySelector<HTMLElement>('nav a');
+        firstLink?.focus();
+      }
+
+      function closeMenu() {
+        if (!mobileMenu || !menuToggle) return;
+        mobileMenu.classList.remove('menu-visible');
+        mobileMenu.classList.add('menu-hidden');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+        menuToggle.focus();
+      }
+
       menuToggle?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMenu() : openMenu();
       });
 
-      // Scroll reveal
+      menuClose?.addEventListener('click', closeMenu);
+
+      // Close on Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu?.classList.contains('menu-visible')) {
+          closeMenu();
+        }
+      });
+
+      // Close when a menu link is clicked
+      mobileMenu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Focus trap
+      mobileMenu?.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key !== 'Tab' || !mobileMenu.classList.contains('menu-visible')) return;
+        const focusable = Array.from(
+          mobileMenu.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+          )
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // ── Scroll reveal ─────────────────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
