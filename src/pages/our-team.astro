@@ -17,20 +17,11 @@ const team = [
   {
     name: 'Dave De Belder',
     role: 'Nutritional Healing',
-    image: '/images/whatsapp-image-2019-08-06-at-15.19.03-510x907.jpeg',
+    image: '/images/dave.png',
     bio: 'Trained under renowned chefs including Jonnie Boer and Ferran & Albert Adrià. Dave opened multiple Michelin-rated restaurants in Belgium and Australia. In 2015 he needed a radical change and moved to Ibiza. He now teaches the transformative impact of organic, local food on the body, mind, and soul.',
   },
 ];
 
-const founders = [
-  {
-    name: 'Weynand & Andreas',
-    role: 'Founders',
-    image: '/images/weynand-andreas-1280x800.jpg',
-    bio: 'The hearts behind VEDA. Weynand and Andreas created a vision of conscious, authentic travel on the Nile — where luxury meets purpose, and every journey is a transformation.',
-    wide: true,
-  },
-];
 ---
 
 <MainLayout
@@ -47,13 +38,13 @@ const founders = [
     <div class="relative max-w-7xl mx-auto px-6 lg:px-12 text-center">
       <div class="flex items-center justify-center gap-4 mb-6">
         <span class="h-px w-10 bg-gold/50"></span>
-        <p class="font-sans text-[10px] tracking-[0.32em] uppercase text-gold">The People</p>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold">The People</p>
         <span class="h-px w-10 bg-gold/50"></span>
       </div>
       <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-ivory font-light tracking-tight leading-tight mb-5">
         Our Healers<br /><em class="italic text-gold-pale">&amp; Therapists</em>
       </h1>
-      <p class="font-sans text-sm text-warm-gray font-light max-w-xs mx-auto leading-relaxed">
+      <p class="font-sans text-base text-white/50 font-light max-w-xs mx-auto leading-relaxed">
         Taking your awareness to the next level.
       </p>
     </div>
@@ -68,7 +59,7 @@ const founders = [
       <!-- Therapists header -->
       <div class="flex items-center gap-4 mb-12 reveal">
         <span class="h-px w-10 bg-gold/40"></span>
-        <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold/70">Healers & Therapists</p>
+        <p class="font-sans text-[14px] tracking-[0.28em] uppercase text-gold">Healers & Therapists</p>
       </div>
 
       <!-- Team grid -->
@@ -92,10 +83,10 @@ const founders = [
 
             <!-- Content -->
             <div class="p-7 flex flex-col flex-1">
-              <p class="font-sans text-[9px] tracking-[0.28em] uppercase text-gold mb-2">{member.role}</p>
-              <h3 class="font-serif text-2xl text-ivory font-light leading-tight mb-4">{member.name}</h3>
+              <p class="font-sans text-[12px] tracking-[0.28em] uppercase text-gold mb-2">{member.role}</p>
+              <h3 class="font-serif text-3xl text-ivory font-light leading-tight mb-4">{member.name}</h3>
               <div class="h-px w-8 bg-gold/30 mb-4"></div>
-              <p class="font-sans text-sm text-warm-gray font-light leading-relaxed flex-1">{member.bio}</p>
+              <p class="font-sans text-base text-white/70 font-light leading-relaxed flex-1">{member.bio}</p>
             </div>
 
           </article>
@@ -105,17 +96,17 @@ const founders = [
       <!-- Closing quote -->
       <div class="mt-28 text-center reveal">
         <div class="flex items-center justify-center gap-4 mb-8">
-          <span class="h-px w-16 bg-gold/20"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-gold/30"></span>
-          <span class="h-px w-16 bg-gold/20"></span>
+          <span class="h-px w-16 bg-gold/60"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-gold/60"></span>
+          <span class="h-px w-16 bg-gold/60"></span>
         </div>
-        <blockquote class="font-serif text-2xl md:text-3xl text-ivory/50 font-light italic leading-relaxed max-w-2xl mx-auto">
+        <blockquote class="font-serif text-2xl md:text-3xl text-ivory/70 font-light italic leading-relaxed max-w-2xl mx-auto">
           "Each healer on board brings a piece of the journey that no temple or sunset can offer — the journey within."
         </blockquote>
         <div class="mt-10">
           <a
             href="#contact"
-            class="inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-[10px] tracking-[0.25em] uppercase px-7 py-3.5 transition-all duration-300 hover:bg-gold/5"
+            class="inline-flex items-center gap-3 font-semibold border border-gold hover:border-gold text-gold hover:text-gold font-sans text-[12px] tracking-[0.25em] uppercase px-7 py-3.5 transition-all duration-300 hover:bg-gold/5"
           >
             Join a Journey
             <span>→</span>
