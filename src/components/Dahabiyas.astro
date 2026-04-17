@@ -95,7 +95,10 @@ const boats: Boat[] = [
     <!-- Boat cards grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {boats.map((boat, i) => (
-        <article class={`group overflow-hidden rounded-lg bg-forest cursor-pointer reveal reveal-delay-${i + 1} flex flex-col`}>
+        <a
+          href={boat.href}
+          class={`group overflow-hidden rounded-lg bg-forest reveal reveal-delay-${i + 1} flex flex-col`}
+        >
           <!-- Image -->
           <div class="relative overflow-hidden" style="aspect-ratio: 3/3;">
             <Image
@@ -115,15 +118,12 @@ const boats: Boat[] = [
             <p class="font-sans text-sm text-white/80 font-light leading-relaxed mb-5 flex-1">
               {boat.rooms}. {boat.detail}
             </p>
-            <a
-              href={boat.href}
-              class="inline-flex items-center gap-2 font-sans text-[9px] tracking-[0.2em] uppercase text-white/50 hover:text-gold transition-colors duration-300 group/link"
-            >
+            <span class="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.2em] uppercase text-white/50 group-hover:text-gold transition-colors duration-300">
               <span>Explore {boat.name}</span>
-              <span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-            </a>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
 
