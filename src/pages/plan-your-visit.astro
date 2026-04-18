@@ -311,11 +311,55 @@ const treatments = [
         border: 1px solid rgba(201,168,92,0.20);
       }
 
-      /* Mobile: tighter blocks */
+      /* Mobile: stacked centered card at bottom of viewport */
       @media (max-width: 767px) {
-        .journey-block { max-width: 42vw !important; }
-        .journey-block h3 { font-size: 1.2rem !important; }
-        .journey-block p  { font-size: 0.7rem !important; line-height: 1.4 !important; }
+        .journey-block {
+          left: 50% !important;
+          right: auto !important;
+          top: 64% !important;
+          transform: translate(-50%, -50%) !important;
+          width: 86vw;
+          background: rgba(4, 12, 8, 0.82);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(201,168,92,0.15);
+          border-radius: 8px;
+          padding: 16px;
+        }
+        /* Inner flex → column, centered */
+        .journey-block > div {
+          flex-direction: column !important;
+          align-items: center !important;
+          padding: 0 !important;
+          gap: 10px;
+          text-align: center;
+        }
+        /* Left panel: day + name */
+        .journey-block > div > div:first-child {
+          text-align: center !important;
+          padding-right: 0 !important;
+        }
+        /* Spacer div: hide */
+        .journey-block > div > div:nth-child(2) {
+          display: none !important;
+        }
+        /* Right panel: image + text */
+        .journey-block > div > div:last-child {
+          padding-left: 0 !important;
+          width: 100%;
+          text-align: center;
+        }
+        /* Image: full width */
+        .journey-thumb {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        /* Hide the long second paragraph — keep only short intro line */
+        .journey-block .max-w-xl {
+          display: none !important;
+        }
+        .journey-block h3 { font-size: 1.4rem !important; }
+        .journey-block p  { font-size: 0.75rem !important; line-height: 1.5 !important; }
       }
 
       /* Reduced motion */
