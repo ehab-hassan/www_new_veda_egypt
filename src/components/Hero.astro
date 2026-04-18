@@ -92,16 +92,16 @@ const slides: Slide[] = [
         style={i === 0 ? 'opacity:1; transform:translateY(0);' : 'opacity:0; transform:translateY(20px); pointer-events:none;'}
       >
         <!-- Gold line -->
-        <span class="gold-line mb-8 block" style="animation: fadeInUp 1s 0.3s both;"></span>
+        <span class="gold-line mb-8 block mx-auto md:mx-0" style="animation: fadeInUp 1s 0.3s both;"></span>
 
         <!-- Eyebrow -->
-        <p class="font-sans text-sm tracking-mega uppercase text-gold-light mb-6"
+        <p class="font-sans text-sm tracking-mega uppercase text-gold-light mb-6 text-center md:text-left"
           style="animation: fadeInUp 1s 0.5s both;">
           {slide.eyebrow}
         </p>
 
         <!-- Heading -->
-        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[0.95] tracking-tight max-w-4xl mb-8"
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[0.95] tracking-tight max-w-4xl mb-8 text-center md:text-left"
           style="animation: fadeInUp 1s 0.7s both; text-shadow: 0 2px 24px rgba(0,0,0,0.35);">
           {slide.heading[0]}<br />
           <em class="italic text-gold-pale">{slide.heading[1]}</em><br />
@@ -109,13 +109,13 @@ const slides: Slide[] = [
         </h1>
 
         <!-- Subtext -->
-        <p class="font-sans text-sm md:text-base text-ivory/90 font-light max-w-sm leading-relaxed mb-12"
+        <p class="font-sans text-sm md:text-base text-ivory/90 font-light max-w-sm leading-relaxed mb-12 text-center md:text-left mx-auto md:mx-0"
           style="animation: fadeInUp 1s 0.9s both;">
           {slide.sub}
         </p>
 
         <!-- CTAs -->
-        <div class="flex flex-wrap gap-4" style="animation: fadeInUp 1s 1.1s both;">
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start" style="animation: fadeInUp 1s 1.1s both;">
           <a href="/dahabiyas"
             class="group inline-flex items-center gap-3 bg-gold/50 hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300">
             Explore Dahabiyas
