@@ -126,7 +126,7 @@ const treatments = [
 
         <!-- River background -->
         <img
-          src="/images/top_river3.jpg"
+          src="/images/top_river2.jpg"
           alt="Aerial view of the Nile river"
           class="absolute inset-0 w-full h-full object-cover object-center"
           loading="lazy"
@@ -430,27 +430,27 @@ const treatments = [
 
 
     <!-- ── Treatments ─────────────────────────────── -->
-    <div class="border-t border-gold/10 py-24">
+    <div class="bg-soft-green py-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
         <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
           <div class="reveal">
             <div class="flex items-center gap-4 mb-5">
-              <span class="h-px w-8 bg-gold/40"></span>
-              <p class="font-sans text-[9px] tracking-[0.3em] uppercase text-gold/70">Energy Treatments</p>
+              <span class="h-px w-8 bg-gold-muted/60"></span>
+              <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold-muted">Energy Treatments</p>
             </div>
-            <h2 class="font-serif text-4xl md:text-5xl text-ivory font-light tracking-tight leading-tight">
-              Connect with<br /><em class="italic text-gold-pale">mind, body & soul</em>
+            <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ink font-light tracking-tight leading-tight">
+              Connect with<br /><em class="italic text-gold">mind, body & soul</em>
             </h2>
           </div>
-          <p class="font-sans text-sm text-warm-gray max-w-xs leading-relaxed reveal reveal-delay-1">
+          <p class="font-sans text-base text-ink-mid max-w-xs leading-relaxed reveal reveal-delay-1">
             Make your trip complete and book one of our energy-boosting treatments.
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {treatments.map((t, i) => (
-            <article class={`group relative overflow-hidden rounded-lg bg-forest-mid reveal reveal-delay-${i + 1} flex flex-col`}>
+            <article class={`group relative overflow-hidden rounded-lg bg-forest reveal reveal-delay-${i + 1} flex flex-col`}>
               <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
                 <img
                   src={t.image}
@@ -458,11 +458,11 @@ const treatments = [
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-forest-mid via-forest-mid/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/30 to-transparent"></div>
               </div>
               <div class="p-5 flex flex-col flex-1">
-                <p class="font-sans text-[9px] tracking-[0.28em] uppercase text-gold mb-2">{t.title}</p>
-                <p class="font-sans text-xs text-warm-gray font-light leading-relaxed flex-1">{t.desc}</p>
+                <p class="font-sans text-[12px] tracking-[0.28em] uppercase text-gold mb-2">{t.title}</p>
+                <p class="font-sans text-base text-white/70 font-light leading-5 flex-1">{t.desc}</p>
               </div>
             </article>
           ))}
@@ -471,39 +471,58 @@ const treatments = [
     </div>
 
     <!-- ── CTA / Contact ──────────────────────────── -->
-    <div class="border-t border-gold/10 py-24">
-      <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center reveal">
-        <div class="flex items-center justify-center gap-4 mb-8">
-          <span class="h-px w-10 bg-gold/20"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-gold/30"></span>
-          <span class="h-px w-10 bg-gold/20"></span>
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="/images/photo-2019-06-28-08.47.38-1280x800.jpg"
+          alt="Nile at sunset"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-void/90 via-forest/85 to-void/95"></div>
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-2/3 h-2/3 rounded-full blur-3xl opacity-10" style="background: radial-gradient(ellipse, #c9913a 0%, transparent 65%);"></div>
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl text-ivory font-light mb-4 leading-tight">
-          Ready to plan your journey?
+      </div>
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-32 lg:py-48 text-center">
+        <div class="flex items-center justify-center gap-4 mb-12 reveal">
+          <span class="h-px w-10 bg-gold/40"></span>
+          <span class="w-1 h-1 rounded-full bg-gold/60"></span>
+          <span class="font-sans text-xs tracking-ultra uppercase text-gold-light/70">Begin Here</span>
+          <span class="w-1 h-1 rounded-full bg-gold/60"></span>
+          <span class="h-px w-10 bg-gold/40"></span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-[1.05] mb-6 reveal reveal-delay-1"
+          style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+          Ready to plan<br />your journey?
         </h2>
-        <p class="font-sans text-sm text-warm-gray font-light leading-relaxed mb-10 max-w-md mx-auto">
-          Contact us and we'll create a personalised itinerary around your group, dates, and intentions.
+        <p class="font-serif text-xl md:text-2xl text-gold-pale/80 font-light italic mb-6 reveal reveal-delay-2">
+          Tell us your dream.
         </p>
-        <div class="flex flex-wrap justify-center gap-4">
+        <p class="font-sans text-base text-ivory/50 max-w-sm mx-auto leading-relaxed mb-14 reveal reveal-delay-3">
+          We'll create a personalised itinerary around your group, dates, and intentions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
           <a
             href="mailto:reservation@veda-egypt.com"
-            class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white font-sans text-[10px] tracking-[0.22em] uppercase px-7 py-3.5 transition-all duration-300"
+            class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300"
           >
-            Request Itinerary →
+            Request Itinerary
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </a>
           <a
             href="/dahabiyas"
-            class="inline-flex items-center gap-2 border border-gold/40 hover:border-gold text-gold/80 hover:text-gold font-sans text-[10px] tracking-[0.22em] uppercase px-7 py-3.5 transition-all duration-300 hover:bg-gold/5"
+            class="group inline-flex items-center justify-center gap-3 border border-white/20 hover:border-white/45 text-white/65 hover:text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300 hover:bg-white/5 backdrop-blur-sm"
           >
-            View Our Fleet →
+            View Our Fleet
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </a>
         </div>
-        <div class="mt-10 flex flex-col items-center gap-1">
-          <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-gold transition-colors">info@veda-egypt.com</a>
-          <a href="mailto:reservation@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-gold transition-colors">reservation@veda-egypt.com</a>
-        </div>
       </div>
-    </div>
+    </section>
 
   </div>
 
