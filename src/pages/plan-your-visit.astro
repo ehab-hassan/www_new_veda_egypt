@@ -126,7 +126,7 @@ const treatments = [
 
         <!-- River background -->
         <img
-          src="/images/top_river.jpg"
+          src="/images/top_river3.jpg"
           alt="Aerial view of the Nile river"
           class="absolute inset-0 w-full h-full object-cover object-center"
           loading="lazy"
@@ -158,8 +158,8 @@ const treatments = [
         <!-- Boat (top-view PNG), positioned + animated by JS -->
         <div id="journey-boat-wrap"
           class="absolute z-20 pointer-events-none"
-          style="width:72px; left:50%; top:15%; transform:translate(-50%,-50%); filter:drop-shadow(0 10px 22px rgba(0,0,0,0.75));">
-          <img src="/images/boat.png" alt="" aria-hidden="true" class="w-full h-auto" />
+          style="width:72px; left:50%; top:15%; filter:drop-shadow(0 10px 22px rgba(0,0,0,0.75));">
+          <img src="/images/boat2.png" alt="" aria-hidden="true" class="w-full h-auto" />
         </div>
 
         <!-- ── Content blocks: guide-image layout — day+name LEFT · description RIGHT ── -->
@@ -167,16 +167,18 @@ const treatments = [
         <!-- JS sets opacity:0 on init; graceful fallback shows all if GSAP fails.       -->
 
         <!-- Block 1 — Luxor at 14% -->
-        <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:14%;transform:translateY(-50%);" data-stop="0">
+        <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:30%;transform:translateY(-50%);" data-stop="0">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 01</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 01</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Luxor</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/karnak-1280x800.jpg" alt="Luxor" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Arrival into the heart of the Valley of the Kings.</p>
+              <p class="font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Arrival into the heart of the Valley of the Kings.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Luxor offers one of the most exquisite ancient treasures in the world.
+                The Valley of Kings, the legend temple of Queen Hatshepsut, and Karnak Temple are some of the many jewels to explore in the magic city of Luxor..</p>
             </div>
           </div>
         </div>
@@ -185,13 +187,15 @@ const treatments = [
         <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:28%;transform:translateY(-50%);" data-stop="1">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 02 — 03</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 02 — 03</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Esna</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/egypte-veda-199-van-577-2000x1250.jpg" alt="Esna" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Temple of Khnum &amp; quiet Nile waters.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Esna is a busy little farming town located 55 km south of Luxor, on the west bank of the Nile.
+              <br>
+                The Temple of Khnum, located 9 meter below street level, is one of the highlights in Esna. The lively tourist-oriented market in Esna is a perfect place to immerse in real Egyptian vibes.</p>
             </div>
           </div>
         </div>
@@ -200,13 +204,15 @@ const treatments = [
         <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:42%;transform:translateY(-50%);" data-stop="2">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 04</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 04</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Edfu</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/egypte-veda-68-van-577-1060x707.jpg" alt="Edfu" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Walk the path of Horus through ancient pylons.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Catapult yourself back in time. Watch the countryside with little mud brick houses and observe the crops growing on the fertile land of the Nile while sailing between Edfu and Esna.
+                <br>
+                These paradisiacal views are ideal to relax, leave your worries behind, and become one with nature.</p>
             </div>
           </div>
         </div>
@@ -215,13 +221,16 @@ const treatments = [
         <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:56%;transform:translateY(-50%);" data-stop="3">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 05</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 05</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Silsila</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/egypte-veda-309-van-577-1-1280x800.jpg" alt="Silsila" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Sacred quarries &amp; a starlit dinner on deck.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">During the 18th dynasty, the Egyptians started using sandstone instead of limestones. Gebel el-Silsila became an important stone source for several famous ancient Egyptians temples.
+                <br>
+                Next to the extremely powerful energy and old vibes,
+                Silsila is a very serene spot because regular boats can not park there.</p>
             </div>
           </div>
         </div>
@@ -230,28 +239,37 @@ const treatments = [
         <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:70%;transform:translateY(-50%);" data-stop="4">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 06</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 06</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Kom Ombo</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/egypte-veda-533-van-577-1060x663.jpg" alt="Kom Ombo" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Temple of the Two Deities at golden hour.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Kom Ombo is a temple dedicated to the god Sobek (the crocodile god)
+                and Haroeris (the winged god of medicine and one of the oldest incarnations of Horus).
+                <br>
+                Crocodiles were worshipped at many cult-sites,  from Qasr Qaroun in the Fayoum to Kom Ombo,  and were often buried with Pharaohs as it was believed that they would protect them in the afterlife.
+                <br>
+                Kom Ombo temple is also known for its wall relieves showing ancient surgical and dental tools. </p>
             </div>
           </div>
         </div>
 
         <!-- Block 6 — Aswan at 84% -->
-        <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:84%;transform:translateY(-50%);" data-stop="5">
+        <div class="journey-block absolute z-30 pointer-events-none" style="left:0;right:0;top:68%;transform:translateY(-50%);" data-stop="5">
           <div style="display:flex;align-items:center;padding:0 4%;">
             <div style="flex:1;text-align:right;padding-right:36px;">
-              <p class="font-sans text-[9px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 07</p>
+              <p class="font-sans text-[12px] tracking-[0.35em] uppercase text-gold" style="margin-bottom:4px;">Day 07</p>
               <h3 class="font-serif text-ivory font-light leading-tight" style="font-size:clamp(1.4rem,3vw,2.2rem);">Aswan</h3>
             </div>
             <div style="width:60px;flex-shrink:0;"></div>
             <div style="flex:1;padding-left:36px;">
               <img src="/images/aswan-temples-1280x800.jpg" alt="Aswan" class="journey-thumb" />
-              <p class="font-sans text-ivory/55 font-light leading-relaxed" style="font-size:0.78rem;font-style:italic;margin-top:8px;">Nubian sunset &amp; a sacred departure into stillness.</p>
+              <p class="max-w-xl font-sans text-ivory/90 font-light leading-relaxed" style="font-size:14px;margin-top:8px;">Aswan’s most sacred temple is Philae. It is considered the most precious of all Egypt’s temples. She sits on an island plopped in the middle of the Nile, only reachable by small motorboat.
+               <br>
+                The Ptolemaic (Graeco-Roman) era temple is devoted to Isis, the Goddess of motherhood. Philae is the last ancient temple built in classical Egyptian architectural style.
+                <br>
+                The temple was moved from its original location on Philae Island to its new location on Agilkia Island after the flooding of Lake Nasser.</p>
             </div>
           </div>
         </div>
@@ -281,11 +299,14 @@ const treatments = [
       /* Boat wrapper: GSAP drives left/top; floating uses y transform */
       #journey-boat-wrap { will-change: left, top; }
 
+      /* Hide blocks immediately via CSS — GSAP reveals them at the right scroll position.
+         Prevents flash of content while GSAP loads from CDN. */
+      .journey-block { opacity: 0; }
+
       /* Stop thumbnail images */
       .journey-thumb {
         display: block;
-        width: 100%;
-        max-width: 150px;
+        width: clamp(160px, 26vw, 360px);
         aspect-ratio: 16 / 9;
         object-fit: cover;
         opacity: 0.80;
@@ -339,11 +360,11 @@ const treatments = [
           blocks.forEach(function (b) { b.style.opacity = '1'; b.style.transform = 'none'; });
           return;
         }
-        blocks.forEach(function (b) { gsap.set(b, { opacity: 0, y: 14 }); });
+        blocks.forEach(function (b) { gsap.set(b, { opacity: 0 }); });
 
         var waypoints = [
           { p: 0.00, x: 0, y: 14 },  // start — boat visible at Luxor
-          { p: 0.14, x: 0, y: 14 },  // dwell at Luxor so user sees it before scroll
+          { p: 0.06, x: 0, y: 14 },  // short dwell — boat rests briefly then moves
           { p: 0.26, x: 0, y: 28 },  // → Esna
           { p: 0.38, x: 0, y: 42 },  // → Edfu
           { p: 0.52, x: 0, y: 56 },  // → Silsila
@@ -352,20 +373,22 @@ const treatments = [
           { p: 1.00, x: 0, y: 93 },  // drift off
         ];
         var stopRanges = [
-          { show: 0.01, hide: 0.23 },  // Luxor
+          { show: 0.15, hide: 0.23 },  // Luxor
           { show: 0.26, hide: 0.36 },  // Esna
           { show: 0.38, hide: 0.50 },  // Edfu
           { show: 0.52, hide: 0.63 },  // Silsila
           { show: 0.65, hide: 0.76 },  // Kom Ombo
           { show: 0.78, hide: 1.00 },  // Aswan
         ];
+        // Set centering once — never touch xPercent/yPercent again in the scroll loop
+        gsap.set(boatWrap, { xPercent: -50, yPercent: -50 });
         if (!isMobile) {
           gsap.to(boatWrap, { y: -9, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1 });
         }
         var hintFaded = false;
         ScrollTrigger.create({
           trigger: container,
-          start: 'top 50%',
+          start: 'top top',
           end: 'bottom bottom',
           onUpdate: function (self) {
             var progress = self.progress;
@@ -385,21 +408,19 @@ const treatments = [
             var ease = t * t * (3 - 2 * t);
             var x = from.x + (to.x - from.x) * ease;
             var y = from.y + (to.y - from.y) * ease;
-            gsap.set(boatWrap, {
-              left: isMobile ? '50%' : 'calc(50% + ' + x.toFixed(1) + 'px)',
-              top:  y.toFixed(2) + '%',
-              xPercent: -50, yPercent: -50,
-            });
+            // Update position via DOM — keeps GSAP's transform state (xPercent/yPercent/y float) untouched
+            boatWrap.style.left = isMobile ? '50%' : 'calc(50% + ' + x.toFixed(1) + 'px)';
+            boatWrap.style.top  = y.toFixed(2) + '%';
             blocks.forEach(function (block, i) {
               if (i >= stopRanges.length) return;
               var r = stopRanges[i];
-              var fadeIn = 0.06, fadeOut = 0.05, op, yOff;
-              if (progress < r.show) { op = 0; yOff = 14; }
-              else if (progress < r.show + fadeIn) { var t1 = (progress - r.show) / fadeIn; op = t1; yOff = 14 * (1 - t1); }
-              else if (progress < r.hide - fadeOut) { op = 1; yOff = 0; }
-              else if (progress <= r.hide) { var t2 = (progress - (r.hide - fadeOut)) / fadeOut; op = 1 - t2; yOff = 0; }
-              else { op = 0; yOff = 0; }
-              gsap.set(block, { opacity: op, y: yOff });
+              var fadeIn = 0.06, fadeOut = 0.05, op;
+              if (progress < r.show) { op = 0; }
+              else if (progress < r.show + fadeIn) { op = (progress - r.show) / fadeIn; }
+              else if (progress < r.hide - fadeOut) { op = 1; }
+              else if (progress <= r.hide) { op = 1 - (progress - (r.hide - fadeOut)) / fadeOut; }
+              else { op = 0; }
+              gsap.set(block, { opacity: op });
             });
           },
         });
