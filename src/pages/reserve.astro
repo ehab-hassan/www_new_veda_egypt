@@ -1,0 +1,576 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Reserve Your Journey — VEDA Egypt"
+  description="Reserve your private Nile journey aboard a VEDA dahabiya. Choose your boat, dates, and tell us your vision."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/70 via-void/40 to-void"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[10px] tracking-[0.32em] uppercase text-gold">Private Booking</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Reserve Your<br /><em class="italic text-gold-pale">Journey</em>
+      </h1>
+      <p class="font-sans text-sm text-warm-gray font-light leading-relaxed max-w-sm mx-auto">
+        Tell us your vision. We'll respond within 24 hours with a personalised itinerary and availability.
+      </p>
+    </div>
+  </div>
+
+  <!-- Form container -->
+  <div class="bg-void min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 py-16">
+
+      <!-- Step indicator -->
+      <div class="flex items-center justify-center gap-0 mb-14" id="step-indicator" aria-label="Form progress">
+        <!-- Step 1 -->
+        <div class="step-marker flex flex-col items-center" data-step="1">
+          <div class="step-dot w-8 h-8 rounded-full border border-gold flex items-center justify-center font-sans text-xs text-gold bg-gold/10 transition-all duration-300">1</div>
+          <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-gold/70 mt-2">Your Trip</p>
+        </div>
+        <div class="step-line h-px w-16 md:w-24 bg-gold/20 mx-2 mb-5 transition-colors duration-300" id="line-1-2"></div>
+        <!-- Step 2 -->
+        <div class="step-marker flex flex-col items-center" data-step="2">
+          <div class="step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300">2</div>
+          <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mt-2">Your Details</p>
+        </div>
+        <div class="step-line h-px w-16 md:w-24 bg-gold/20 mx-2 mb-5 transition-colors duration-300" id="line-2-3"></div>
+        <!-- Step 3 -->
+        <div class="step-marker flex flex-col items-center" data-step="3">
+          <div class="step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300">3</div>
+          <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mt-2">Confirm</p>
+        </div>
+      </div>
+
+      <!-- FORM — Formspree endpoint. Replace YOUR_FORM_ID with your Formspree form ID.
+           Get one free at https://formspree.io → New Form → copy the ID. -->
+      <form
+        id="reserve-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        novalidate
+      >
+
+        <!-- ── STEP 1: Trip details ───────────────────────── -->
+        <div id="step-1" class="form-step">
+
+          <!-- Boat selection -->
+          <div class="mb-10">
+            <label class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-5">
+              Choose Your Boat <span class="text-gold/50 normal-case tracking-normal text-xs ml-1">(required)</span>
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { id: 'veda-1', name: 'Veda 1', sub: 'Up to 20 guests', img: '/images/veda_1.jpg' },
+                { id: 'veda-2', name: 'Veda 2', sub: 'Up to 20 guests', img: '/images/veda_2.jpg' },
+                { id: 'veda-3', name: 'Veda 3', sub: 'Up to 10 guests', img: '/images/veda_3.jpg' },
+                { id: 'veda-4', name: 'Veda 4', sub: 'Up to 28 guests', img: '/images/veda_4.jpg' },
+              ].map((boat) => (
+                <label class="boat-card group cursor-pointer" for={`boat-${boat.id}`}>
+                  <input
+                    type="radio"
+                    name="boat"
+                    id={`boat-${boat.id}`}
+                    value={boat.name}
+                    class="sr-only"
+                    required
+                  />
+                  <div class="boat-card-inner relative overflow-hidden rounded border border-white/10 transition-all duration-300 group-hover:border-gold/50">
+                    <div class="aspect-[3/4] overflow-hidden">
+                      <img src={boat.img} alt={boat.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3">
+                      <p class="font-serif text-white text-base font-light leading-tight">{boat.name}</p>
+                      <p class="font-sans text-[10px] text-white/50 mt-0.5">{boat.sub}</p>
+                    </div>
+                    <!-- Selected indicator -->
+                    <div class="boat-check absolute top-2 right-2 w-5 h-5 rounded-full bg-gold flex items-center justify-center opacity-0 transition-opacity duration-200">
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                        <path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <p class="boat-error font-sans text-xs text-red-400/80 mt-2 hidden">Please select a boat to continue.</p>
+          </div>
+
+          <!-- Dates -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label for="arrival" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Arrival Date</label>
+              <input type="date" id="arrival" name="arrival_date" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
+            </div>
+            <div>
+              <label for="departure" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Departure Date</label>
+              <input type="date" id="departure" name="departure_date" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
+            </div>
+          </div>
+
+          <!-- Guests + Trip type -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+            <div>
+              <label for="guests" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Number of Guests</label>
+              <div class="flex items-center border border-white/10 bg-forest">
+                <button type="button" id="guests-minus" class="w-11 h-11 flex items-center justify-center text-white/50 hover:text-gold transition-colors text-lg" aria-label="Decrease guests">−</button>
+                <input type="number" id="guests" name="guests" value="2" min="1" max="50" required
+                  class="flex-1 bg-transparent text-ivory text-sm text-center py-3 focus:outline-none" />
+                <button type="button" id="guests-plus" class="w-11 h-11 flex items-center justify-center text-white/50 hover:text-gold transition-colors text-lg" aria-label="Increase guests">+</button>
+              </div>
+            </div>
+            <div>
+              <label for="trip-type" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Trip Focus</label>
+              <select id="trip-type" name="trip_type" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
+                <option value="" disabled selected>Select focus...</option>
+                <option value="Cultural & Temples">Cultural & Temples</option>
+                <option value="Wellness Retreat">Wellness Retreat</option>
+                <option value="Private Charter">Private Charter</option>
+                <option value="Family Journey">Family Journey</option>
+                <option value="Yoga Retreat">Yoga Retreat</option>
+                <option value="Honeymoon">Honeymoon</option>
+                <option value="Corporate / Group">Corporate / Group</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button type="button" id="next-1"
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300">
+              Continue
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── STEP 2: Personal details ──────────────────── -->
+        <div id="step-2" class="form-step hidden">
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="first-name" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">First Name</label>
+              <input type="text" id="first-name" name="first_name" autocomplete="given-name" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="Your first name" />
+            </div>
+            <div>
+              <label for="last-name" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Last Name</label>
+              <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="Your last name" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="email" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Email Address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="you@example.com" />
+            </div>
+            <div>
+              <label for="phone" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Phone <span class="text-white/30 normal-case tracking-normal text-xs ml-1">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel"
+                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="+1 234 567 890" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="country" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Country</label>
+            <input type="text" id="country" name="country" autocomplete="country-name"
+              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+              placeholder="Where are you travelling from?" />
+          </div>
+
+          <div class="mb-4">
+            <label for="heard" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">How did you hear about us?</label>
+            <select id="heard" name="heard_from"
+              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
+              <option value="" disabled selected>Select...</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Google">Google</option>
+              <option value="Friend / Word of mouth">Friend / Word of mouth</option>
+              <option value="Travel agent">Travel agent</option>
+              <option value="CNN / Press">CNN / Press</option>
+              <option value="Returning guest">Returning guest</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="mb-10">
+            <label for="message" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">
+              Your Vision <span class="text-white/30 normal-case tracking-normal text-xs ml-1">(optional)</span>
+            </label>
+            <textarea id="message" name="message" rows="4"
+              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors resize-none leading-relaxed"
+              placeholder="Tell us about your dream trip — special occasions, dietary needs, wellness goals, anything that matters to you..."></textarea>
+          </div>
+
+          <!-- Privacy note -->
+          <p class="font-sans text-xs text-warm-gray/50 mb-8 leading-relaxed">
+            Your details are used only to prepare your personalised itinerary. We never share or sell your information.
+          </p>
+
+          <div class="flex items-center justify-between">
+            <button type="button" id="back-2"
+              class="font-sans text-xs tracking-ultra uppercase text-white/40 hover:text-gold transition-colors">
+              ← Back
+            </button>
+            <button type="button" id="next-2"
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300">
+              Review
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── STEP 3: Review & confirm ───────────────────── -->
+        <div id="step-3" class="form-step hidden">
+
+          <div class="border border-gold/15 p-6 md:p-8 mb-8">
+            <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-6">Booking Summary</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Boat</p>
+                <p id="summary-boat" class="font-serif text-ivory text-lg font-light">—</p>
+              </div>
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Trip Focus</p>
+                <p id="summary-type" class="font-serif text-ivory text-lg font-light">—</p>
+              </div>
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Arrival</p>
+                <p id="summary-arrival" class="font-serif text-ivory text-lg font-light">—</p>
+              </div>
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Departure</p>
+                <p id="summary-departure" class="font-serif text-ivory text-lg font-light">—</p>
+              </div>
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Guests</p>
+                <p id="summary-guests" class="font-serif text-ivory text-lg font-light">—</p>
+              </div>
+              <div>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Contact</p>
+                <p id="summary-name" class="font-serif text-ivory text-lg font-light">—</p>
+                <p id="summary-email" class="font-sans text-warm-gray text-sm">—</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What happens next -->
+          <div class="border-t border-gold/10 pt-6 mb-8">
+            <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold/60 mb-4">What happens next</p>
+            <div class="space-y-3">
+              {[
+                'We review your enquiry and check availability.',
+                'Within 24 hours, you receive a personalised itinerary and pricing.',
+                'Once confirmed, we arrange a call to finalise every detail.',
+              ].map((step, i) => (
+                <div class="flex items-start gap-4">
+                  <span class="font-sans text-[10px] text-gold/60 mt-0.5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                  <p class="font-sans text-sm text-warm-gray font-light leading-relaxed">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <p id="form-error" class="font-sans text-sm text-red-400/80 mb-4 hidden">
+            Something went wrong. Please email us directly at reservation@veda-egypt.com
+          </p>
+
+          <div class="flex items-center justify-between">
+            <button type="button" id="back-3"
+              class="font-sans text-xs tracking-ultra uppercase text-white/40 hover:text-gold transition-colors">
+              ← Edit
+            </button>
+            <button type="submit" id="submit-btn"
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="submit-label">Send Enquiry</span>
+              <span class="group-hover:translate-x-1 transition-transform duration-300" id="submit-arrow">→</span>
+              <span id="submit-spinner" class="hidden w-4 h-4 border border-white/40 border-t-white rounded-full animate-spin"></span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- ── SUCCESS state ──────────────────────────────── -->
+      <div id="success-state" class="hidden text-center py-16">
+        <div class="flex items-center justify-center mb-8">
+          <div class="w-16 h-16 rounded-full border border-gold/40 flex items-center justify-center">
+            <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+              <path d="M2 10l7 7L22 2" stroke="#a07c3a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-4">Enquiry Received</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-ivory font-light mb-5 leading-tight">
+          Thank you.<br /><em class="italic text-gold-pale">We'll be in touch.</em>
+        </h2>
+        <p class="font-sans text-sm text-warm-gray font-light leading-relaxed max-w-sm mx-auto mb-10">
+          Our team will review your enquiry and send a personalised itinerary within 24 hours.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/"
+            class="inline-flex items-center justify-center gap-2 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-7 py-3.5 transition-all duration-300">
+            Back to Home
+          </a>
+          <a href="/dahabiyas"
+            class="inline-flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold/20 text-gold font-sans text-xs tracking-ultra uppercase px-7 py-3.5 transition-all duration-300">
+            Explore Our Fleet →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</MainLayout>
+
+<style>
+  /* Form field base */
+  .field { color-scheme: dark; }
+  .field option { background: #0e1a0e; }
+
+  /* Boat card selected state */
+  input[type="radio"]:checked + .boat-card-inner {
+    border-color: rgba(160, 124, 58, 0.80) !important;
+    box-shadow: 0 0 0 1px rgba(160, 124, 58, 0.30);
+  }
+  input[type="radio"]:checked + .boat-card-inner .boat-check {
+    opacity: 1 !important;
+  }
+
+  /* Animate step transitions */
+  .form-step { animation: stepIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Spinner */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .animate-spin { animation: spin 0.7s linear infinite; }
+
+  /* Date input styling */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.6) sepia(1) saturate(0.5) hue-rotate(10deg);
+    opacity: 0.6;
+    cursor: pointer;
+  }
+</style>
+
+<script is:inline>
+(function () {
+
+  /* ── Helpers ──────────────────────────────── */
+  function $(id) { return document.getElementById(id); }
+
+  var currentStep = 1;
+
+  /* ── Boat card selection ─────────────────── */
+  document.querySelectorAll('.boat-card').forEach(function (label) {
+    label.addEventListener('click', function () {
+      document.querySelectorAll('.boat-card-inner').forEach(function (el) {
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+        el.querySelector('.boat-check').style.opacity = '0';
+      });
+    });
+  });
+
+  /* ── Guest counter ───────────────────────── */
+  $('guests-minus').addEventListener('click', function () {
+    var inp = $('guests');
+    var v = parseInt(inp.value) || 2;
+    if (v > 1) inp.value = v - 1;
+  });
+  $('guests-plus').addEventListener('click', function () {
+    var inp = $('guests');
+    var v = parseInt(inp.value) || 2;
+    if (v < 50) inp.value = v + 1;
+  });
+
+  /* ── Step indicator update ───────────────── */
+  function updateIndicator(step) {
+    document.querySelectorAll('.step-marker').forEach(function (marker) {
+      var s = parseInt(marker.dataset.step);
+      var dot = marker.querySelector('.step-dot');
+      var label = marker.querySelector('p');
+      if (s < step) {
+        // Completed
+        dot.className = 'step-dot w-8 h-8 rounded-full border border-gold bg-gold flex items-center justify-center font-sans text-xs text-white transition-all duration-300';
+        dot.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        label.className = 'font-sans text-[9px] tracking-[0.2em] uppercase text-gold mt-2';
+      } else if (s === step) {
+        // Active
+        dot.className = 'step-dot w-8 h-8 rounded-full border border-gold flex items-center justify-center font-sans text-xs text-gold bg-gold/10 transition-all duration-300';
+        dot.textContent = s;
+        label.className = 'font-sans text-[9px] tracking-[0.2em] uppercase text-gold/70 mt-2';
+      } else {
+        // Future
+        dot.className = 'step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300';
+        dot.textContent = s;
+        label.className = 'font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mt-2';
+      }
+    });
+    // Update connector lines
+    $('line-1-2').style.background = step > 1 ? 'rgba(160,124,58,0.60)' : 'rgba(160,124,58,0.20)';
+    $('line-2-3').style.background = step > 2 ? 'rgba(160,124,58,0.60)' : 'rgba(160,124,58,0.20)';
+  }
+
+  /* ── Show a step ─────────────────────────── */
+  function showStep(n) {
+    [1, 2, 3].forEach(function (s) {
+      var el = $('step-' + s);
+      if (s === n) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+    currentStep = n;
+    updateIndicator(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ── Validate step 1 ─────────────────────── */
+  function validateStep1() {
+    var boatSelected = document.querySelector('input[name="boat"]:checked');
+    var arrival = $('arrival').value;
+    var departure = $('departure').value;
+    var tripType = $('trip-type').value;
+
+    if (!boatSelected) {
+      document.querySelector('.boat-error').classList.remove('hidden');
+      return false;
+    }
+    document.querySelector('.boat-error').classList.add('hidden');
+
+    if (!arrival || !departure || !tripType) {
+      // Highlight empty fields
+      [$('arrival'), $('departure'), $('trip-type')].forEach(function (f) {
+        if (!f.value) f.style.borderColor = 'rgba(248,113,113,0.5)';
+      });
+      return false;
+    }
+    if (new Date(departure) <= new Date(arrival)) {
+      $('departure').style.borderColor = 'rgba(248,113,113,0.5)';
+      return false;
+    }
+    return true;
+  }
+
+  /* ── Validate step 2 ─────────────────────── */
+  function validateStep2() {
+    var ok = true;
+    [$('first-name'), $('last-name'), $('email')].forEach(function (f) {
+      if (!f.value.trim()) {
+        f.style.borderColor = 'rgba(248,113,113,0.5)';
+        ok = false;
+      } else {
+        f.style.borderColor = '';
+      }
+    });
+    var email = $('email').value;
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('email').style.borderColor = 'rgba(248,113,113,0.5)';
+      ok = false;
+    }
+    return ok;
+  }
+
+  /* ── Populate summary ────────────────────── */
+  function populateSummary() {
+    var boat = document.querySelector('input[name="boat"]:checked');
+    var arrival = new Date($('arrival').value);
+    var departure = new Date($('departure').value);
+    var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    $('summary-boat').textContent      = boat ? boat.value : '—';
+    $('summary-type').textContent      = $('trip-type').value || '—';
+    $('summary-arrival').textContent   = $('arrival').value ? arrival.toLocaleDateString('en-GB', fmt) : '—';
+    $('summary-departure').textContent = $('departure').value ? departure.toLocaleDateString('en-GB', fmt) : '—';
+    $('summary-guests').textContent    = $('guests').value + ' guest' + ($('guests').value === '1' ? '' : 's');
+    $('summary-name').textContent      = [$('first-name').value, $('last-name').value].filter(Boolean).join(' ') || '—';
+    $('summary-email').textContent     = $('email').value || '—';
+  }
+
+  /* ── Navigation buttons ──────────────────── */
+  $('next-1').addEventListener('click', function () {
+    if (validateStep1()) showStep(2);
+  });
+  $('back-2').addEventListener('click', function () { showStep(1); });
+
+  $('next-2').addEventListener('click', function () {
+    if (validateStep2()) { populateSummary(); showStep(3); }
+  });
+  $('back-3').addEventListener('click', function () { showStep(2); });
+
+  /* ── Form submission ─────────────────────── */
+  $('reserve-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn    = $('submit-btn');
+    var label  = $('submit-label');
+    var arrow  = $('submit-arrow');
+    var spinner = $('submit-spinner');
+    var errMsg = $('form-error');
+
+    btn.disabled = true;
+    label.textContent = 'Sending…';
+    arrow.classList.add('hidden');
+    spinner.classList.remove('hidden');
+    errMsg.classList.add('hidden');
+
+    try {
+      var res = await fetch(e.target.action, {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        $('reserve-form').classList.add('hidden');
+        $('step-indicator').classList.add('hidden');
+        $('success-state').classList.remove('hidden');
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (_) {
+      errMsg.classList.remove('hidden');
+      btn.disabled = false;
+      label.textContent = 'Send Enquiry';
+      arrow.classList.remove('hidden');
+      spinner.classList.add('hidden');
+    }
+  });
+
+  /* ── Clear red border on input focus ────── */
+  document.querySelectorAll('.field, input[type="date"], select').forEach(function (f) {
+    f.addEventListener('focus', function () { this.style.borderColor = ''; });
+  });
+
+  /* Init */
+  updateIndicator(1);
+})();
+</script>

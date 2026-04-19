@@ -24,6 +24,7 @@ const navItems = [
   { label: 'Plan Your Visit', href: '/plan-your-visit' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Our Team', href: '/our-team' },
+
 ];
 
 function isActive(href: string) {
@@ -270,10 +271,10 @@ const jsonLd = JSON.stringify({
 
         <!-- Desktop CTA -->
         <a
-          href="/plan-your-visit"
+          href="/reserve"
           class="hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20"
         >
-          Plan Your Journey
+          Reserve
         </a>
 
         <!-- Mobile Hamburger -->
@@ -342,10 +343,10 @@ const jsonLd = JSON.stringify({
       <!-- Bottom CTA + contact -->
       <div class="px-8 pb-12 pt-6 border-t border-gold/10">
         <a
-          href="/#contact"
+          href="/reserve"
           class="block w-full text-center bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase py-4 transition-all duration-300"
         >
-          Plan Your Journey
+          Reserve Your Journey
         </a>
         <div class="mt-5 flex flex-col gap-1">
           <a href="mailto:reservation@veda-egypt.com" class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
