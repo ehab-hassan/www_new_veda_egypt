@@ -46,7 +46,7 @@ const slides: Slide[] = [
   <!-- Slide backgrounds -->
   {slides.map((slide, i) => (
     <div
-      class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out"
+      class="hero-slide absolute inset-0"
       data-slide={i}
       style={i === 0 ? 'opacity:1;' : 'opacity:0;'}
     >
@@ -87,7 +87,7 @@ const slides: Slide[] = [
 
     {slides.map((slide, i) => (
       <div
-        class="hero-content absolute bottom-24 lg:bottom-32 left-6 lg:left-12 right-6 lg:right-12 max-w-7xl transition-all duration-700"
+        class="hero-content absolute top-20 bottom-24 lg:bottom-32 left-6 lg:left-12 right-6 lg:right-12 max-w-7xl flex flex-col justify-end overflow-hidden"
         data-content={i}
         style={i === 0 ? 'opacity:1; transform:translateY(0);' : 'opacity:0; transform:translateY(20px); pointer-events:none;'}
       >
@@ -101,7 +101,7 @@ const slides: Slide[] = [
         </p>
 
         <!-- Heading -->
-        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-[0.95] tracking-tight max-w-4xl mb-8 text-center md:text-left"
+        <h1 class="font-serif text-5xl md:text-7xl font-light text-white leading-[0.95] tracking-tight max-w-4xl mb-8 text-center md:text-left"
           style="animation: fadeInUp 1s 0.7s both; text-shadow: 0 2px 24px rgba(0,0,0,0.35);">
           {slide.heading[0]}<br />
           <em class="italic text-gold-pale">{slide.heading[1]}</em><br />
@@ -184,6 +184,15 @@ const slides: Slide[] = [
     0%   { top: -40%; }
     100% { top: 140%; }
   }
+
+  /* Short screens — scale down everything so content fits between nav and bottom */
+  @media (max-height: 620px) {
+    .hero-content h1 { font-size: clamp(1.8rem, 5vh, 3rem) !important; line-height: 1.05 !important; }
+    .hero-content p  { font-size: 0.75rem !important; margin-bottom: 0.5rem !important; }
+    .hero-content .gold-line { margin-bottom: 0.5rem !important; }
+    .hero-content > div { gap: 0 !important; }
+    .hero-content a  { padding-top: 0.6rem !important; padding-bottom: 0.6rem !important; font-size: 0.65rem !important; }
+  }
 </style>
 
 <script>
@@ -229,4 +238,18 @@ const slides: Slide[] = [
   });
 
   startTimer();
+
+  // Enable transitions only after initial paint — prevents inactive slides from
+  // briefly flashing as the browser transitions from CSS default (opacity:1) to
+  // the inline opacity:0 set in the HTML template.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      slides.forEach((s) => {
+        s.style.transition = 'opacity 1s ease-in-out';
+      });
+      contents.forEach((c) => {
+        c.style.transition = 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out';
+      });
+    });
+  });
 </script>
