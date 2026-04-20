@@ -428,43 +428,54 @@ const treatments = [
           gsap.to(boatWrap, { y: -9, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1 });
         }
         var hintFaded = false;
+
+        function updateScene(progress) {
+          if (!hintFaded && progress > 0.01 && hint) {
+            gsap.to(hint, { opacity: 0, duration: 0.6, ease: 'power2.out' });
+            hintFaded = true;
+          }
+          var segIdx = 0;
+          for (var i = 0; i < waypoints.length - 1; i++) {
+            if (progress <= waypoints[i + 1].p) { segIdx = i; break; }
+            segIdx = waypoints.length - 2;
+          }
+          var from = waypoints[segIdx];
+          var to   = waypoints[Math.min(segIdx + 1, waypoints.length - 1)];
+          var span = to.p - from.p;
+          var t    = span === 0 ? 0 : Math.max(0, Math.min(1, (progress - from.p) / span));
+          var ease = t * t * (3 - 2 * t);
+          var x = from.x + (to.x - from.x) * ease;
+          var y = from.y + (to.y - from.y) * ease;
+          // Update position via DOM — keeps GSAP's transform state (xPercent/yPercent/y float) untouched
+          boatWrap.style.left = isMobile ? '50%' : 'calc(50% + ' + x.toFixed(1) + 'px)';
+          boatWrap.style.top  = y.toFixed(2) + '%';
+          blocks.forEach(function (block, i) {
+            if (i >= stopRanges.length) return;
+            var r = stopRanges[i];
+            var fadeIn = 0.02, fadeOut = 0.02, op;
+            if (progress < r.show) { op = 0; }
+            else if (progress < r.show + fadeIn) { op = (progress - r.show) / fadeIn; }
+            else if (progress < r.hide - fadeOut) { op = 1; }
+            else if (progress <= r.hide) { op = 1 - (progress - (r.hide - fadeOut)) / fadeOut; }
+            else { op = 0; }
+            gsap.set(block, { opacity: op });
+          });
+        }
+
         ScrollTrigger.create({
           trigger: container,
           start: 'top top',
           end: 'bottom bottom',
-          onUpdate: function (self) {
-            var progress = self.progress;
-            if (!hintFaded && progress > 0.01 && hint) {
-              gsap.to(hint, { opacity: 0, duration: 0.6, ease: 'power2.out' });
-              hintFaded = true;
-            }
-            var segIdx = 0;
-            for (var i = 0; i < waypoints.length - 1; i++) {
-              if (progress <= waypoints[i + 1].p) { segIdx = i; break; }
-              segIdx = waypoints.length - 2;
-            }
-            var from = waypoints[segIdx];
-            var to   = waypoints[Math.min(segIdx + 1, waypoints.length - 1)];
-            var span = to.p - from.p;
-            var t    = span === 0 ? 0 : Math.max(0, Math.min(1, (progress - from.p) / span));
-            var ease = t * t * (3 - 2 * t);
-            var x = from.x + (to.x - from.x) * ease;
-            var y = from.y + (to.y - from.y) * ease;
-            // Update position via DOM — keeps GSAP's transform state (xPercent/yPercent/y float) untouched
-            boatWrap.style.left = isMobile ? '50%' : 'calc(50% + ' + x.toFixed(1) + 'px)';
-            boatWrap.style.top  = y.toFixed(2) + '%';
-            blocks.forEach(function (block, i) {
-              if (i >= stopRanges.length) return;
-              var r = stopRanges[i];
-              var fadeIn = 0.02, fadeOut = 0.02, op;
-              if (progress < r.show) { op = 0; }
-              else if (progress < r.show + fadeIn) { op = (progress - r.show) / fadeIn; }
-              else if (progress < r.hide - fadeOut) { op = 1; }
-              else if (progress <= r.hide) { op = 1 - (progress - (r.hide - fadeOut)) / fadeOut; }
-              else { op = 0; }
-              gsap.set(block, { opacity: op });
-            });
-          },
+          onUpdate: function (self) { updateScene(self.progress); },
+          // Fires when ScrollTrigger recalculates positions (e.g. after browser scroll restore on refresh)
+          onRefresh: function (self) { updateScene(self.progress); },
+        });
+
+        // After full page load, refresh ScrollTrigger so it recalculates bounds after
+        // the browser has restored scroll position from a page refresh, then immediately
+        // sync the scene to the correct progress.
+        window.addEventListener('load', function () {
+          ScrollTrigger.refresh();
         });
       }
     })();
