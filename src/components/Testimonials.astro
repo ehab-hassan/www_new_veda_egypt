@@ -129,9 +129,15 @@ const testimonials = [
 </style>
 
 <script>
+  const section = document.getElementById('testimonials');
   const slides = document.querySelectorAll('.testimonial-slide');
   const dots = document.querySelectorAll('.testimonial-dot');
   let current = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+  let paused = false;
+
+  // Skip auto-advance entirely if the user prefers reduced motion.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function goTo(index: number) {
     slides[current].classList.remove('active');
@@ -145,15 +151,38 @@ const testimonials = [
     dots[current].classList.remove('bg-ink/20', 'w-5');
   }
 
-  document.getElementById('nextTestimonial')?.addEventListener('click', () => goTo(current + 1));
-  document.getElementById('prevTestimonial')?.addEventListener('click', () => goTo(current - 1));
+  function startTimer() {
+    if (reduceMotion || paused) return;
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 7000);
+  }
+
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  document.getElementById('nextTestimonial')?.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+  document.getElementById('prevTestimonial')?.addEventListener('click', () => { goTo(current - 1); startTimer(); });
 
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       const target = parseInt((dot as HTMLElement).dataset.target || '0');
       goTo(target);
+      startTimer();
     });
   });
 
-  setInterval(() => goTo(current + 1), 7000);
+  // Pause on hover/focus; resume on leave/blur.
+  if (section) {
+    section.addEventListener('mouseenter', () => { paused = true; stopTimer(); });
+    section.addEventListener('mouseleave', () => { paused = false; startTimer(); });
+    section.addEventListener('focusin',  () => { paused = true; stopTimer(); });
+    section.addEventListener('focusout', () => { paused = false; startTimer(); });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopTimer(); else startTimer();
+  });
+
+  startTimer();
 </script>

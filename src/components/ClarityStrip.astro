@@ -1,0 +1,56 @@
+---
+// ClarityStrip — sits directly under Hero.
+// Answers "what is a VEDA journey" in one glance: what · nights · guests · route · season.
+// LIGHT section (warm-beige), tight vertical rhythm, no large imagery.
+
+const facts = [
+  { label: 'Length', value: '5+ nights', detail: 'Private charter' },
+  { label: 'Guests', value: '4 – 50', detail: 'Across the fleet' },
+  { label: 'Route', value: 'Luxor → Aswan', detail: '7 days · 6 nights' },
+  { label: 'Season', value: 'Sept – May', detail: 'Best on the Nile' },
+  { label: 'Rates', value: 'On request', detail: 'All-inclusive charter' },
+];
+---
+
+<section id="clarity" class="relative bg-warm-beige border-b border-gold/15">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-14">
+
+    <!-- One-line offer summary -->
+    <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-12 reveal">
+      <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-4">
+        At a glance
+      </p>
+      <p class="font-serif text-xl md:text-2xl lg:text-[1.65rem] text-ink font-light leading-snug">
+        A VEDA journey is a
+        <em class="italic text-gold">private charter</em>
+        on a traditional Nile dahabiya — sailing
+        <em class="italic text-gold">Luxor to Aswan</em>,
+        fully crewed and all-inclusive.
+      </p>
+    </div>
+
+    <!-- Five-fact strip -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-y-8">
+      {facts.map((fact, i) => (
+        <div
+          class:list={[
+            'flex flex-col items-center text-center px-4 reveal',
+            `reveal-delay-${i + 1}`,
+            i > 0 ? 'md:border-l md:border-gold/15' : '',
+          ]}
+        >
+          <p class="font-sans text-[10px] tracking-ultra uppercase text-gold/80 mb-2">
+            {fact.label}
+          </p>
+          <p class="font-serif text-2xl md:text-[1.7rem] text-ink font-light leading-none mb-2">
+            {fact.value}
+          </p>
+          <p class="font-sans text-[12px] text-ink-light font-light">
+            {fact.detail}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

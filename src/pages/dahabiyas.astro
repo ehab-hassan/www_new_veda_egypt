@@ -1,5 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import FleetCompare from '../components/FleetCompare.astro';
+
+const SITE = 'https://www.veda-egypt.com';
 
 const boats = [
   {
@@ -155,11 +158,87 @@ const boats = [
     ctaStyle: 'light',
   },
 ];
+
+const fleetSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    ...boats.map((b) => ({
+      '@type': 'Product',
+      '@id': `${SITE}/dahabiyas#${b.id}`,
+      name: b.name,
+      description: b.desc,
+      image: `${SITE}${b.hero}`,
+      url: `${SITE}/dahabiyas#${b.id}`,
+      category: 'Private Nile Dahabiya Charter',
+      brand: { '@type': 'Brand', name: 'VEDA Egypt' },
+      additionalProperty: [
+        { '@type': 'PropertyValue', name: 'Tagline', value: b.tagline },
+        { '@type': 'PropertyValue', name: 'Length', value: b.length },
+        { '@type': 'PropertyValue', name: 'Capacity', value: b.capacity },
+        ...b.specs.map((s) => ({ '@type': 'PropertyValue', name: s.label, value: s.value })),
+      ],
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        priceCurrency: 'EUR',
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          description: 'On request — private charters quoted per group, season and length of stay.',
+        },
+        url: `${SITE}/reserve`,
+      },
+    })),
+    {
+      '@type': 'TouristTrip',
+      '@id': `${SITE}/dahabiyas#luxor-aswan-journey`,
+      name: 'Luxor → Aswan Private Nile Dahabiya Journey',
+      description:
+        'Seven-day, six-night private charter between Luxor and Aswan aboard a VEDA dahabiya. Stops at Esna, Edfu, Silsila, and Kom Ombo, with optional excursions to Karnak, Philae, and the Valley of the Kings.',
+      touristType: ['Private charter', 'Retreat groups', 'Families', 'Couples'],
+      itinerary: [
+        { '@type': 'TouristDestination', name: 'Luxor', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+        { '@type': 'TouristDestination', name: 'Esna', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+        { '@type': 'TouristDestination', name: 'Edfu', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+        { '@type': 'TouristDestination', name: 'Gebel el-Silsila', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+        { '@type': 'TouristDestination', name: 'Kom Ombo', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+        { '@type': 'TouristDestination', name: 'Aswan', address: { '@type': 'PostalAddress', addressCountry: 'EG' } },
+      ],
+      provider: {
+        '@type': 'TravelAgency',
+        name: 'VEDA Egypt',
+        url: SITE,
+      },
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        url: `${SITE}/reserve`,
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          description: 'On request — quoted per group and season.',
+        },
+      },
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE}/dahabiyas#fleet`,
+      name: 'VEDA Egypt Dahabiya Fleet',
+      itemListOrder: 'https://schema.org/ItemListUnordered',
+      numberOfItems: boats.length,
+      itemListElement: boats.map((b, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE}/dahabiyas#${b.id}`,
+        name: b.name,
+      })),
+    },
+  ],
+});
 ---
 
 <MainLayout
   title="Our Dahabiyas — VEDA Egypt"
   description="Four private dahabiyas on the Nile — from intimate retreats to grand flagships. Fully equipped, sustainably built, and entirely yours."
+  extraSchema={fleetSchema}
 >
 
   <!-- Page Hero — dark, full bleed -->
@@ -199,6 +278,9 @@ const boats = [
       </div>
     </div>
   </div>
+
+  <!-- Comparison table -->
+  <FleetCompare />
 
   <!-- Boats — alternating light / dark sections -->
   {boats.map((boat, bi) => (

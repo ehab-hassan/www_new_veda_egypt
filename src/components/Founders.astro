@@ -1,0 +1,96 @@
+---
+// Founders — the three people who built VEDA Egypt.
+// Sits in the trust layer of the homepage (after Testimonials, before Reviews).
+// LIGHT section (warm-beige).
+
+const founders = [
+  {
+    name: 'Isabelle Peeters',
+    role: 'Awareness',
+    image: '/images/20181215-14-44-2520181215-95121-1048x1570.jpeg',
+  },
+  {
+    name: 'Daniela Nikolova',
+    role: 'Energy Healing',
+    image: '/images/whatsapp-image-2019-04-07-at-09.35.24-510x766.jpg',
+  },
+  {
+    name: 'Dave De Belder',
+    role: 'Nutrition',
+    image: '/images/dave.png',
+  },
+];
+---
+
+<section id="founders" class="bg-warm-beige py-24 lg:py-32 border-t border-gold/10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+
+    <!-- Header -->
+    <div class="max-w-2xl mx-auto text-center mb-16 reveal">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-xs tracking-ultra uppercase text-gold">The People Behind VEDA</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ink font-light tracking-tight leading-[1.1] mb-7">
+        Built by three.<br /><em class="italic text-gold">Sailed by many.</em>
+      </h2>
+
+      <p class="font-sans text-base text-ink-mid font-light leading-relaxed mb-5">
+        VEDA was founded by Isabelle, Daniela, and Dave — three lives reshaped by their own healing journeys, brought together by a shared idea of what travelling the Nile could feel like.
+      </p>
+
+      <p class="font-sans text-base text-ink-mid font-light leading-relaxed">
+        Awareness, energy, nutrition. Each of them carries one strand of what happens onboard. Every itinerary still passes through their hands.
+      </p>
+    </div>
+
+    <!-- Three portraits -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12 max-w-4xl mx-auto mb-14">
+      {founders.map((person, i) => (
+        <a
+          href="/our-team"
+          class={`group block reveal reveal-delay-${i + 1}`}
+          aria-label={`Read more about ${person.name}`}
+        >
+          <div class="relative overflow-hidden rounded-lg aspect-[3/4] mb-5">
+            <img
+              src={person.image}
+              alt={person.name}
+              class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent"></div>
+          </div>
+          <p class="font-sans text-[10px] tracking-ultra uppercase text-gold/80 mb-1.5">{person.role}</p>
+          <p class="font-serif text-xl text-ink font-light leading-tight group-hover:text-gold transition-colors">
+            {person.name}
+          </p>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap justify-center gap-3 reveal">
+      <a
+        href="/our-team"
+        class="inline-flex items-center gap-2 border border-ink/15 hover:border-ink/40 px-5 py-2.5 transition-colors"
+      >
+        <span class="font-sans text-[11px] tracking-ultra uppercase text-ink-mid">Meet the team</span>
+        <span class="text-ink-mid">→</span>
+      </a>
+      <a
+        href="mailto:info@veda-egypt.com"
+        class="inline-flex items-center gap-2 border border-gold/30 hover:border-gold hover:bg-gold/5 px-5 py-2.5 transition-colors"
+      >
+        <span class="font-sans text-[11px] tracking-ultra uppercase text-gold">Write to us</span>
+        <span class="text-gold">→</span>
+      </a>
+    </div>
+
+    <p class="text-center font-sans text-[11px] tracking-ultra uppercase text-ink-light/70 mt-10">
+      <span class="text-gold">·</span> Sailing the Nile since 2012 <span class="text-gold">·</span>
+    </p>
+  </div>
+</section>

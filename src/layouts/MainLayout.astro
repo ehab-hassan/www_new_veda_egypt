@@ -5,12 +5,18 @@ export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  /**
+   * Additional JSON-LD schema (already stringified) to append after the
+   * default TravelAgency schema. Use for FAQPage, Product, TouristTrip, etc.
+   */
+  extraSchema?: string;
 }
 
 const {
   title = 'VEDA Egypt — Sail the Nile. Experience Something Real.',
   description = 'Private, authentic, and conscious journeys along the Nile. Luxury dahabiyas, wellness retreats, and sacred Egypt.',
   ogImage = '/images/photo-2019-03-11-18.02.48-1280x851.jpg',
+  extraSchema,
 } = Astro.props;
 
 const siteURL = Astro.site ?? new URL('https://www.veda-egypt.com');
@@ -86,6 +92,9 @@ const jsonLd = JSON.stringify({
 
     <!-- JSON-LD -->
     <script type="application/ld+json" is:inline set:html={jsonLd} />
+    {extraSchema && (
+      <script type="application/ld+json" is:inline set:html={extraSchema} />
+    )}
 
 
     <style is:global>
@@ -399,6 +408,9 @@ const jsonLd = JSON.stringify({
                 { label: 'Plan Your Visit', href: '/plan-your-visit' },
                 { label: 'Gallery', href: '/gallery' },
                 { label: 'Our Team', href: '/our-team' },
+                { label: 'Journal', href: '/journal' },
+                { label: 'Sustainability', href: '/sustainability' },
+                { label: 'FAQ', href: '/faq' },
               ].map((item) => (
                 <li>
                   <a href={item.href} class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">

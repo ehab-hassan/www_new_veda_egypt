@@ -1,0 +1,333 @@
+---
+// RouteMap — the Luxor → Aswan journey visualised.
+// Promoted from Lifestyle.astro to a standalone homepage section.
+// DARK section. Editorial split: left = copy, right = animated SVG map.
+---
+
+<section id="route" class="bg-forest py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="grid grid-cols-1 lg:grid-cols-[5fr_6fr] gap-14 lg:gap-20 items-center">
+
+      <!-- LEFT: Copy -->
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="gold-line"></span>
+          <p class="font-sans text-sm tracking-ultra uppercase text-gold">The Journey</p>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight leading-[1.05] mb-7">
+          Luxor to Aswan,<br /><em class="italic text-gold-pale">in seven days.</em>
+        </h2>
+        <p class="font-sans text-base text-warm-gray font-light leading-relaxed mb-6 max-w-md">
+          A classic dahabiya route — the Nile's most beautiful stretch. Each day brings a new temple, a new island, a new pace.
+        </p>
+        <p class="font-sans text-sm text-warm-gray/80 font-light leading-relaxed mb-10 max-w-md">
+          Itineraries flex around your energy. Linger longer at Edfu. Skip a stop. Add a private dinner on a deserted island. The route is yours to shape.
+        </p>
+
+        <!-- Quick legend -->
+        <ul class="grid grid-cols-2 gap-x-8 gap-y-2 max-w-md mb-10">
+          {[
+            ['Day 1', 'Luxor'],
+            ['Day 2', 'Esna'],
+            ['Day 3', 'The Lock'],
+            ['Day 4', 'Edfu'],
+            ['Day 5', 'Silsila'],
+            ['Day 6', 'Kom Ombo'],
+            ['Day 7', 'Aswan'],
+          ].map(([day, place]) => (
+            <li class="flex items-baseline gap-3 border-b border-gold/10 py-2">
+              <span class="font-sans text-[10px] tracking-ultra uppercase text-gold/70 w-12">{day}</span>
+              <span class="font-serif text-base text-ivory/90 font-light">{place}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="/plan-your-visit"
+          class="group inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-6 py-3.5 transition-all duration-300 hover:bg-gold/5"
+        >
+          See the full itinerary
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+
+      <!-- RIGHT: Animated map SVG -->
+      <div class="relative reveal-right mx-auto w-full" id="route-map-outer">
+        <div class="absolute top-0 left-0 right-0 h-16 from-forest to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-20 from-forest to-transparent z-10 pointer-events-none"></div>
+
+        <div class="route-3d-wrap">
+          <svg
+            id="route-svg"
+            viewBox="0 0 630 680"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-full block"
+            aria-label="Nile journey route from Luxor to Aswan"
+          >
+            <defs>
+              <filter id="route-path-glow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur2"/>
+                <feMerge>
+                  <feMergeNode in="blur2"/>
+                  <feMergeNode in="blur1"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <filter id="route-node-glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <linearGradient id="route-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#a07c3a"/>
+                <stop offset="55%"  stop-color="#c9a85c"/>
+                <stop offset="100%" stop-color="#a07c3a"/>
+              </linearGradient>
+              <radialGradient id="route-bg-grad" cx="50%" cy="50%" r="60%">
+                <stop offset="0%"   stop-color="#162416"/>
+                <stop offset="100%" stop-color="#070b07"/>
+              </radialGradient>
+              <g id="route-boat">
+                <polygon points="0,-10 -5,3 5,3" fill="white" opacity="0.92"/>
+                <path d="M-6,4 Q0,8 6,4" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none"/>
+                <line x1="0" y1="-10" x2="0" y2="4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+              </g>
+            </defs>
+
+            <rect width="630" height="680" fill="url(#route-bg-grad)" rx="12"/>
+            <rect width="630" height="680" fill="rgba(160,124,58,0.012)" rx="12"/>
+
+            {[
+              [50,90],[560,130],[80,210],[580,260],[30,340],[590,400],
+              [60,470],[570,520],[90,590],[540,610],[100,100],[520,580],
+              [150,430],[480,310],[200,555],[430,170]
+            ].map(([x,y]) => (
+              <circle cx={x} cy={y} r="1" fill="rgba(255,255,255,0.18)" class="route-atm-dot"/>
+            ))}
+
+            <path
+              d="M 340,88 C 390,123 240,151 265,193 C 290,235 380,261 340,303 C 300,345 240,363 268,407 C 296,451 390,471 352,513 C 314,555 305,581 322,613"
+              fill="none"
+              stroke="rgba(160,124,58,0.10)"
+              stroke-width="18"
+              stroke-linecap="round"
+              filter="url(#route-path-glow)"
+            />
+            <path
+              d="M 340,88 C 390,123 240,151 265,193 C 290,235 380,261 340,303 C 300,345 240,363 268,407 C 296,451 390,471 352,513 C 314,555 305,581 322,613"
+              fill="none"
+              stroke="rgba(201,168,92,0.18)"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+            <path
+              id="route-path"
+              d="M 340,88 C 390,123 240,151 265,193 C 290,235 380,261 340,303 C 300,345 240,363 268,407 C 296,451 390,471 352,513 C 314,555 305,581 322,613"
+              fill="none"
+              stroke="url(#route-grad)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              filter="url(#route-path-glow)"
+              class="route-draw"
+            />
+
+            <!-- Nodes -->
+            <g class="route-node">
+              <circle cx="340" cy="88" r="10" fill="none" stroke="rgba(160,124,58,0.25)" stroke-width="1" class="route-pulse pr1"/>
+              <circle cx="340" cy="88" r="18" fill="none" stroke="rgba(160,124,58,0.10)" stroke-width="1" class="route-pulse pr2"/>
+              <circle cx="340" cy="88" r="5"  fill="#a07c3a" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="340" cy="88" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="346" y1="88" x2="374" y2="88" stroke="rgba(160,124,58,0.35)" stroke-width="0.8"/>
+              <text x="378" y="81" class="route-day">DAY 1</text>
+              <text x="378" y="97" class="route-city">Luxor</text>
+              <text x="378" y="111" class="route-desc">Begin where pharaohs ruled.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="265" cy="193" r="10" fill="none" stroke="rgba(160,124,58,0.25)" stroke-width="1" class="route-pulse pr1" style="animation-delay:0.6s"/>
+              <circle cx="265" cy="193" r="18" fill="none" stroke="rgba(160,124,58,0.10)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.4s"/>
+              <circle cx="265" cy="193" r="5"  fill="#a07c3a" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="265" cy="193" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="259" y1="193" x2="231" y2="193" stroke="rgba(160,124,58,0.35)" stroke-width="0.8"/>
+              <text x="227" y="186" class="route-day" text-anchor="end">DAY 2</text>
+              <text x="227" y="202" class="route-city" text-anchor="end">Esna</text>
+              <text x="227" y="216" class="route-desc" text-anchor="end">Sail through the ancient lock.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="330" cy="248" r="10" fill="none" stroke="rgba(160,124,58,0.25)" stroke-width="1" class="route-pulse pr1" style="animation-delay:0.9s"/>
+              <circle cx="330" cy="248" r="18" fill="none" stroke="rgba(160,124,58,0.10)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.7s"/>
+              <circle cx="330" cy="248" r="5"  fill="#a07c3a" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="330" cy="248" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="324" y1="248" x2="296" y2="248" stroke="rgba(160,124,58,0.35)" stroke-width="0.8"/>
+              <text x="292" y="241" class="route-day" text-anchor="end">DAY 3</text>
+              <text x="292" y="257" class="route-city" text-anchor="end">The Lock</text>
+              <text x="292" y="271" class="route-desc" text-anchor="end">Crossing the Esna lock.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="340" cy="303" r="10" fill="none" stroke="rgba(160,124,58,0.25)" stroke-width="1" class="route-pulse pr1" style="animation-delay:1.1s"/>
+              <circle cx="340" cy="303" r="18" fill="none" stroke="rgba(160,124,58,0.10)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.9s"/>
+              <circle cx="340" cy="303" r="5"  fill="#a07c3a" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="340" cy="303" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="346" y1="303" x2="374" y2="303" stroke="rgba(160,124,58,0.35)" stroke-width="0.8"/>
+              <text x="378" y="296" class="route-day">DAY 4</text>
+              <text x="378" y="312" class="route-city">Edfu</text>
+              <text x="378" y="326" class="route-desc">Egypt's most complete temple.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="268" cy="407" r="10" fill="none" stroke="rgba(160,124,58,0.25)" stroke-width="1" class="route-pulse pr1" style="animation-delay:0.3s"/>
+              <circle cx="268" cy="407" r="18" fill="none" stroke="rgba(160,124,58,0.10)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.1s"/>
+              <circle cx="268" cy="407" r="5"  fill="#a07c3a" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="268" cy="407" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="262" y1="407" x2="234" y2="407" stroke="rgba(160,124,58,0.35)" stroke-width="0.8"/>
+              <text x="230" y="400" class="route-day" text-anchor="end">DAY 5</text>
+              <text x="230" y="416" class="route-city" text-anchor="end">Silsila</text>
+              <text x="230" y="430" class="route-desc" text-anchor="end">Ancient quarries &amp; rock shrines.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="352" cy="513" r="10" fill="none" stroke="rgba(201,168,92,0.25)" stroke-width="1" class="route-pulse pr1" style="animation-delay:0.8s"/>
+              <circle cx="352" cy="513" r="18" fill="none" stroke="rgba(201,168,92,0.10)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.6s"/>
+              <circle cx="352" cy="513" r="5"  fill="#c9a85c" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="352" cy="513" r="2.5" fill="white" opacity="0.95"/>
+              <line x1="358" y1="513" x2="386" y2="513" stroke="rgba(201,168,92,0.35)" stroke-width="0.8"/>
+              <text x="390" y="506" class="route-day" style="fill:rgba(201,168,92,0.8)">DAY 6</text>
+              <text x="390" y="522" class="route-city">Kom Ombo</text>
+              <text x="390" y="536" class="route-desc">Double temple of Sobek.</text>
+            </g>
+            <g class="route-node">
+              <circle cx="322" cy="613" r="12" fill="none" stroke="rgba(201,168,92,0.35)" stroke-width="1.5" class="route-pulse pr1" style="animation-delay:0.4s"/>
+              <circle cx="322" cy="613" r="22" fill="none" stroke="rgba(201,168,92,0.12)" stroke-width="1" class="route-pulse pr2" style="animation-delay:1.2s"/>
+              <circle cx="322" cy="613" r="6"  fill="#c9a85c" opacity="0.95" filter="url(#route-node-glow)"/>
+              <circle cx="322" cy="613" r="3"  fill="white" opacity="0.95"/>
+              <line x1="316" y1="613" x2="288" y2="613" stroke="rgba(201,168,92,0.45)" stroke-width="0.8"/>
+              <text x="284" y="606" class="route-day" text-anchor="end" style="fill:rgba(201,168,92,0.9)">DAY 7</text>
+              <text x="284" y="622" class="route-city route-city-aswan" text-anchor="end">Aswan</text>
+              <text x="284" y="637" class="route-desc" text-anchor="end">Where the Nile meets Nubia.</text>
+            </g>
+
+            <!-- Title -->
+            <text x="315" y="38" class="route-title-main" text-anchor="middle">LUXOR / ASWAN</text>
+            <text x="315" y="54" class="route-title-sub" text-anchor="middle">7 DAYS · 6 NIGHTS</text>
+            <line x1="215" y1="64" x2="415" y2="64" stroke="rgba(160,124,58,0.2)" stroke-width="0.8"/>
+
+            <!-- Boat moving along path -->
+            <g id="route-boat-marker" opacity="0.9">
+              <use href="#route-boat"/>
+              <animateMotion
+                dur="20s"
+                repeatCount="indefinite"
+                rotate="auto"
+                calcMode="spline"
+                keyTimes="0;1"
+                keySplines="0.4 0 0.6 1"
+              >
+                <mpath href="#route-path"/>
+              </animateMotion>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .route-3d-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(160,124,58,0.08);
+  }
+
+  .route-draw {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    transition: stroke-dashoffset 3.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .route-draw.drawn { stroke-dashoffset: 0; }
+
+  @keyframes routePulse {
+    0%   { transform: scale(0.8); opacity: 0.6; }
+    60%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  .route-pulse {
+    animation: routePulse 2.8s ease-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .route-pulse.pr2 { animation-duration: 2.8s; animation-delay: 0.9s; }
+
+  @keyframes routeTwinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.4; }
+  }
+  .route-atm-dot { animation: routeTwinkle 3s ease-in-out infinite; }
+  .route-atm-dot:nth-child(odd)  { animation-duration: 4.2s; animation-delay: 0.8s; }
+  .route-atm-dot:nth-child(3n)   { animation-duration: 5.5s; animation-delay: 1.5s; }
+
+  .route-day {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    fill: rgba(160,124,58,0.92);
+    text-transform: uppercase;
+  }
+  .route-city {
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    fill: rgba(240,235,224,0.97);
+    letter-spacing: 0.05em;
+  }
+  .route-city-aswan {
+    font-size: 20px;
+    fill: rgba(240,235,224,1);
+    font-weight: 500;
+  }
+  .route-title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    fill: rgba(240,235,224,0.92);
+    letter-spacing: 0.2em;
+    font-weight: 300;
+  }
+  .route-title-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    fill: rgba(223, 189, 126, 0.8);
+    letter-spacing: 0.26em;
+  }
+  .route-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    fill: rgba(138,130,120,0.75);
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<script>
+  const routePath = document.getElementById('route-path') as SVGPathElement | null;
+  if (routePath) {
+    const len = routePath.getTotalLength();
+    routePath.style.strokeDasharray = String(len);
+    routePath.style.strokeDashoffset = String(len);
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setTimeout(() => routePath.classList.add('drawn'), 200);
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    const svg = document.getElementById('route-svg');
+    if (svg) obs.observe(svg);
+  }
+</script>

@@ -1,0 +1,221 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+interface FAQ {
+  q: string;
+  a: string;
+  group: string;
+}
+
+const faqs: FAQ[] = [
+  // ── Booking & Rates ────────────────────────────────────────────────
+  {
+    group: 'Booking & Rates',
+    q: 'How do I reserve a journey?',
+    a: 'Send us a request through the Reserve page or write directly to reservation@veda-egypt.com with your preferred dates, group size, and any wishes you have. We respond within 24 hours with availability and a personalised proposal.',
+  },
+  {
+    group: 'Booking & Rates',
+    q: 'How much does a charter cost?',
+    a: 'Rates depend on the boat, length of stay, season, and group size. Because every charter is private and tailored, we quote on request rather than publish a fixed price list. Once you tell us your dates and group, we send a clear all-inclusive quote.',
+  },
+  {
+    group: 'Booking & Rates',
+    q: 'What is the minimum booking length?',
+    a: 'Five nights. The Nile rewards a slower pace, and a five-night minimum lets each itinerary breathe. Longer stays — seven, ten, or more nights — are very welcome and often recommended for retreat groups.',
+  },
+  {
+    group: 'Booking & Rates',
+    q: 'How far in advance should I book?',
+    a: 'For peak months (October–March), we recommend booking three to six months ahead. Shoulder season is more flexible. Last-minute requests are always worth sending — the fleet sometimes has gaps we can offer at short notice.',
+  },
+  {
+    group: 'Booking & Rates',
+    q: 'What is your cancellation policy?',
+    a: 'Specific terms are confirmed at the time of booking. As a private charter operator we handle each cancellation case-by-case, with as much flexibility as the season allows. We strongly recommend travel insurance for any international trip.',
+  },
+
+  // ── The Journey ────────────────────────────────────────────────────
+  {
+    group: 'The Journey',
+    q: 'What is a dahabiya?',
+    a: 'A dahabiya is a traditional Egyptian sailing boat — a flat-bottomed vessel with two large sails, originally used by 19th-century travellers and Egyptian aristocracy. Compared to a modern Nile cruiser, a dahabiya is much smaller (10–28 guests), quieter, and able to anchor at islands and quiet stretches the larger boats cannot reach.',
+  },
+  {
+    group: 'The Journey',
+    q: 'What is the route?',
+    a: 'The classic route runs between Luxor and Aswan over seven days and six nights. Stops typically include Esna, Edfu, Silsila, and Kom Ombo, with optional excursions to Karnak, Philae, and the Valley of the Kings. Itineraries are flexible and can be reshaped around your interests.',
+  },
+  {
+    group: 'The Journey',
+    q: 'When is the best season to sail?',
+    a: 'September through May. Winter months (December–February) are pleasantly cool, ideal for temple visits. Spring and autumn are warmer and excellent for sailing. June, July, and August are very hot — we generally do not operate in peak summer.',
+  },
+  {
+    group: 'The Journey',
+    q: 'Can we customise the itinerary?',
+    a: 'Yes — fully. Your charter, your pace. Linger at a temple, skip a stop, request a private dinner on a deserted island, or add a wellness focus. We provide a recommended itinerary and reshape it around your group.',
+  },
+  {
+    group: 'The Journey',
+    q: 'How much time do we spend sailing vs. visiting sites?',
+    a: 'A balanced rhythm. Mornings often involve a temple or excursion, afternoons are spent sailing, swimming, or relaxing on deck. Some days are pure river days. The crew adapts to your group\'s energy.',
+  },
+
+  // ── Onboard ────────────────────────────────────────────────────────
+  {
+    group: 'Onboard Life',
+    q: 'What is included in the rate?',
+    a: 'Your private cabin (en-suite), three organic meals per day, soft drinks and herbal teas, full crew (captain, chef, hospitality), wellness spaces (yoga deck, lounges), and onboard power. International flights, visas, temple entry fees, alcohol, spa treatments, and gratuities are not included.',
+  },
+  {
+    group: 'Onboard Life',
+    q: 'Can the kitchen accommodate special diets?',
+    a: 'Yes. Vegetarian, vegan, gluten-free, dairy-free, and detox menus are all part of how we cook. Please share dietary needs at the time of booking so the chef can prepare accordingly. Ingredients are sourced organic and local where possible.',
+  },
+  {
+    group: 'Onboard Life',
+    q: 'Is alcohol available onboard?',
+    a: 'Wine and beer can be arranged on request and added to your charter as an extra. We do not stock a full bar by default — VEDA emphasises clarity and wellness — but we are happy to source what you would like.',
+  },
+  {
+    group: 'Onboard Life',
+    q: 'Is there Wi-Fi onboard?',
+    a: 'A Wi-Fi connection is available, though signal varies along the river. Many guests welcome the chance to disconnect; if you need reliable connectivity for work, please let us know in advance and we will arrange a dedicated solution.',
+  },
+  {
+    group: 'Onboard Life',
+    q: 'Are children welcome?',
+    a: 'Yes — VEDA is family-friendly. The whole-boat charter format means private journeys for families work especially well. Please share ages at the time of booking so the crew can prepare accordingly.',
+  },
+
+  // ── Practical ──────────────────────────────────────────────────────
+  {
+    group: 'Practical',
+    q: 'How do I get to the boat?',
+    a: 'Most journeys begin in Luxor and end in Aswan (or vice versa). Both cities have airports with daily flights from Cairo. We can arrange airport transfers on request. From Cairo, the flight to Luxor takes about an hour.',
+  },
+  {
+    group: 'Practical',
+    q: 'Do I need a visa for Egypt?',
+    a: 'Most nationalities require a visa, available either as an e-visa online or on arrival. Please check with your local Egyptian consulate or the official e-visa portal for the latest requirements based on your passport.',
+  },
+  {
+    group: 'Practical',
+    q: 'What should I pack?',
+    a: 'Light, breathable clothing for warm days; a light layer for cool mornings and evenings. Modest cover for temple visits (shoulders and knees). Sun hat, sunscreen, swimwear, walking shoes for sites, and slip-ons for onboard. The crew provides everything for your cabin.',
+  },
+  {
+    group: 'Practical',
+    q: 'Is the boat accessible?',
+    a: 'Dahabiyas are traditional sailing vessels with stairs between decks and small thresholds at cabin doors, so they are not fully wheelchair accessible. We can advise on suitability for guests with mobility needs — please reach out before booking.',
+  },
+];
+
+const groupOrder = ['Booking & Rates', 'The Journey', 'Onboard Life', 'Practical'];
+
+// JSON-LD FAQPage schema for search engines
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: a,
+    },
+  })),
+});
+---
+
+<MainLayout
+  title="Frequently Asked Questions — VEDA Egypt"
+  description="Answers to the most common questions about VEDA Nile journeys — booking, the route, life onboard, dietary needs, and practical travel."
+  extraSchema={faqSchema}
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover object-center opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-void/20 to-void"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-ultra uppercase text-gold">Good Questions</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Frequently<br /><em class="italic text-gold-pale">Asked</em>
+      </h1>
+      <p class="font-sans text-base text-white/65 font-light leading-relaxed max-w-md mx-auto">
+        The questions guests ask before booking — answered honestly. Don't see yours?
+        <a href="mailto:info@veda-egypt.com" class="text-gold hover:text-gold-light underline-offset-4 hover:underline">Write to us.</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- FAQ body -->
+  <div class="bg-warm-beige py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+      {groupOrder.map((group, gi) => (
+        <section class:list={[gi > 0 ? 'mt-16' : '']}>
+          <div class="flex items-center gap-4 mb-8 reveal">
+            <span class="gold-line"></span>
+            <h2 class="font-sans text-xs tracking-ultra uppercase text-gold">{group}</h2>
+          </div>
+
+          <div class="border-t border-gold/15">
+            {faqs.filter((f) => f.group === group).map((faq, fi) => (
+              <details class="faq-item border-b border-gold/15 reveal" data-delay={fi}>
+                <summary class="cursor-pointer flex items-start justify-between gap-6 py-6 font-serif text-lg md:text-xl text-ink font-light leading-snug list-none">
+                  <span>{faq.q}</span>
+                  <span class="faq-icon flex-shrink-0 w-6 h-6 mt-1 border border-gold/30 flex items-center justify-center text-gold transition-transform duration-300">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                      <line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                      <line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="pb-7 -mt-1">
+                  <p class="font-sans text-base text-ink-mid font-light leading-relaxed max-w-2xl">
+                    {faq.a}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- Closing CTA -->
+      <div class="mt-20 text-center reveal">
+        <p class="font-serif text-2xl md:text-3xl text-ink font-light italic mb-6">
+          Still wondering?
+        </p>
+        <p class="font-sans text-base text-ink-mid font-light max-w-md mx-auto mb-8 leading-relaxed">
+          Every journey is private. Tell us what you have in mind and we'll write back personally.
+        </p>
+        <a
+          href="/plan-your-visit"
+          class="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300"
+        >
+          Plan Your Journey
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</MainLayout>
+
+<style>
+  /* Native <details> styling */
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  .faq-item summary { transition: color 0.2s; }
+  .faq-item summary:hover { color: var(--gold); }
+</style>

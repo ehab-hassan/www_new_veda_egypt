@@ -51,16 +51,26 @@ const slides: Slide[] = [
       style={i === 0 ? 'opacity:1;' : 'opacity:0;'}
     >
       {slide.type === 'video' ? (
-        <video
-          src={slide.videoSrc}
-          poster={heroPosterImg.src}
-          class="w-full h-full object-cover object-center"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        />
+        <>
+          <Image
+            src={heroPosterImg}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            widths={[768, 1280, 1920]}
+            sizes="100vw"
+            {...({ fetchpriority: 'high' } as any)}
+          />
+          <video
+            data-hero-video
+            data-src={slide.videoSrc}
+            class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700"
+            muted
+            loop
+            playsinline
+            preload="none"
+          />
+        </>
       ) : slide.imageSrc ? (
         <Image
           src={slide.imageSrc}
@@ -114,16 +124,16 @@ const slides: Slide[] = [
           {slide.sub}
         </p>
 
-        <!-- CTAs -->
+        <!-- CTAs — primary (solid) + secondary (ghost) -->
         <div class="flex flex-wrap gap-4 justify-center md:justify-start" style="animation: fadeInUp 1s 1.1s both;">
-          <a href="/dahabiyas"
-            class="group inline-flex items-center gap-3 bg-gold/50 hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300">
-            Explore Dahabiyas
+          <a href="/plan-your-visit"
+            class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20">
+            Plan Your Journey
             <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </a>
-          <a href="/plan-your-visit"
-            class="group inline-flex items-center gap-3 border border-white/25 hover:border-white/50 text-white/75 hover:text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300 hover:bg-white/5 backdrop-blur-sm">
-            Plan Your Journey
+          <a href="/dahabiyas"
+            class="group inline-flex items-center gap-3 border border-white/25 hover:border-white/50 text-white/80 hover:text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 transition-all duration-300 hover:bg-white/5 backdrop-blur-sm">
+            Explore the Fleet
             <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </a>
         </div>
@@ -196,11 +206,32 @@ const slides: Slide[] = [
 </style>
 
 <script>
+  const hero = document.getElementById('hero');
   const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
   const contents = document.querySelectorAll<HTMLElement>('.hero-content');
   const dots = document.querySelectorAll<HTMLElement>('.hero-dot');
   let current = 0;
-  let timer: ReturnType<typeof setInterval>;
+  let timer: ReturnType<typeof setInterval> | null = null;
+  let paused = false;
+
+  // Skip auto-advance entirely if the user prefers reduced motion.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Defer hero video: attach src only on desktop + not saveData + not reduced-motion.
+  // Mobile, slow connections, and reduced-motion users see the poster image instead.
+  const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  const wantsVideo = isDesktop && !reduceMotion && !conn?.saveData && conn?.effectiveType !== 'slow-2g' && conn?.effectiveType !== '2g';
+
+  if (wantsVideo) {
+    document.querySelectorAll<HTMLVideoElement>('video[data-hero-video]').forEach((v) => {
+      const src = v.dataset.src;
+      if (!src) return;
+      v.addEventListener('playing', () => { v.style.opacity = '1'; }, { once: true });
+      v.src = src;
+      v.play().catch(() => { /* autoplay may be blocked; poster <img> remains visible */ });
+    });
+  }
 
   function goTo(index: number) {
     // Hide current
@@ -223,8 +254,13 @@ const slides: Slide[] = [
   }
 
   function startTimer() {
-    clearInterval(timer);
+    if (reduceMotion || paused) return;
+    if (timer) clearInterval(timer);
     timer = setInterval(() => goTo(current + 1), 6000);
+  }
+
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
   }
 
   document.getElementById('heroNext')?.addEventListener('click', () => { goTo(current + 1); startTimer(); });
@@ -235,6 +271,19 @@ const slides: Slide[] = [
       goTo(parseInt(dot.dataset.target || '0'));
       startTimer();
     });
+  });
+
+  // Pause on hover/focus; resume on leave/blur.
+  if (hero) {
+    hero.addEventListener('mouseenter', () => { paused = true; stopTimer(); });
+    hero.addEventListener('mouseleave', () => { paused = false; startTimer(); });
+    hero.addEventListener('focusin',  () => { paused = true; stopTimer(); });
+    hero.addEventListener('focusout', () => { paused = false; startTimer(); });
+  }
+
+  // Pause when the tab is hidden so the carousel doesn't drift in the background.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopTimer(); else startTimer();
   });
 
   startTimer();

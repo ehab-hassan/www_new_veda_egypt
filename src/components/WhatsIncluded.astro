@@ -1,0 +1,100 @@
+---
+// WhatsIncluded — DARK section. Removes the biggest source of pre-booking anxiety:
+// "what does the rate cover, and what will I pay extra for?"
+
+const included = [
+  { title: 'Your private cabin', desc: 'En-suite bathroom, daily housekeeping, fresh linen.' },
+  { title: 'All meals onboard', desc: 'Three organic, locally sourced meals each day. Special diets welcomed.' },
+  { title: 'Soft drinks & teas', desc: 'Fresh juices, herbal teas, water — unlimited throughout your stay.' },
+  { title: 'Full crew', desc: 'Captain, chef, and hospitality team — discreet, attentive, on call.' },
+  { title: 'Wellness spaces', desc: 'Yoga deck, lounges, Bedouin corner, sun deck — yours to use freely.' },
+  { title: 'Solar-powered comforts', desc: 'Air conditioning, lighting, and onboard power — quiet and clean.' },
+];
+
+const notIncluded = [
+  { title: 'International flights' },
+  { title: 'Egypt visa & travel insurance' },
+  { title: 'Temple & site entry fees' },
+  { title: 'Alcoholic beverages' },
+  { title: 'Spa treatments & massage' },
+  { title: 'Gratuities for the crew' },
+];
+---
+
+<section id="included" class="bg-void py-24 lg:py-32 border-t border-gold/10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Section header -->
+    <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] lg:gap-16 mb-16 lg:mb-20">
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="gold-line"></span>
+          <p class="font-sans text-sm tracking-ultra uppercase text-gold">What's Included</p>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight leading-[1.05] max-w-xl">
+          The rate covers<br /><em class="italic text-gold-pale">everything onboard.</em>
+        </h2>
+      </div>
+      <div class="hidden lg:flex items-end justify-end reveal reveal-delay-2">
+        <p class="font-sans text-base text-warm-gray font-light leading-relaxed max-w-sm">
+          A VEDA charter is all-inclusive in the truest sense — your cabin, every meal, the entire crew. No surprises at check-out.
+        </p>
+      </div>
+      <p class="lg:hidden font-sans text-base text-warm-gray font-light leading-relaxed max-w-2xl mt-6 reveal reveal-delay-1">
+        A VEDA charter is all-inclusive in the truest sense — your cabin, every meal, the entire crew. No surprises at check-out.
+      </p>
+    </div>
+
+    <!-- Two-column layout: Included (large) / Not included (small) -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16">
+
+      <!-- INCLUDED — primary card -->
+      <div class="border border-gold/20 bg-forest-mid/40 p-8 lg:p-10 reveal">
+        <p class="font-sans text-xs tracking-ultra uppercase text-gold-light mb-8">
+          Included in your charter
+        </p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
+          {included.map((item) => (
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-5 h-5 mt-0.5 border border-gold/50 flex items-center justify-center">
+                <svg width="9" height="7" viewBox="0 0 9 7" fill="none" aria-hidden="true">
+                  <path d="M1 3.8l2.4 2.4L8 1.5" stroke="rgba(201,168,92,0.95)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <p class="font-serif text-lg text-ivory font-light leading-snug mb-1">{item.title}</p>
+                <p class="font-sans text-sm text-warm-gray font-light leading-relaxed">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- NOT INCLUDED — secondary card -->
+      <div class="border border-gold/10 p-8 lg:p-10 reveal reveal-delay-2">
+        <p class="font-sans text-xs tracking-ultra uppercase text-warm-gray/70 mb-8">
+          Not included
+        </p>
+        <ul class="space-y-5">
+          {notIncluded.map((item) => (
+            <li class="flex items-start gap-4 border-b border-gold/10 pb-4 last:border-0 last:pb-0">
+              <span class="flex-shrink-0 w-5 h-5 mt-0.5 border border-warm-gray/30 flex items-center justify-center">
+                <span class="block w-2 h-px bg-warm-gray/50"></span>
+              </span>
+              <p class="font-sans text-sm text-ivory/80 font-light leading-snug">{item.title}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="font-sans text-xs text-warm-gray/60 font-light mt-8 leading-relaxed">
+          We're happy to arrange any of the above on your behalf — just ask.
+        </p>
+      </div>
+    </div>
+
+    <!-- Subtle reassurance line -->
+    <p class="text-center font-sans text-xs tracking-ultra uppercase text-warm-gray/50 mt-14 reveal">
+      <span class="inline-block">·</span> Custom inclusions on request <span class="inline-block">·</span>
+    </p>
+
+  </div>
+</section>

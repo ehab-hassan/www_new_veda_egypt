@@ -1,0 +1,136 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pillars = [
+  {
+    eyebrow: 'Energy',
+    title: 'The first truly solar journey on the Nile.',
+    body: 'Veda 4 — our newest dahabiya — is powered entirely by solar. Air conditioning, lighting, kitchen, and onboard systems run from rooftop panels and battery storage. The rest of the fleet is solar-assisted, with diesel generation reserved for what panels alone cannot yet cover. We continue to retrofit older boats as the technology matures.',
+    image: '/images/screen-shot-2022-07-20-at-10.33.56-pm-2000x1496.png',
+  },
+  {
+    eyebrow: 'Food',
+    title: 'Organic, local, prepared from scratch.',
+    body: 'Every meal on board is cooked from organic ingredients sourced as locally as possible — vegetables, fruits, herbs, grains, fresh fish, free-range eggs. Special diets (vegetarian, vegan, gluten-free, dairy-free, detox) are part of how we cook, not an afterthought. Bottled drinks are kept to a minimum; we serve filtered water, fresh juices, and herbal teas.',
+    image: '/images/30-464x309.jpg',
+  },
+  {
+    eyebrow: 'Onboard',
+    title: 'Natural products. Less plastic.',
+    body: 'Cleaning products, soaps, and toiletries are biodegradable and free of harsh chemicals — gentle on skin, gentler on the river. We avoid single-use plastics where we can: refillable bottles in cabins, fabric napkins, glass storage. The Nile carries our boats; we try not to leave it carrying our waste.',
+    image: '/images/photo-2019-04-03-08-27-19-436x291.jpg',
+  },
+  {
+    eyebrow: 'People',
+    title: 'A local, year-round crew.',
+    body: 'Captain, chef, deck team, hospitality — our crews are Egyptian, employed year-round, paid above seasonal-tour averages, and trained on safety, hospitality, and sustainability. Many have been with VEDA since the early years. Tourism only works long-term when the people who carry it are looked after.',
+    image: '/images/photo-2019-03-23-11.24.03-1280x800.jpg',
+  },
+];
+---
+
+<MainLayout
+  title="Sustainability — VEDA Egypt"
+  description="How VEDA's dahabiyas operate sustainably on the Nile — solar power, organic food, biodegradable products, and a year-round local crew."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-forest pt-40 pb-28 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/photo-2019-04-03-08-27-31-436x291.jpg" alt="" class="w-full h-full object-cover object-center opacity-30" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-forest/60 via-forest/40 to-forest"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-ultra uppercase text-gold">How We Sail</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Green by<br /><em class="italic text-gold-pale">design.</em>
+      </h1>
+      <p class="font-sans text-base text-ivory/65 font-light leading-relaxed max-w-md mx-auto">
+        Sustainability is not a marketing line at VEDA — it shapes the boats, the kitchen, the products, and the people. Here is what we mean by it.
+      </p>
+    </div>
+  </div>
+
+  <!-- Headline statement -->
+  <div class="bg-warm-beige py-20">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center reveal">
+      <p class="font-serif text-2xl md:text-3xl text-ink font-light italic leading-snug">
+        "The river is what carries us. Everything we do on board is shaped around not asking too much of it."
+      </p>
+      <p class="font-sans text-xs tracking-ultra uppercase text-gold/80 mt-6">— The VEDA Founders</p>
+    </div>
+  </div>
+
+  <!-- Four pillars -->
+  <div class="bg-warm-beige pb-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12">
+      {pillars.map((p, i) => (
+        <article
+          class:list={[
+            'grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-16 border-t border-gold/10',
+            i === pillars.length - 1 ? 'border-b border-gold/10' : '',
+          ]}
+        >
+          <!-- Image -->
+          <div class:list={[
+            'relative overflow-hidden rounded-lg',
+            i % 2 === 1 ? 'lg:order-2 reveal-left' : 'reveal-right',
+          ]}>
+            <div class="aspect-[4/3]">
+              <img
+                src={p.image}
+                alt={p.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div class:list={[i % 2 === 1 ? 'lg:order-1 reveal-right' : 'reveal-left']}>
+            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-4">{p.eyebrow}</p>
+            <h2 class="font-serif text-3xl md:text-4xl text-ink font-light leading-tight tracking-tight mb-6">
+              {p.title}
+            </h2>
+            <p class="font-sans text-base text-ink-mid font-light leading-relaxed">
+              {p.body}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- Honesty line -->
+  <div class="bg-void py-24">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-8 reveal">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-xs tracking-ultra uppercase text-gold">An Ongoing Practice</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl text-ivory font-light leading-tight tracking-tight mb-7 reveal reveal-delay-1">
+        We are not finished.
+      </h2>
+      <p class="font-sans text-base text-warm-gray font-light leading-relaxed mb-5 reveal reveal-delay-2">
+        A river journey will never be a zero-impact thing. Guests fly to reach Egypt. Engines exist. Plastic still arrives in our supply chain.
+      </p>
+      <p class="font-sans text-base text-warm-gray font-light leading-relaxed reveal reveal-delay-3">
+        What we promise instead is honesty and improvement: each season, we measure where we use diesel, where we still buy plastic, where the supply chain breaks our standards — and we work on it. If you have questions or suggestions, write to us. We answer.
+      </p>
+
+      <a
+        href="mailto:info@veda-egypt.com"
+        class="inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-7 py-4 mt-12 transition-all duration-300 hover:bg-gold/5 reveal reveal-delay-4"
+      >
+        Talk to us
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+
+</MainLayout>

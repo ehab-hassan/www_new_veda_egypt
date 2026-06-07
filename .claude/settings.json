@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(curl -s http://localhost:4321/dahabiyas)",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"astro dev\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://localhost:3000/news/threefold_data_sovereignty\")",
+      "Bash(curl -sL -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://localhost:3000/news/threefold_data_sovereignty\")",
+      "Bash(curl -sL \"http://localhost:3000/news/threefold_data_sovereignty\")",
+      "Bash(curl -sL -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://localhost:3000/news/threefold_data_sovereignty/\")",
+      "Bash(curl -sL \"http://localhost:3000/news/threefold_data_sovereignty/\")",
+      "Bash(curl -sL -o /dev/null -w \"lhumina: HTTP %{http_code}\\\\n\" \"http://localhost:3000/ventures/lhumina/\")",
+      "Bash(curl -sL -o /dev/null -w \"threefold \\(should 404\\): HTTP %{http_code}\\\\n\" \"http://localhost:3000/ventures/threefold/\")",
+      "Bash(pnpm --version)",
+      "PowerShell(pnpm --version)",
+      "PowerShell(npm config get prefix)",
+      "PowerShell(npm install -g pnpm)",
+      "Bash(pnpm dev *)"
+    ]
+  }
+}

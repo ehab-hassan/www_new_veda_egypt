@@ -1,0 +1,132 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('journal', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: post.data.date.toISOString(),
+  author: { '@type': 'Person', name: post.data.author },
+  publisher: {
+    '@type': 'Organization',
+    name: 'VEDA Egypt',
+    logo: { '@type': 'ImageObject', url: 'https://www.veda-egypt.com/brand_assets/veda-logo.png' },
+  },
+});
+---
+
+<MainLayout
+  title={`${post.data.title} — VEDA Journal`}
+  description={post.data.excerpt}
+  extraSchema={articleSchema}
+>
+
+  <article class="bg-warm-beige pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+      <!-- Back link -->
+      <a href="/journal" class="inline-flex items-center gap-2 font-sans text-xs tracking-ultra uppercase text-gold/80 hover:text-gold mb-10 transition-colors">
+        <span>←</span> Back to the journal
+      </a>
+
+      <!-- Header -->
+      <header class="text-center mb-12">
+        <p class="font-sans text-[11px] tracking-ultra uppercase text-gold/80 mb-5">
+          {dateFormatter.format(post.data.date)} · {post.data.author}
+        </p>
+        <h1 class="font-serif text-4xl md:text-5xl text-ink font-light leading-[1.1] tracking-tight mb-6">
+          {post.data.title}
+        </h1>
+        <p class="font-serif text-xl md:text-2xl text-ink-mid font-light italic leading-snug max-w-2xl mx-auto">
+          {post.data.excerpt}
+        </p>
+      </header>
+
+      <!-- Cover image -->
+      {post.data.cover && (
+        <div class="overflow-hidden rounded-lg mb-14">
+          <Image
+            src={post.data.cover}
+            alt={post.data.coverAlt ?? post.data.title}
+            class="w-full h-auto object-cover"
+            widths={[768, 1280, 1600]}
+            sizes="(min-width: 1024px) 768px, 100vw"
+          />
+        </div>
+      )}
+
+      <!-- Body -->
+      <div class="prose-veda font-sans text-ink-mid font-light leading-[1.75] max-w-2xl mx-auto">
+        <Content />
+      </div>
+
+      <!-- Tags -->
+      {post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-14 max-w-2xl mx-auto">
+          {post.data.tags.map((tag) => (
+            <span class="font-sans text-[11px] tracking-ultra uppercase text-gold/70 border border-gold/20 px-3 py-1.5">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+</MainLayout>
+
+<style is:global>
+  .prose-veda { font-size: 1.0625rem; }
+  .prose-veda > * + * { margin-top: 1.4em; }
+  .prose-veda h2 {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-weight: 300;
+    color: var(--ink, #1c2118);
+    font-size: 1.875rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 2.25em;
+  }
+  .prose-veda h3 {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-weight: 400;
+    color: var(--ink, #1c2118);
+    font-size: 1.5rem;
+    margin-top: 2em;
+  }
+  .prose-veda a { color: var(--gold, #a07c3a); text-underline-offset: 4px; }
+  .prose-veda a:hover { text-decoration: underline; }
+  .prose-veda em { font-style: italic; color: var(--gold, #a07c3a); }
+  .prose-veda blockquote {
+    border-left: 2px solid var(--gold, #a07c3a);
+    padding-left: 1.25rem;
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-mid, #3a4035);
+  }
+  .prose-veda ul, .prose-veda ol { padding-left: 1.5rem; }
+  .prose-veda ul { list-style: disc; }
+  .prose-veda ol { list-style: decimal; }
+  .prose-veda li + li { margin-top: 0.5rem; }
+  .prose-veda hr { border: none; border-top: 1px solid rgba(160, 124, 58, 0.2); margin: 3em auto; max-width: 6rem; }
+</style>
