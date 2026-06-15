@@ -13,12 +13,23 @@ export default {
         'warm-beige': '#f5f3ee',
         'soft-green': '#e8efe6',
         'warm-beige-deep': '#ede9e1',
+        // Warm light palette — redesign (see claude/VEDA_redesign_plan.md)
+        linen: '#FEFCF7',
+        sand: '#F5EFE2',
+        bone: '#EDE8DC',
+        sandstone: '#8B7355',
+        earth: '#2C2016',
+        'earth-mid': '#5C4A2E',
         // Text on light
         'ink': '#1c2118',
         'ink-mid': '#3a4035',
         'ink-light': '#6b7264',
-        // Gold — softer, not shiny
-        gold: '#a07c3a',
+        // Gold — softer, not shiny. Channel-based so it can be re-tinted per-page
+        // via --gold-rgb (default below = #a07c3a; home overrides to Nile Gold #B8945A).
+        gold: 'rgb(var(--gold-rgb) / <alpha-value>)',
+        // Sage green — primary action colour (echoes the green logo)
+        sage: '#5e8a5e',
+        'sage-dark': '#4f7a52',
         'gold-light': '#c9a85c',
         'gold-pale': '#dfc99a',
         'gold-muted': '#8a6b2e',

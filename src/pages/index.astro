@@ -5,10 +5,12 @@ import ClarityStrip from '../components/ClarityStrip.astro';
 import Experience from '../components/Experience.astro';
 import Features from '../components/Features.astro';
 import RouteMap from '../components/RouteMap.astro';
+import JourneySplit from '../components/JourneySplit.astro';
 import WhatsIncluded from '../components/WhatsIncluded.astro';
 import Dahabiyas from '../components/Dahabiyas.astro';
 import Lifestyle from '../components/Lifestyle.astro';
 import Testimonials from '../components/Testimonials.astro';
+import GalleryPreview from '../components/GalleryPreview.astro';
 import Founders from '../components/Founders.astro';
 import Reviews from '../components/Reviews.astro';
 import PressFeature from '../components/PressFeature.astro';
@@ -19,17 +21,32 @@ import CTA from '../components/CTA.astro';
   title="VEDA Egypt — Sail the Nile. Experience Something Real."
   description="Private, authentic, and conscious journeys along the Nile. Luxury dahabiyas, wellness retreats, and sacred Egypt."
 >
+  <!-- 1 · Hook -->
   <Hero />
-  <ClarityStrip />
+  <!-- <ClarityStrip /> -->
+
+  <!-- 2 · Identity — who we are & why VEDA -->
   <Experience />
   <Features />
-  <RouteMap />
-  <WhatsIncluded />
+
+  <!-- 3 · The product — the boats (recommend enabling: it's the #1 thing buyers look for) -->
   <Dahabiyas />
+
+  <!-- 4 · The journey — where you go -->
+  <JourneySplit />
+  <!-- <RouteMap /> -->
+  <!-- <WhatsIncluded /> -->
+
+  <!-- 5 · See it & live it — desire -->
   <Lifestyle />
+  <GalleryPreview />
+
+  <!-- 6 · Proof — guest voices then press authority -->
   <Testimonials />
-  <Founders />
-  <Reviews />
+  <!-- <Reviews /> -->
   <PressFeature />
-  <CTA />
+  <!-- <Founders /> -->
+
+  <!-- 7 · Close (recommend enabling: there is no final call-to-action right now) -->
+  <!-- <CTA /> -->
 </MainLayout>

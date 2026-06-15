@@ -66,36 +66,39 @@ const images = [
   description="Photographs from life aboard VEDA's dahabiyas — the Nile, temples, wellness and more."
 >
 
-  <!-- Page hero -->
-  <div class="relative bg-void pt-36 pb-20 overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-      <img src="/images/egypte-veda-214-van-577-2000x709.jpg" alt="" class="w-full h-full object-cover object-center"/>
+  <!-- Page hero — dark image banner -->
+  <div class="relative flex items-center min-h-[52vh] pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/egypte-veda-214-van-577-2000x709.jpg" alt="" width="2000" height="709" class="w-full h-full object-cover object-center" loading="eager"/>
     </div>
-    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-transparent to-void"></div>
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 text-center">
+    <!-- Dark overlays for legibility -->
+    <div class="absolute inset-0 bg-void/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/45 via-transparent to-void/70"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 text-center">
       <div class="flex items-center justify-center gap-4 mb-6">
-        <span class="h-px w-10 bg-gold/50"></span>
-        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold">Visual Stories</p>
-        <span class="h-px w-10 bg-gold/50"></span>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold-light">Visual Stories</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
       </div>
-      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-ivory font-light tracking-tight leading-tight">
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
         The Gallery
       </h1>
-      <p class="font-sans text-md text-warm-gray mt-4 font-light">
+      <p class="font-sans text-md text-white/75 mt-4 font-light">
         Life aboard the Nile — captured.
       </p>
     </div>
   </div>
 
   <!-- Gallery section -->
-  <div class="bg-void min-h-screen pb-24">
+  <div class="bg-linen min-h-screen pb-24 border-t border-bone">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
       <!-- Filter tabs -->
       <div class="flex flex-wrap items-center justify-center gap-2 py-12" id="gallery-filters">
         {categories.map((cat, i) => (
           <button
-            class={`gallery-filter font-sans text-[12px] tracking-[0.25em] uppercase px-5 py-2.5 border transition-all duration-300 ${i === 0 ? 'border-gold text-gold bg-gold/8' : 'border-white/10 text-warm-gray hover:border-gold/50 hover:text-ivory'}`}
+            class={`gallery-filter font-sans text-[12px] tracking-[0.25em] uppercase px-5 py-2.5 border rounded-full transition-all duration-300 ${i === 0 ? 'border-gold text-gold bg-gold/8' : 'border-bone text-sandstone hover:border-gold/50 hover:text-earth'}`}
             data-filter={cat}
           >
             {cat}
@@ -136,7 +139,7 @@ const images = [
 
       <!-- Empty state -->
       <div id="gallery-empty" class="hidden text-center py-24">
-        <p class="font-serif text-2xl text-ivory/30 font-light">No images in this category yet.</p>
+        <p class="font-serif text-2xl text-sandstone/50 font-light">No images in this category yet.</p>
       </div>
 
     </div>
@@ -183,7 +186,7 @@ const images = [
     to   { opacity: 1; transform: scale(1); }
   }
   /* Uniform gallery-item bg to prevent FOUC */
-  .gallery-item { background: #0e1a0e; }
+  .gallery-item { background: #EDE8DC; }
 </style>
 
 <script>

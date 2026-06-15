@@ -1,0 +1,74 @@
+---
+// JourneySplit — "The Journey" as a two-column band:
+// text on the left, full-height image on the right.
+// Copy mirrors RouteMap.astro (kept separately for now).
+import { Image } from 'astro:assets';
+import journeyImg from '../images/road.jpg';
+
+const days: [string, string][] = [
+  ['Day 1', 'Luxor'],
+  ['Day 2', 'Esna'],
+  ['Day 3', 'The Lock'],
+  ['Day 4', 'Edfu'],
+  ['Day 5', 'Silsila'],
+  ['Day 6', 'Kom Ombo'],
+  ['Day 7', 'Aswan'],
+];
+---
+
+<section id="journey-split" class="bg-sand overflow-hidden">
+  <div class="grid lg:grid-cols-2 items-stretch">
+
+    <!-- LEFT: Copy -->
+    <div class="flex items-center order-2 lg:order-1">
+      <div class="w-full max-w-xl mx-auto px-6 lg:px-12 py-20 lg:py-28">
+
+        <div class="flex items-center gap-4 mb-6 reveal">
+          <span class="gold-line"></span>
+          <p class="font-sans text-sm tracking-ultra uppercase text-gold">The Journey</p>
+        </div>
+
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-earth font-light tracking-tight leading-[1.05] mb-7 reveal">
+          Luxor to Aswan,<br /><em class="italic text-gold">in seven days.</em>
+        </h2>
+
+        <p class="font-sans text-xl text-sandstone font-light leading-relaxed mb-6 max-w-md reveal">
+          A classic dahabiya route — the Nile's most beautiful stretch. Each day brings a new temple, a new island, a new pace.
+        </p>
+        <p class="font-sans text-xl text-sandstone font-light leading-relaxed mb-10 max-w-md reveal">
+          Itineraries flex around your energy. Linger longer at Edfu. Skip a stop. Add a private dinner on a deserted island. The route is yours to shape.
+        </p>
+
+        <!-- Day legend -->
+        <ul class="grid grid-cols-2 gap-x-8 gap-y-2 max-w-md mb-10">
+          {days.map(([day, place]) => (
+            <li class="flex items-baseline gap-3 border-b border-bone py-2.5">
+              <span class="font-sans text-sm tracking-ultra uppercase text-gold whitespace-nowrap">{day}</span>
+              <span class="font-serif text-2xl text-earth font-light">{place}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="/plan-your-visit"
+          class="group inline-flex items-center gap-3 bg-sage hover:bg-sage-dark text-white font-sans text-xs tracking-ultra uppercase px-7 py-4 rounded-full transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-sage/30"
+        >
+          See the full itinerary
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Full-height image -->
+    <div class="relative order-1 lg:order-2 min-h-[55vh] lg:min-h-screen">
+      <Image
+        src={journeyImg}
+        alt="The journey along the Nile"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        loading="lazy"
+        widths={[768, 1280, 1920]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+      />
+    </div>
+  </div>
+</section>

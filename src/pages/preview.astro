@@ -1,0 +1,324 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+// LIGHT-PALETTE PROTOTYPE  ·  route: /preview
+// Self-contained, non-destructive mockup of the homepage in the warm light
+// palette from claude/VEDA_redesign_plan.md. Does NOT use MainLayout and does
+// NOT touch any live component — delete this single file to remove it.
+// Uses plain <img src="/images/..."> (public/) so it's decoupled from Astro's
+// image pipeline. Copy in this file is drawn from claude/VEDA_content_plan.md.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const stats = [
+  { num: '4',    label: 'Dahabiyas' },
+  { num: '28',   label: 'Max guests per charter' },
+  { num: '100%', label: 'Solar powered' },
+  { num: '15+',  label: 'Years on the Nile' },
+];
+
+const reasons = [
+  { icon: '🌿', title: 'Solar-powered fleet',     body: 'The first fully solar Nile dahabiya fleet in Egypt — quiet, clean energy throughout.' },
+  { icon: '🍽️', title: 'Organic local cuisine',   body: 'Fresh, seasonal meals prepared onboard by your private chef at every port.' },
+  { icon: '🔒', title: 'Fully private charter',    body: 'Your boat, your group, your schedule. No strangers at breakfast.' },
+  { icon: '🧭', title: 'Expert Egyptology guides', body: 'Licensed guides accompany you at every temple stop along the route.' },
+  { icon: '💧', title: 'Purified water onboard',   body: 'Three-stage filtration plus reverse osmosis throughout the boat.' },
+  { icon: '📋', title: 'All-inclusive pricing',    body: 'No hidden extras. Everything onboard is part of your charter rate.' },
+];
+
+const fleet = [
+  { name: 'Veda One',   nick: 'The Renovated Gem',      img: '/images/veda_1.jpg', length: '50m', cabins: '10 cabins · 4 suites', guests: '20 guests', note: 'The boat that started it all — fully renovated, most characterful.' },
+  { name: 'Veda Two',   nick: 'The Intimate Classic',   img: '/images/veda_2.jpg', length: '45m', cabins: '10 cabins · 2 suites', guests: '20 guests', note: 'Single-deck, elegantly simple — the boat guests come back to.' },
+  { name: 'Veda Three', nick: 'The Exclusive Boutique', img: '/images/veda_3.jpg', length: '19m', cabins: '5 cabins · 2 suites',  guests: '10 guests', note: 'The most private experience on the river — just ten guests.' },
+  { name: 'Veda Four',  nick: 'State-of-the-Art Flagship', img: '/images/veda_4.jpg', length: '55m', cabins: '14 cabins · 4 suites', guests: '28 guests', note: 'Our newest and largest — 2020-built, renovated 2024.' },
+];
+
+const included = [
+  ['Your private cabin', 'En-suite bathroom, daily housekeeping, fresh linen changed daily.'],
+  ['Every meal onboard', 'Three organic, locally sourced meals. Dietary requirements always welcomed.'],
+  ['Drinks throughout', 'Fresh juices, herbal teas, filtered water. Unlimited, always cold.'],
+  ['Your full crew', 'Captain, chef, and a hospitality team who feel more like friends than staff.'],
+  ['Wellness spaces', 'Yoga deck, Bedouin corner, sun loungers, indoor lounge — all yours.'],
+  ['Solar-powered comfort', 'Air conditioning, charging, lighting — quiet and clean energy.'],
+];
+
+const WHATSAPP = '201000000000'; // placeholder — replace with real number
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>VEDA Egypt — Light Palette Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --linen: #FEFCF7;
+      --sand:  #F5EFE2;
+      --bone:  #EDE8DC;
+      --gold:  #B8945A;
+      --sandstone: #8B7355;
+      --earth: #2C2016;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--linen); color: var(--earth); font-family: 'Jost', system-ui, sans-serif; }
+    .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .tracking-ultra { letter-spacing: 0.22em; }
+    .tracking-mega  { letter-spacing: 0.4em; }
+    /* lightweight scroll reveal */
+    .rev { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
+    .rev.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .rev { opacity: 1; transform: none; transition: none; } }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Prototype ribbon -->
+  <div class="fixed top-0 left-0 z-[80] bg-[#B8945A] text-[#FFF8ED] text-[11px] tracking-ultra uppercase px-3 py-1 rounded-br-md">
+    Preview · /preview
+  </div>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-[70] transition-all duration-300 bg-[#FEFCF7]/95 backdrop-blur border-b border-[#EDE8DC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <a href="#top" class="font-serif text-2xl tracking-ultra text-[#2C2016]">VEDA</a>
+      <div class="hidden md:flex items-center gap-9 font-sans text-[13px] tracking-[0.15em] uppercase text-[#2C2016]">
+        <a href="#fleet" class="hover:text-[#B8945A] transition-colors">Fleet</a>
+        <a href="#included" class="hover:text-[#B8945A] transition-colors">Included</a>
+        <a href="#why" class="hover:text-[#B8945A] transition-colors">Why VEDA</a>
+        <a href="#" class="hover:text-[#B8945A] transition-colors">Journeys</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="hidden lg:inline font-sans text-xs tracking-[0.12em] text-[#8B7355]">+20 100 000 0000</span>
+        <a href="#cta" class="bg-[#B8945A] hover:bg-[#a07c3a] text-[#FFF8ED] text-xs tracking-ultra uppercase px-5 py-2.5 rounded-full transition-colors">Enquire</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <header id="top" class="relative h-screen min-h-[620px] w-full overflow-hidden">
+    <img src="/images/egypte-veda-43-van-577-2000x1250.jpg" alt="A VEDA dahabiya sailing the Nile"
+         class="absolute inset-0 w-full h-full object-cover" />
+    <!-- warm light wash instead of dark overlay -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(254,252,247,0.92) 0%, rgba(245,239,226,0.45) 38%, rgba(245,239,226,0.12) 70%, transparent 100%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(254,252,247,0.55) 0%, transparent 30%);"></div>
+
+    <div class="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-10 flex flex-col justify-end pb-24">
+      <span class="rev font-sans text-xs tracking-mega uppercase text-[#B8945A] mb-5">Private dahabiya charters · Luxor to Aswan</span>
+      <h1 class="rev font-serif font-light text-[#2C2016] leading-[0.95] tracking-tight text-5xl md:text-7xl max-w-3xl mb-6">
+        Sail the Nile.<br /><em class="italic text-[#B8945A]">Experience</em> something real.
+      </h1>
+      <p class="rev font-sans text-[#8B7355] text-base md:text-lg max-w-md leading-relaxed mb-9">
+        Private, all-inclusive, solar-powered journeys along the Nile — shaped entirely around you.
+      </p>
+      <div class="rev flex flex-wrap items-center gap-4 mb-6">
+        <a href="#cta" class="group inline-flex items-center gap-2.5 bg-[#B8945A] hover:bg-[#a07c3a] text-[#FFF8ED] text-xs tracking-ultra uppercase px-7 py-4 rounded-full transition-all">
+          Plan Your Journey <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a href="#fleet" class="group inline-flex items-center gap-2.5 border border-[#C4A882] text-[#5C4A2E] hover:bg-[#F5EFE2] text-xs tracking-ultra uppercase px-7 py-4 rounded-full transition-all">
+          Explore the Fleet <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+      <p class="rev font-sans text-sm text-[#8B7355]">★★★★★ &nbsp;Trusted by guests from 40+ countries</p>
+    </div>
+  </header>
+
+  <!-- ── At a Glance ────────────────────────────────────────── -->
+  <section class="bg-[#F5EFE2] border-y border-[#EDE8DC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+      {stats.map((s) => (
+        <div class="rev text-center">
+          <div class="font-serif text-5xl md:text-6xl font-light text-[#B8945A]">{s.num}</div>
+          <div class="font-sans text-[11px] tracking-ultra uppercase text-[#8B7355] mt-3">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── Who we are ─────────────────────────────────────────── -->
+  <section class="bg-[#FEFCF7]">
+    <div class="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+      <span class="rev font-sans text-xs tracking-mega uppercase text-[#B8945A]">Who we are</span>
+      <p class="rev font-serif font-light text-[#2C2016] text-2xl md:text-[2rem] leading-[1.4] mt-6">
+        Since 2009, VEDA has been quietly pioneering a different kind of Nile journey — one powered
+        by solar energy, rooted in authenticity, and shaped entirely around you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Why guests choose VEDA ─────────────────────────────── -->
+  <section id="why" class="bg-[#F5EFE2] border-t border-[#EDE8DC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-28">
+      <div class="text-center mb-14">
+        <span class="rev font-sans text-xs tracking-mega uppercase text-[#B8945A]">Why VEDA</span>
+        <h2 class="rev font-serif font-light text-[#2C2016] text-4xl md:text-5xl mt-4">Why guests choose VEDA</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reasons.map((r) => (
+          <div class="rev bg-[#FEFCF7] border border-[#EDE8DC] rounded-lg p-8 hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <div class="text-3xl mb-4">{r.icon}</div>
+            <h3 class="font-serif text-2xl text-[#2C2016] mb-2">{r.title}</h3>
+            <p class="font-sans text-[15px] leading-relaxed text-[#8B7355]">{r.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Fleet preview ──────────────────────────────────────── -->
+  <section id="fleet" class="bg-[#FEFCF7]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-28">
+      <div class="text-center mb-14">
+        <span class="rev font-sans text-xs tracking-mega uppercase text-[#B8945A]">The Fleet</span>
+        <h2 class="rev font-serif font-light text-[#2C2016] text-4xl md:text-5xl mt-4">Four boats. One philosophy.</h2>
+        <p class="rev font-sans text-[#8B7355] max-w-xl mx-auto mt-5 leading-relaxed">
+          Choose your scale — from an intimate retreat for ten to a grand voyage for twenty-eight.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-8">
+        {fleet.map((b) => (
+          <article class="rev group bg-[#FEFCF7] border border-[#EDE8DC] rounded-lg overflow-hidden hover:shadow-lg transition-all">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src={b.img} alt={b.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <div class="p-7">
+              <div class="flex items-baseline justify-between gap-3">
+                <h3 class="font-serif text-3xl text-[#2C2016]">{b.name}</h3>
+                <span class="font-sans text-[11px] tracking-ultra uppercase text-[#B8945A]">{b.length}</span>
+              </div>
+              <p class="font-sans text-xs tracking-ultra uppercase text-[#8B7355] mt-1">{b.nick}</p>
+              <div class="flex flex-wrap gap-x-5 gap-y-1 mt-4 font-sans text-sm text-[#5C4A2E]">
+                <span>{b.cabins}</span><span class="text-[#B8945A]">·</span><span>{b.guests}</span>
+              </div>
+              <p class="font-sans text-[15px] leading-relaxed text-[#8B7355] mt-4">{b.note}</p>
+              <a href="#cta" class="inline-flex items-center gap-2 mt-6 font-sans text-xs tracking-ultra uppercase text-[#B8945A] hover:gap-3 transition-all">
+                Enquire about {b.name} <span>→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What's included ────────────────────────────────────── -->
+  <section id="included" class="bg-[#F5EFE2] border-y border-[#EDE8DC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 md:py-28 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="rev rounded-lg overflow-hidden aspect-[4/3]">
+        <img src="/images/group-eating-1280x800.jpg" alt="Dining onboard" class="w-full h-full object-cover" />
+      </div>
+      <div>
+        <span class="rev font-sans text-xs tracking-mega uppercase text-[#B8945A]">All-inclusive</span>
+        <h2 class="rev font-serif font-light text-[#2C2016] text-4xl md:text-5xl mt-4 mb-9">Everything onboard, included</h2>
+        <ul class="space-y-5">
+          {included.map(([t, d]) => (
+            <li class="rev flex gap-4">
+              <span class="text-[#B8945A] mt-1 shrink-0">✓</span>
+              <span>
+                <span class="font-serif text-xl text-[#2C2016]">{t}</span>
+                <span class="block font-sans text-[15px] text-[#8B7355] leading-relaxed">{d}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonial ────────────────────────────────────────── -->
+  <section class="bg-[#FEFCF7]">
+    <div class="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+      <div class="font-serif text-7xl text-[#B8945A] leading-none mb-2">“</div>
+      <blockquote class="rev font-serif font-light italic text-[#2C2016] text-2xl md:text-[1.9rem] leading-[1.4]">
+        The VEDA experience was unlike anything we've done before. Waking up on the Nile, eating fresh
+        food, and having the whole boat to ourselves — it felt like a private expedition, not a tourist trip.
+      </blockquote>
+      <p class="rev font-sans text-sm tracking-ultra uppercase text-[#8B7355] mt-8">
+        Sarah M. · United Kingdom · Veda Two · March 2024
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────── -->
+  <section id="cta" class="relative overflow-hidden">
+    <img src="/images/egypte-veda-568-van-577-2000x1250.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(44,32,22,0.78), rgba(44,32,22,0.45));"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-28 md:py-36">
+      <div class="max-w-xl">
+        <h2 class="rev font-serif font-light text-[#FEFCF7] text-4xl md:text-6xl leading-tight">Begin your journey on the Nile.</h2>
+        <p class="rev font-sans text-[#F5EFE2]/80 mt-6 leading-relaxed">
+          Tell us your dates, group size, and the boat you have in mind. We respond to every enquiry within 24 hours — no payment required to ask.
+        </p>
+        <a href="#" class="rev inline-flex items-center gap-2.5 mt-9 bg-[#B8945A] hover:bg-[#c9a85c] text-[#2C2016] text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-colors">
+          Send My Enquiry <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="bg-[#F5EFE2] border-t border-[#EDE8DC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <span class="font-serif text-2xl tracking-ultra text-[#2C2016]">VEDA</span>
+        <p class="font-sans text-sm text-[#8B7355] mt-4 leading-relaxed max-w-xs">
+          Private solar-powered dahabiya charters on the Nile. Luxor to Aswan, fully crewed, all-inclusive.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-sans text-[11px] tracking-ultra uppercase text-[#B8945A] mb-4">Explore</h4>
+        <ul class="space-y-2 font-sans text-sm text-[#8B7355]">
+          <li><a href="#fleet" class="hover:text-[#2C2016] transition-colors">The Fleet</a></li>
+          <li><a href="#included" class="hover:text-[#2C2016] transition-colors">What's Included</a></li>
+          <li><a href="#why" class="hover:text-[#2C2016] transition-colors">Why VEDA</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-sans text-[11px] tracking-ultra uppercase text-[#B8945A] mb-4">Contact</h4>
+        <ul class="space-y-2 font-sans text-sm text-[#8B7355]">
+          <li><a href="mailto:reservation@veda-egypt.com" class="hover:text-[#2C2016] transition-colors">reservation@veda-egypt.com</a></li>
+          <li>+20 100 000 0000</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-sans text-[11px] tracking-ultra uppercase text-[#B8945A] mb-4">Newsletter</h4>
+        <form class="flex gap-2" onsubmit="return false;">
+          <input type="email" placeholder="Your email"
+                 class="flex-1 bg-[#FEFCF7] border border-[#EDE8DC] text-sm text-[#2C2016] px-3 py-2 rounded placeholder:text-[#8B7355]/60 focus:outline-none focus:border-[#B8945A]" />
+          <button class="bg-[#B8945A] text-[#FFF8ED] text-xs uppercase tracking-ultra px-4 rounded">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-[#EDE8DC]">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 py-6 font-sans text-xs text-[#8B7355]">© 2026 VEDA Egypt · Light palette preview</div>
+    </div>
+  </footer>
+
+  <!-- ── Floating WhatsApp ──────────────────────────────────── -->
+  <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener"
+     aria-label="Chat on WhatsApp"
+     class="fixed bottom-6 right-6 z-[75] w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+    <svg viewBox="0 0 24 24" class="w-7 h-7" fill="currentColor" aria-hidden="true">
+      <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.523 5.245l-.999 3.648 3.74-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <script is:inline>
+    // Navbar gets a soft shadow once you scroll past the hero top
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.style.boxShadow = window.scrollY > 40 ? '0 4px 18px rgba(44,32,22,0.06)' : 'none';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.rev').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

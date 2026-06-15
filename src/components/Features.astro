@@ -37,14 +37,14 @@ const features = [
 ];
 ---
 
-<section id="features" class="bg-forest py-28">
+<section id="features" class="bg-linen py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <!-- Section header -->
     <div class="flex flex-col items-center text-center mb-20 reveal">
       <span class="gold-line mb-6 mx-auto"></span>
-      <p class="font-sans text-sm tracking-ultra uppercase text-gold-light mb-5">What Makes Us Different</p>
-      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight">
-        Three principles.<br /><em class="italic text-gold-pale">One experience.</em>
+      <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">What Makes Us Different</p>
+      <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-earth font-light tracking-tight">
+        Three principles.<br /><em class="italic text-gold">One experience.</em>
       </h2>
     </div>
 
@@ -60,18 +60,18 @@ const features = [
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-106"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/30 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-earth/30 via-transparent to-transparent"></div>
             <!-- Icon -->
-            <div class="absolute top-5 left-5 text-gold-light/70 group-hover:text-gold-light transition-colors duration-300">
+            <div class="absolute top-5 left-5 text-gold bg-linen/85 backdrop-blur-sm rounded-full p-2.5 group-hover:text-gold-muted transition-colors duration-300">
               <Fragment set:html={feature.icon} />
             </div>
           </div>
 
           <!-- Content -->
-          <div class="bg-forest-mid border border-gold/10 group-hover:border-gold/25 transition-all duration-500 p-8">
-            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-3">{feature.subtitle}</p>
-            <h3 class="font-serif text-2xl text-ivory font-light mb-4">{feature.title}</h3>
-            <p class="font-sans text-sm text-warm-gray leading-relaxed">{feature.description}</p>
+          <div class="bg-sand border border-bone group-hover:border-gold/40 transition-all duration-500 p-8">
+            <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-3">{feature.subtitle}</p>
+            <h3 class="font-serif text-2xl text-earth font-light mb-4">{feature.title}</h3>
+            <p class="font-sans text-lg text-sandstone leading-relaxed">{feature.description}</p>
             <div class="mt-6 h-px bg-gold/15 relative overflow-hidden">
               <div class="absolute inset-0 bg-gold origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
             </div>

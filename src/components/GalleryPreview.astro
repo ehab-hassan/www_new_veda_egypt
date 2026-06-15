@@ -1,0 +1,66 @@
+---
+// GalleryPreview — homepage taster of onboard interiors, links to /gallery.
+// Uses public images (plain <img>) shown in a bento grid.
+
+const shots = [
+  { src: '/images/photo-2019-03-12-09.37.30-1280x854.jpg', caption: 'Indoor lounge & bar', span: true },
+  { src: '/images/photo-2019-03-11-20.31.20-1280x854.jpg', caption: 'Panoramic cabin' },
+  { src: '/images/group-eating-1280x800.jpg',              caption: 'Glass-enclosed dining' },
+  { src: '/images/photo-2019-03-12-10-54-55edit-1-1280x800.jpg', caption: 'A room with a view' },
+  { src: '/images/photo-2019-03-11-20.38.43-676x450.jpg',  caption: 'Lounge on the water' },
+];
+---
+
+<section id="gallery-preview" class="bg-linen py-24 lg:py-32">
+
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-14 reveal">
+    <div class="flex items-center justify-center gap-4 mb-6">
+      <span class="h-px w-10 bg-gold/50"></span>
+      <p class="font-sans text-sm tracking-ultra uppercase text-gold">A Closer Look</p>
+      <span class="h-px w-10 bg-gold/50"></span>
+    </div>
+    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-earth font-light tracking-tight leading-tight">
+      Step <em class="italic text-gold">onboard</em>
+    </h2>
+    <p class="font-sans text-base text-sandstone font-light leading-relaxed max-w-xl mx-auto mt-5">
+      Cabins, lounges, and sun-washed decks — every space designed for slow days on the river.
+    </p>
+  </div>
+
+  <!-- Bento grid — full width, edge to edge -->
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-1">
+    {shots.map((shot, i) => (
+      <figure
+        class:list={[
+          'group relative overflow-hidden h-60 md:h-80 reveal',
+          `reveal-delay-${i + 1}`,
+          shot.span ? 'col-span-2' : '',
+        ]}
+      >
+          <img
+            src={shot.src}
+            alt={shot.caption}
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+          <!-- Hover wash + caption -->
+          <div class="absolute inset-0 bg-gradient-to-t from-earth/80 via-earth/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+          <figcaption class="absolute bottom-0 left-0 p-5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400">
+            <span class="font-serif text-lg text-white font-light">{shot.caption}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="flex justify-center mt-12 reveal">
+      <a
+        href="/gallery"
+        class="group inline-flex items-center gap-3 bg-sage hover:bg-sage-dark text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-sage/30"
+      >
+        View Full Gallery
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+</section>

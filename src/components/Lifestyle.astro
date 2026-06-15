@@ -2,45 +2,46 @@
 // Lifestyle / Wellness — DARK section (forest bg), editorial magazine layout
 ---
 
-<section id="lifestyle" class="bg-forest py-28 lg:py-44 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+<section id="lifestyle" class="bg-forest py-24 lg:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-20">
 
     <!-- Section header -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div class="reveal">
         <div class="flex items-center gap-4 mb-6">
           <span class="gold-line"></span>
-          <p class="font-sans text-sm tracking-ultra uppercase text-gold-light">Healthy Experience</p>
+          <p class="font-sans text-sm tracking-ultra uppercase text-gold">Healthy Experience</p>
         </div>
         <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight leading-[1.1]">
           Mind.<br />Body.<br />
-          <em class="italic text-gold-pale">Soul.</em>
+          <em class="italic text-gold">Soul.</em>
         </h2>
       </div>
       <div class="flex flex-col justify-end reveal reveal-delay-2">
-        <p class="font-sans text-base text-warm-gray leading-relaxed mb-8">
+        <p class="font-sans text-lg text-ivory/70 leading-relaxed mb-8">
           Our mission is a healthy experience. Each journey on the Nile
           becomes an invitation to slow down, reconnect, and feel something
           deeper than the ordinary.
         </p>
         <a
           href="/plan-your-visit"
-          class="group self-start inline-flex items-center gap-3 font-sans text-xs tracking-ultra uppercase text-gold border-b border-gold/30 hover:border-gold pb-1 transition-colors duration-300"
+          class="group self-start inline-flex items-center gap-3 border border-gold/40 hover:border-gold text-gold hover:bg-gold/5 font-sans text-xs tracking-ultra uppercase px-6 py-3.5 rounded-full transition-all duration-300"
         >
           Explore wellness onboard
           <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Editorial grid: 1 large hero image + 4 smaller -->
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+  <!-- Editorial grid: 1 large hero image + 4 smaller — full bleed -->
+  <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
 
       <!-- MAIN large image — spans 2 rows on desktop -->
       <article class="group relative overflow-hidden col-span-2 lg:col-span-1 lg:row-span-2 reveal reveal-delay-1">
         <div class="relative h-64 lg:h-full min-h-[400px] overflow-hidden">
           <img
-            src="/images/photo-2019-04-03-08-27-20-436x291.jpg"
+            src="/images/meditation.jpg"
             alt="Meditation on the Nile"
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
@@ -104,48 +105,5 @@
           </div>
         </div>
       </article>
-    </div>
-
-    <!-- Sacred river callout — light card floated below -->
-    <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="reveal">
-        <span class="gold-line mb-6 block"></span>
-        <h3 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light mb-5 leading-snug">
-          A river full of<br /><em class="italic text-gold-pale">sacred places</em>
-        </h3>
-        <p class="font-sans text-sm text-warm-gray leading-relaxed mb-8">
-          By following the natural flow of the Nile, you will discover
-          some of the most sacred places in the world. Every itinerary is
-          tailored to your energy — leading you to the temples and moments
-          that are meant for you.
-        </p>
-        <a
-          href="/plan-your-visit"
-          class="group inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-6 py-3.5 transition-all duration-300 hover:bg-gold/5"
-        >
-          Plan your journey
-          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
-        </a>
-      </div>
-
-      <!-- Sacred place — single still image (route map promoted to RouteMap.astro) -->
-      <div class="relative reveal-right overflow-hidden rounded-lg group">
-        <div class="aspect-[4/5]">
-          <img
-            src="/images/karnak-1280x800.jpg"
-            alt="Karnak Temple at Luxor"
-            class="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/30 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-            <p class="font-sans text-[10px] tracking-ultra uppercase text-gold/80 mb-2">Karnak · Luxor</p>
-            <p class="font-serif text-xl text-ivory/90 font-light italic leading-snug">
-              "Each temple has a unique gift to offer."
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>

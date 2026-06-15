@@ -3,15 +3,15 @@
 // Lives on /dahabiyas, between the page hero and the per-boat sections.
 
 const rows = [
-  { label: 'Tagline',        v1: 'The Grand Flagship', v2: 'The Intimate Voyager', v3: 'The Private Retreat', v4: 'The Solar Spirit' },
+  { label: 'Tagline',        v1: 'Our Renovated Gem',  v2: 'The Intimate Classic', v3: 'The Exclusive Boutique', v4: 'State of the Art Flagship' },
   { label: 'Length',         v1: '50 m',               v2: '45 m',                 v3: '18 m',                v4: '55 m' },
   { label: 'Capacity',       v1: 'Up to 20',           v2: 'Up to 20',             v3: 'Up to 10',            v4: 'Up to 28' },
-  { label: 'Rooms',          v1: '10 doubles',         v2: '10 doubles',           v3: '5 (2 dbl · 3 twin)',  v4: '14 doubles' },
-  { label: 'Suites',         v1: '4 with balconies',   v2: '2 with balconies',     v3: '—',                   v4: '4 with balconies' },
+  { label: 'Cabins',         v1: '10 (6 + 4 suites)',  v2: '10 (8 + 2 suites)',    v3: '5 (3 + 2 suites)',    v4: '14 (10 + 4 suites)' },
+  { label: 'Suites',         v1: '4 · private terrace', v2: '2 · private terrace', v3: '2 · with balcony',    v4: '4 · private terrace' },
   { label: 'Bathrooms',      v1: 'All en-suite',       v2: 'All en-suite',         v3: 'All en-suite',        v4: 'All en-suite' },
-  { label: 'Energy',         v1: 'Solar-assisted',     v2: 'Solar-assisted',       v3: 'Solar-assisted',      v4: '100% solar' },
-  { label: 'Meeting space',  v1: '2 AC · 50 pax',      v2: 'Bedouin corner',       v3: 'Upper deck',          v4: '2 AC · 50 pax' },
-  { label: 'Best for',       v1: 'Large groups & retreats', v2: 'Retreats & getaways', v3: 'Couples & small groups', v4: 'The largest charters' },
+  { label: 'Decks & masts',  v1: '2 decks · 2 masts',  v2: '1 deck · 2 masts',     v3: '1 deck · 2 masts',    v4: '2 decks · 2 masts' },
+  { label: 'Solar power',    v1: '13 kW PV',           v2: '10 kW PV',             v3: '4 kW PV',             v4: '20 kW PV' },
+  { label: 'Best for',       v1: 'Groups & retreats',  v2: 'Retreats & getaways',  v3: 'Couples & small groups', v4: 'The largest charters' },
 ];
 
 const boats = [
@@ -22,7 +22,7 @@ const boats = [
 ];
 ---
 
-<section id="compare" class="bg-warm-beige py-20 lg:py-24 border-t border-gold/10">
+<section id="compare" class="bg-sand py-20 lg:py-24 border-t border-bone">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
     <!-- Header -->
@@ -32,7 +32,7 @@ const boats = [
         <p class="font-sans text-xs tracking-ultra uppercase text-gold">Compare the Fleet</p>
         <span class="h-px w-10 bg-gold/50"></span>
       </div>
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ink font-light tracking-tight leading-tight">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight">
         Find the <em class="italic text-gold">right boat</em> for your journey.
       </h2>
     </div>
@@ -40,21 +40,21 @@ const boats = [
     <!-- Mobile: stacked spec cards -->
     <div class="lg:hidden space-y-5 reveal">
       {boats.map((boat, bi) => (
-        <a href={`#${boat.id}`} class="block border border-gold/20 bg-white/40 overflow-hidden">
+        <a href={`#${boat.id}`} class="block border border-bone bg-linen overflow-hidden">
           <div class="grid grid-cols-[120px_1fr] gap-0">
             <div class="aspect-[3/4] overflow-hidden">
               <img src={boat.img} alt={boat.name} class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-5">
-              <p class="font-serif text-2xl text-ink font-light leading-none mb-1">{boat.name}</p>
+              <p class="font-serif text-2xl text-earth font-light leading-none mb-1">{boat.name}</p>
               <p class="font-sans text-[11px] tracking-ultra uppercase text-gold mb-4">
                 {rows[0][`v${bi + 1}` as 'v1' | 'v2' | 'v3' | 'v4']}
               </p>
               <dl class="space-y-1.5">
                 {rows.slice(1).map((row) => (
-                  <div class="flex justify-between gap-3 border-b border-gold/10 pb-1.5 last:border-0">
-                    <dt class="font-sans text-[11px] tracking-wide uppercase text-ink-light/80">{row.label}</dt>
-                    <dd class="font-sans text-[12px] text-ink-mid text-right">
+                  <div class="flex justify-between gap-3 border-b border-bone pb-1.5 last:border-0">
+                    <dt class="font-sans text-[11px] tracking-wide uppercase text-sandstone/80">{row.label}</dt>
+                    <dd class="font-sans text-[12px] text-sandstone text-right">
                       {row[`v${bi + 1}` as 'v1' | 'v2' | 'v3' | 'v4']}
                     </dd>
                   </div>
@@ -71,18 +71,18 @@ const boats = [
 
     <!-- Desktop: comparison table -->
     <div class="hidden lg:block reveal">
-      <div class="overflow-hidden border border-gold/20 bg-white/30">
+      <div class="overflow-hidden border border-bone bg-linen">
         <!-- Header row with boat photos -->
         <div class="grid grid-cols-[200px_repeat(4,1fr)]">
-          <div class="border-r border-gold/15 px-5 py-6 flex items-end">
-            <p class="font-sans text-[10px] tracking-ultra uppercase text-ink-light">At a glance</p>
+          <div class="border-r border-bone px-5 py-6 flex items-end">
+            <p class="font-sans text-[10px] tracking-ultra uppercase text-sandstone">At a glance</p>
           </div>
           {boats.map((boat, bi) => (
             <a
               href={`#${boat.id}`}
               class:list={[
                 'group block px-5 py-6 transition-colors hover:bg-gold/5',
-                bi < boats.length - 1 ? 'border-r border-gold/15' : '',
+                bi < boats.length - 1 ? 'border-r border-bone' : '',
               ]}
             >
               <div class="aspect-[4/3] overflow-hidden mb-4">
@@ -93,7 +93,7 @@ const boats = [
                   loading="lazy"
                 />
               </div>
-              <p class="font-serif text-2xl text-ink font-light leading-none mb-1">{boat.name}</p>
+              <p class="font-serif text-2xl text-earth font-light leading-none mb-1">{boat.name}</p>
               <p class="font-sans text-[11px] tracking-ultra uppercase text-gold">
                 {rows[0][`v${bi + 1}` as 'v1' | 'v2' | 'v3' | 'v4']}
               </p>
@@ -105,29 +105,29 @@ const boats = [
         {rows.slice(1).map((row, ri) => (
           <div
             class:list={[
-              'grid grid-cols-[200px_repeat(4,1fr)] border-t border-gold/10',
-              ri % 2 === 0 ? 'bg-soft-green/40' : '',
+              'grid grid-cols-[200px_repeat(4,1fr)] border-t border-bone',
+              ri % 2 === 0 ? 'bg-sand/60' : '',
             ]}
           >
-            <div class="border-r border-gold/15 px-5 py-4">
-              <p class="font-sans text-[11px] tracking-ultra uppercase text-ink-light">{row.label}</p>
+            <div class="border-r border-bone px-5 py-4">
+              <p class="font-sans text-[11px] tracking-ultra uppercase text-sandstone">{row.label}</p>
             </div>
             {(['v1', 'v2', 'v3', 'v4'] as const).map((key, ci) => (
-              <div class:list={['px-5 py-4', ci < 3 ? 'border-r border-gold/15' : '']}>
-                <p class="font-sans text-[14px] text-ink-mid">{row[key]}</p>
+              <div class:list={['px-5 py-4', ci < 3 ? 'border-r border-bone' : '']}>
+                <p class="font-sans text-[14px] text-sandstone">{row[key]}</p>
               </div>
             ))}
           </div>
         ))}
 
         <!-- CTA row -->
-        <div class="grid grid-cols-[200px_repeat(4,1fr)] border-t border-gold/15 bg-warm-beige">
-          <div class="border-r border-gold/15"></div>
+        <div class="grid grid-cols-[200px_repeat(4,1fr)] border-t border-bone bg-sand">
+          <div class="border-r border-bone"></div>
           {boats.map((boat, bi) => (
-            <div class:list={['px-5 py-5', bi < boats.length - 1 ? 'border-r border-gold/15' : '']}>
+            <div class:list={['px-5 py-5', bi < boats.length - 1 ? 'border-r border-bone' : '']}>
               <a
                 href={`#${boat.id}`}
-                class="inline-flex items-center gap-2 font-sans text-[11px] tracking-ultra uppercase text-gold hover:text-ink transition-colors"
+                class="inline-flex items-center gap-2 font-sans text-[11px] tracking-ultra uppercase text-gold hover:text-earth transition-colors"
               >
                 Explore {boat.name} <span>→</span>
               </a>

@@ -17,7 +17,10 @@
       "PowerShell(pnpm --version)",
       "PowerShell(npm config get prefix)",
       "PowerShell(npm install -g pnpm)",
-      "Bash(pnpm dev *)"
+      "Bash(pnpm dev *)",
+      "Bash(ls veda_*.jpg veda2_main.jpg veda4*.jpg who_we.jpg yoga-on-deck*.jpg group-eating*.jpg karnak*.jpg)",
+      "Bash(ls egypte-veda-88* egypte-veda-68* egypte-veda-568*)",
+      "WebFetch(domain:princessdonia.com)"
     ]
   }
 }

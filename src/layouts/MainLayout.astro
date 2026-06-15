@@ -100,6 +100,7 @@ const jsonLd = JSON.stringify({
     <style is:global>
       :root {
         --gold: #a07c3a;
+        --gold-rgb: 160 124 58; /* #a07c3a — channels for the Tailwind `gold` token */
         --gold-light: #c9a85c;
         --gold-pale: #dfc99a;
         --ivory: #f0ebe0;
@@ -111,11 +112,25 @@ const jsonLd = JSON.stringify({
         --ink: #1c2118;
         --ink-mid: #3a4035;
         --ink-light: #6b7264;
+        --linen: #FEFCF7;
+        --sand: #F5EFE2;
+        --bone: #EDE8DC;
+        --sandstone: #8B7355;
+        --earth: #2C2016;
       }
+
+      /* Home page only — redesign Nile Gold #B8945A (see claude/VEDA_redesign_plan.md) */
+      body.home {
+        --gold: #b8945a;
+        --gold-rgb: 184 148 90;
+      }
+      /* Navbar reserve CTA — sage green (echoes the logo) on every page, matching home */
+      body .cta-fill { background-color: #5e8a5e; }
+      body .cta-fill:hover { background-color: #4f7a52; }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
-      html { background-color: var(--warm-beige); color: var(--ink); }
+      html { background-color: var(--linen); color: var(--earth); }
 
       ::selection { background: var(--gold); color: #fff; }
 
@@ -197,16 +212,16 @@ const jsonLd = JSON.stringify({
         display: block;
         width: 24px;
         height: 1.5px;
-        background: rgba(240, 235, 224, 0.75);
+        background: rgba(44, 32, 22, 0.75);
         border-radius: 1px;
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
           opacity 0.25s ease,
           background-color 0.2s ease;
       }
       #menu-toggle:hover .bar { background: var(--gold); }
-      #menu-toggle.is-open .bar-1 { transform: translateY(7.5px) rotate(45deg); background: var(--ivory); }
+      #menu-toggle.is-open .bar-1 { transform: translateY(7.5px) rotate(45deg); background: var(--earth); }
       #menu-toggle.is-open .bar-2 { opacity: 0; transform: scaleX(0); }
-      #menu-toggle.is-open .bar-3 { transform: translateY(-7.5px) rotate(-45deg); background: var(--ivory); }
+      #menu-toggle.is-open .bar-3 { transform: translateY(-7.5px) rotate(-45deg); background: var(--earth); }
 
       /* Mobile menu overlay */
       #mobile-menu {
@@ -231,7 +246,7 @@ const jsonLd = JSON.stringify({
     </style>
   </head>
 
-  <body class="bg-warm-beige font-sans antialiased">
+  <body class:list={['bg-linen font-sans antialiased', pathname === '/' && 'home']}>
 
     <!-- Skip to main content -->
     <a
@@ -242,7 +257,7 @@ const jsonLd = JSON.stringify({
     </a>
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-linen/95 backdrop-blur-md border-b border-bone">
       <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
 
         <!-- Logo -->
@@ -254,7 +269,7 @@ const jsonLd = JSON.stringify({
             height="40"
             class="h-10 w-10 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
           />
-          <span class="font-serif text-xl tracking-ultra text-ivory/90 group-hover:text-ivory transition-colors">
+          <span class="font-serif text-xl tracking-ultra text-earth/90 group-hover:text-earth transition-colors">
             VEDA
           </span>
         </a>
@@ -265,10 +280,10 @@ const jsonLd = JSON.stringify({
             <li>
               <a
                 href={item.href}
-                class={`font-sans text-xs tracking-ultra uppercase transition-colors duration-300 ${
+                class={`font-sans text-sm tracking-widest uppercase transition-colors duration-300 ${
                   isActive(item.href)
                     ? 'text-gold'
-                    : 'text-ivory/80 hover:text-gold'
+                    : 'text-earth/75 hover:text-gold'
                 }`}
                 aria-current={isActive(item.href) ? 'page' : undefined}
               >
@@ -281,9 +296,9 @@ const jsonLd = JSON.stringify({
         <!-- Desktop CTA -->
         <a
           href="/reserve"
-          class="hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20"
+          class="cta-fill hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20"
         >
-          Reserve
+        Inquire Now
         </a>
 
         <!-- Mobile Hamburger -->
@@ -308,10 +323,10 @@ const jsonLd = JSON.stringify({
       role="dialog"
       aria-modal="true"
       aria-label="Navigation menu"
-      class="menu-hidden fixed inset-0 z-[60] flex flex-col bg-void/98 backdrop-blur-md"
+      class="menu-hidden fixed inset-0 z-[60] flex flex-col bg-linen/98 backdrop-blur-md"
     >
       <!-- Menu header -->
-      <div class="flex items-center justify-between h-20 px-6 border-b border-gold/10">
+      <div class="flex items-center justify-between h-20 px-6 border-b border-bone">
         <a href="/" class="flex items-center gap-3 group" tabindex="-1">
           <img
             src="/brand_assets/veda-logo.png"
@@ -320,13 +335,13 @@ const jsonLd = JSON.stringify({
             height="40"
             class="h-10 w-10 object-contain opacity-90"
           />
-          <span class="font-serif text-xl tracking-ultra text-ivory/90">VEDA</span>
+          <span class="font-serif text-xl tracking-ultra text-earth/90">VEDA</span>
         </a>
         <button
           id="menu-close"
           aria-label="Close menu"
           type="button"
-          class="p-2 text-ivory/60 hover:text-gold transition-colors"
+          class="p-2 text-earth/60 hover:text-gold transition-colors"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -340,8 +355,8 @@ const jsonLd = JSON.stringify({
         {navItems.map((item) => (
           <a
             href={item.href}
-            class={`font-serif text-4xl py-3 border-b border-gold/10 transition-colors ${
-              isActive(item.href) ? 'text-gold' : 'text-ivory/80 hover:text-gold'
+            class={`font-serif text-4xl py-3 border-b border-bone transition-colors ${
+              isActive(item.href) ? 'text-gold' : 'text-earth/80 hover:text-gold'
             }`}
           >
             {item.label}
@@ -350,15 +365,15 @@ const jsonLd = JSON.stringify({
       </nav>
 
       <!-- Bottom CTA + contact -->
-      <div class="px-8 pb-12 pt-6 border-t border-gold/10">
+      <div class="px-8 pb-12 pt-6 border-t border-bone">
         <a
           href="/reserve"
-          class="block w-full text-center bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase py-4 transition-all duration-300"
+          class="cta-fill block w-full text-center bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase py-4 rounded-full transition-all duration-300"
         >
           Reserve Your Journey
         </a>
         <div class="mt-5 flex flex-col gap-1">
-          <a href="mailto:reservation@veda-egypt.com" class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+          <a href="mailto:reservation@veda-egypt.com" class="font-sans text-sm text-sandstone hover:text-earth transition-colors">
             reservation@veda-egypt.com
           </a>
         </div>
@@ -371,7 +386,7 @@ const jsonLd = JSON.stringify({
     </main>
 
     <!-- Footer -->
-    <footer class="bg-void border-t border-gold/10 pt-20 pb-10">
+    <footer class="bg-linen border-t border-bone pt-20 pb-10">
       <div class="max-w-7xl mx-auto px-6 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
@@ -379,21 +394,21 @@ const jsonLd = JSON.stringify({
           <div>
             <div class="flex items-center gap-3 mb-5">
               <img src="/brand_assets/veda-logo.png" alt="VEDA" width="40" height="40" class="h-10 w-10 object-contain opacity-80" />
-              <span class="font-serif text-xl tracking-ultra text-ivory/80">VEDA</span>
+              <span class="font-serif text-xl tracking-ultra text-earth/80">VEDA</span>
             </div>
-            <p class="font-sans text-sm text-warm-gray leading-relaxed">
+            <p class="font-sans text-lg text-sandstone leading-relaxed">
               Private, authentic, conscious journeys on the Nile.
             </p>
           </div>
 
           <!-- Contact -->
           <div>
-            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-5">Contact</p>
+            <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Contact</p>
             <div class="space-y-2">
-              <a href="mailto:info@veda-egypt.com" class="block font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+              <a href="mailto:info@veda-egypt.com" class="block font-sans text-lg text-sandstone hover:text-earth transition-colors">
                 info@veda-egypt.com
               </a>
-              <a href="mailto:reservation@veda-egypt.com" class="block font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+              <a href="mailto:reservation@veda-egypt.com" class="block font-sans text-lg text-sandstone hover:text-earth transition-colors">
                 reservation@veda-egypt.com
               </a>
             </div>
@@ -401,7 +416,7 @@ const jsonLd = JSON.stringify({
 
           <!-- Links -->
           <div>
-            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-5">Explore</p>
+            <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Explore</p>
             <ul class="space-y-2">
               {[
                 { label: 'Dahabiyas', href: '/dahabiyas' },
@@ -413,7 +428,7 @@ const jsonLd = JSON.stringify({
                 { label: 'FAQ', href: '/faq' },
               ].map((item) => (
                 <li>
-                  <a href={item.href} class="font-sans text-sm text-warm-gray hover:text-ivory transition-colors">
+                  <a href={item.href} class="font-sans text-lg text-sandstone hover:text-earth transition-colors">
                     {item.label}
                   </a>
                 </li>
@@ -423,8 +438,8 @@ const jsonLd = JSON.stringify({
 
           <!-- Newsletter -->
           <div>
-            <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-5">Stay Connected</p>
-            <p class="font-sans text-sm text-warm-gray mb-4 leading-relaxed">
+            <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Stay Connected</p>
+            <p class="font-sans text-lg text-sandstone mb-4 leading-relaxed">
               Receive our seasonal letter. No noise.
             </p>
             <form class="flex gap-2" aria-label="Newsletter signup">
@@ -434,7 +449,7 @@ const jsonLd = JSON.stringify({
                 type="email"
                 placeholder="Your email"
                 autocomplete="email"
-                class="flex-1 bg-void/60 border border-gold/20 text-ivory text-sm px-4 py-2.5 placeholder:text-warm-gray/60 focus:outline-none focus:border-gold/60 transition-colors"
+                class="flex-1 bg-sand border border-bone text-earth text-sm px-4 py-2.5 placeholder:text-sandstone/60 focus:outline-none focus:border-gold/60 transition-colors"
               />
               <button
                 type="submit"
@@ -444,12 +459,12 @@ const jsonLd = JSON.stringify({
                 →
               </button>
             </form>
-            <p class="font-sans text-xs text-warm-gray/60 mt-2">No spam. Unsubscribe anytime.</p>
+            <p class="font-sans text-sm text-sandstone/80 mt-2">No spam. Unsubscribe anytime.</p>
 
             <!-- Social -->
             <div class="flex gap-3 mt-6">
               <a href="https://www.instagram.com/veda_retreats" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on Instagram"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                class="w-10 h-10 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-sandstone/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <circle cx="12" cy="12" r="4"/>
@@ -457,13 +472,13 @@ const jsonLd = JSON.stringify({
                 </svg>
               </a>
               <a href="https://www.facebook.com/vedaretreats" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on Facebook"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                class="w-10 h-10 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-sandstone/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                 </svg>
               </a>
               <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="VEDA Egypt on X"
-                class="w-8 h-8 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-warm-gray/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
+                class="w-10 h-10 flex items-center justify-center border border-gold/20 hover:border-gold/60 text-sandstone/70 hover:text-gold transition-all duration-300 hover:bg-gold/5 hover:scale-110">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
@@ -473,14 +488,14 @@ const jsonLd = JSON.stringify({
         </div>
 
         <!-- Bottom bar -->
-        <div class="border-t border-gold/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p class="font-sans text-xs text-warm-gray/60">
+        <div class="border-t border-bone pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="font-sans text-xs text-sandstone/70">
             © {new Date().getFullYear()} VEDA Egypt. All rights reserved.
           </p>
           <div class="flex gap-5">
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Impressum</a>
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Privacy Policy</a>
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-warm-gray/60 hover:text-warm-gray transition-colors">Terms & Conditions</a>
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Impressum</a>
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Privacy Policy</a>
+            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>
@@ -491,9 +506,9 @@ const jsonLd = JSON.stringify({
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 60) {
-          navbar?.classList.add('bg-void/95', 'backdrop-blur-md', 'border-b', 'border-gold/10', 'shadow-xl');
+          navbar?.classList.add('shadow-md', 'shadow-earth/5');
         } else {
-          navbar?.classList.remove('bg-void/95', 'backdrop-blur-md', 'border-b', 'border-gold/10', 'shadow-xl');
+          navbar?.classList.remove('shadow-md', 'shadow-earth/5');
         }
       }, { passive: true });
 

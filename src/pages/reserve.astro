@@ -7,29 +7,32 @@ import MainLayout from '../layouts/MainLayout.astro';
   description="Reserve your private Nile journey aboard a VEDA dahabiya. Choose your boat, dates, and tell us your vision."
 >
 
-  <!-- Hero -->
-  <div class="relative bg-void pt-40 pb-20 overflow-hidden">
+  <!-- Hero — dark image banner -->
+  <div class="relative flex items-center min-h-[50vh] pt-40 pb-20 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover opacity-25" />
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager" />
     </div>
-    <div class="absolute inset-0 bg-gradient-to-b from-void/70 via-void/40 to-void"></div>
-    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+    <!-- Dark overlays for legibility -->
+    <div class="absolute inset-0 bg-void/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/50 via-transparent to-void/75"></div>
+    <div class="relative w-full max-w-3xl mx-auto px-6 lg:px-12 text-center">
       <div class="flex items-center justify-center gap-4 mb-6">
-        <span class="h-px w-10 bg-gold/50"></span>
-        <p class="font-sans text-[12px] tracking-[0.32em] uppercase text-gold">Private Booking</p>
-        <span class="h-px w-10 bg-gold/50"></span>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[12px] tracking-[0.32em] uppercase text-gold-light">Private Booking</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
       </div>
-      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+      <h1 class="font-serif text-5xl md:text-6xl text-white font-light tracking-tight leading-tight mb-5"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
         Reserve Your<br /><em class="italic text-gold-pale">Journey</em>
       </h1>
-      <p class="font-sans text-md text-white/60 font-light leading-relaxed max-w-sm mx-auto">
+      <p class="font-sans text-md text-white/75 font-light leading-relaxed max-w-sm mx-auto">
         Tell us your vision. We'll respond within 24 hours with a personalised itinerary and availability.
       </p>
     </div>
   </div>
 
   <!-- Form container -->
-  <div class="bg-void min-h-screen">
+  <div class="bg-linen min-h-screen border-t border-bone">
     <div class="max-w-3xl mx-auto px-6 lg:px-12 py-16">
 
       <!-- Step indicator -->
@@ -42,14 +45,14 @@ import MainLayout from '../layouts/MainLayout.astro';
         <div class="step-line h-px w-16 md:w-24 bg-gold/20 mx-2 mb-5 transition-colors duration-300" id="line-1-2"></div>
         <!-- Step 2 -->
         <div class="step-marker flex flex-col items-center" data-step="2">
-          <div class="step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300">2</div>
-          <p class="font-sans text-[12px] tracking-[0.2em] uppercase text-white/30 mt-2">Your Details</p>
+          <div class="step-dot w-8 h-8 rounded-full border border-bone flex items-center justify-center font-sans text-xs text-sandstone/50 transition-all duration-300">2</div>
+          <p class="font-sans text-[12px] tracking-[0.2em] uppercase text-sandstone/50 mt-2">Your Details</p>
         </div>
         <div class="step-line h-px w-16 md:w-24 bg-gold/20 mx-2 mb-5 transition-colors duration-300" id="line-2-3"></div>
         <!-- Step 3 -->
         <div class="step-marker flex flex-col items-center" data-step="3">
-          <div class="step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300">3</div>
-          <p class="font-sans text-[12px] tracking-[0.2em] uppercase text-white/30 mt-2">Confirm</p>
+          <div class="step-dot w-8 h-8 rounded-full border border-bone flex items-center justify-center font-sans text-xs text-sandstone/50 transition-all duration-300">3</div>
+          <p class="font-sans text-[12px] tracking-[0.2em] uppercase text-sandstone/50 mt-2">Confirm</p>
         </div>
       </div>
 
@@ -86,7 +89,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                     class="sr-only"
                     required
                   />
-                  <div class="boat-card-inner relative overflow-hidden rounded border border-white/10 transition-all duration-300 group-hover:border-gold/50">
+                  <div class="boat-card-inner relative overflow-hidden rounded border border-bone transition-all duration-300 group-hover:border-gold/50">
                     <div class="aspect-[3/4] overflow-hidden">
                       <img src={boat.img} alt={boat.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                     </div>
@@ -113,12 +116,12 @@ import MainLayout from '../layouts/MainLayout.astro';
             <div>
               <label for="arrival" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Arrival Date</label>
               <input type="date" id="arrival" name="arrival_date" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
             </div>
             <div>
               <label for="departure" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Departure Date</label>
               <input type="date" id="departure" name="departure_date" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors" />
             </div>
           </div>
 
@@ -126,17 +129,17 @@ import MainLayout from '../layouts/MainLayout.astro';
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
             <div>
               <label for="guests" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Number of Guests</label>
-              <div class="flex items-center border border-white/10 bg-forest">
-                <button type="button" id="guests-minus" class="w-11 h-11 flex items-center justify-center text-white/50 hover:text-gold transition-colors text-lg" aria-label="Decrease guests">−</button>
+              <div class="flex items-center border border-bone bg-white">
+                <button type="button" id="guests-minus" class="w-11 h-11 flex items-center justify-center text-sandstone hover:text-gold transition-colors text-lg" aria-label="Decrease guests">−</button>
                 <input type="number" id="guests" name="guests" value="2" min="1" max="50" required
-                  class="flex-1 bg-transparent text-ivory text-sm text-center py-3 focus:outline-none" />
-                <button type="button" id="guests-plus" class="w-11 h-11 flex items-center justify-center text-white/50 hover:text-gold transition-colors text-lg" aria-label="Increase guests">+</button>
+                  class="flex-1 bg-transparent text-earth text-sm text-center py-3 focus:outline-none" />
+                <button type="button" id="guests-plus" class="w-11 h-11 flex items-center justify-center text-sandstone hover:text-gold transition-colors text-lg" aria-label="Increase guests">+</button>
               </div>
             </div>
             <div>
               <label for="trip-type" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Trip Focus</label>
               <select id="trip-type" name="trip_type" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
                 <option value="" disabled selected>Select focus...</option>
                 <option value="Cultural & Temples">Cultural & Temples</option>
                 <option value="Wellness Retreat">Wellness Retreat</option>
@@ -152,7 +155,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
           <div class="flex justify-end">
             <button type="button" id="next-1"
-              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300">
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
               Continue
               <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </button>
@@ -166,13 +169,13 @@ import MainLayout from '../layouts/MainLayout.astro';
             <div>
               <label for="first-name" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">First Name</label>
               <input type="text" id="first-name" name="first_name" autocomplete="given-name" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
                 placeholder="Your first name" />
             </div>
             <div>
               <label for="last-name" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Last Name</label>
               <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
                 placeholder="Your last name" />
             </div>
           </div>
@@ -181,13 +184,13 @@ import MainLayout from '../layouts/MainLayout.astro';
             <div>
               <label for="email" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Email Address</label>
               <input type="email" id="email" name="email" autocomplete="email" required
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
                 placeholder="you@example.com" />
             </div>
             <div>
-              <label for="phone" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Phone <span class="text-white/30 normal-case tracking-normal text-xs ml-1">(optional)</span></label>
+              <label for="phone" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Phone <span class="text-sandstone/70 normal-case tracking-normal text-xs ml-1">(optional)</span></label>
               <input type="tel" id="phone" name="phone" autocomplete="tel"
-                class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
                 placeholder="+1 234 567 890" />
             </div>
           </div>
@@ -195,14 +198,14 @@ import MainLayout from '../layouts/MainLayout.astro';
           <div class="mb-4">
             <label for="country" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Country</label>
             <input type="text" id="country" name="country" autocomplete="country-name"
-              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors"
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
               placeholder="Where are you travelling from?" />
           </div>
 
           <div class="mb-4">
             <label for="heard" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">How did you hear about us?</label>
             <select id="heard" name="heard_from"
-              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 focus:outline-none focus:border-gold/60 transition-colors appearance-none">
               <option value="" disabled selected>Select...</option>
               <option value="Instagram">Instagram</option>
               <option value="Google">Google</option>
@@ -216,25 +219,25 @@ import MainLayout from '../layouts/MainLayout.astro';
 
           <div class="mb-10">
             <label for="message" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">
-              Your Vision <span class="text-white/30 normal-case tracking-normal text-xs ml-1">(optional)</span>
+              Your Vision <span class="text-sandstone/70 normal-case tracking-normal text-xs ml-1">(optional)</span>
             </label>
             <textarea id="message" name="message" rows="4"
-              class="field w-full bg-forest border border-white/10 text-ivory text-sm px-4 py-3 placeholder:text-white/30 focus:outline-none focus:border-gold/60 transition-colors resize-none leading-relaxed"
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors resize-none leading-relaxed"
               placeholder="Tell us about your dream trip — special occasions, dietary needs, wellness goals, anything that matters to you..."></textarea>
           </div>
 
           <!-- Privacy note -->
-          <p class="font-sans text-xs text-warm-gray/50 mb-8 leading-relaxed">
+          <p class="font-sans text-xs text-sandstone mb-8 leading-relaxed">
             Your details are used only to prepare your personalised itinerary. We never share or sell your information.
           </p>
 
           <div class="flex items-center justify-between">
             <button type="button" id="back-2"
-              class="font-sans text-xs tracking-ultra uppercase text-white/40 hover:text-gold transition-colors">
+              class="font-sans text-xs tracking-ultra uppercase text-sandstone hover:text-gold transition-colors">
               ← Back
             </button>
             <button type="button" id="next-2"
-              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300">
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
               Review
               <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </button>
@@ -244,34 +247,34 @@ import MainLayout from '../layouts/MainLayout.astro';
         <!-- ── STEP 3: Review & confirm ───────────────────── -->
         <div id="step-3" class="form-step hidden">
 
-          <div class="border border-gold/15 p-6 md:p-8 mb-8">
+          <div class="border border-bone bg-sand rounded-xl p-6 md:p-8 mb-8">
             <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-6">Booking Summary</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Boat</p>
-                <p id="summary-boat" class="font-serif text-ivory text-lg font-light">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Boat</p>
+                <p id="summary-boat" class="font-serif text-earth text-lg font-light">—</p>
               </div>
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Trip Focus</p>
-                <p id="summary-type" class="font-serif text-ivory text-lg font-light">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Trip Focus</p>
+                <p id="summary-type" class="font-serif text-earth text-lg font-light">—</p>
               </div>
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Arrival</p>
-                <p id="summary-arrival" class="font-serif text-ivory text-lg font-light">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Arrival</p>
+                <p id="summary-arrival" class="font-serif text-earth text-lg font-light">—</p>
               </div>
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Departure</p>
-                <p id="summary-departure" class="font-serif text-ivory text-lg font-light">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Departure</p>
+                <p id="summary-departure" class="font-serif text-earth text-lg font-light">—</p>
               </div>
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Guests</p>
-                <p id="summary-guests" class="font-serif text-ivory text-lg font-light">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Guests</p>
+                <p id="summary-guests" class="font-serif text-earth text-lg font-light">—</p>
               </div>
               <div>
-                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-white/30 mb-1">Contact</p>
-                <p id="summary-name" class="font-serif text-ivory text-lg font-light">—</p>
-                <p id="summary-email" class="font-sans text-warm-gray text-sm">—</p>
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Contact</p>
+                <p id="summary-name" class="font-serif text-earth text-lg font-light">—</p>
+                <p id="summary-email" class="font-sans text-sandstone text-sm">—</p>
               </div>
             </div>
           </div>
@@ -287,7 +290,7 @@ import MainLayout from '../layouts/MainLayout.astro';
               ].map((step, i) => (
                 <div class="flex items-start gap-4">
                   <span class="font-sans text-[10px] text-gold/60 mt-0.5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
-                  <p class="font-sans text-sm text-warm-gray font-light leading-relaxed">{step}</p>
+                  <p class="font-sans text-sm text-sandstone font-light leading-relaxed">{step}</p>
                 </div>
               ))}
             </div>
@@ -300,11 +303,11 @@ import MainLayout from '../layouts/MainLayout.astro';
 
           <div class="flex items-center justify-between">
             <button type="button" id="back-3"
-              class="font-sans text-xs tracking-ultra uppercase text-white/40 hover:text-gold transition-colors">
+              class="font-sans text-xs tracking-ultra uppercase text-sandstone hover:text-gold transition-colors">
               ← Edit
             </button>
             <button type="submit" id="submit-btn"
-              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
+              class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
               <span id="submit-label">Send Enquiry</span>
               <span class="group-hover:translate-x-1 transition-transform duration-300" id="submit-arrow">→</span>
               <span id="submit-spinner" class="hidden w-4 h-4 border border-white/40 border-t-white rounded-full animate-spin"></span>
@@ -324,19 +327,19 @@ import MainLayout from '../layouts/MainLayout.astro';
           </div>
         </div>
         <p class="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-4">Enquiry Received</p>
-        <h2 class="font-serif text-4xl md:text-5xl text-ivory font-light mb-5 leading-tight">
-          Thank you.<br /><em class="italic text-gold-pale">We'll be in touch.</em>
+        <h2 class="font-serif text-4xl md:text-5xl text-earth font-light mb-5 leading-tight">
+          Thank you.<br /><em class="italic text-gold">We'll be in touch.</em>
         </h2>
-        <p class="font-sans text-sm text-warm-gray font-light leading-relaxed max-w-sm mx-auto mb-10">
+        <p class="font-sans text-sm text-sandstone font-light leading-relaxed max-w-sm mx-auto mb-10">
           Our team will review your enquiry and send a personalised itinerary within 24 hours.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/"
-            class="inline-flex items-center justify-center gap-2 border border-gold/30 hover:border-gold text-gold/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-7 py-3.5 transition-all duration-300">
+            class="inline-flex items-center justify-center gap-2 border border-gold/40 hover:border-gold text-gold hover:bg-gold/5 font-sans text-xs tracking-ultra uppercase px-7 py-3.5 rounded-full transition-all duration-300">
             Back to Home
           </a>
           <a href="/dahabiyas"
-            class="inline-flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold/20 text-gold font-sans text-xs tracking-ultra uppercase px-7 py-3.5 transition-all duration-300">
+            class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-3.5 rounded-full transition-all duration-300">
             Explore Our Fleet →
           </a>
         </div>
@@ -349,8 +352,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <style>
   /* Form field base */
-  .field { color-scheme: dark; }
-  .field option { background: #0e1a0e; }
+  .field { color-scheme: light; }
+  .field option { background: #FEFCF7; color: #2C2016; }
 
   /* Boat card selected state */
   input[type="radio"]:checked + .boat-card-inner {
@@ -374,8 +377,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 
   /* Date input styling */
   input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.6) sepia(1) saturate(0.5) hue-rotate(10deg);
-    opacity: 0.6;
+    filter: sepia(1) saturate(0.6) hue-rotate(5deg);
+    opacity: 0.55;
     cursor: pointer;
   }
 </style>
@@ -429,9 +432,9 @@ import MainLayout from '../layouts/MainLayout.astro';
         label.className = 'font-sans text-[12px] tracking-[0.2em] uppercase text-gold mt-2';
       } else {
         // Future
-        dot.className = 'step-dot w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-sans text-xs text-white/40 transition-all duration-300';
+        dot.className = 'step-dot w-8 h-8 rounded-full border border-bone flex items-center justify-center font-sans text-xs text-sandstone/50 transition-all duration-300';
         dot.textContent = s;
-        label.className = 'font-sans text-[12px] tracking-[0.2em] uppercase text-white/30 mt-2';
+        label.className = 'font-sans text-[12px] tracking-[0.2em] uppercase text-sandstone/50 mt-2';
       }
     });
     // Update connector lines

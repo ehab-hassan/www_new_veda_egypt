@@ -21,7 +21,7 @@ const notIncluded = [
 ];
 ---
 
-<section id="included" class="bg-void py-24 lg:py-32 border-t border-gold/10">
+<section id="included" class="bg-linen py-24 lg:py-32 border-t border-bone">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
     <!-- Section header -->
@@ -31,16 +31,16 @@ const notIncluded = [
           <span class="gold-line"></span>
           <p class="font-sans text-sm tracking-ultra uppercase text-gold">What's Included</p>
         </div>
-        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory font-light tracking-tight leading-[1.05] max-w-xl">
-          The rate covers<br /><em class="italic text-gold-pale">everything onboard.</em>
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-earth font-light tracking-tight leading-[1.05] max-w-xl">
+          The rate covers<br /><em class="italic text-gold">everything onboard.</em>
         </h2>
       </div>
       <div class="hidden lg:flex items-end justify-end reveal reveal-delay-2">
-        <p class="font-sans text-base text-warm-gray font-light leading-relaxed max-w-sm">
+        <p class="font-sans text-base text-sandstone font-light leading-relaxed max-w-sm">
           A VEDA charter is all-inclusive in the truest sense — your cabin, every meal, the entire crew. No surprises at check-out.
         </p>
       </div>
-      <p class="lg:hidden font-sans text-base text-warm-gray font-light leading-relaxed max-w-2xl mt-6 reveal reveal-delay-1">
+      <p class="lg:hidden font-sans text-base text-sandstone font-light leading-relaxed max-w-2xl mt-6 reveal reveal-delay-1">
         A VEDA charter is all-inclusive in the truest sense — your cabin, every meal, the entire crew. No surprises at check-out.
       </p>
     </div>
@@ -49,8 +49,8 @@ const notIncluded = [
     <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16">
 
       <!-- INCLUDED — primary card -->
-      <div class="border border-gold/20 bg-forest-mid/40 p-8 lg:p-10 reveal">
-        <p class="font-sans text-xs tracking-ultra uppercase text-gold-light mb-8">
+      <div class="border border-bone bg-sand p-8 lg:p-10 reveal">
+        <p class="font-sans text-xs tracking-ultra uppercase text-gold mb-8">
           Included in your charter
         </p>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
@@ -62,8 +62,8 @@ const notIncluded = [
                 </svg>
               </span>
               <div>
-                <p class="font-serif text-lg text-ivory font-light leading-snug mb-1">{item.title}</p>
-                <p class="font-sans text-sm text-warm-gray font-light leading-relaxed">{item.desc}</p>
+                <p class="font-serif text-lg text-earth font-light leading-snug mb-1">{item.title}</p>
+                <p class="font-sans text-sm text-sandstone font-light leading-relaxed">{item.desc}</p>
               </div>
             </li>
           ))}
@@ -71,28 +71,28 @@ const notIncluded = [
       </div>
 
       <!-- NOT INCLUDED — secondary card -->
-      <div class="border border-gold/10 p-8 lg:p-10 reveal reveal-delay-2">
-        <p class="font-sans text-xs tracking-ultra uppercase text-warm-gray/70 mb-8">
+      <div class="border border-bone p-8 lg:p-10 reveal reveal-delay-2">
+        <p class="font-sans text-xs tracking-ultra uppercase text-sandstone/70 mb-8">
           Not included
         </p>
         <ul class="space-y-5">
           {notIncluded.map((item) => (
-            <li class="flex items-start gap-4 border-b border-gold/10 pb-4 last:border-0 last:pb-0">
-              <span class="flex-shrink-0 w-5 h-5 mt-0.5 border border-warm-gray/30 flex items-center justify-center">
-                <span class="block w-2 h-px bg-warm-gray/50"></span>
+            <li class="flex items-start gap-4 border-b border-bone pb-4 last:border-0 last:pb-0">
+              <span class="flex-shrink-0 w-5 h-5 mt-0.5 border border-sandstone/40 flex items-center justify-center">
+                <span class="block w-2 h-px bg-sandstone/50"></span>
               </span>
-              <p class="font-sans text-sm text-ivory/80 font-light leading-snug">{item.title}</p>
+              <p class="font-sans text-sm text-earth/80 font-light leading-snug">{item.title}</p>
             </li>
           ))}
         </ul>
-        <p class="font-sans text-xs text-warm-gray/60 font-light mt-8 leading-relaxed">
+        <p class="font-sans text-xs text-sandstone/70 font-light mt-8 leading-relaxed">
           We're happy to arrange any of the above on your behalf — just ask.
         </p>
       </div>
     </div>
 
     <!-- Subtle reassurance line -->
-    <p class="text-center font-sans text-xs tracking-ultra uppercase text-warm-gray/50 mt-14 reveal">
+    <p class="text-center font-sans text-xs tracking-ultra uppercase text-sandstone/60 mt-14 reveal">
       <span class="inline-block">·</span> Custom inclusions on request <span class="inline-block">·</span>
     </p>
 
