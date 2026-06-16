@@ -1,0 +1,271 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+const SITE = 'https://www.veda-egypt.com';
+
+const all = (await getCollection('itineraries', ({ data }) => !data.draft)).sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.nights - b.data.nights,
+);
+
+// Group by experience tier — the natural mental model for browsing.
+const GROUPS = [
+  {
+    key: 'Classic Cruise',
+    label: 'Classic Cruises',
+    blurb: 'The timeless Aswan–Luxor voyage, from short escapes to unhurried weeks.',
+  },
+  {
+    key: 'Dendera & Abydos',
+    label: 'Dendera & Abydos',
+    blurb: 'The classic route deepened with a rare pilgrimage to two sacred cult temples.',
+  },
+  {
+    key: 'Grand Journeys',
+    label: 'Grand Journeys',
+    blurb: 'Extended voyages connecting Cairo with the temple cities of the south.',
+  },
+] as const;
+
+// Map enum value → group (Grand Journey enum → "Grand Journeys" tier)
+function tierOf(experience: string): string {
+  if (experience === 'Grand Journey') return 'Grand Journeys';
+  return experience;
+}
+
+const grouped = GROUPS.map((g) => ({
+  ...g,
+  items: all.filter((it) => tierOf(it.data.experience) === g.key),
+})).filter((g) => g.items.length > 0);
+
+function routeSummary(routes: { from: string; to: string; label: string }[]): string {
+  if (routes.length > 1) return `${routes[0].from} ⇄ ${routes[0].to}`;
+  return routes[0].label;
+}
+function directionNote(routes: { label: string }[]): string | null {
+  if (routes.length > 1) return 'Both directions';
+  return null;
+}
+
+const itinerarySchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${SITE}/itineraries#list`,
+  name: 'VEDA Egypt Nile Cruise Itineraries',
+  numberOfItems: all.length,
+  itemListElement: all.map((it, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITE}/itineraries/${it.id}`,
+    name: `${it.data.nights} Nights — ${it.data.title}`,
+  })),
+});
+---
+
+<MainLayout
+  title="Itineraries — VEDA Egypt"
+  description="Explore VEDA's collection of handcrafted Nile cruise itineraries, from classic voyages to extended journeys through Egypt's most remarkable landscapes and monuments."
+  extraSchema={itinerarySchema}
+>
+
+  <!-- ── Hero ─────────────────────────────────────── -->
+  <div class="relative flex items-center min-h-[64vh] pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager"/>
+    </div>
+    <div class="absolute inset-0 bg-void/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/80"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold-light">Nile Voyages</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight mb-7"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Itineraries
+      </h1>
+      <p class="font-sans text-base md:text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
+        Explore our collection of handcrafted Nile cruise itineraries, from classic voyages to
+        extended journeys through Egypt's most remarkable landscapes and monuments.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Segmented control (single axis — by experience) ── -->
+  <div id="itin-nav" class="sticky top-20 z-30 bg-linen/95 backdrop-blur-md border-y border-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex items-center gap-2 overflow-x-auto py-4 no-scrollbar">
+        <button type="button" class="seg-btn is-active" data-filter="all">All Voyages</button>
+        {grouped.map((g) => (
+          <button type="button" class="seg-btn" data-filter={g.key}>{g.label}</button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Grouped listing ──────────────────────────── -->
+  <section class="bg-linen pb-24 lg:pb-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      {grouped.map((g) => (
+        <div class="itin-group pt-16 lg:pt-24" data-group={g.key}>
+          <!-- Group header -->
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 reveal">
+            <div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="h-px w-8 bg-gold/50"></span>
+                <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">{g.label}</p>
+              </div>
+              <h2 class="font-serif text-3xl md:text-4xl text-earth font-light tracking-tight leading-tight max-w-xl">
+                {g.blurb}
+              </h2>
+            </div>
+            <p class="font-sans text-sm text-sandstone whitespace-nowrap">
+              {g.items.length} {g.items.length === 1 ? 'itinerary' : 'itineraries'}
+            </p>
+          </div>
+
+          <!-- Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {g.items.map((it) => (
+              <article class="itin-card group flex flex-col bg-sand border border-bone rounded-2xl overflow-hidden hover:border-gold/40 transition-all duration-500 reveal">
+                <a href={`/itineraries/${it.id}`} class="relative block overflow-hidden" style="aspect-ratio:16/10;">
+                  <img
+                    src={it.data.cardImage}
+                    alt={it.data.title}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-void/75 via-void/10 to-transparent"></div>
+                  <div class="absolute top-5 left-5 flex flex-wrap gap-2">
+                    <span class="bg-void/70 backdrop-blur-sm border border-gold/25 px-3 py-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-gold-pale">
+                      {it.data.nights} Nights · {it.data.days} Days
+                    </span>
+                    {it.data.comingSoon && (
+                      <span class="bg-void/70 backdrop-blur-sm border border-white/20 px-3 py-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-white/80">
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
+                  <div class="absolute bottom-5 left-5 right-5">
+                    <h3 class="font-serif text-3xl text-white font-light leading-tight" style="text-shadow:0 2px 18px rgba(0,0,0,.5)">
+                      {it.data.title}
+                    </h3>
+                  </div>
+                </a>
+
+                <div class="flex flex-col flex-1 p-7">
+                  <div class="flex items-center gap-3 mb-4">
+                    <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold">{routeSummary(it.data.routes)}</p>
+                    {directionNote(it.data.routes) && (
+                      <span class="font-sans text-[10px] tracking-[0.18em] uppercase text-sandstone border border-bone rounded-full px-2.5 py-0.5">
+                        {directionNote(it.data.routes)}
+                      </span>
+                    )}
+                  </div>
+                  <p class="font-sans text-base text-sandstone font-light leading-relaxed mb-5">
+                    {it.data.summary}
+                  </p>
+
+                  <ul class="flex flex-wrap gap-x-2 gap-y-2 mb-7">
+                    {it.data.highlights.map((h) => (
+                      <li class="font-sans text-[11px] tracking-wide text-earth/70 border border-bone rounded-full px-3 py-1">
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div class="mt-auto pt-2">
+                    <a
+                      href={`/itineraries/${it.id}`}
+                      class="group/btn inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors"
+                    >
+                      View Itinerary
+                      <span class="group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────── -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/more_than_plan.jpg" alt="Nile at sunset" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-forest/85 to-void/95"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-28 lg:py-40 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Tailored to You</p>
+      <h2 class="font-serif text-4xl md:text-6xl text-white font-light tracking-tight leading-[1.05] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        Can't find the<br />perfect voyage?
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Every VEDA journey is private and flexible. Tell us your dates and intentions, and we'll craft an itinerary around you.
+      </p>
+      <a
+        href="/reserve"
+        class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 reveal reveal-delay-3"
+      >
+        Request a Custom Itinerary
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .seg-btn {
+    flex-shrink: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--earth);
+    background: transparent;
+    border: 1px solid var(--bone);
+    border-radius: 9999px;
+    padding: 0.55rem 1.25rem;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .seg-btn:hover { border-color: rgba(var(--gold-rgb) / 0.5); color: var(--gold); }
+  .seg-btn.is-active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+  }
+  .itin-group.is-hidden { display: none; }
+</style>
+
+<script>
+  const nav = document.getElementById('itin-nav');
+  if (nav) {
+    const btns = Array.from(nav.querySelectorAll<HTMLButtonElement>('.seg-btn'));
+    const groups = Array.from(document.querySelectorAll<HTMLElement>('.itin-group'));
+
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
+        btns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        groups.forEach((g) => {
+          const show = filter === 'all' || g.dataset.group === filter;
+          g.classList.toggle('is-hidden', !show);
+        });
+        // Re-trigger reveal for any cards now visible
+        document.querySelectorAll('.itin-group:not(.is-hidden) .reveal').forEach((el) => el.classList.add('visible'));
+      });
+    });
+  }
+</script>

@@ -1,0 +1,77 @@
+{
+  "title": "Cairo ⇄ Aswan",
+  "summary": "The entire length of the Nile — thirteen nights linking the Pyramids of Giza with the temples of Aswan, the most complete dahabiya voyage we offer.",
+  "description": "Discover the whole river aboard a traditional dahabiya, towed for the long northern reaches and sailing the classic south. From Giza and the Fayoum through Middle Egypt's hidden tombs to Abydos, Dendera, Thebes, Edfu, Kom Ombo, and Aswan — daily international buffet dining and the signature sunset tea on deck throughout.",
+  "nights": 13,
+  "days": 14,
+  "experience": "Grand Journey",
+  "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
+  "highlights": ["Giza Pyramids", "Tell el-Amarna", "Abydos", "Dendera", "Valley of the Kings", "Philae Temple"],
+  "hero": "/images/dsc-1797-pano-1280x800.jpg",
+  "cardImage": "/images/top_river2.jpg",
+  "routeOverview": "Thirteen nights from the Mediterranean delta to the Nubian south — Giza, Fayoum, Tell el-Amarna and Beni Hassan, Abydos and Dendera, the monuments of Luxor, then Edfu, Kom Ombo, and the island temple of Philae at Aswan. Sailable Cairo → Aswan (southbound, against the current) or Aswan → Cairo (northbound, with the current).",
+  "facts": [
+    { "label": "Vessel", "value": "Dahabiya under tow" },
+    { "label": "Dining", "value": "Daily buffet · sunset tea" }
+  ],
+  "routes": [
+    {
+      "label": "Cairo → Aswan",
+      "from": "Cairo",
+      "to": "Aswan",
+      "timeline": [
+        { "title": "Arrival in Cairo", "places": ["Cairo"], "description": "Arrival at Cairo International Airport and transfer to your hotel or directly to your dahabiya for embarkation, with a welcome dinner on board. Overnight in Cairo.", "image": "/images/egypte-veda-214-van-577-2000x709.jpg" },
+        { "title": "Cairo Sightseeing", "places": ["Giza Pyramids", "Egyptian Museum"], "description": "Explore the legendary Pyramids of Giza and the treasures of the Egyptian Museum. All meals on board, including sunset tea. Overnight in Cairo.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
+        { "title": "Sail to Beni Suef", "places": ["Beni Suef"], "description": "Begin sailing south through the fertile landscapes of Middle Egypt. Sailing: approx. 120 km · 17–18 hrs against the current. Overnight in Beni Suef.", "image": "/images/top_river2.jpg" },
+        { "title": "Fayoum Excursion", "places": ["Hawara Pyramid", "Meidum Pyramid"], "description": "Excursion to the ancient pyramids of Hawara and Meidum. Sunset tea and dinner on board. Overnight in Beni Suef.", "image": "/images/more_than_plan.jpg" },
+        { "title": "Sail to Minya — Tuna el-Gebel & Ashmunein", "places": ["Tuna el-Gebel", "Ashmunein"], "description": "Continue south to Minya, with visits to Tuna el-Gebel and Ashmunein. Sailing: approx. 145 km · 20–21 hrs against the current. Overnight in Minya.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
+        { "title": "Tell el-Amarna & Beni Hassan", "places": ["Tell el-Amarna", "Beni Hassan"], "description": "Explore Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3) — followed by the remarkable tombs of Beni Hassan. Overnight in Minya.", "image": "/images/aswan-temples-1280x800.jpg" },
+        { "title": "Sail to Sohag via Asyut", "places": ["Sohag", "Asyut"], "description": "A full day sailing south through Upper Egypt toward Sohag via Asyut. Sailing: approx. 225 km · 31–33 hrs against the current. Overnight in Sohag.", "image": "/images/top_river2.jpg" },
+        { "title": "Abydos — Sail to Qena", "places": ["Abydos", "Temple of Seti I"], "description": "Morning excursion to the magnificent Temple of Abydos before continuing south toward Qena. Sailing: approx. 160 km · 22–23 hrs against the current. Overnight in Qena.", "image": "/images/photo-2019-03-23-11.19.32-1280x800.jpg" },
+        { "title": "Dendera Temple — Sail to Luxor", "places": ["Dendera Temple"], "description": "Visit the beautifully preserved Temple of Dendara before sailing onward to Luxor. Sailing: approx. 65 km · 9–10 hrs against the current. Sunset tea on deck upon arrival. Overnight in Luxor.", "image": "/images/lightshow-1280x800.jpg" },
+        { "title": "Luxor Sightseeing", "places": ["Valley of the Kings", "Temple of Hatshepsut", "Karnak Temple", "Luxor Temple"], "description": "Explore the wonders of ancient Thebes — the Valley of the Kings, the mortuary Temple of Hatshepsut, the Karnak Temple complex, and Luxor Temple. Overnight in Luxor.", "image": "/images/karnak-1280x800.jpg" },
+        { "title": "Sail to Edfu", "places": ["Edfu"], "description": "Continue sailing southward toward Edfu. Sailing: approx. 110 km · 15–17 hrs against the current. Overnight in Edfu.", "image": "/images/top_river2.jpg" },
+        { "title": "Edfu Temple — Sail to Kom Ombo & Aswan", "places": ["Edfu Temple", "Kom Ombo"], "description": "Visit the impressive Temple of Edfu, then sail to Kom Ombo for its unique double temple before continuing to Aswan. Sailing: approx. 105 km · 14–15 hrs against the current. Farewell dinner on board. Overnight in Aswan.", "image": "/images/photo-2019-03-23-11.23.56-1280x800.jpg" },
+        { "title": "Aswan Sightseeing", "places": ["High Dam", "Philae Temple", "Nubian Museum"], "description": "Visit the remarkable Aswan High Dam, the beautiful island Temple of Philae, and the fascinating Nubian Museum. Overnight in Aswan.", "image": "/images/aswan-temple-1280x800.jpg" },
+        { "title": "Disembarkation & Departure", "places": ["Aswan"], "description": "Disembarkation and transfer to Aswan Airport for your onward flight home.", "image": "/images/more_than_plan.jpg" }
+      ]
+    },
+    {
+      "label": "Aswan → Cairo",
+      "from": "Aswan",
+      "to": "Cairo",
+      "timeline": [
+        { "title": "Arrival in Cairo", "places": ["Cairo"], "description": "Arrival and transfer to your hotel. Overnight in Cairo.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
+        { "title": "Fly to Aswan & Embarkation", "places": ["Aswan"], "description": "Flight to Aswan and embarkation aboard your dahabiya. Overnight in Aswan.", "image": "/images/egypte-veda-214-van-577-2000x709.jpg" },
+        { "title": "Aswan Sightseeing", "places": ["High Dam", "Philae Temple", "Nubian Museum"], "description": "Visit the High Dam, the island Temple of Philae, and the Nubian Museum. Overnight in Aswan.", "image": "/images/aswan-temple-1280x800.jpg" },
+        { "title": "Sail to Kom Ombo & Edfu", "places": ["Kom Ombo", "Edfu"], "description": "Sail north to Kom Ombo for its unique double temple, then continue to Edfu. Sailing: approx. 105 km · 12–13 hrs with partial current assistance. Overnight in Edfu.", "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg" },
+        { "title": "Edfu Temple — Sail to Luxor", "places": ["Edfu Temple"], "description": "Visit the Temple of Edfu before sailing to Luxor. Sailing: approx. 110 km · 13–14 hrs. Overnight in Luxor.", "image": "/images/photo-2019-03-23-11.23.56-1280x800.jpg" },
+        { "title": "Luxor Sightseeing", "places": ["Valley of the Kings", "Temple of Hatshepsut", "Karnak Temple", "Luxor Temple"], "description": "Visit the Valley of the Kings, the Temple of Hatshepsut, the Karnak Temple complex, and Luxor Temple. Overnight in Luxor.", "image": "/images/karnak-1280x800.jpg" },
+        { "title": "Sail to Qena — Abydos & Dendera", "places": ["Abydos", "Dendera Temple"], "description": "Continue north to Qena with excursions to the temples of Abydos and Dendara. Sailing: approx. 65 km · 7½–8 hrs with the current. Overnight in Qena.", "image": "/images/photo-2019-03-23-11.19.32-1280x800.jpg" },
+        { "title": "Sail to Sohag via Naga Hammadi", "places": ["Sohag"], "description": "A full sailing day north past the Naga Hammadi barrage toward Sohag. Sailing: approx. 160 km · 18–19 hrs with the current. Overnight in Sohag.", "image": "/images/top_river2.jpg" },
+        { "title": "Sail to Minya", "places": ["Minya"], "description": "A full day sailing north along the Nile Valley. Sailing: approx. 225 km · 26–28 hrs with the current. Overnight in Minya.", "image": "/images/top_river2.jpg" },
+        { "title": "Tell el-Amarna, Tuna el-Gebel & Ashmunein", "places": ["Tell el-Amarna", "Tuna el-Gebel", "Ashmunein"], "description": "Explore Tell el-Amarna and its Northern Tombs, including the Tomb of Ahmose, followed by Tuna el-Gebel and Ashmunein. Overnight in Minya.", "image": "/images/aswan-temples-1280x800.jpg" },
+        { "title": "Beni Hassan — Sail to Beni Suef", "places": ["Beni Hassan"], "description": "Visit the rock-cut tombs of Beni Hassan before continuing north. Sailing: approx. 145 km · 16–18 hrs with the current. Overnight in Beni Suef.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
+        { "title": "Fayoum Excursion — Sail to Cairo", "places": ["Hawara Pyramid", "Meidum Pyramid"], "description": "Visit the Hawara and Meidum pyramids before sailing onward to Cairo. Sailing: approx. 120 km · 14–15 hrs with the current. Overnight in Cairo.", "image": "/images/more_than_plan.jpg" },
+        { "title": "Cairo Sightseeing", "places": ["Giza Pyramids", "Egyptian Museum"], "description": "Tour the Pyramids of Giza and the Egyptian Museum. Overnight in Cairo.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
+        { "title": "Disembarkation & Departure", "places": ["Cairo"], "description": "Transfer to the airport for your onward international flight.", "image": "/images/more_than_plan.jpg" }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is this the most complete Nile itinerary?",
+      "a": "Yes — thirteen nights covers the entire navigable Nile between Cairo and Aswan, combining Middle Egypt's rarely-seen monuments with the classic temples of the south, all aboard a single traditional dahabiya."
+    },
+    {
+      "q": "How does the towing work, and why?",
+      "a": "For the long northern reaches a support tugboat tows the dahabiya, allowing an authentic, leisurely cruise over distances no sailing dahabiya could cover alone. Southbound (Cairo → Aswan) runs against the current and is around 15–20% slower than the northbound direction."
+    },
+    {
+      "q": "Which direction should we choose?",
+      "a": "Both visit the same sites. Cairo → Aswan builds gradually toward the southern temples; Aswan → Cairo flies you south to begin and sails home with the current. We tailor the direction to your flights and preferences."
+    }
+  ],
+  "featured": false,
+  "draft": false
+}

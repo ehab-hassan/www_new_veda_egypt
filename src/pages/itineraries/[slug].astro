@@ -1,0 +1,391 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('itineraries', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const SITE = 'https://www.veda-egypt.com';
+const { entry } = Astro.props;
+const it = entry.data;
+
+// Map a vessel display name ("Veda I") to its fleet anchor ("veda-1").
+const ROMAN: Record<string, string> = { I: '1', II: '2', III: '3', IV: '4' };
+function vesselHref(name: string): string {
+  const roman = name.trim().split(/\s+/).pop() ?? '';
+  return `/dahabiyas#veda-${ROMAN[roman] ?? roman.toLowerCase()}`;
+}
+
+// Quick facts for a given route — duration + route-derived, then shared extras.
+function factsFor(route: (typeof it.routes)[number]) {
+  return [
+    { label: 'Duration', value: `${it.nights} Nights · ${it.days} Days` },
+    { label: 'Route', value: route.label },
+    { label: 'Embark', value: route.from },
+    { label: 'Disembark', value: route.to },
+    ...it.facts,
+  ];
+}
+
+const multiRoute = it.routes.length > 1;
+
+const faqSchema =
+  it.faq.length > 0
+    ? JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': `${SITE}/itineraries/${entry.id}#faq`,
+        mainEntity: it.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      })
+    : undefined;
+
+const tripSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${SITE}/itineraries/${entry.id}#trip`,
+  name: `${it.nights} Nights — ${it.title}`,
+  description: it.summary,
+  image: `${SITE}${it.hero}`,
+  url: `${SITE}/itineraries/${entry.id}`,
+  touristType: ['Private charter', 'Families', 'Couples', 'Retreat groups'],
+  itinerary: it.routes[0].timeline.map((d, i) => ({
+    '@type': 'TouristDestination',
+    name: d.title,
+    description: d.description,
+    position: i + 1,
+  })),
+  provider: { '@type': 'TravelAgency', name: 'VEDA Egypt', url: SITE },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    url: `${SITE}/reserve`,
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      description: 'On request — quoted per group, season and length of stay.',
+    },
+  },
+});
+
+const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
+---
+
+<MainLayout
+  title={`${it.title} — ${it.nights} Nights · VEDA Egypt`}
+  description={it.summary}
+  ogImage={it.hero}
+  extraSchema={extraSchema}
+>
+
+  <!-- 1 ── Hero ──────────────────────────────────── -->
+  <div class="relative flex items-end min-h-[78vh] pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={it.hero} alt={it.title} class="w-full h-full object-cover object-center" loading="eager"/>
+    </div>
+    <div class="absolute inset-0 bg-void/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/50 via-transparent to-void/85"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12">
+      <a href="/itineraries" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.25em] uppercase text-white/70 hover:text-gold-light transition-colors mb-6">
+        <span>←</span> All Itineraries
+      </a>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold-light bg-void/50 border border-gold/25 px-3 py-1.5">
+          {it.experience}
+        </span>
+        <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-white/85 bg-void/50 border border-white/15 px-3 py-1.5">
+          {it.nights} Nights · {it.days} Days
+        </span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-[1.05] mb-5 max-w-3xl"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        {it.title}
+      </h1>
+      <p class="font-sans text-base md:text-lg text-white/80 font-light max-w-xl leading-relaxed">
+        {it.summary}
+      </p>
+    </div>
+  </div>
+
+  <!-- 2 ── Quick Facts (swap with direction) ─────── -->
+  <section class="bg-forest border-y border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      {it.routes.map((route, ri) => (
+        <dl class="route-facts grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-gold/10" data-route={ri} hidden={ri !== 0}>
+          {factsFor(route).map((f) => (
+            <div class="px-5 py-7 lg:py-9">
+              <dt class="font-sans text-[10px] tracking-[0.24em] uppercase text-gold mb-2">{f.label}</dt>
+              <dd class="font-serif text-lg lg:text-xl text-ivory font-light leading-tight">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3 ── Route Overview + Direction selection ──── -->
+  <section class="bg-linen py-20 lg:py-28 border-b border-bone">
+    <div class={`max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 ${multiRoute ? 'lg:grid-cols-[3fr_2fr]' : ''} gap-12 lg:gap-20 items-start`}>
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Route Overview</p>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight mb-6">
+          The voyage, end to end
+        </h2>
+        <p class="font-sans text-base lg:text-lg text-sandstone font-light leading-relaxed max-w-xl">
+          {it.routeOverview ?? it.description ?? it.summary}
+        </p>
+      </div>
+
+      {multiRoute && (
+        <div class="reveal reveal-delay-1 bg-sand border border-bone rounded-2xl p-7 lg:p-8">
+          <p class="font-sans text-[11px] tracking-[0.24em] uppercase text-gold mb-5">Available Routes</p>
+          <div id="route-toggle" class="flex flex-col gap-3">
+            {it.routes.map((r, i) => (
+              <button
+                type="button"
+                class={`route-opt group flex items-center justify-between gap-4 rounded-xl border px-5 py-4 text-left transition-all duration-300 ${i === 0 ? 'is-active border-gold bg-gold/5' : 'border-bone hover:border-gold/40'}`}
+                data-route={i}
+                aria-pressed={i === 0 ? 'true' : 'false'}
+              >
+                <span class="font-serif text-xl text-earth font-light">{r.label}</span>
+                <span class="route-check font-sans text-gold text-lg">{i === 0 ? '✓' : '→'}</span>
+              </button>
+            ))}
+          </div>
+          <p class="font-sans text-sm text-sandstone/80 font-light leading-relaxed mt-5">
+            The same temples and experiences, with the order tailored to your arrival city. Select a direction
+            and the day-by-day below will follow.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- 4 ── Highlights ────────────────────────────── -->
+  <section class="bg-sand py-20 lg:py-28 border-b border-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex items-center gap-4 mb-10 reveal">
+        <span class="h-px w-8 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Highlights</p>
+      </div>
+      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {it.highlights.map((h, i) => (
+          <li class={`flex items-center gap-3 bg-linen border border-bone rounded-xl px-4 py-5 reveal reveal-delay-${Math.min(i + 1, 6)}`}>
+            <span class="h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0"></span>
+            <span class="font-sans text-sm text-earth font-light leading-snug">{h}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 ── Day-by-Day (one timeline per direction) ─ -->
+  <section class="bg-void py-20 lg:py-28">
+    <div class="max-w-5xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-16 reveal">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Day by Day</p>
+          <span class="h-px w-8 bg-gold/50"></span>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory font-light tracking-tight leading-tight">
+          Your journey, <em class="italic text-gold-pale">unhurried</em>
+        </h2>
+        {multiRoute && !it.comingSoon && (
+          <p class="font-sans text-sm text-warm-gray mt-4">
+            Showing <span id="active-route-label" class="text-gold-pale">{it.routes[0].label}</span>
+          </p>
+        )}
+      </div>
+
+      {it.comingSoon ? (
+        <div class="max-w-xl mx-auto text-center border border-gold/20 rounded-2xl px-8 py-12 bg-forest/40">
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold mb-4">In Preparation</p>
+          <p class="font-serif text-2xl md:text-3xl text-ivory font-light leading-snug mb-5">
+            The full day-by-day for this voyage is being finalised.
+          </p>
+          <p class="font-sans text-base text-warm-gray font-light leading-relaxed mb-8">
+            Tell us your dates and we'll share the complete itinerary, tailored to your group and chosen direction.
+          </p>
+          <a href="/reserve" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-3.5 rounded-full transition-all duration-300">
+            Request the Full Itinerary
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        </div>
+      ) : it.routes.map((route, ri) => (
+        <ol class="route-timeline relative" data-route={ri} hidden={ri !== 0}>
+          <!-- vertical line -->
+          <div class="absolute left-[15px] md:left-1/2 md:-translate-x-1/2 top-2 bottom-2 w-px bg-gold/20" aria-hidden="true"></div>
+
+          {route.timeline.map((d, i) => (
+            <li class="relative pl-12 md:pl-0 mb-12 last:mb-0">
+              <div class="md:grid md:grid-cols-2 md:gap-12 items-center">
+                <span class="absolute left-[9px] md:left-1/2 md:-translate-x-1/2 top-2 w-3.5 h-3.5 rounded-full bg-gold border-2 border-void z-10" aria-hidden="true"></span>
+
+                <div class={`${i % 2 === 0 ? 'md:order-1 md:text-right md:pr-6' : 'md:order-2 md:pl-6'}`}>
+                  <p class="font-sans text-[11px] tracking-[0.3em] uppercase text-gold mb-2">Day {i + 1}</p>
+                  <h3 class="font-serif text-2xl md:text-3xl text-ivory font-light leading-tight mb-3">{d.title}</h3>
+                  {d.places.length > 0 && (
+                    <ul class={`flex flex-wrap gap-2 mb-4 ${i % 2 === 0 ? 'md:justify-end' : ''}`}>
+                      {d.places.map((p) => (
+                        <li class="font-sans text-[11px] tracking-wide text-gold-pale/80 border border-gold/20 rounded-full px-3 py-1">{p}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <p class="font-sans text-base text-warm-gray font-light leading-relaxed">{d.description}</p>
+
+                  {d.schedule.length > 0 && (
+                    <dl class={`mt-5 inline-block text-left space-y-1.5 ${i % 2 === 0 ? 'md:ml-auto' : ''}`}>
+                      {d.schedule.map((s) => (
+                        <div class="flex gap-3">
+                          <dt class="font-sans text-[11px] tracking-wide text-gold/80 w-24 flex-shrink-0 tabular-nums">{s.time}</dt>
+                          <dd class="font-sans text-[13px] text-warm-gray font-light leading-snug">{s.text}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+                </div>
+
+                <div class={`mt-5 md:mt-0 ${i % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+                  {d.image && (
+                    <div class="overflow-hidden rounded-xl border border-gold/10" style="aspect-ratio:16/10;">
+                      <img src={d.image} alt={d.title} class="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      ))}
+    </div>
+  </section>
+
+  <!-- 6 ── Vessel Availability ───────────────────── -->
+  <section class="bg-linen py-20 lg:py-28 border-y border-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-12 reveal">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Available On</p>
+          <span class="h-px w-8 bg-gold/50"></span>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light tracking-tight leading-tight">
+          Choose your dahabiya
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {it.vessels.map((v) => (
+          <a
+            href={vesselHref(v)}
+            class="group flex items-center justify-between gap-3 bg-sand border border-bone hover:border-gold/40 rounded-xl px-5 py-5 transition-all duration-300"
+          >
+            <span class="font-serif text-xl text-earth font-light group-hover:text-gold transition-colors">{v}</span>
+            <span class="font-sans text-gold/70 group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 ── FAQ ───────────────────────────────────── -->
+  {it.faq.length > 0 && (
+    <section class="bg-sand py-20 lg:py-28 border-b border-bone">
+      <div class="max-w-3xl mx-auto px-6 lg:px-12">
+        <div class="flex items-center gap-4 mb-10 reveal">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Questions</p>
+        </div>
+        <div class="divide-y divide-bone border-t border-bone">
+          {it.faq.map((f) => (
+            <details class="group py-5">
+              <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+                <span class="font-serif text-xl md:text-2xl text-earth font-light leading-snug">{f.q}</span>
+                <span class="font-sans text-gold text-xl flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+              </summary>
+              <p class="font-sans text-base text-sandstone font-light leading-relaxed mt-4 max-w-2xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 8 ── Booking CTA ───────────────────────────── -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={it.hero} alt="" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/70 via-forest/88 to-void/96"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-28 lg:py-40 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Begin Here</p>
+      <h2 class="font-serif text-4xl md:text-6xl text-white font-light tracking-tight leading-[1.05] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        Reserve this<br />journey
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        {it.nights} nights on the Nile, entirely private and tailored to your group. Tell us your dates and we'll do the rest.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="/reserve" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
+          Request This Itinerary
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+        <a href="/itineraries" class="group inline-flex items-center justify-center gap-3 border border-white/25 hover:border-gold text-white/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:bg-gold/10 backdrop-blur-sm">
+          Browse All Itineraries
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  details > summary::-webkit-details-marker { display: none; }
+  /* The `hidden` attribute must win over Tailwind display utilities
+     (e.g. `grid` on the quick-facts <dl>), otherwise inactive routes leak. */
+  [hidden] { display: none !important; }
+</style>
+
+<script>
+  // ── Direction toggle: swap quick facts + day-by-day timeline ──
+  const toggle = document.getElementById('route-toggle');
+  if (toggle) {
+    const opts = Array.from(toggle.querySelectorAll<HTMLButtonElement>('.route-opt'));
+    const facts = Array.from(document.querySelectorAll<HTMLElement>('.route-facts'));
+    const timelines = Array.from(document.querySelectorAll<HTMLElement>('.route-timeline'));
+    const label = document.getElementById('active-route-label');
+
+    function activate(index: number) {
+      opts.forEach((o) => {
+        const on = Number(o.dataset.route) === index;
+        o.classList.toggle('is-active', on);
+        o.classList.toggle('border-gold', on);
+        o.classList.toggle('bg-gold/5', on);
+        o.classList.toggle('border-bone', !on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+        const chk = o.querySelector('.route-check');
+        if (chk) chk.textContent = on ? '✓' : '→';
+        if (on && label) label.textContent = o.querySelector('span')?.textContent ?? '';
+      });
+      facts.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
+      timelines.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
+    }
+
+    opts.forEach((opt) =>
+      opt.addEventListener('click', () => activate(Number(opt.dataset.route))),
+    );
+  }
+</script>

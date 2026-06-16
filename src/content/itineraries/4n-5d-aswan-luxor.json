@@ -1,0 +1,33 @@
+{
+  "title": "Aswan ⇄ Luxor",
+  "summary": "A four-night classic between Aswan and Luxor — the Nile's essential temples at an easy, unhurried pace.",
+  "nights": 4,
+  "days": 5,
+  "experience": "Classic Cruise",
+  "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
+  "highlights": ["Philae Temple", "Kom Ombo", "Edfu", "Valley of the Kings", "Karnak", "Luxor Temple"],
+  "hero": "/images/dsc-1797-pano-1280x800.jpg",
+  "cardImage": "/images/aswan-temple-1280x800.jpg",
+  "routeOverview": "Four nights sailing between Aswan and Luxor, taking in Philae, Kom Ombo, Edfu, and the great monuments of Thebes. Sailable in either direction.",
+  "facts": [{ "label": "Pace", "value": "Classic · relaxed" }],
+  "routes": [
+    {
+      "label": "Aswan → Luxor",
+      "from": "Aswan",
+      "to": "Luxor",
+      "timeline": [
+        { "title": "Detailed day-by-day coming soon", "places": [], "description": "We're finalising the full daily programme for this voyage. Contact us and we'll share the complete itinerary, tailored to your dates and group.", "image": "/images/dsc-1797-pano-1280x800.jpg" }
+      ]
+    },
+    {
+      "label": "Luxor → Aswan",
+      "from": "Luxor",
+      "to": "Aswan",
+      "timeline": [
+        { "title": "Detailed day-by-day coming soon", "places": [], "description": "We're finalising the full daily programme for this voyage. Contact us and we'll share the complete itinerary, tailored to your dates and group.", "image": "/images/dsc-1797-pano-1280x800.jpg" }
+      ]
+    }
+  ],
+  "comingSoon": true,
+  "draft": false
+}

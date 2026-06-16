@@ -1,0 +1,121 @@
+{
+  "title": "Aswan ⇄ Luxor",
+  "summary": "A classic five-night Nile voyage blending awe-inspiring temples with the tranquil rhythm of river life — sailable in either direction.",
+  "description": "Journey through the heart of ancient Egypt between the engineering marvels of Aswan and the monumental wonders of Luxor. Five nights allow you to explore the major highlights at a relaxed pace, with the option of a breathtaking side trip to Abu Simbel.",
+  "nights": 5,
+  "days": 6,
+  "experience": "Classic Cruise",
+  "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
+  "highlights": ["Philae Temple", "Kom Ombo", "Edfu", "El Kab", "Valley of the Kings", "Karnak"],
+  "hero": "/images/dsc-1797-pano-1280x800.jpg",
+  "cardImage": "/images/photo-2019-03-21-12.50.06-1280x854.jpg",
+  "routeOverview": "The classic stretch of the Nile, sailed at a relaxed pace. Both directions visit the same great temples — Philae, Kom Ombo, Edfu, El Kab, and the monuments of Thebes — with the order tailored to your arrival city and an optional excursion to Abu Simbel.",
+  "facts": [
+    { "label": "Abu Simbel", "value": "Optional excursion" },
+    { "label": "Pace", "value": "Classic · relaxed" }
+  ],
+  "routes": [
+    {
+      "label": "Aswan → Luxor",
+      "from": "Aswan",
+      "to": "Luxor",
+      "timeline": [
+        {
+          "title": "Aswan — Embarkation & City Highlights",
+          "places": ["Philae Temple", "High Dam", "Old Dam", "Unfinished Obelisk"],
+          "description": "Board your dahabiya in Aswan and enjoy lunch on board. An afternoon tour takes in the island temple of Philae, dedicated to Isis; the monumental High Dam that created Lake Nasser; the British-built Old Dam of 1902; and the Unfinished Obelisk in the ancient granite quarries. Dinner and your first night moored in Aswan.",
+          "image": "/images/aswan-temple-1280x800.jpg"
+        },
+        {
+          "title": "Abu Simbel Option & Sailing to Kom Ombo",
+          "places": ["Kom Ombo", "Abu Simbel (optional)", "Nubian Village"],
+          "description": "Choose your morning: an early excursion to the colossal temples of Abu Simbel built by Ramses II, or a relaxed visit to Aswan's Botanical Gardens on Kitchener's Island and a traditional Nubian village. Sail north in the afternoon and disembark to explore the unique double Temple of Kom Ombo, dedicated to Sobek and Horus, before mooring near Edfu.",
+          "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg"
+        },
+        {
+          "title": "Edfu Temple & Onward to El Kab",
+          "places": ["Edfu Temple", "El Kab"],
+          "description": "Travel by horse-drawn carriage to the immensely well-preserved Temple of Edfu, dedicated to the falcon god Horus. Cruise on toward the ancient site of El Kab, enjoying the passing river scenery from the sundeck.",
+          "image": "/images/photo-2019-03-23-11.23.56-1280x800.jpg"
+        },
+        {
+          "title": "El Kab & Sailing to Luxor via Esna",
+          "places": ["El Kab", "Esna Lock"],
+          "description": "Explore the archaeological site of El Kab, an ancient city of tombs, temples, and rock inscriptions. Cruise toward Luxor, passing through the Esna Lock — observed from deck — and past the town of Esna, arriving in Luxor in the evening.",
+          "image": "/images/top_river2.jpg"
+        },
+        {
+          "title": "Luxor — Thebes, City of the Gods",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon", "Karnak Temple", "Luxor Temple"],
+          "description": "Cross to the West Bank for the Theban Necropolis: the Valley of the Kings, the terraced Temple of Hatshepsut at Deir el-Bahari, and the towering Colossi of Memnon. In the afternoon, the magnificent Karnak Temple complex and the elegant Luxor Temple, beautifully lit at dusk. Farewell dinner on board.",
+          "image": "/images/karnak-1280x800.jpg"
+        },
+        {
+          "title": "Disembarkation",
+          "places": ["Luxor"],
+          "description": "After breakfast on board, disembark at your leisure in Luxor, marking the end of your Nile cruise.",
+          "image": "/images/more_than_plan.jpg"
+        }
+      ]
+    },
+    {
+      "label": "Luxor → Aswan",
+      "from": "Luxor",
+      "to": "Aswan",
+      "timeline": [
+        {
+          "title": "Luxor — Arrival & East Bank Wonders",
+          "places": ["Karnak Temple", "Luxor Temple"],
+          "description": "Board your dahabiya in Luxor and enjoy a welcome lunch. An afternoon on the East Bank: the vast Karnak Temple complex of pylons and obelisks dedicated to the Theban triad, and the majestic Luxor Temple in the heart of the city, beautifully illuminated after dusk. First night moored in Luxor.",
+          "image": "/images/karnak-1280x800.jpg"
+        },
+        {
+          "title": "Luxor's West Bank & Sailing South",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon", "Esna Lock"],
+          "description": "Cross the Nile to the West Bank necropolis: the Valley of the Kings, the unique terraced Temple of Hatshepsut, and the Colossi of Memnon. Begin your cruise south in the afternoon, passing through the Esna Lock, and moor near the ancient site of El Kab.",
+          "image": "/images/aswan-temples-1280x800.jpg"
+        },
+        {
+          "title": "El Kab & The Temple of Horus at Edfu",
+          "places": ["El Kab", "Edfu Temple"],
+          "description": "Explore the ruins of El Kab, an important pre-dynastic and Pharaonic settlement. Cruise to Edfu and travel by horse-drawn carriage to its magnificent temple, one of Egypt's best-preserved monuments, before continuing to the mooring at Gebel el-Silsila.",
+          "image": "/images/photo-2019-03-23-11.23.56-1280x800.jpg"
+        },
+        {
+          "title": "Gebel el-Silsila & Kom Ombo",
+          "places": ["Gebel el-Silsila", "Kom Ombo"],
+          "description": "Discover Gebel el-Silsila, the ancient sandstone quarry with rock-cut shrines and royal stelae along the banks. Cruise to Kom Ombo to tour its unique double temple, dedicated to both Sobek and Horus, then enjoy the final stretch of sailing toward Aswan.",
+          "image": "/images/dsc-918-1280x800.jpg"
+        },
+        {
+          "title": "Aswan's Treasures & Abu Simbel Option",
+          "places": ["Philae Temple", "High Dam", "Old Dam", "Unfinished Obelisk", "Abu Simbel (optional)"],
+          "description": "A full day with two options: the classic Aswan tour — the sublime island Temple of Philae, the High Dam, the Old Dam, and the Unfinished Obelisk — or an early excursion to the colossal rock-cut temples of Abu Simbel, returning to Aswan's highlights in the afternoon. Farewell dinner on board.",
+          "image": "/images/aswan-temple-1280x800.jpg"
+        },
+        {
+          "title": "Disembarkation",
+          "places": ["Aswan"],
+          "description": "After breakfast on board, disembark at your leisure in Aswan, marking the end of your cruise.",
+          "image": "/images/more_than_plan.jpg"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which direction should we choose?",
+      "a": "Both directions visit the same temples; only the order and the sailing flow differ. Sailing from Luxor to Aswan is upriver and can feel more relaxed, and ends near Abu Simbel for an optional extension. We tailor the direction to your arrival city."
+    },
+    {
+      "q": "Is Abu Simbel included?",
+      "a": "Abu Simbel is offered as an optional excursion by plane or convoy on the Aswan day. We arrange it on request and quote it with your charter."
+    },
+    {
+      "q": "Are entrance fees and guides included?",
+      "a": "The boat, all meals on board, and the crew are included. Temple entrance fees, expert guides, and land transfers are arranged for you and quoted with your private charter."
+    }
+  ],
+  "featured": false,
+  "draft": false
+}

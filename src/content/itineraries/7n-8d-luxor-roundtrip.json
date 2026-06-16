@@ -1,0 +1,25 @@
+{
+  "title": "Luxor Roundtrip",
+  "summary": "A seven-night roundtrip from Luxor — sailing south through the temples and back, beginning and ending in the heart of ancient Thebes.",
+  "nights": 7,
+  "days": 8,
+  "experience": "Classic Cruise",
+  "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
+  "highlights": ["Karnak", "Luxor Temple", "Valley of the Kings", "Edfu", "Kom Ombo", "Esna"],
+  "hero": "/images/karnak-1280x800.jpg",
+  "cardImage": "/images/lightshow-1280x800.jpg",
+  "routeOverview": "A seven-night roundtrip that begins and ends in Luxor, sailing south to the temples of Esna, Edfu, and Kom Ombo before returning through ancient Thebes — convenient for travellers flying in and out of Luxor.",
+  "facts": [{ "label": "Pace", "value": "Roundtrip · relaxed" }],
+  "routes": [
+    {
+      "label": "Luxor Roundtrip",
+      "from": "Luxor",
+      "to": "Luxor",
+      "timeline": [
+        { "title": "Detailed day-by-day coming soon", "places": [], "description": "We're finalising the full daily programme for this voyage. Contact us and we'll share the complete itinerary, tailored to your dates and group.", "image": "/images/karnak-1280x800.jpg" }
+      ]
+    }
+  ],
+  "comingSoon": true,
+  "draft": false
+}
