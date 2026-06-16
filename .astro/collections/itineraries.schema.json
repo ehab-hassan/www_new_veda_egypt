@@ -27,6 +27,9 @@
             "Grand Journey"
           ]
         },
+        "series": {
+          "type": "string"
+        },
         "vessels": {
           "type": "array",
           "items": {
@@ -176,6 +179,9 @@
         "draft": {
           "type": "boolean",
           "default": false
+        },
+        "$schema": {
+          "type": "string"
         }
       },
       "required": [
@@ -184,6 +190,7 @@
         "nights",
         "days",
         "experience",
+        "series",
         "vessels",
         "highlights",
         "hero",

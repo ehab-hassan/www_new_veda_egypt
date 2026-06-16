@@ -55,8 +55,14 @@ const itineraries = defineCollection({
     description: z.string().optional(),
     nights: z.number().int(),
     days: z.number().int(),
-    /** Experience category — groups itineraries on the landing page. */
+    /** Experience category — the listing section an itinerary belongs to. */
     experience: z.enum(['Classic Cruise', 'Dendera & Abydos', 'Grand Journey']),
+    /**
+     * Route-corridor key. All durations of the same corridor share one listing
+     * card with a duration picker. Display meta for each series lives in the
+     * landing page's SERIES config.
+     */
+    series: z.string(),
     /** Vessels this itinerary is available on (e.g. "Veda I"). */
     vessels: z.array(z.string()).min(1),
     /** Marquee monuments, shown as chips on the card + highlights section. */

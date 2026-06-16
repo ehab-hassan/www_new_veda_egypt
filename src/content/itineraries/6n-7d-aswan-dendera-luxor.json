@@ -5,6 +5,7 @@
   "nights": 6,
   "days": 7,
   "experience": "Dendera & Abydos",
+  "series": "aswan-dendera-luxor",
   "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
   "highlights": ["Philae Temple", "Kom Ombo", "Edfu", "Abydos", "Dendera", "Karnak"],
   "hero": "/images/dsc-1797-pano-1280x800.jpg",
@@ -16,7 +17,7 @@
   ],
   "routes": [
     {
-      "label": "Aswan → Luxor",
+      "label": "Aswan → Dendera → Luxor",
       "from": "Aswan",
       "to": "Luxor",
       "timeline": [
@@ -65,7 +66,7 @@
       ]
     },
     {
-      "label": "Luxor → Aswan",
+      "label": "Luxor → Dendera → Aswan",
       "from": "Luxor",
       "to": "Aswan",
       "timeline": [

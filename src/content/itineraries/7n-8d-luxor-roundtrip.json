@@ -4,6 +4,7 @@
   "nights": 7,
   "days": 8,
   "experience": "Classic Cruise",
+  "series": "luxor-roundtrip",
   "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
   "highlights": ["Karnak", "Luxor Temple", "Valley of the Kings", "Edfu", "Kom Ombo", "Esna"],
   "hero": "/images/karnak-1280x800.jpg",

@@ -5,6 +5,7 @@
   "nights": 13,
   "days": 14,
   "experience": "Grand Journey",
+  "series": "cairo-aswan",
   "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
   "highlights": ["Giza Pyramids", "Tell el-Amarna", "Abydos", "Dendera", "Valley of the Kings", "Philae Temple"],
   "hero": "/images/dsc-1797-pano-1280x800.jpg",

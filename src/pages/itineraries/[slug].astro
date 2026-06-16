@@ -387,5 +387,9 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
     opts.forEach((opt) =>
       opt.addEventListener('click', () => activate(Number(opt.dataset.route))),
     );
+
+    // Deep-link: /itineraries/<slug>?route=<index> opens that direction.
+    const wanted = Number(new URLSearchParams(location.search).get('route'));
+    if (Number.isInteger(wanted) && wanted > 0 && wanted < opts.length) activate(wanted);
   }
 </script>
