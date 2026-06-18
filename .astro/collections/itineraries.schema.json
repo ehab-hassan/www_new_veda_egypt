@@ -87,6 +87,19 @@
               "to": {
                 "type": "string"
               },
+              "tagline": {
+                "type": "string"
+              },
+              "overview": {
+                "type": "string"
+              },
+              "insights": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
               "timeline": {
                 "type": "array",
                 "items": {
@@ -167,6 +180,23 @@
             "additionalProperties": false
           },
           "default": []
+        },
+        "tips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "insights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "travelNotes": {
+          "type": "string"
         },
         "featured": {
           "type": "boolean",

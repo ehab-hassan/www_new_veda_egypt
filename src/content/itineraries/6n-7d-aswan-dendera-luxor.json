@@ -15,53 +15,96 @@
     { "label": "Temples", "value": "9+ major sites" },
     { "label": "Pace", "value": "Relaxed · flexible" }
   ],
+  "insights": [
+    "Day 5 — Abydos & Dendera is a full-day road excursion (about 1.5 hours each way from Qena to Abydos), requiring an early start. The day-by-day reflects a realistic timeline for this exceptional day of sightseeing.",
+    "The inclusion of Abydos makes this a uniquely comprehensive \"Long Cruise,\" offering access to one of Egypt's most sacred and historically significant sites — often missed on standard itineraries.",
+    "The sequence of visits, especially on the West Bank, may be arranged by your guide to ensure the best possible experience based on conditions."
+  ],
   "routes": [
     {
       "label": "Aswan → Dendera → Luxor",
       "from": "Aswan",
       "to": "Luxor",
+      "tagline": "Journey Through the Ages",
+      "overview": "This 6-night \"Long Cruise\" offers a deep exploration of the Nile, combining the classic southern route with an exclusive excursion to the magnificent Temple of Dendara. The schedule is designed to make the most of each day, balancing iconic sights with serene sailing.",
       "timeline": [
         {
-          "title": "Embarkation & The Goddess Isis's Sanctuarys",
+          "title": "Embarkation & The Goddess Isis's Sanctuary",
           "places": ["Philae Temple"],
-          "description": "Arrive in Aswan and board your dahabiya. Your journey begins with the beautiful Philae Temple — a short motorboat ride to Agilkia Island reveals this Graeco-Roman complex dedicated to Isis, famed for its elegant columns and picturesque setting. Overnight docked in Aswan.",
-          "image": "/images/philae_temple.jpg"
+          "description": "Arrive in Aswan and step aboard — your journey begins on the island of Isis.",
+          "image": "/images/philae_temple.jpg",
+          "schedule": [
+            { "time": "Afternoon", "text": "Arrive in Aswan, board your dahabiya, and settle in." },
+            { "time": "Late afternoon", "text": "Visit the beautiful Philae Temple — a motorboat to Agilkia Island reveals this Graeco-Roman complex dedicated to Isis, famed for its elegant columns and picturesque setting." },
+            { "time": "Overnight", "text": "Docked in Aswan." }
+          ]
         },
         {
-          "title": "The Dual Temple & Ancient Quarries",
+          "title": "The Dual Temple & Ancient Sandstone Quarries",
           "places": ["Kom Ombo", "Gebel el-Silsila"],
-          "description": "Set sail north to the unique Temple of Kom Ombo, dedicated to two gods — the crocodile-headed Sobek and the falcon-headed Horus. Continue to the historic quarries of El Silsila, the primary source of sandstone for Egypt's great temples, with cliff-side chapels and royal stelae carved into the rock. Overnight docked in Edfu.",
-          "image": "/images/The_Dual_Temple_of_Sobek&Haroeris.jpg"
+          "description": "Two great riverside monuments, with serene sailing in between.",
+          "image": "/images/The_Dual_Temple_of_Sobek&Haroeris.jpg",
+          "schedule": [
+            { "time": "6:00 AM", "text": "Set sail north towards Kom Ombo." },
+            { "time": "9:00 AM", "text": "Visit the unique Temple of Kom Ombo, dedicated to two gods — the crocodile-headed Sobek and the falcon-headed Horus." },
+            { "time": "10:00 AM", "text": "Continue sailing to the historic site of El Silsila." },
+            { "time": "2:00 PM", "text": "Explore the El Silsila quarries — the source of sandstone for Egypt's great temples — with cliff-side chapels and royal stelae carved into the rock." },
+            { "time": "3:00 PM", "text": "Sail onwards to Edfu." },
+            { "time": "Overnight", "text": "Docked in Edfu." }
+          ]
         },
         {
           "title": "The Falcon God's Citadel & Sailing to Thebes",
           "places": ["Edfu Temple"],
-          "description": "Visit the incredibly well-preserved Temple of Edfu, the largest dedicated to the god Horus, with its massive pylon, courtyards, and intact inner halls — a highlight of Ptolemaic architecture. Depart for a full day of scenic sailing toward Luxor, ancient Thebes. Overnight docked in Luxor.",
-          "image": "/images/horus_temple.jpg"
+          "description": "Egypt's best-preserved temple, then a full day on the water.",
+          "image": "/images/horus_temple.jpg",
+          "schedule": [
+            { "time": "8:00 AM", "text": "Visit the remarkably preserved Temple of Edfu, the largest dedicated to the god Horus — its massive pylon, courtyards, and intact inner halls a highlight of Ptolemaic architecture." },
+            { "time": "10:00 AM", "text": "Depart Edfu for a full day of scenic sailing towards Luxor, ancient Thebes." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
-          "title": "Theban Necropolis & Voyage to Hathor",
+          "title": "Theban Necropolis & Voyage to the Goddess Hathor",
           "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon"],
-          "description": "Cross the Nile to the West Bank: the legendary Valley of the Kings, the imposing Temple of Hatshepsut at Deir el-Bahari, and the towering Colossi of Memnon. In the afternoon, a special northward sail to Qena, the docking point for Dendara. Overnight docked near Dendara.",
-          "image": "/images/Temple_of_Hatshepsut.jpg"
+          "description": "The West Bank of Thebes, then a special sail north toward Dendara.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "6:00 AM", "text": "Cross the Nile to the West Bank — the Valley of the Kings, the Temple of Hatshepsut at Deir el-Bahari, and the towering Colossi of Memnon." },
+            { "time": "1:00 PM", "text": "A special northward sail to the city of Qena, the docking point for Dendara." },
+            { "time": "Overnight", "text": "Docked near Dendara." }
+          ]
         },
         {
           "title": "Pilgrimage to Abydos & The Temple of Hathor",
           "places": ["Abydos", "Temple of Seti I", "Dendera Temple"],
-          "description": "A full-day excursion by road to two of Egypt's most sacred cult centres. At Abydos, dedicated to Osiris, explore the magnificent Temple of Seti I — renowned for its exquisite raised reliefs and the mystical Abydos King List — and the nearby Osireion. Then the stunning Temple of Dendara, dedicated to Hathor, with its famous astronomical ceiling, vivid column capitals, and rooftop chapels. Sail back to Luxor by evening.",
-          "image": "/images/Temple_of_Seti.jpg"
+          "description": "A full day ashore at two of Egypt's most sacred, least-visited temples.",
+          "image": "/images/Temple_of_Seti.jpg",
+          "schedule": [
+            { "time": "Full day · by road", "text": "Travel to Abydos — the magnificent Temple of Seti I, with its exquisite raised reliefs and the mystical Abydos King List, and the nearby Osireion." },
+            { "time": "Afternoon", "text": "Return to Qena for the stunning Temple of Dendara, dedicated to Hathor — its famous astronomical ceiling, vivid column capitals, and rooftop chapels." },
+            { "time": "Evening", "text": "Set sail back to Luxor." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
           "title": "The Grand Temples of Thebes",
           "places": ["Karnak Temple", "Luxor Temple"],
-          "description": "A full day on the East Bank of ancient Thebes. Stand within the colossal Karnak Temple complex — a vast city of temples, obelisks, and the forest of pillars in the Great Hypostyle Hall — then the elegant Luxor Temple on the Nile Corniche, connecting the world of the gods to the city of the living. Overnight docked in Luxor.",
-          "image": "/images/karnak-1280x800.jpg"
+          "description": "The grand finale, on the East Bank of ancient Thebes.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Full day", "text": "Stand within the colossal Karnak Temple Complex — the forest of pillars in the Great Hypostyle Hall — then the elegant Luxor Temple on the Nile Corniche." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
           "title": "Disembarkation",
           "places": ["Luxor"],
-          "description": "After breakfast, disembark in Luxor, concluding your deep journey through Egyptian history and spirituality.",
-          "image": "/images/more_than_plan.jpg"
+          "description": "Farewell to the river.",
+          "image": "/images/more_than_plan.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "After breakfast, disembark in Luxor, concluding your deep journey through Egyptian history and spirituality." }
+          ]
         }
       ]
     },
@@ -69,48 +112,91 @@
       "label": "Luxor → Dendera → Aswan",
       "from": "Luxor",
       "to": "Aswan",
+      "tagline": "Sacred Journey South",
+      "overview": "This six-night itinerary offers a strategic and enriching route. First explore the wonders of ancient Thebes (Luxor), then embark on a special excursion north to the cult temples of Abydos and Dendara, before a relaxing downriver sail to Aswan — concluding with the beautiful sites of the south.",
+      "insights": [
+        "Strategic route — this direction lets you experience the grandeur of Luxor first, when energy is highest, followed by the special excursion. The upriver sail from Luxor to Aswan can allow for a more relaxed pace.",
+        "Abydos & Dendera — the Day 3 excursion is a significant full-day road trip from Qena, requiring an early start, but is uniquely rewarding for those drawn to deep historical and religious sites.",
+        "Aswan as a finale — ending in Aswan offers a natural conclusion, with the option to extend your stay toward the temples of Abu Simbel, a highlight of any southern Egypt itinerary."
+      ],
       "timeline": [
         {
           "title": "Embarkation in Thebes & The East Bank",
           "places": ["Karnak Temple", "Luxor Temple"],
-          "description": "Arrive and board your dahabiya in Luxor. Begin on the East Bank with the colossal Karnak Temple complex — its obelisks and the forest of 134 columns in the Great Hypostyle Hall — then the graceful Luxor Temple, beautifully illuminated at dusk. Overnight docked in Luxor.",
-          "image": "/images/karnak-1280x800.jpg"
+          "description": "Board in Luxor and begin amid the grandeur of ancient Thebes.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Afternoon", "text": "Arrive and board your dahabiya in Luxor." },
+            { "time": "Evening", "text": "Explore the East Bank — the colossal Karnak Temple Complex, a city of temples, obelisks, and the forest of 134 columns in the Great Hypostyle Hall — then the graceful Luxor Temple, illuminated at dusk." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
           "title": "The Theban West Bank",
           "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon"],
-          "description": "Cross the Nile to the West Bank necropolis of ancient Thebes — the Valley of the Kings, the terraced Temple of Hatshepsut at Deir el-Bahari, and the towering Colossi of Memnon — before the special excursion north. Overnight docked in Luxor.",
-          "image": "/images/aswan-temples-1280x800.jpg"
+          "description": "The necropolis of ancient Thebes, before the special excursion north.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Cross the Nile to the West Bank — the Valley of the Kings, the Temple of Hatshepsut at Deir el-Bahari, and the towering Colossi of Memnon." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
           "title": "Pilgrimage to Abydos & The Temple of Hathor",
           "places": ["Abydos", "Temple of Seti I", "Dendera Temple"],
-          "description": "A full-day excursion by road to two of Egypt's most significant temples. At Abydos, dedicated to Osiris, the magnificent Temple of Seti I with its exquisite raised reliefs and the mystical Abydos King List. Return to the Qena area for the stunning Temple of Dendara, dedicated to Hathor, with its vividly painted astronomical ceiling, crypts, and iconic Hathor-headed columns. Sail back south to Luxor in the evening.",
-          "image": "/images/photo-2019-03-23-11.19.32-1280x800.jpg"
+          "description": "A full day ashore at two of Egypt's most significant temples.",
+          "image": "/images/Temple_of_Seti.jpg",
+          "schedule": [
+            { "time": "Full day · by road", "text": "Travel to Abydos — the magnificent Temple of Seti I, with its exquisite raised reliefs and the mystical Abydos King List." },
+            { "time": "Afternoon", "text": "Return to the Qena area for the stunning Temple of Dendara, dedicated to Hathor — its vividly painted astronomical ceiling, crypts, and iconic Hathor-headed columns." },
+            { "time": "Evening", "text": "Sail back south from Qena to Luxor." },
+            { "time": "Overnight", "text": "Docked in Luxor." }
+          ]
         },
         {
           "title": "Sailing South via Esna to Edfu",
           "places": ["Esna Lock"],
-          "description": "After the intensive temple days, enjoy a full day of relaxed sailing downriver toward Edfu. Pass through the Esna Lock — a feat of modern engineering that regulates the river's flow — and watch rural Egyptian life unfold along the banks. Overnight docked near Edfu.",
-          "image": "/images/top_river2.jpg"
+          "description": "A full day of relaxed sailing after the intensive temple days.",
+          "image": "/images/top_river2.jpg",
+          "schedule": [
+            { "time": "Day", "text": "Sail downriver towards Edfu, passing through the Esna Lock — a feat of modern engineering that regulates the river's flow — as rural Egyptian life unfolds along the banks." },
+            { "time": "Overnight", "text": "Docked near Edfu." }
+          ]
         },
         {
           "title": "Edfu, El Silsila & Kom Ombo",
           "places": ["Edfu Temple", "Gebel el-Silsila", "Kom Ombo"],
-          "description": "Visit the monumental Temple of Edfu, dedicated to the falcon god Horus. Sail south to the sandstone quarries of El Silsila, with the cliff-side Speos of Horemheb and royal stelae carved into the rock. Continue to the unique Temple of Kom Ombo, beautiful in the late-afternoon light, then a final serene sail to Aswan. Overnight docked in Aswan.",
-          "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg"
+          "description": "Three monuments and a final serene sail to Aswan.",
+          "image": "/images/horus_temple.jpg",
+          "schedule": [
+            { "time": "7:00 AM", "text": "Visit the monumental Temple of Edfu, dedicated to the falcon god Horus." },
+            { "time": "9:00 AM", "text": "Sail south from Edfu to El Silsila." },
+            { "time": "1:00 PM", "text": "Explore the sandstone quarries of El Silsila — the cliff-side Speos of Horemheb and royal stelae carved into the rock faces." },
+            { "time": "2:00 PM", "text": "Sail onwards to Kom Ombo." },
+            { "time": "4:00 PM", "text": "Visit the unique Temple of Kom Ombo, dedicated to both Sobek and Horus — its riverside setting beautiful in the late-afternoon light." },
+            { "time": "Evening", "text": "A final serene sail to Aswan." },
+            { "time": "Overnight", "text": "Docked in Aswan." }
+          ]
         },
         {
           "title": "The Island of Isis",
           "places": ["Philae Temple", "High Dam", "Old Dam", "Unfinished Obelisk"],
-          "description": "Visit the beautiful Philae Temple — a short motorboat ride to Agilkia Island reveals the Graeco-Roman complex of Isis, famed for its elegant pillars and picturesque setting. On the way back, see Aswan's High Dam, the Old Dam, and the Unfinished Obelisk. Overnight docked in Aswan.",
-          "image": "/images/aswan-temple-1280x800.jpg"
+          "description": "Aswan's sacred island and its modern marvels.",
+          "image": "/images/philae_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Visit the beautiful Philae Temple — a short motorboat ride to Agilkia Island reveals this Graeco-Roman complex dedicated to Isis, famed for its elegant pillars." },
+            { "time": "Afternoon", "text": "On the way back, see Aswan's High Dam, the Old Dam, and the Unfinished Obelisk." },
+            { "time": "Overnight", "text": "Docked in Aswan." }
+          ]
         },
         {
-          "title": "Disembarkation",
+          "title": "Disembarkation in Aswan",
           "places": ["Aswan"],
-          "description": "After breakfast, disembark in Aswan — with the option to extend your stay toward the temples of Abu Simbel.",
-          "image": "/images/more_than_plan.jpg"
+          "description": "Farewell to the river — with Abu Simbel within reach.",
+          "image": "/images/more_than_plan.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "After breakfast, disembark in Aswan — with the option to extend your stay toward the temples of Abu Simbel." }
+          ]
         }
       ]
     }

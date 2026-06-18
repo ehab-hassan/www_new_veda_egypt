@@ -34,6 +34,18 @@ function factsFor(route: (typeof it.routes)[number]) {
 
 const multiRoute = it.routes.length > 1;
 
+// ── "Good to Know" — shared defaults, overridable per itinerary ──
+const DEFAULT_TIPS = [
+  'This itinerary involves significant walking at archaeological sites, often on uneven ground.',
+  'Comfortable shoes, sun protection, and water are essential for daily excursions.',
+  'The sailing schedule and overnight mooring locations are subject to change based on river and lock conditions.',
+];
+const DEFAULT_NOTES =
+  'This itinerary provides a general framework; the order of visits on specific days may be arranged by your guide to ensure the best possible experience based on conditions.';
+const tips = it.tips.length > 0 ? it.tips : DEFAULT_TIPS;
+const insights = it.insights;
+const travelNotes = it.travelNotes ?? DEFAULT_NOTES;
+
 const faqSchema =
   it.faq.length > 0
     ? JSON.stringify({
@@ -138,12 +150,16 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
           <span class="h-px w-8 bg-gold/50"></span>
           <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Route Overview</p>
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight mb-6">
-          The voyage, end to end
-        </h2>
-        <p class="font-sans text-base lg:text-lg text-sandstone font-light leading-relaxed max-w-xl">
-          {it.routeOverview ?? it.description ?? it.summary}
-        </p>
+        {it.routes.map((route, ri) => (
+          <div class="route-overview" data-route={ri} hidden={ri !== 0}>
+            <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight mb-6">
+              {route.tagline ?? 'The voyage, end to end'}
+            </h2>
+            <p class="font-sans text-base lg:text-lg text-sandstone font-light leading-relaxed max-w-xl">
+              {route.overview ?? it.routeOverview ?? it.description ?? it.summary}
+            </p>
+          </div>
+        ))}
       </div>
 
       {multiRoute && (
@@ -245,14 +261,14 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
                   <p class="font-sans text-base text-warm-gray font-light leading-relaxed">{d.description}</p>
 
                   {d.schedule.length > 0 && (
-                    <dl class={`mt-5 inline-block text-left space-y-1.5 ${i % 2 === 0 ? 'md:ml-auto' : ''}`}>
+                    <ul class={`day-prog mt-5 w-full max-w-md text-left ${i % 2 === 0 ? 'md:ml-auto' : ''}`}>
                       {d.schedule.map((s) => (
-                        <div class="flex gap-3">
-                          <dt class="font-sans text-[11px] tracking-wide text-gold/80 w-24 flex-shrink-0 tabular-nums">{s.time}</dt>
-                          <dd class="font-sans text-[13px] text-warm-gray font-light leading-snug">{s.text}</dd>
-                        </div>
+                        <li class="day-prog-row flex gap-4">
+                          <span class="font-sans text-[10px] tracking-[0.16em] uppercase text-gold/90 w-24 flex-shrink-0 leading-relaxed pt-px">{s.time}</span>
+                          <span class="font-sans text-[13px] text-ivory/85 font-light leading-snug">{s.text}</span>
+                        </li>
                       ))}
-                    </dl>
+                    </ul>
                   )}
                 </div>
 
@@ -270,6 +286,56 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
       ))}
     </div>
   </section>
+
+  <!-- 5b ── Good to Know (Tips · Insight · Notes) ── -->
+  {!it.comingSoon && (
+    <section class="bg-sand py-20 lg:py-28 border-t border-bone">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex items-center gap-4 mb-10 lg:mb-12 reveal">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Good to Know</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+          {it.routes.some((r) => (r.insights.length > 0 ? r.insights : insights).length > 0) && (
+            <div class="reveal bg-linen border border-bone rounded-2xl p-7 lg:p-9 lg:row-span-2">
+              <p class="font-sans text-[11px] tracking-[0.28em] uppercase text-gold mb-6">Travel Insight</p>
+              {it.routes.map((route, ri) => {
+                const list = route.insights.length > 0 ? route.insights : insights;
+                return list.length > 0 ? (
+                  <ul class="route-insight space-y-5" data-route={ri} hidden={ri !== 0}>
+                    {list.map((t) => (
+                      <li class="flex items-start gap-3 font-sans text-base text-sandstone font-light leading-relaxed">
+                        <span class="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0"></span>
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null;
+              })}
+            </div>
+          )}
+
+          <div class="reveal reveal-delay-1 bg-linen border border-bone rounded-2xl p-7 lg:p-9">
+            <p class="font-sans text-[11px] tracking-[0.28em] uppercase text-gold mb-6">Tips for Your Trip</p>
+            <ul class="space-y-4">
+              {tips.map((t) => (
+                <li class="flex items-start gap-3 font-sans text-base text-sandstone font-light leading-relaxed">
+                  <span class="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0"></span>
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="reveal reveal-delay-2 bg-linen border border-bone rounded-2xl p-7 lg:p-9">
+            <p class="font-sans text-[11px] tracking-[0.28em] uppercase text-gold mb-4">Travel Notes</p>
+            <p class="font-sans text-base text-sandstone font-light leading-relaxed">{travelNotes}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- 6 ── Vessel Availability ───────────────────── -->
   <section class="bg-linen py-20 lg:py-28 border-y border-bone">
@@ -357,6 +423,11 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
   /* The `hidden` attribute must win over Tailwind display utilities
      (e.g. `grid` on the quick-facts <dl>), otherwise inactive routes leak. */
   [hidden] { display: none !important; }
+
+  /* Day-by-day program — striped, PDF-style itemised list */
+  .day-prog { border: 1px solid rgba(201, 168, 92, 0.14); border-radius: 12px; overflow: hidden; }
+  .day-prog-row { padding: 0.6rem 0.9rem; align-items: flex-start; }
+  .day-prog-row:nth-child(odd) { background: rgba(255, 255, 255, 0.035); }
 </style>
 
 <script>
@@ -366,6 +437,8 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
     const opts = Array.from(toggle.querySelectorAll<HTMLButtonElement>('.route-opt'));
     const facts = Array.from(document.querySelectorAll<HTMLElement>('.route-facts'));
     const timelines = Array.from(document.querySelectorAll<HTMLElement>('.route-timeline'));
+    const overviews = Array.from(document.querySelectorAll<HTMLElement>('.route-overview'));
+    const routeInsights = Array.from(document.querySelectorAll<HTMLElement>('.route-insight'));
     const label = document.getElementById('active-route-label');
 
     function activate(index: number) {
@@ -382,6 +455,8 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
       });
       facts.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
       timelines.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
+      overviews.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
+      routeInsights.forEach((el) => (el.hidden = Number(el.dataset.route) !== index));
     }
 
     opts.forEach((opt) =>

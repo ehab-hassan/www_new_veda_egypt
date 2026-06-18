@@ -41,6 +41,12 @@ const route = z.object({
   label: z.string(),
   from: z.string(),
   to: z.string(),
+  /** Editorial title for this direction, e.g. "Sacred Journey South". */
+  tagline: z.string().optional(),
+  /** Intro paragraph for this direction — swaps with the route toggle. */
+  overview: z.string().optional(),
+  /** Direction-specific "Travel Insight" bullets; falls back to itinerary-level. */
+  insights: z.array(z.string()).default([]),
   /** This direction's own day-by-day program, day 1 → last. */
   timeline: z.array(dayItem).min(1),
 });
@@ -75,6 +81,12 @@ const itineraries = defineCollection({
     /** One or more sailing directions, each with its own timeline. */
     routes: z.array(route).min(1),
     faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    /** "Tips for Your Trip" bullets. Falls back to a shared default if empty. */
+    tips: z.array(z.string()).default([]),
+    /** Itinerary-specific "Travel Insight" bullets. Hidden if empty. */
+    insights: z.array(z.string()).default([]),
+    /** "Travel Notes" paragraph. Falls back to a shared default if omitted. */
+    travelNotes: z.string().optional(),
     featured: z.boolean().default(false),
     /** Placeholder card — meta is real, but the day-by-day is not yet written. */
     comingSoon: z.boolean().default(false),
