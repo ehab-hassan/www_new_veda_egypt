@@ -11,44 +11,46 @@ const expValue = (e: string) =>
   e === 'Classic Cruise' ? 'classic' : e === 'Dendera & Abydos' ? 'dendera' : 'grand';
 const expLabel = (e: string) => (e === 'Classic Cruise' ? 'Classic Nile Cruise' : e);
 
-// ── Explode each itinerary into one card per direction ────────────────────
-type Card = {
-  id: string; routeIndex: number; nights: number; days: number;
-  durationId: string; label: string; experience: string; expValue: string;
-  expLabel: string; highlights: string[]; vesselIds: string[];
-  image: string; comingSoon: boolean; routeIds: string[]; href: string;
-};
-const cards: Card[] = [];
-for (const it of all) {
-  it.data.routes.forEach((route, i) => {
-    const f = slug(route.from);
-    const t = slug(route.to);
-    const routeIds =
-      f === t
-        ? [`${f}-roundtrip`]
-        : it.data.experience === 'Dendera & Abydos'
-          ? [`${f}-${t}`, `${f}-dendera-${t}`]
-          : [`${f}-${t}`];
-    cards.push({
-      id: it.id,
-      routeIndex: i,
-      nights: it.data.nights,
-      days: it.data.days,
-      durationId: `${it.data.nights}n${it.data.days}d`,
-      label: route.label,
-      experience: it.data.experience,
-      expValue: expValue(it.data.experience),
-      expLabel: expLabel(it.data.experience),
-      highlights: it.data.highlights,
-      vesselIds: it.data.vessels.map(slug),
-      image: it.data.cardImage,
-      comingSoon: it.data.comingSoon,
-      routeIds,
-      href: it.data.routes.length > 1 ? `/itineraries/${it.id}?route=${i}` : `/itineraries/${it.id}`,
-    });
-  });
+function routeIds(experience: string, from: string, to: string): string[] {
+  const f = slug(from);
+  const t = slug(to);
+  if (f === t) return [`${f}-roundtrip`];
+  return experience === 'Dendera & Abydos' ? [`${f}-${t}`, `${f}-dendera-${t}`] : [`${f}-${t}`];
 }
-cards.sort((a, b) => a.nights - b.nights || a.label.localeCompare(b.label));
+
+// ── One card per itinerary; each carries all its directions ───────────────
+const items = all.map((it) => {
+  const routes = it.data.routes.map((route, i) => ({
+    index: i,
+    label: route.label,
+    ids: routeIds(it.data.experience, route.from, route.to),
+    href: it.data.routes.length > 1 ? `/itineraries/${it.id}?route=${i}` : `/itineraries/${it.id}`,
+  }));
+  const multi = routes.length > 1;
+  return {
+    id: it.id,
+    nights: it.data.nights,
+    days: it.data.days,
+    durationId: `${it.data.nights}n${it.data.days}d`,
+    experience: it.data.experience,
+    expValue: expValue(it.data.experience),
+    expLabel: expLabel(it.data.experience),
+    highlights: it.data.highlights,
+    vesselIds: it.data.vessels.map(slug),
+    image: it.data.cardImage,
+    comingSoon: it.data.comingSoon,
+    multi,
+    routes,
+    corridor: multi ? routes[0].label.replace(/→/g, '⇄') : routes[0].label,
+    defaultHref: `/itineraries/${it.id}`,
+  };
+});
+items.sort(
+  (a, b) =>
+    a.nights - b.nights ||
+    Number(a.comingSoon) - Number(b.comingSoon) ||
+    a.corridor.localeCompare(b.corridor),
+);
 
 // ── Filter option lists ───────────────────────────────────────────────────
 const DURATIONS = [
@@ -82,7 +84,6 @@ const VESSELS = [
   { v: 'veda-iii', l: 'Veda III' },
   { v: 'veda-iv', l: 'Veda IV' },
 ];
-
 const FILTERS = [
   { key: 'duration', label: 'Duration', options: DURATIONS },
   { key: 'route', label: 'Route', options: ROUTES },
@@ -95,12 +96,12 @@ const itinerarySchema = JSON.stringify({
   '@type': 'ItemList',
   '@id': `${SITE}/itineraries#list`,
   name: 'VEDA Egypt Nile Cruise Itineraries',
-  numberOfItems: cards.length,
-  itemListElement: cards.map((c, i) => ({
+  numberOfItems: items.length,
+  itemListElement: items.map((c, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: `${SITE}${c.href}`,
-    name: `${c.nights} Nights — ${c.label}`,
+    url: `${SITE}${c.defaultHref}`,
+    name: `${c.nights} Nights — ${c.corridor}`,
   })),
 });
 ---
@@ -139,16 +140,14 @@ const itinerarySchema = JSON.stringify({
   <div class="sticky top-20 z-40 bg-linen/95 backdrop-blur-md border-y border-bone">
     <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4">
       <div class="flex items-center justify-between gap-4">
-        <!-- Mobile trigger -->
         <button id="filter-open" type="button"
           class="md:hidden inline-flex items-center gap-2 border border-bone rounded-full px-5 py-2.5 font-sans text-[12px] tracking-[0.18em] uppercase text-earth">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
           Filters <span id="filter-count-badge" class="text-gold"></span>
         </button>
 
-        <!-- Desktop inline filters + mobile drawer panel -->
         <div id="filter-panel" class="filter-panel">
-          <div class="filter-panel-inner flex flex-col md:flex-row md:items-end gap-4 md:gap-5 flex-1">
+          <div class="flex flex-col md:flex-row md:items-end gap-4 md:gap-5 flex-1">
             <p class="md:hidden font-serif text-2xl text-earth font-light mb-2">Refine your voyage</p>
             {FILTERS.map((f) => (
               <div class="flex flex-col gap-1.5 md:flex-1 md:min-w-0">
@@ -165,14 +164,12 @@ const itinerarySchema = JSON.stringify({
               </div>
             ))}
           </div>
-          <!-- Mobile drawer actions -->
           <div class="md:hidden flex gap-3 mt-6">
             <button id="filter-clear-m" type="button" class="flex-1 border border-bone rounded-full py-3 font-sans text-[12px] tracking-[0.18em] uppercase text-earth">Clear</button>
             <button id="filter-done" type="button" class="flex-1 bg-gold text-white rounded-full py-3 font-sans text-[12px] tracking-[0.18em] uppercase">Show results</button>
           </div>
         </div>
 
-        <!-- Desktop clear -->
         <button id="filter-clear" type="button"
           class="hidden md:inline-flex items-center font-sans text-[11px] tracking-[0.18em] uppercase text-sandstone hover:text-gold transition-colors whitespace-nowrap">
           Clear all ×
@@ -186,20 +183,22 @@ const itinerarySchema = JSON.stringify({
   <section class="bg-linen py-12 lg:py-16">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
       <p id="result-count" class="font-sans text-sm tracking-[0.05em] text-sandstone mb-8" aria-live="polite">
-        {cards.length} itineraries available
+        {items.length} itineraries available
       </p>
 
       <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-        {cards.map((c) => (
+        {items.map((c) => (
           <article
             class="filter-card group flex flex-col bg-sand border border-bone rounded-2xl overflow-hidden hover:border-gold/40 transition-all duration-500 reveal"
             data-duration={c.durationId}
-            data-routes={c.routeIds.join('|')}
             data-experience={c.expValue}
             data-vessels={c.vesselIds.join('|')}
+            data-corridor={c.corridor}
+            data-default-href={c.defaultHref}
+            data-routes-json={JSON.stringify(c.routes)}
           >
-            <a href={c.href} class="relative block overflow-hidden" style="aspect-ratio:16/10;">
-              <img src={c.image} alt={c.label} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" loading="lazy" />
+            <a href={c.defaultHref} class="card-link relative block overflow-hidden" style="aspect-ratio:16/10;">
+              <img src={c.image} alt={c.corridor} class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-void/80 via-void/15 to-transparent"></div>
               <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                 <span class="bg-void/70 backdrop-blur-sm border border-gold/25 px-3 py-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-gold-pale">
@@ -211,18 +210,23 @@ const itinerarySchema = JSON.stringify({
               </div>
               <div class="absolute bottom-4 left-5 right-5">
                 <p class="font-sans text-[10px] tracking-[0.25em] uppercase text-gold-light mb-1.5">{c.expLabel}</p>
-                <h2 class="font-serif text-2xl lg:text-[1.7rem] text-white font-light leading-tight" style="text-shadow:0 2px 18px rgba(0,0,0,.5)">{c.label}</h2>
+                <h2 class="card-title font-serif text-2xl lg:text-[1.7rem] text-white font-light leading-tight" style="text-shadow:0 2px 18px rgba(0,0,0,.5)">{c.corridor}</h2>
               </div>
             </a>
 
             <div class="flex flex-col flex-1 p-6">
+              {c.multi && (
+                <p class="card-both inline-flex items-center gap-1.5 font-sans text-[11px] tracking-[0.18em] uppercase text-sandstone mb-4">
+                  <span class="text-gold">⇄</span> Both directions available
+                </p>
+              )}
               <ul class="flex flex-wrap gap-x-2 gap-y-2 mb-6">
                 {c.highlights.map((h) => (
                   <li class="font-sans text-[11px] tracking-wide text-earth/70 border border-bone rounded-full px-2.5 py-1">{h}</li>
                 ))}
               </ul>
               <div class="mt-auto pt-1">
-                <a href={c.href} class="group/btn inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors">
+                <a href={c.defaultHref} class="card-cta group/btn inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors">
                   View Itinerary
                   <span class="group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
                 </a>
@@ -232,7 +236,6 @@ const itinerarySchema = JSON.stringify({
         ))}
       </div>
 
-      <!-- Empty state -->
       <div id="cards-empty" class="hidden text-center py-24">
         <p class="font-serif text-2xl md:text-3xl text-ink-mid italic mb-5">No itineraries match those filters.</p>
         <button type="button" id="filter-clear-empty" class="font-sans text-xs tracking-ultra uppercase text-gold hover:text-gold-light transition-colors">
@@ -270,19 +273,15 @@ const itinerarySchema = JSON.stringify({
 <style>
   .filter-card.is-hidden { display: none; }
 
-  /* Filter panel: inline bar on desktop, bottom-sheet drawer on mobile */
   .filter-panel { flex: 1; }
   @media (max-width: 767px) {
     .filter-panel {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 50;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
       background: var(--linen);
       border-top: 1px solid var(--bone);
       border-radius: 20px 20px 0 0;
       padding: 1.75rem 1.5rem 2rem;
-      max-height: 85vh;
-      overflow-y: auto;
+      max-height: 85vh; overflow-y: auto;
       transform: translateY(110%);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 -20px 50px rgba(0,0,0,0.18);
@@ -293,7 +292,7 @@ const itinerarySchema = JSON.stringify({
 
 <script>
   type FKey = 'duration' | 'route' | 'experience' | 'vessel';
-  const PARAM: Record<FKey, string> = { duration: 'duration', route: 'route', experience: 'experience', vessel: 'vessel' };
+  interface Route { index: number; label: string; ids: string[]; href: string }
 
   const selects = Array.from(document.querySelectorAll<HTMLSelectElement>('.vfilter'));
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.filter-card'));
@@ -303,6 +302,10 @@ const itinerarySchema = JSON.stringify({
   const clearBtns = ['filter-clear', 'filter-clear-m', 'filter-clear-empty'].map((id) => document.getElementById(id));
   const badge = document.getElementById('filter-count-badge');
 
+  // Cache parsed routes per card
+  const routesOf = new WeakMap<HTMLElement, Route[]>();
+  cards.forEach((c) => routesOf.set(c, JSON.parse(c.dataset.routesJson ?? '[]')));
+
   function state(): Record<FKey, string> {
     const s = {} as Record<FKey, string>;
     selects.forEach((sel) => (s[sel.dataset.filter as FKey] = sel.value));
@@ -311,15 +314,36 @@ const itinerarySchema = JSON.stringify({
 
   function matches(card: HTMLElement, s: Record<FKey, string>): boolean {
     if (s.duration !== 'any' && card.dataset.duration !== s.duration) return false;
-    if (s.route !== 'any' && !(card.dataset.routes ?? '').split('|').includes(s.route)) return false;
     if (s.experience !== 'any' && card.dataset.experience !== s.experience) return false;
     if (s.vessel !== 'any' && !(card.dataset.vessels ?? '').split('|').includes(s.vessel)) return false;
+    if (s.route !== 'any') {
+      const routes = routesOf.get(card) ?? [];
+      if (!routes.some((r) => r.ids.includes(s.route))) return false;
+    }
     return true;
+  }
+
+  // When a directional route filter is active, show that direction's label + link.
+  function render(card: HTMLElement, s: Record<FKey, string>) {
+    const titleEl = card.querySelector<HTMLElement>('.card-title');
+    const links = Array.from(card.querySelectorAll<HTMLAnchorElement>('.card-link, .card-cta'));
+    const both = card.querySelector<HTMLElement>('.card-both');
+    const routes = routesOf.get(card) ?? [];
+    let title = card.dataset.corridor ?? '';
+    let href = card.dataset.defaultHref ?? '';
+    let showBoth = routes.length > 1;
+    if (s.route !== 'any') {
+      const r = routes.find((x) => x.ids.includes(s.route));
+      if (r) { title = r.label; href = r.href; showBoth = false; }
+    }
+    if (titleEl) titleEl.textContent = title;
+    links.forEach((a) => (a.href = href));
+    if (both) both.hidden = !showBoth;
   }
 
   function syncUrl(s: Record<FKey, string>) {
     const p = new URLSearchParams();
-    (Object.keys(s) as FKey[]).forEach((k) => { if (s[k] !== 'any') p.set(PARAM[k], s[k]); });
+    (Object.keys(s) as FKey[]).forEach((k) => { if (s[k] !== 'any') p.set(k, s[k]); });
     const qs = p.toString();
     history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
   }
@@ -330,7 +354,7 @@ const itinerarySchema = JSON.stringify({
     cards.forEach((c) => {
       const show = matches(c, s);
       c.classList.toggle('is-hidden', !show);
-      if (show) visible++;
+      if (show) { render(c, s); visible++; }
     });
     const active = (Object.values(s) as string[]).filter((v) => v !== 'any').length;
     if (countEl) countEl.textContent = active
@@ -350,7 +374,7 @@ const itinerarySchema = JSON.stringify({
   // Restore from URL
   const params = new URLSearchParams(location.search);
   selects.forEach((sel) => {
-    const v = params.get(PARAM[sel.dataset.filter as FKey]);
+    const v = params.get(sel.dataset.filter as FKey);
     if (v && Array.from(sel.options).some((o) => o.value === v)) sel.value = v;
   });
 
@@ -360,19 +384,12 @@ const itinerarySchema = JSON.stringify({
   // Mobile drawer
   const panel = document.getElementById('filter-panel');
   const backdrop = document.getElementById('filter-backdrop');
-  function openDrawer() {
-    panel?.classList.add('is-open');
-    backdrop?.classList.remove('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDrawer() {
-    panel?.classList.remove('is-open');
-    backdrop?.classList.add('opacity-0', 'pointer-events-none');
-    document.body.style.overflow = '';
-  }
+  const openDrawer = () => { panel?.classList.add('is-open'); backdrop?.classList.remove('opacity-0', 'pointer-events-none'); document.body.style.overflow = 'hidden'; };
+  const closeDrawer = () => { panel?.classList.remove('is-open'); backdrop?.classList.add('opacity-0', 'pointer-events-none'); document.body.style.overflow = ''; };
   document.getElementById('filter-open')?.addEventListener('click', openDrawer);
   document.getElementById('filter-done')?.addEventListener('click', closeDrawer);
   backdrop?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
 
   apply(false);
 </script>

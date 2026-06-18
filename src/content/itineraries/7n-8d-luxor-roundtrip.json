@@ -8,7 +8,7 @@
   "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
   "highlights": ["Karnak", "Luxor Temple", "Valley of the Kings", "Edfu", "Kom Ombo", "Esna"],
   "hero": "/images/karnak-1280x800.jpg",
-  "cardImage": "/images/lightshow-1280x800.jpg",
+  "cardImage": "/images/luxor_round-trip.jpg",
   "routeOverview": "A seven-night roundtrip that begins and ends in Luxor, sailing south to the temples of Esna, Edfu, and Kom Ombo before returning through ancient Thebes — convenient for travellers flying in and out of Luxor.",
   "facts": [{ "label": "Pace", "value": "Roundtrip · relaxed" }],
   "routes": [
@@ -21,6 +21,6 @@
       ]
     }
   ],
-  "comingSoon": true,
+  "comingSoon": false,
   "draft": false
 }
