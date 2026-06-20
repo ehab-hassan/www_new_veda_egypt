@@ -1,7 +1,7 @@
 {
   "title": "Cairo ⇄ Luxor",
   "summary": "The full sweep of the Nile aboard a traditional dahabiya under tow — from the Pyramids of Giza through Middle Egypt's hidden monuments to the temple cities of Thebes.",
-  "description": "A rare twelve-night voyage along the river's least-travelled reaches, linking Cairo with Luxor. Traditional dahabiya cruising, gently towed by a support tugboat for the long passage, with daily international buffet dining and the signature sunset tea on deck. Sailing times are longer than conventional cruisers — that is the point: this is the slow, authentic Nile.",
+  "description": "A rare twelve-night voyage along the river's least-travelled reaches, linking Cairo with Luxor. Traditional dahabiya cruising, gently towed by a support tugboat for the long passage, with daily international buffet dining and the signature sunset tea on deck.",
   "nights": 12,
   "days": 13,
   "experience": "Grand Journey",
@@ -15,45 +15,303 @@
     { "label": "Vessel", "value": "Dahabiya under tow" },
     { "label": "Dining", "value": "Daily buffet · sunset tea" }
   ],
+  "insights": [
+    "This is a traditional dahabiya towed by a support tugboat for the long Cairo passage — sailing times are far longer than conventional Nile cruisers, by design, for a slow and authentic journey.",
+    "The route reaches Middle Egypt's rarely-visited monuments — Fayoum, Tell el-Amarna, and Beni Hassan — alongside the sacred temples of Abydos and Dendera and the great monuments of Thebes."
+  ],
   "routes": [
     {
       "label": "Cairo → Luxor",
       "from": "Cairo",
       "to": "Luxor",
+      "tagline": "Upstream Through Egypt",
+      "overview": "Experience the timeless beauty of the Nile aboard a traditional dahabiya, elegantly towed by a support tugboat for long-distance navigation. Sailing southbound against the current, the days are unhurried — the point of this slow, authentic river journey.",
       "timeline": [
-        { "title": "Arrival in Cairo & Embarkation", "places": ["Cairo"], "description": "Arrive in Cairo and transfer to your dahabiya for embarkation, with a welcome dinner on board. Overnight in Cairo.", "image": "/images/egypte-veda-214-van-577-2000x709.jpg" },
-        { "title": "Cairo Sightseeing", "places": ["Giza Pyramids", "Egyptian Museum"], "description": "Visit the legendary Pyramids of Giza and the renowned Egyptian Museum. All meals on board, including sunset tea with snacks. Overnight in Cairo.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
-        { "title": "Sail from Cairo to Beni Suef", "places": ["Beni Suef"], "description": "Begin your Nile journey sailing south through the fertile landscapes of Middle Egypt. Sailing: approx. 120 km · 16–18 hrs against the current. Overnight in Beni Suef.", "image": "/images/top_river2.jpg" },
-        { "title": "Fayoum Excursion", "places": ["Hawara Pyramid", "Meidum Pyramid"], "description": "Excursion to the ancient pyramids of Hawara and Meidum. Sunset tea and dinner on board. Overnight in Beni Suef.", "image": "/images/more_than_plan.jpg" },
-        { "title": "Sail to Minya — Tuna el-Gebel & Ashmunein", "places": ["Tuna el-Gebel", "Ashmunein"], "description": "Continue south to Minya, with visits to Tuna el-Gebel and Ashmunein. Sailing: approx. 145 km · 19–21 hrs against the current. Overnight in Minya.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
-        { "title": "Tell el-Amarna & Beni Hassan", "places": ["Tell el-Amarna", "Beni Hassan"], "description": "Explore Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3) — followed by the impressive rock-cut tombs of Beni Hassan. Overnight in Minya.", "image": "/images/aswan-temples-1280x800.jpg" },
-        { "title": "Sail to Asyut", "places": ["Asyut"], "description": "A full day sailing south toward Asyut, watching Middle Egypt drift by from the sundeck. Sailing: approx. 125 km · 17–18 hrs against the current. Overnight in Asyut.", "image": "/images/top_river2.jpg" },
-        { "title": "Sail to Sohag & Abydos", "places": ["Abydos", "Temple of Seti I"], "description": "Continue south to Sohag with an excursion to the magnificent Temple of Abydos, dedicated to Osiris. Sailing: approx. 100 km · 14–15 hrs against the current. Overnight in Sohag.", "image": "/images/photo-2019-03-23-11.19.32-1280x800.jpg" },
-        { "title": "Sail to Qena", "places": ["Qena"], "description": "A leisurely sailing day toward Qena, enjoying panoramic Nile scenery from the sundeck. Sailing: approx. 160 km · 21–23 hrs against the current. Overnight in Qena.", "image": "/images/top_river2.jpg" },
-        { "title": "Dendera Temple & Sail to Luxor", "places": ["Dendera Temple"], "description": "Visit the beautifully preserved Temple of Dendara, dedicated to Hathor, before continuing to Luxor. Sailing: approx. 65 km · 9–10 hrs against the current. Overnight in Luxor.", "image": "/images/lightshow-1280x800.jpg" },
-        { "title": "Valley of the Kings & Hatshepsut", "places": ["Valley of the Kings", "Temple of Hatshepsut"], "description": "Discover the Valley of the Kings and the spectacular mortuary Temple of Hatshepsut at Deir el-Bahari. Overnight in Luxor.", "image": "/images/aswan-temples-1280x800.jpg" },
-        { "title": "Karnak & Luxor Temples — Disembarkation", "places": ["Karnak Temple", "Luxor Temple"], "description": "Visit the monumental Karnak Temple complex and the elegant Luxor Temple before disembarkation, with a farewell dinner on board. Overnight in Luxor.", "image": "/images/karnak-1280x800.jpg" },
-        { "title": "Departure", "places": ["Luxor"], "description": "Transfer to the airport for your onward international flight.", "image": "/images/more_than_plan.jpg" }
+        {
+          "title": "Arrival in Cairo & Embarkation",
+          "places": ["Cairo"],
+          "description": "Arrive in Cairo and step aboard at the start of the river.",
+          "image": "/images/egypte-veda-381-van-577-2000x1250.jpg",
+          "schedule": [
+            { "time": "On arrival", "text": "Transfer to your dahabiya for embarkation." },
+            { "time": "Evening", "text": "Welcome dinner on board." },
+            { "time": "Overnight", "text": "Cairo." }
+          ]
+        },
+        {
+          "title": "Cairo Sightseeing",
+          "places": ["Giza Pyramids", "Egyptian Museum"],
+          "description": "The Pyramids of Giza and the treasures of the Egyptian Museum.",
+          "image": "/images/pyramids_of_Giza.jpg",
+          "schedule": [
+            { "time": "Day", "text": "Visit the legendary Pyramids of Giza and the renowned Egyptian Museum." },
+            { "time": "Meals", "text": "All meals on board, including the daily sunset tea with snacks." },
+            { "time": "Overnight", "text": "Cairo." }
+          ]
+        },
+        {
+          "title": "Sail from Cairo to Beni Suef",
+          "places": ["Beni Suef"],
+          "description": "The first long sail south through Middle Egypt.",
+          "image": "/images/Beni_Suef.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "Cairo to Beni Suef — approx. 120 km · 16–18 hrs against the current, through the fertile landscapes of Middle Egypt." },
+            { "time": "Overnight", "text": "Beni Suef." }
+          ]
+        },
+        {
+          "title": "Fayoum Excursion",
+          "places": ["Hawara Pyramid", "Meidum Pyramid"],
+          "description": "An excursion to two of Egypt's earliest pyramids.",
+          "image": "/images/Meidum_Pyramid.jpg",
+          "schedule": [
+            { "time": "Excursion", "text": "The ancient pyramids of Hawara and Meidum." },
+            { "time": "Evening", "text": "Sunset tea and dinner on board." },
+            { "time": "Overnight", "text": "Beni Suef." }
+          ]
+        },
+        {
+          "title": "Sail to Minya — Tuna el-Gebel & Ashmunein",
+          "places": ["Tuna el-Gebel", "Ashmunein"],
+          "description": "South to Minya, with two Middle-Egypt sites.",
+          "image": "/images/dsc-1797-pano-1280x800.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "On to Minya — approx. 145 km · 19–21 hrs against the current." },
+            { "time": "Visit", "text": "Tuna el-Gebel and Ashmunein." },
+            { "time": "Overnight", "text": "Minya." }
+          ]
+        },
+        {
+          "title": "Tell el-Amarna & Beni Hassan",
+          "places": ["Tell el-Amarna", "Beni Hassan"],
+          "description": "The painted tombs of Middle Egypt.",
+          "image": "/images/aswan-temples-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3)." },
+            { "time": "Afternoon", "text": "The impressive rock-cut tombs of Beni Hassan." },
+            { "time": "Overnight", "text": "Minya." }
+          ]
+        },
+        {
+          "title": "Sail to Asyut",
+          "places": ["Asyut"],
+          "description": "A full sailing day toward Asyut.",
+          "image": "/images/top_river2.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "On to Asyut — approx. 125 km · 17–18 hrs against the current, watching Middle Egypt drift by from the sundeck." },
+            { "time": "Overnight", "text": "Asyut." }
+          ]
+        },
+        {
+          "title": "Sail to Sohag & Abydos",
+          "places": ["Abydos", "Temple of Seti I"],
+          "description": "South to Sohag, with the sacred temple of Abydos.",
+          "image": "/images/Temple_of_Seti.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "On to Sohag — approx. 100 km · 14–15 hrs against the current." },
+            { "time": "Excursion", "text": "The magnificent Temple of Abydos, dedicated to Osiris." },
+            { "time": "Overnight", "text": "Sohag." }
+          ]
+        },
+        {
+          "title": "Sail to Qena",
+          "places": ["Qena"],
+          "description": "A leisurely sailing day toward Qena.",
+          "image": "/images/top_river2.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "On to Qena — approx. 160 km · 21–23 hrs against the current, panoramic Nile scenery from the sundeck." },
+            { "time": "Overnight", "text": "Qena." }
+          ]
+        },
+        {
+          "title": "Dendera Temple & Sail to Luxor",
+          "places": ["Dendera Temple"],
+          "description": "The Temple of Dendara, then on to Thebes.",
+          "image": "/images/Dendera_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Visit the beautifully preserved Temple of Dendara, dedicated to Hathor." },
+            { "time": "Sailing", "text": "On to Luxor — approx. 65 km · 9–10 hrs against the current." },
+            { "time": "Overnight", "text": "Luxor." }
+          ]
+        },
+        {
+          "title": "Valley of the Kings & Hatshepsut",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut"],
+          "description": "The West Bank of ancient Thebes.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "Day", "text": "The Valley of the Kings and the spectacular mortuary Temple of Hatshepsut at Deir el-Bahari." },
+            { "time": "Overnight", "text": "Luxor." }
+          ]
+        },
+        {
+          "title": "Karnak & Luxor Temples — Disembarkation",
+          "places": ["Karnak Temple", "Luxor Temple"],
+          "description": "The grand temples of the East Bank, then farewell.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Day", "text": "The monumental Karnak Temple complex and the elegant Luxor Temple." },
+            { "time": "Evening", "text": "Farewell dinner on board." },
+            { "time": "Overnight", "text": "Luxor." }
+          ]
+        },
+        {
+          "title": "Departure",
+          "places": ["Luxor"],
+          "description": "Disembarkation.",
+          "image": "/images/more_than_plan.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Transfer to the airport for your onward international flight." }
+          ]
+        }
       ]
     },
     {
       "label": "Luxor → Cairo",
       "from": "Luxor",
       "to": "Cairo",
+      "tagline": "Downstream to the Delta",
+      "overview": "Sailing northbound from Luxor to Cairo with the Nile current, this direction runs roughly 15–20% faster than the southbound route — beginning amid the grandeur of Thebes and ending at the Pyramids of Giza.",
       "timeline": [
-        { "title": "Arrival in Luxor & Embarkation", "places": ["Luxor"], "description": "Arrive in Luxor and transfer to your dahabiya for embarkation, with a welcome dinner on board. Overnight in Luxor.", "image": "/images/egypte-veda-214-van-577-2000x709.jpg" },
-        { "title": "Valley of the Kings & Hatshepsut", "places": ["Valley of the Kings", "Temple of Hatshepsut"], "description": "Discover the West Bank — the Valley of the Kings and the spectacular mortuary Temple of Hatshepsut. All meals on board, including sunset tea. Overnight in Luxor.", "image": "/images/aswan-temples-1280x800.jpg" },
-        { "title": "Karnak & Luxor Temples — Sail to Qena", "places": ["Karnak Temple", "Luxor Temple"], "description": "Visit the monumental Karnak Temple complex and Luxor Temple before beginning your northbound journey. Sailing: approx. 65 km · 7–8 hrs with the current. Overnight in Qena.", "image": "/images/karnak-1280x800.jpg" },
-        { "title": "Dendera Temple — Sail toward Sohag", "places": ["Dendera Temple"], "description": "Visit the beautifully preserved Temple of Dendara before continuing north. Sailing: approx. 160 km · 17–19 hrs with the current. Overnight in Sohag.", "image": "/images/lightshow-1280x800.jpg" },
-        { "title": "Abydos — Sail to Asyut", "places": ["Abydos", "Temple of Seti I"], "description": "Excursion to the magnificent Temple of Abydos, then continued sailing toward Asyut. Sailing: approx. 100 km · 11–12 hrs with the current. Overnight in Asyut.", "image": "/images/photo-2019-03-23-11.19.32-1280x800.jpg" },
-        { "title": "Sail to Minya", "places": ["Minya"], "description": "A full, leisurely day sailing north through Middle Egypt, panoramic scenery from the sundeck. Sailing: approx. 125 km · 14–15 hrs with the current. Overnight in Minya.", "image": "/images/top_river2.jpg" },
-        { "title": "Tell el-Amarna & Beni Hassan", "places": ["Tell el-Amarna", "Beni Hassan"], "description": "Explore Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3) — followed by the tombs of Beni Hassan. Overnight in Minya.", "image": "/images/aswan-temples-1280x800.jpg" },
-        { "title": "Tuna el-Gebel & Ashmunein — Sail to Beni Suef", "places": ["Tuna el-Gebel", "Ashmunein"], "description": "Visit Tuna el-Gebel and Ashmunein before continuing north. Sailing: approx. 145 km · 16–17 hrs with the current. Overnight in Beni Suef.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
-        { "title": "Fayoum Excursion", "places": ["Hawara Pyramid", "Meidum Pyramid"], "description": "Excursion to the ancient pyramids of Hawara and Meidum. Sunset tea and dinner on board. Overnight in Beni Suef.", "image": "/images/more_than_plan.jpg" },
-        { "title": "Sail from Beni Suef to Cairo", "places": ["Cairo"], "description": "Continue your scenic voyage north toward Cairo through the fertile landscapes of Middle Egypt. Sailing: approx. 120 km · 13–15 hrs with the current. Overnight in Cairo.", "image": "/images/top_river2.jpg" },
-        { "title": "Cairo Sightseeing", "places": ["Giza Pyramids", "Egyptian Museum"], "description": "Visit the legendary Pyramids of Giza and the renowned Egyptian Museum. All meals on board, including sunset tea. Overnight in Cairo.", "image": "/images/dsc-1797-pano-1280x800.jpg" },
-        { "title": "Old Cairo & Disembarkation Preparations", "places": ["Old Cairo", "Khan el-Khalili"], "description": "Optional exploration of Old Cairo and the Khan el-Khalili bazaar, or leisure on board. Farewell dinner. Overnight in Cairo.", "image": "/images/group-eating-1280x800.jpg" },
-        { "title": "Departure", "places": ["Cairo"], "description": "Transfer to the airport for your onward international flight.", "image": "/images/more_than_plan.jpg" }
+        {
+          "title": "Arrival in Luxor & Embarkation",
+          "places": ["Luxor"],
+          "description": "Arrive in Luxor and step aboard amid ancient Thebes.",
+          "image": "/images/egypte-veda-214-van-577-2000x709.jpg",
+          "schedule": [
+            { "time": "On arrival", "text": "Transfer to your dahabiya for embarkation." },
+            { "time": "Evening", "text": "Welcome dinner on board." },
+            { "time": "Overnight", "text": "Luxor." }
+          ]
+        },
+        {
+          "title": "Valley of the Kings & Hatshepsut",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut"],
+          "description": "The West Bank necropolis of Thebes.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "Day", "text": "The Valley of the Kings and the spectacular mortuary Temple of Hatshepsut." },
+            { "time": "Meals", "text": "All meals on board, including sunset tea." },
+            { "time": "Overnight", "text": "Luxor." }
+          ]
+        },
+        {
+          "title": "Karnak & Luxor Temples — Sail to Qena",
+          "places": ["Karnak Temple", "Luxor Temple"],
+          "description": "The great temples of Thebes, then the journey north begins.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "The monumental Karnak Temple complex and Luxor Temple." },
+            { "time": "Sailing", "text": "North to Qena — approx. 65 km · 7–8 hrs with the current." },
+            { "time": "Overnight", "text": "Qena." }
+          ]
+        },
+        {
+          "title": "Dendera Temple — Sail toward Sohag",
+          "places": ["Dendera Temple"],
+          "description": "The Temple of Hathor, then onward north.",
+          "image": "/images/Dendera_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Visit the beautifully preserved Temple of Dendara." },
+            { "time": "Sailing", "text": "Toward Sohag — approx. 160 km · 17–19 hrs with the current." },
+            { "time": "Overnight", "text": "Sohag." }
+          ]
+        },
+        {
+          "title": "Abydos — Sail to Asyut",
+          "places": ["Abydos", "Temple of Seti I"],
+          "description": "The sacred city of Osiris, then sailing on.",
+          "image": "/images/Temple_of_Seti.jpg",
+          "schedule": [
+            { "time": "Excursion", "text": "The magnificent Temple of Abydos." },
+            { "time": "Sailing", "text": "Toward Asyut — approx. 100 km · 11–12 hrs with the current." },
+            { "time": "Overnight", "text": "Asyut." }
+          ]
+        },
+        {
+          "title": "Sail to Minya",
+          "places": ["Minya"],
+          "description": "A full, leisurely day sailing north.",
+          "image": "/images/top_river2.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "North through Middle Egypt to Minya — approx. 125 km · 14–15 hrs with the current." },
+            { "time": "Overnight", "text": "Minya." }
+          ]
+        },
+        {
+          "title": "Tell el-Amarna & Beni Hassan",
+          "places": ["Tell el-Amarna", "Beni Hassan"],
+          "description": "The painted tombs of Middle Egypt.",
+          "image": "/images/aswan-temples-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3)." },
+            { "time": "Afternoon", "text": "The tombs of Beni Hassan." },
+            { "time": "Overnight", "text": "Minya." }
+          ]
+        },
+        {
+          "title": "Tuna el-Gebel & Ashmunein — Sail to Beni Suef",
+          "places": ["Tuna el-Gebel", "Ashmunein"],
+          "description": "Two more Middle-Egypt sites, then north.",
+          "image": "/images/dsc-1797-pano-1280x800.jpg",
+          "schedule": [
+            { "time": "Visit", "text": "Tuna el-Gebel and Ashmunein." },
+            { "time": "Sailing", "text": "Toward Beni Suef — approx. 145 km · 16–17 hrs with the current." },
+            { "time": "Overnight", "text": "Beni Suef." }
+          ]
+        },
+        {
+          "title": "Fayoum Excursion",
+          "places": ["Hawara Pyramid", "Meidum Pyramid"],
+          "description": "Egypt's earliest pyramids.",
+          "image": "/images/more_than_plan.jpg",
+          "schedule": [
+            { "time": "Excursion", "text": "The ancient pyramids of Hawara and Meidum." },
+            { "time": "Evening", "text": "Sunset tea and dinner on board." },
+            { "time": "Overnight", "text": "Beni Suef." }
+          ]
+        },
+        {
+          "title": "Sail from Beni Suef to Cairo",
+          "places": ["Cairo"],
+          "description": "The final sail to the capital.",
+          "image": "/images/top_river2.jpg",
+          "schedule": [
+            { "time": "Sailing", "text": "North to Cairo — approx. 120 km · 13–15 hrs with the current, through the fertile landscapes of Middle Egypt." },
+            { "time": "Overnight", "text": "Cairo." }
+          ]
+        },
+        {
+          "title": "Cairo Sightseeing",
+          "places": ["Giza Pyramids", "Egyptian Museum"],
+          "description": "The Pyramids of Giza and the Egyptian Museum.",
+          "image": "/images/pyramids_of_Giza.jpg",
+          "schedule": [
+            { "time": "Day", "text": "Visit the Pyramids of Giza and the renowned Egyptian Museum." },
+            { "time": "Meals", "text": "All meals on board, including sunset tea." },
+            { "time": "Overnight", "text": "Cairo." }
+          ]
+        },
+        {
+          "title": "Old Cairo & Disembarkation Preparations",
+          "places": ["Old Cairo", "Khan el-Khalili"],
+          "description": "Optional exploration of historic Cairo.",
+          "image": "/images/group-eating-1280x800.jpg",
+          "schedule": [
+            { "time": "Optional", "text": "Old Cairo and the Khan el-Khalili bazaar, or leisure on board." },
+            { "time": "Evening", "text": "Farewell dinner on board." },
+            { "time": "Overnight", "text": "Cairo." }
+          ]
+        },
+        {
+          "title": "Departure",
+          "places": ["Cairo"],
+          "description": "Disembarkation.",
+          "image": "/images/more_than_plan.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Transfer to the airport for your onward international flight." }
+          ]
+        }
       ]
     }
   ],
