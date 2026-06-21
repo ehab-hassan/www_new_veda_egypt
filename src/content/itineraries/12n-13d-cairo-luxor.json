@@ -177,7 +177,7 @@
           "title": "Arrival in Luxor & Embarkation",
           "places": ["Luxor"],
           "description": "Arrive in Luxor and step aboard amid ancient Thebes.",
-          "image": "/images/egypte-veda-214-van-577-2000x709.jpg",
+          "image": "/images/dsc-1612-1-1280x800.jpg",
           "schedule": [
             { "time": "On arrival", "text": "Transfer to your dahabiya for embarkation." },
             { "time": "Evening", "text": "Welcome dinner on board." },
@@ -232,7 +232,7 @@
           "title": "Sail to Minya",
           "places": ["Minya"],
           "description": "A full, leisurely day sailing north.",
-          "image": "/images/top_river2.jpg",
+          "image": "/images/egypte-veda-311-van-577-1060x663.jpg",
           "schedule": [
             { "time": "Sailing", "text": "North through Middle Egypt to Minya — approx. 125 km · 14–15 hrs with the current." },
             { "time": "Overnight", "text": "Minya." }
@@ -242,7 +242,7 @@
           "title": "Tell el-Amarna & Beni Hassan",
           "places": ["Tell el-Amarna", "Beni Hassan"],
           "description": "The painted tombs of Middle Egypt.",
-          "image": "/images/aswan-temples-1280x800.jpg",
+          "image": "/images/Beni_Hassan.jpg",
           "schedule": [
             { "time": "Morning", "text": "Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3)." },
             { "time": "Afternoon", "text": "The tombs of Beni Hassan." },
@@ -253,7 +253,7 @@
           "title": "Tuna el-Gebel & Ashmunein — Sail to Beni Suef",
           "places": ["Tuna el-Gebel", "Ashmunein"],
           "description": "Two more Middle-Egypt sites, then north.",
-          "image": "/images/dsc-1797-pano-1280x800.jpg",
+          "image": "/images/Tuna_el-Gebel.jpg",
           "schedule": [
             { "time": "Visit", "text": "Tuna el-Gebel and Ashmunein." },
             { "time": "Sailing", "text": "Toward Beni Suef — approx. 145 km · 16–17 hrs with the current." },
@@ -264,7 +264,7 @@
           "title": "Fayoum Excursion",
           "places": ["Hawara Pyramid", "Meidum Pyramid"],
           "description": "Egypt's earliest pyramids.",
-          "image": "/images/more_than_plan.jpg",
+          "image": "/images/Meidum_Pyramid.jpg",
           "schedule": [
             { "time": "Excursion", "text": "The ancient pyramids of Hawara and Meidum." },
             { "time": "Evening", "text": "Sunset tea and dinner on board." },
@@ -275,7 +275,7 @@
           "title": "Sail from Beni Suef to Cairo",
           "places": ["Cairo"],
           "description": "The final sail to the capital.",
-          "image": "/images/top_river2.jpg",
+          "image": "/images/hero_1.jpg",
           "schedule": [
             { "time": "Sailing", "text": "North to Cairo — approx. 120 km · 13–15 hrs with the current, through the fertile landscapes of Middle Egypt." },
             { "time": "Overnight", "text": "Cairo." }
@@ -296,7 +296,7 @@
           "title": "Old Cairo & Disembarkation Preparations",
           "places": ["Old Cairo", "Khan el-Khalili"],
           "description": "Optional exploration of historic Cairo.",
-          "image": "/images/group-eating-1280x800.jpg",
+          "image": "/images/Khan_el-Khalili.jpg",
           "schedule": [
             { "time": "Optional", "text": "Old Cairo and the Khan el-Khalili bazaar, or leisure on board." },
             { "time": "Evening", "text": "Farewell dinner on board." },
