@@ -1,5 +1,19 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Embed a lookup of every itinerary so the client can show the journey
+// pre-selected from ?tour=<id>&route=<index> (set by the detail-page CTA).
+const tours = (await getCollection('itineraries', ({ data }) => !data.draft)).map((it) => ({
+  id: it.id,
+  title: it.data.title,
+  nights: it.data.nights,
+  days: it.data.days,
+  experience: it.data.experience,
+  image: it.data.cardImage,
+  routes: it.data.routes.map((r) => r.label),
+}));
+const toursJson = JSON.stringify(Object.fromEntries(tours.map((t) => [t.id, t])));
 ---
 
 <MainLayout
@@ -30,6 +44,9 @@ import MainLayout from '../layouts/MainLayout.astro';
       </p>
     </div>
   </div>
+
+  <!-- Itinerary lookup for the client (pre-selected journey from ?tour=) -->
+  <script type="application/json" id="tours-data" is:inline set:html={toursJson}></script>
 
   <!-- Form container -->
   <div class="bg-linen min-h-screen border-t border-bone">
@@ -67,6 +84,25 @@ import MainLayout from '../layouts/MainLayout.astro';
 
         <!-- ── STEP 1: Trip details ───────────────────────── -->
         <div id="step-1" class="form-step">
+
+          <!-- Selected journey (shown when arriving from an itinerary CTA) -->
+          <div id="selected-journey" class="hidden mb-10">
+            <label class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-5">Your Selected Journey</label>
+            <div class="relative flex items-center gap-4 sm:gap-5 border border-gold/40 bg-sand rounded-xl p-3 sm:p-4">
+              <div class="w-24 h-20 sm:w-32 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg">
+                <img id="sj-image" src="" alt="" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p id="sj-exp" class="font-sans text-[10px] tracking-[0.22em] uppercase text-gold mb-1"></p>
+                <p id="sj-title" class="font-serif text-xl sm:text-2xl text-earth font-light leading-tight"></p>
+                <p id="sj-meta" class="font-sans text-sm text-sandstone font-light mt-1"></p>
+              </div>
+              <a href="/itineraries" class="absolute top-2 right-3 sm:static font-sans text-[11px] tracking-[0.18em] uppercase text-sandstone hover:text-gold transition-colors flex-shrink-0">
+                Change
+              </a>
+            </div>
+          </div>
+          <input type="hidden" name="itinerary" id="hidden-itinerary" />
 
           <!-- Boat selection -->
           <div class="mb-10">
@@ -251,6 +287,10 @@ import MainLayout from '../layouts/MainLayout.astro';
             <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-6">Booking Summary</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+              <div id="summary-journey-wrap" class="hidden md:col-span-2">
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Journey</p>
+                <p id="summary-journey" class="font-serif text-earth text-lg font-light">—</p>
+              </div>
               <div>
                 <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Boat</p>
                 <p id="summary-boat" class="font-serif text-earth text-lg font-light">—</p>
@@ -390,6 +430,34 @@ import MainLayout from '../layouts/MainLayout.astro';
   function $(id) { return document.getElementById(id); }
 
   var currentStep = 1;
+  var selectedJourney = '';
+
+  /* ── Pre-selected journey from ?tour=<id>&route=<index> ───── */
+  (function () {
+    var dataEl = $('tours-data');
+    if (!dataEl) return;
+    var TOURS = {};
+    try { TOURS = JSON.parse(dataEl.textContent || '{}'); } catch (_) { return; }
+    var params = new URLSearchParams(location.search);
+    var tourId = params.get('tour');
+    if (!tourId || !TOURS[tourId]) return;
+
+    var t = TOURS[tourId];
+    var idx = parseInt(params.get('route') || '0', 10);
+    if (isNaN(idx) || idx < 0 || idx >= t.routes.length) idx = 0;
+    var dir = t.routes[idx] || t.routes[0];
+    var dur = t.nights + ' Nights / ' + t.days + ' Days';
+
+    $('sj-image').src = t.image;
+    $('sj-image').alt = t.title;
+    $('sj-exp').textContent = t.experience;
+    $('sj-title').textContent = t.title;
+    $('sj-meta').textContent = dur + '  ·  ' + dir;
+    $('selected-journey').classList.remove('hidden');
+
+    selectedJourney = dur + ' — ' + dir;
+    $('hidden-itinerary').value = selectedJourney + ' (' + t.title + ')';
+  })();
 
   /* ── Boat card selection ─────────────────── */
   document.querySelectorAll('.boat-card').forEach(function (label) {
@@ -510,6 +578,10 @@ import MainLayout from '../layouts/MainLayout.astro';
     var departure = new Date($('departure').value);
     var fmt = { year: 'numeric', month: 'long', day: 'numeric' };
 
+    if (selectedJourney) {
+      $('summary-journey').textContent = selectedJourney;
+      $('summary-journey-wrap').classList.remove('hidden');
+    }
     $('summary-boat').textContent      = boat ? boat.value : '—';
     $('summary-type').textContent      = $('trip-type').value || '—';
     $('summary-arrival').textContent   = $('arrival').value ? arrival.toLocaleDateString('en-GB', fmt) : '—';
