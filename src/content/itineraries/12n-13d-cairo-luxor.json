@@ -74,7 +74,7 @@
           "title": "Sail to Minya — Tuna el-Gebel & Ashmunein",
           "places": ["Tuna el-Gebel", "Ashmunein"],
           "description": "South to Minya, with two Middle-Egypt sites.",
-          "image": "/images/dsc-1797-pano-1280x800.jpg",
+          "image": "/images/Ashmunein.jpg",
           "schedule": [
             { "time": "Sailing", "text": "On to Minya — approx. 145 km · 19–21 hrs against the current." },
             { "time": "Visit", "text": "Tuna el-Gebel and Ashmunein." },
@@ -85,7 +85,7 @@
           "title": "Tell el-Amarna & Beni Hassan",
           "places": ["Tell el-Amarna", "Beni Hassan"],
           "description": "The painted tombs of Middle Egypt.",
-          "image": "/images/aswan-temples-1280x800.jpg",
+          "image": "/images/Beni_Hassan.jpg",
           "schedule": [
             { "time": "Morning", "text": "Tell el-Amarna — the Northern Tombs and the Tomb of Ahmose (EA3)." },
             { "time": "Afternoon", "text": "The impressive rock-cut tombs of Beni Hassan." },
@@ -96,7 +96,7 @@
           "title": "Sail to Asyut",
           "places": ["Asyut"],
           "description": "A full sailing day toward Asyut.",
-          "image": "/images/top_river2.jpg",
+          "image": "/images/img-20180416-163539-947-676x450.jpg",
           "schedule": [
             { "time": "Sailing", "text": "On to Asyut — approx. 125 km · 17–18 hrs against the current, watching Middle Egypt drift by from the sundeck." },
             { "time": "Overnight", "text": "Asyut." }
@@ -117,7 +117,7 @@
           "title": "Sail to Qena",
           "places": ["Qena"],
           "description": "A leisurely sailing day toward Qena.",
-          "image": "/images/top_river2.jpg",
+          "image": "/images/egypte-veda-198-van-577-1280x800.jpg",
           "schedule": [
             { "time": "Sailing", "text": "On to Qena — approx. 160 km · 21–23 hrs against the current, panoramic Nile scenery from the sundeck." },
             { "time": "Overnight", "text": "Qena." }
