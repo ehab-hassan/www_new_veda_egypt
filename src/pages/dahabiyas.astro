@@ -62,18 +62,18 @@ const boats: Boat[] = [
     ],
     hero: '/images/hero_1.jpg',
     gallery: [
-      '/images/photo-2019-03-11-20.38.43-676x450.jpg',
-      '/images/egypte-veda-214-van-577-2000x709.jpg',
-      '/images/photo-2019-03-21-13.20.11-854x1280.jpg',
-      '/images/photo-2019-03-12-09.37.30-1280x854.jpg',
-      '/images/photo-2019-03-23-11.20.45-1280x722.jpg',
-      '/images/photo-2019-03-11-21.08.46-1280x854.jpg',
-      '/images/egypte-veda-199-van-577-2000x1250.jpg',
-      '/images/photo-2019-03-11-20.31.20-1280x854.jpg',
-      '/images/photo-2019-03-12-10-54-55edit-1-1280x800.jpg',
-      '/images/photo-2019-03-21-13.18.50-1280x800.jpg',
-      '/images/photo-2019-03-14-12.21.13-956x800.jpg',
-      '/images/egypte-veda-568-van-577-2000x1250.jpg',
+      '/images/veda_1_Indoor Lounge.jpg',
+      '/images/veda_1_Bar_indoor.jpg',
+      '/images/veda_1_Outdoor_Glass.jpg',
+      '/images/veda_1_Suite_with_Private_Outdoor_Terrace_1.jpg',
+      '/images/veda_1_Suite_with_Private_Outdoor_Terrace_2.jpg',
+      '/images/veda_1_Suite_with_Private_Outdoor_Terrace_3.jpg',
+      '/images/veda_1_Upper_Expansive_Sundeck.jpg',
+      '/images/veda_1_Upper_Expansive_Sundeck_2.jpg',
+      '/images/veda_1_Upper_Expansive_Sundeck_3.jpg',
+      '/images/veda_1_Upper_Expansive_Sundeck_4.jpg',
+      '/images/veda_1_Lower_Sundeck_1.jpg',
+      '/images/veda_1_Lower_Sundeck_2.jpg',
     ],
     // light bg
     bg: 'bg-linen',
@@ -607,7 +607,12 @@ const fleetSchema = JSON.stringify({
     <button id="lb-prev" aria-label="Previous image" class="absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 w-11 h-11 border border-white/15 hover:border-gold/60 text-ivory/50 hover:text-gold flex items-center justify-center transition-all">←</button>
     <button id="lb-next" aria-label="Next image" class="absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 w-11 h-11 border border-white/15 hover:border-gold/60 text-ivory/50 hover:text-gold flex items-center justify-center transition-all">→</button>
     <div class="flex flex-col items-center max-w-5xl w-full px-16">
-      <img id="lb-img" src="" alt="" class="max-h-[80vh] max-w-full object-contain lb-img"/>
+      <div class="relative inline-block max-w-full">
+        <img id="lb-img" src="" alt="" class="block max-h-[82vh] max-w-full object-contain lb-img"/>
+        <div id="lb-caption" class="absolute inset-x-0 bottom-0 px-6 pt-12 pb-5 bg-gradient-to-t from-void/95 via-void/55 to-transparent pointer-events-none">
+          <p id="lb-caption-text" class="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-gold-pale text-center"></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -625,9 +630,21 @@ const fleetSchema = JSON.stringify({
 <script>
   const lb     = document.getElementById('lb')!;
   const lbImg  = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('lb-caption');
+  const lbCaptionText = document.getElementById('lb-caption-text');
 
   let pool: string[] = [];
   let cur = 0;
+
+  // Derive a caption from descriptive filenames like "veda_1_Indoor Lounge.jpg".
+  function captionFor(src: string): string {
+    const name = (src.split('/').pop() || '').replace(/\.[^.]+$/, '');
+    const m = name.match(/^veda[_ ]?(\d+)[_ ](.+)$/i);
+    if (!m) return '';
+    const words = m[2].replace(/_+/g, ' ').replace(/\s+\d+$/, '').trim();
+    const titled = words.split(/\s+/).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    return 'Veda ' + m[1] + ' — ' + titled;
+  }
 
   function open(src: string, srcs: string[]) {
     pool = srcs;
@@ -640,6 +657,10 @@ const fleetSchema = JSON.stringify({
   function show(i: number) {
     cur = (i + pool.length) % pool.length;
     lbImg.src = pool[cur];
+    const cap = captionFor(pool[cur]);
+    lbImg.alt = cap;
+    if (lbCaptionText) lbCaptionText.textContent = cap;
+    if (lbCaption) lbCaption.style.display = cap ? '' : 'none';
     lbImg.classList.remove('lb-img');
     void lbImg.offsetWidth;
     lbImg.classList.add('lb-img');
