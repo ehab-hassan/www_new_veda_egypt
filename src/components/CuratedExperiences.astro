@@ -1,0 +1,52 @@
+---
+import { EXPERIENCES } from '../data/experiences';
+---
+
+<section class="bg-sand py-24 lg:py-32 border-t border-bone">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+      <div class="reveal">
+        <div class="flex items-center gap-4 mb-5">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Curated Experiences</p>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-earth font-light tracking-tight leading-tight">
+          Beyond the<br /><em class="italic text-gold">itinerary</em>
+        </h2>
+      </div>
+      <p class="font-sans text-base text-sandstone max-w-sm leading-relaxed reveal reveal-delay-1">
+        Enhance your journey with thoughtfully selected experiences designed around wellbeing, culture, and authentic Nile living.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      {EXPERIENCES.map((exp, i) => (
+        <article class={`group relative overflow-hidden rounded-lg bg-linen border border-bone hover:border-gold/40 transition-all duration-500 reveal reveal-delay-${Math.min(i + 1, 5)} flex flex-col`}>
+          <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
+            <img
+              src={exp.image}
+              alt={exp.title}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="font-sans text-[12px] tracking-[0.22em] uppercase text-gold mb-2">{exp.title}</p>
+            <p class="font-sans text-sm text-sandstone font-light leading-relaxed flex-1">{exp.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex justify-center mt-14 reveal">
+      <a
+        href="/experiences"
+        class="group inline-flex items-center gap-3 border border-gold/30 hover:border-gold text-gold/90 hover:text-gold font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:bg-gold/5"
+      >
+        Explore Experiences
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </div>
+</section>

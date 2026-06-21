@@ -1,0 +1,108 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { EXPERIENCES } from '../data/experiences';
+---
+
+<MainLayout
+  title="Experiences on the Nile | VEDA Egypt"
+  description="Discover curated wellness, cultural, and active experiences designed to enrich your luxury Dahabiya journey along the Nile."
+  ogImage="/images/yoga-on-deck-1280x800.jpg"
+>
+
+  <!-- 1 ── Hero ──────────────────────────────────── -->
+  <div class="relative flex items-center min-h-[68vh] pt-40 pb-28 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/yoga-on-deck-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager"/>
+    </div>
+    <div class="absolute inset-0 bg-void/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/80"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold-light">Curated Experiences</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight mb-7"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Experiences on the Nile
+      </h1>
+      <p class="font-sans text-base md:text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
+        Thoughtfully curated experiences that complement your journey and deepen your connection with the Nile.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2 ── Introduction ──────────────────────────── -->
+  <section class="bg-linen py-20 lg:py-28 border-t border-bone">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6 reveal">
+        <span class="h-px w-8 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">The VEDA Way</p>
+        <span class="h-px w-8 bg-gold/50"></span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight mb-6 reveal reveal-delay-1">
+        A Journey Beyond the Itinerary
+      </h2>
+      <p class="font-sans text-base lg:text-lg text-sandstone font-light leading-relaxed reveal reveal-delay-2">
+        Some moments cannot be scheduled. They unfold naturally through movement, wellness, culture, and meaningful encounters along the Nile.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 ── Experiences grid ──────────────────────── -->
+  <section class="bg-sand py-16 lg:py-24 border-t border-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {EXPERIENCES.map((exp, i) => (
+          <article class={`group flex flex-col bg-linen border border-bone rounded-2xl overflow-hidden hover:border-gold/40 transition-all duration-500 reveal reveal-delay-${Math.min(i + 1, 6)}`}>
+            <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
+              <img
+                src={exp.image}
+                alt={exp.title}
+                class="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-void/45 via-transparent to-transparent"></div>
+            </div>
+            <div class="p-7 flex flex-col flex-1">
+              <h3 class="font-serif text-2xl text-earth font-light leading-tight mb-3">{exp.title}</h3>
+              <p class="font-sans text-base text-sandstone font-light leading-relaxed mb-6 flex-1">{exp.desc}</p>
+              <a
+                href="/reserve"
+                class="group/btn inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors mt-auto"
+              >
+                Add to Your Journey
+                <span class="group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ── Personalised ──────────────────────────── -->
+  <section class="bg-forest py-20 lg:py-28 border-y border-gold/10">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6 reveal">
+        <span class="h-px w-8 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Tailored To Your Journey</p>
+        <span class="h-px w-8 bg-gold/50"></span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory font-light tracking-tight leading-tight mb-6 reveal reveal-delay-1">
+        Designed around you
+      </h2>
+      <p class="font-sans text-base lg:text-lg text-warm-gray font-light leading-relaxed mb-10 reveal reveal-delay-2">
+        Many experiences can be incorporated into your itinerary upon request. Our team will help design the perfect balance between exploration, relaxation, and cultural immersion.
+      </p>
+      <a
+        href="/reserve"
+        class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 reveal reveal-delay-3"
+      >
+        Plan Your Journey
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </section>
+
+</MainLayout>

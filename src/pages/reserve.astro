@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
+import { EXPERIENCES } from '../data/experiences';
 
 // WhatsApp number for the success CTA — replace with VEDA's real number (digits only, incl. country code).
 const WHATSAPP_NUMBER = '201000000000';
@@ -209,6 +210,23 @@ const TRAVEL_STYLES = [
             </div>
           </div>
 
+          <!-- Enhance your journey -->
+          <div class="mb-8">
+            <label class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-1">Enhance Your Journey</label>
+            <p class="font-sans text-xs text-sandstone/80 mb-3">Optional experiences to add to your Nile journey.</p>
+            <div class="flex flex-wrap gap-2.5">
+              {EXPERIENCES.map((exp) => (
+                <label class="cursor-pointer">
+                  <input type="checkbox" name="experiences" value={exp.title} class="sr-only" />
+                  <span class="exp-chip">{exp.title}</span>
+                </label>
+              ))}
+            </div>
+            <input type="text" id="otherExperience" name="otherExperience"
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors mt-3"
+              placeholder="Other experience requests…" />
+          </div>
+
           <!-- Notes -->
           <div class="mb-10">
             <label for="notes" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Tell us about your dream Nile journey</label>
@@ -333,6 +351,10 @@ const TRAVEL_STYLES = [
                 <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Travel Style</p>
                 <p id="r-style" class="font-serif text-earth text-lg font-light">—</p>
               </div>
+              <div id="r-exp-wrap" class="hidden sm:col-span-2">
+                <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Experiences</p>
+                <p id="r-exp" class="font-serif text-earth text-lg font-light">—</p>
+              </div>
               <div class="sm:col-span-2 border-t border-bone pt-4">
                 <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-sandstone mb-1">Contact</p>
                 <p id="r-name" class="font-serif text-earth text-lg font-light">—</p>
@@ -445,6 +467,21 @@ const TRAVEL_STYLES = [
   }
   .style-chip:hover { border-color: rgba(var(--gold-rgb) / 0.5); }
   .style-chip.is-active { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+  .exp-chip {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: var(--earth);
+    background: #fff;
+    border: 1px solid var(--bone);
+    border-radius: 9999px;
+    padding: 0.55rem 1.1rem;
+    transition: all 0.2s ease;
+  }
+  label:hover > .exp-chip { border-color: rgba(var(--gold-rgb) / 0.5); }
+  input:checked + .exp-chip { background: var(--gold); border-color: var(--gold); color: #fff; }
+  input:focus-visible + .exp-chip { outline: 1.5px solid var(--gold); outline-offset: 2px; }
 
   .form-step { animation: stepIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
   @keyframes stepIn {
@@ -608,6 +645,11 @@ const TRAVEL_STYLES = [
     $('r-guests').textContent  = guestsText();
     $('r-boat').textContent    = $('boatPreference').value;
     $('r-style').textContent   = selected.styles.length ? selected.styles.join(', ') : '—';
+    var exps = Array.prototype.slice.call(document.querySelectorAll('input[name="experiences"]:checked')).map(function (c) { return c.value; });
+    var other = ($('otherExperience').value || '').trim();
+    if (other) exps.push(other);
+    if (exps.length) { $('r-exp').textContent = exps.join(', '); $('r-exp-wrap').classList.remove('hidden'); }
+    else { $('r-exp-wrap').classList.add('hidden'); }
     $('r-name').textContent    = $('fullName').value || '—';
     $('r-contact').textContent = [$('email').value, $('whatsapp').value].filter(Boolean).join('  ·  ') || '—';
   }
