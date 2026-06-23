@@ -324,7 +324,7 @@ const jsonLd = JSON.stringify({
       role="dialog"
       aria-modal="true"
       aria-label="Navigation menu"
-      class="menu-hidden fixed inset-0 z-[60] flex flex-col bg-linen/98 backdrop-blur-md"
+      class="menu-hidden fixed inset-0 z-[60] flex flex-col bg-linen backdrop-blur-md"
     >
       <!-- Menu header -->
       <div class="flex items-center justify-between h-20 px-6 border-b border-bone">
@@ -357,7 +357,7 @@ const jsonLd = JSON.stringify({
           <a
             href={item.href}
             class={`font-serif text-4xl py-3 border-b border-bone transition-colors ${
-              isActive(item.href) ? 'text-gold' : 'text-earth/80 hover:text-gold'
+              isActive(item.href) ? 'text-gold' : 'text-earth hover:text-gold'
             }`}
           >
             {item.label}

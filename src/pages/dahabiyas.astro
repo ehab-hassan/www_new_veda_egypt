@@ -256,7 +256,7 @@ const boats: Boat[] = [
       '/images/veda_4_Underground_Lounge_&_TV-Area_2.jpg',
       '/images/veda_4_Upper_Sundeck_1.jpg',
       '/images/veda_4_Upper_Sundeck_2.jpg',
-      '/images/veda_4_Upper_Sundeck_3.jpg',
+      '/images/veda_4_Upper_Sundeck_3git .jpg',
     ],
     // light bg
     bg: 'bg-sand',
@@ -712,6 +712,21 @@ const fleetSchema = JSON.stringify({
   document.getElementById('lb-prev')?.addEventListener('click',  () => show(cur - 1));
   document.getElementById('lb-next')?.addEventListener('click',  () => show(cur + 1));
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  // Touch swipe — left/right to navigate, with a deliberate threshold so taps don't trigger.
+  let touchX = 0, touchY = 0;
+  lb.addEventListener('touchstart', e => {
+    touchX = e.changedTouches[0].clientX;
+    touchY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    // Horizontal swipe only: ignore mostly-vertical gestures (scroll/dismiss intent).
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      show(dx < 0 ? cur + 1 : cur - 1);
+    }
+  }, { passive: true });
   document.addEventListener('keydown', e => {
     if (lb.classList.contains('open')) {
       if (e.key === 'Escape')     close();
