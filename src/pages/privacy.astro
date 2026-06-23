@@ -1,0 +1,266 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+type Block =
+  | { type: 'p'; text: string }
+  | { type: 'list'; lead?: string; items: string[] };
+
+interface Section {
+  n: string;
+  title: string;
+  blocks: Block[];
+}
+
+// Sections rendered generically. The Data Controller (2) and Contact (11)
+// sections carry clickable contact details and are rendered separately below.
+const sections: Section[] = [
+  {
+    n: '1',
+    title: 'General Information',
+    blocks: [
+      { type: 'p', text: 'Veda Egypt is a project operated by Back to Gaia, a limited liability company incorporated under the laws of the Arab Republic of Egypt (the "Company", "we", "us", or "our"). The Company is the operator of the website www.veda-egypt.com and any associated subdomains (the "Website").' },
+      { type: 'p', text: 'As the operator of the Website, we take the protection of your personal data seriously. We collect, process, and use personal data in accordance with this Privacy Policy and in compliance with applicable Egyptian data protection laws and, where relevant, international data protection principles, including the EU General Data Protection Regulation ("GDPR") for visitors located in the European Union.' },
+      { type: 'p', text: 'This Privacy Policy provides information about the collection, processing, and use of personal data when using the Website or contacting us in relation to our services, including boat rentals, retreats, and curated experiences.' },
+      { type: 'p', text: 'If you provide us with personal data of third parties (such as travel companions or retreat participants), you confirm that you have obtained their permission and informed them of this Privacy Policy.' },
+    ],
+  },
+  {
+    n: '3',
+    title: 'Data Processing in Connection with the Website',
+    blocks: [
+      { type: 'p', text: '3.1 Visiting the Website' },
+      { type: 'list', lead: 'When you visit the Website, our hosting provider(s) may automatically collect and store information in server log files transmitted by your browser. This information is not directly assigned to specific individuals and may include:', items: [
+        'Anonymized IP address', 'Browser type and version', 'Operating system', 'Referrer URL', 'Date and time of access',
+      ] },
+      { type: 'list', lead: 'This data is processed to:', items: [
+        'Enable Website functionality', 'Ensure system security and stability', 'Prevent misuse or unauthorized access', 'Generate anonymized statistical insights',
+      ] },
+      { type: 'p', text: 'The processing is based on our legitimate interest in operating and securing the Website.' },
+      { type: 'p', text: '3.2 Cookies' },
+      { type: 'p', text: 'The Website may use cookies. Cookies are small text files stored on your device by your browser.' },
+      { type: 'list', lead: 'Cookies help us:', items: ['Ensure proper Website operation', 'Improve user experience', 'Analyze Website performance'] },
+      { type: 'p', text: 'You may prevent or delete cookies through your browser settings. Disabling cookies may limit certain Website features.' },
+      { type: 'p', text: 'Where required by applicable law, non-essential cookies are only set after you have provided consent via a cookie banner.' },
+      { type: 'p', text: 'For more information, please see our Cookie Policy.' },
+      { type: 'p', text: '3.3 Analytics (Matomo)' },
+      { type: 'p', text: 'The Website may use Matomo Analytics, an open-source web analytics platform ("Matomo").' },
+      { type: 'list', lead: 'Matomo may collect information about your use of the Website, including:', items: [
+        'Anonymized IP address', 'Pages visited', 'Navigation paths', 'Length of stay', 'Returning or new visitor status', 'Device and browser information',
+      ] },
+      { type: 'p', text: 'Before storage, IP addresses are anonymized by activating IP anonymization (anonymizeIP).' },
+      { type: 'p', text: 'Analytics data may be stored on servers operated by us or our hosting providers, which may be located in Egypt, the European Economic Area (EEA), or other jurisdictions.' },
+      { type: 'p', text: 'We use this data exclusively to analyze Website usage, improve content, and optimize user experience. We do not use Matomo data to personally identify users unless required for security or legal reasons.' },
+      { type: 'p', text: 'The processing is based on our legitimate interest, or on your consent where required by law.' },
+      { type: 'p', text: 'You may opt out of analytics tracking at any time via your browser or cookie settings.' },
+      { type: 'p', text: '3.4 Contact via Website or Email' },
+      { type: 'list', lead: 'If you contact us via the Website or by email, we may collect the following information:', items: [
+        'Name', 'Email address', 'Phone number (if provided)', 'Message content',
+      ] },
+      { type: 'p', text: 'This data is used solely to respond to inquiries, booking requests, or service-related communications.' },
+      { type: 'p', text: 'The processing is based on your consent and/or our legitimate interest in responding to your request.' },
+      { type: 'p', text: '3.5 Bookings, Retreats & Services' },
+      { type: 'p', text: 'When you inquire about or book boat rentals, retreats, or other experiences, we may collect additional data necessary to manage your request, including scheduling and participant details.' },
+      { type: 'p', text: 'Payment processing and reservations may be handled by third-party service providers. We only share data necessary to fulfill your booking.' },
+    ],
+  },
+  {
+    n: '4',
+    title: 'Other Parties Who May Access Data',
+    blocks: [
+      { type: 'list', lead: 'Personal data may be shared with:', items: [
+        'Website hosting providers', 'Analytics providers (Matomo)', 'Booking, payment, or operational service providers', 'Authorities where legally required',
+      ] },
+      { type: 'p', text: 'We do not sell personal data.' },
+      { type: 'p', text: 'All third parties are required to process data securely and only for the intended purpose.' },
+    ],
+  },
+  {
+    n: '5',
+    title: 'International Data Transfers',
+    blocks: [
+      { type: 'p', text: 'Personal data may be transferred outside Egypt, including to countries within or outside the EEA.' },
+      { type: 'p', text: 'Where such transfers occur, we take reasonable steps to ensure an appropriate level of data protection is maintained.' },
+    ],
+  },
+  {
+    n: '6',
+    title: 'Data Security',
+    blocks: [
+      { type: 'p', text: 'We use appropriate technical and organizational security measures to protect personal data against unauthorized access, loss, or misuse.' },
+      { type: 'p', text: 'However, data transmission over the internet is never completely secure, and absolute protection cannot be guaranteed.' },
+      { type: 'p', text: 'This Privacy Policy does not apply to third-party websites linked from the Website.' },
+    ],
+  },
+  {
+    n: '7',
+    title: 'Your Rights',
+    blocks: [
+      { type: 'list', lead: 'Depending on your location and applicable law, you may have the right to:', items: [
+        'Request confirmation of whether your data is processed',
+        'Access your personal data',
+        'Request rectification of inaccurate data',
+        'Request deletion of your data',
+        'Object to or restrict processing',
+        'Withdraw consent at any time',
+      ] },
+      { type: 'p', text: 'Requests can be made using the contact details in Section 2.' },
+    ],
+  },
+  {
+    n: '8',
+    title: 'Duration of Storage',
+    blocks: [
+      { type: 'p', text: 'Personal data is stored only for as long as necessary to fulfill its intended purpose or comply with legal obligations, after which it is securely deleted.' },
+    ],
+  },
+  {
+    n: '9',
+    title: 'Minors',
+    blocks: [
+      { type: 'p', text: 'The Website is not intended for persons under the age of 18. We do not knowingly collect personal data from minors.' },
+    ],
+  },
+  {
+    n: '10',
+    title: 'Updates to This Privacy Policy',
+    blocks: [
+      { type: 'p', text: 'We may update this Privacy Policy from time to time. The current version published on the Website is the applicable version.' },
+    ],
+  },
+];
+---
+
+<MainLayout
+  title="Privacy Policy — VEDA Egypt"
+  description="How VEDA Egypt / Back to Gaia collects, processes, and protects your personal data, in compliance with Egyptian data protection law and the GDPR."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover object-center opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-void/20 to-void"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-ultra uppercase text-gold">VEDA / Back to Gaia</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Privacy<br /><em class="italic text-gold-pale">Policy</em>
+      </h1>
+      <p class="font-sans text-sm text-white/55 font-light tracking-wide">
+        Last updated: 14 January 2026
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="bg-linen py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+      <!-- 1. General Information -->
+      <section>
+        <div class="flex items-baseline gap-4 mb-6 reveal">
+          <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">{sections[0].n}</span>
+          <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">{sections[0].title}</h2>
+        </div>
+        <div class="pl-0 md:pl-12 space-y-4">
+          {sections[0].blocks.map((b) => (
+            b.type === 'p'
+              ? <p class="font-sans text-base text-sandstone font-light leading-relaxed">{b.text}</p>
+              : null
+          ))}
+        </div>
+      </section>
+
+      <!-- 2. Data Controller (with contact) -->
+      <section class="mt-14">
+        <div class="flex items-baseline gap-4 mb-6 reveal">
+          <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">2</span>
+          <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">Data Controller</h2>
+        </div>
+        <div class="pl-0 md:pl-12 reveal">
+          <p class="font-sans text-base text-sandstone font-light leading-relaxed mb-4">
+            The data controller responsible for processing personal data is:
+          </p>
+          <div class="border border-bone bg-sand rounded-2xl px-6 py-6 space-y-4">
+            <div>
+              <p class="font-sans text-base text-earth font-light leading-relaxed">Back to Gaia</p>
+              <p class="font-sans text-base text-sandstone font-light leading-relaxed">
+                Unit 5, Mall 15, Phase 2<br />
+                Beverly Hills, Sheikh Zayed<br />
+                Giza, Egypt
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:gap-10 gap-1">
+              <p class="font-sans text-sm text-sandstone font-light"><span class="text-gold">Company Registration No.</span> 21219</p>
+              <p class="font-sans text-sm text-sandstone font-light"><span class="text-gold">Tax Identification No.</span> 540-740-705</p>
+            </div>
+            <div>
+              <p class="font-sans text-[10px] tracking-[0.24em] uppercase text-gold mb-1">Authorized Representative</p>
+              <p class="font-sans text-base text-sandstone font-light">Maher Mohamed AbdelHakim Abdullah</p>
+              <div class="flex flex-col gap-1 mt-2">
+                <a href="mailto:maher@veda-egypt.com" class="font-sans text-base text-earth hover:text-gold transition-colors">maher@veda-egypt.com</a>
+                <a href="tel:+201000968212" class="font-sans text-base text-earth hover:text-gold transition-colors">+20 100 096 8212</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sections 3–10 -->
+      {sections.slice(1).map((section) => (
+        <section class="mt-14">
+          <div class="flex items-baseline gap-4 mb-6 reveal">
+            <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">{section.n}</span>
+            <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">{section.title}</h2>
+          </div>
+          <div class="pl-0 md:pl-12 space-y-4">
+            {section.blocks.map((b) => (
+              b.type === 'p' ? (
+                <p class:list={['font-sans font-light leading-relaxed', /^\d+\.\d+\s/.test(b.text) ? 'text-[13px] tracking-[0.2em] uppercase text-gold-muted pt-2' : 'text-base text-sandstone']}>{b.text}</p>
+              ) : (
+                <div class="space-y-3">
+                  {b.lead && <p class="font-sans text-base text-sandstone font-light leading-relaxed">{b.lead}</p>}
+                  <ul class="space-y-2.5">
+                    {b.items.map((it) => (
+                      <li class="flex items-start gap-3 font-sans text-base text-sandstone font-light leading-relaxed">
+                        <span class="mt-[0.6rem] h-1.5 w-1.5 rounded-full bg-gold/70 flex-shrink-0"></span>
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- 11. Contact -->
+      <section class="mt-14">
+        <div class="flex items-baseline gap-4 mb-6 reveal">
+          <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">11</span>
+          <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">Contact</h2>
+        </div>
+        <div class="pl-0 md:pl-12 reveal">
+          <p class="font-sans text-base text-sandstone font-light leading-relaxed mb-4">
+            If you have questions regarding this Privacy Policy or our data practices, please contact:
+          </p>
+          <div class="border border-bone bg-sand rounded-2xl px-6 py-6 space-y-2">
+            <p class="font-sans text-base text-earth font-light">Back to Gaia / Veda Egypt</p>
+            <div class="flex flex-col gap-1">
+              <a href="mailto:maher@veda-egypt.com" class="font-sans text-base text-earth hover:text-gold transition-colors">maher@veda-egypt.com</a>
+              <a href="tel:+201000968212" class="font-sans text-base text-earth hover:text-gold transition-colors">+20 100 096 8212</a>
+              <a href="https://www.veda-egypt.com" class="font-sans text-base text-earth hover:text-gold transition-colors">https://www.veda-egypt.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</MainLayout>

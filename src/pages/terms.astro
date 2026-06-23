@@ -1,0 +1,280 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+type Block =
+  | { type: 'p'; text: string }
+  | { type: 'list'; lead?: string; items: string[] };
+
+interface Section {
+  n: string;
+  title: string;
+  blocks: Block[];
+}
+
+const sections: Section[] = [
+  {
+    n: '1',
+    title: 'Acceptance of These Terms',
+    blocks: [
+      { type: 'p', text: 'These Terms and Conditions ("Terms") are entered into by and between you ("you", "guest", or "user") and Back to Gaia, a limited liability company incorporated under the laws of the Arab Republic of Egypt, operating under the brand VEDA (the "Company", "we", "us", or "our").' },
+      { type: 'p', text: 'These Terms govern your access to and use of the website https://www.veda-egypt.com (the "Website") and any inquiry, booking request, reservation, retreat, boat charter, or service related to VEDA.' },
+      { type: 'p', text: 'By accessing the Website, contacting us, or entering into any agreement with us, you confirm that you have read, understood, and agree to be bound by these Terms, together with our Privacy Policy and Cookie Policy, which are incorporated by reference.' },
+      { type: 'p', text: 'If you do not agree with these Terms, you must not use the Website or our services.' },
+    ],
+  },
+  {
+    n: '2',
+    title: 'Nature of the Website',
+    blocks: [
+      { type: 'p', text: 'The Website is provided for informational and promotional purposes only.' },
+      { type: 'list', lead: 'The Website does not constitute:', items: ['A binding offer', 'A booking confirmation', 'A contract for services'] },
+      { type: 'p', text: 'All services offered by VEDA, including retreats, boat rentals, and experiences, are subject to separate written agreements or contracts concluded individually with guests.' },
+      { type: 'p', text: 'We reserve the right to modify, update, or remove Website content at any time without notice.' },
+    ],
+  },
+  {
+    n: '3',
+    title: 'Eligibility & Age Requirements',
+    blocks: [
+      { type: 'list', items: [
+        'The Website may be accessed by users aged 13 years or older',
+        'Participation in retreats, boat charters, or physical activities generally requires guests to be 18 years or older, unless explicitly agreed otherwise in writing',
+        'Minors may only participate with prior written consent of a parent or legal guardian and under their supervision',
+      ] },
+    ],
+  },
+  {
+    n: '4',
+    title: 'Inquiries, Reservations & Contracts',
+    blocks: [
+      { type: 'p', text: 'Any inquiry submitted through the Website or via email does not constitute a confirmed booking.' },
+      { type: 'list', lead: 'A reservation or participation is only confirmed once:', items: [
+        'A separate written agreement or contract has been concluded; and',
+        'Any required deposit or payment has been received, if applicable',
+      ] },
+      { type: 'p', text: 'All booking terms, pricing, cancellation conditions, and refund rules are defined exclusively in the individual contract agreed upon between the guest and the Company.' },
+    ],
+  },
+  {
+    n: '5',
+    title: 'Pricing, Payments & Refunds',
+    blocks: [
+      { type: 'p', text: 'Prices displayed or mentioned on the Website are indicative only and may change at any time.' },
+      { type: 'list', lead: 'Please note:', items: [
+        'Pricing, payment schedules, deposits, cancellations, and refunds are not standardized on the Website',
+        'Each booking or retreat is governed by its own specific contract',
+        'Refund eligibility, if any, depends solely on the terms agreed in the applicable contract',
+        'The Website itself does not define or guarantee any refund rights',
+      ] },
+    ],
+  },
+  {
+    n: '6',
+    title: 'Activities, Weather & Safety Conditions',
+    blocks: [
+      { type: 'list', lead: 'Many services offered by VEDA involve outdoor, maritime, or physical activities, including but not limited to:', items: [
+        'Boat charters', 'Sailing', 'Swimming', 'Snorkeling', 'Retreat activities',
+      ] },
+      { type: 'list', lead: 'You acknowledge and agree that:', items: [
+        'Activities are subject to weather, sea, and safety conditions',
+        'Routes, schedules, or activities may be modified or cancelled for safety reasons',
+        'Decisions made by captains, guides, or staff regarding safety are final',
+        'No specific conditions or outcomes are guaranteed',
+      ] },
+    ],
+  },
+  {
+    n: '7',
+    title: 'Assumption of Risk',
+    blocks: [
+      { type: 'list', lead: 'By participating in any activity arranged by VEDA, you acknowledge and accept that:', items: [
+        'Such activities carry inherent risks',
+        'You voluntarily assume full responsibility for your participation',
+        'You confirm that you are physically and medically fit to participate',
+        'You participate at your own risk, to the maximum extent permitted by law',
+      ] },
+    ],
+  },
+  {
+    n: '8',
+    title: 'Health, Insurance & Personal Responsibility',
+    blocks: [
+      { type: 'list', lead: 'Guests are solely responsible for:', items: [
+        'Obtaining adequate travel, medical, and activity insurance',
+        'Disclosing relevant medical conditions where applicable',
+        'Their personal belongings and valuables',
+      ] },
+      { type: 'p', text: 'The Company is not responsible for loss, damage, illness, injury, or death, except where required by mandatory applicable law.' },
+    ],
+  },
+  {
+    n: '9',
+    title: 'Guest Conduct',
+    blocks: [
+      { type: 'list', lead: 'Guests are expected to behave respectfully toward:', items: ['Staff', 'Other guests', 'Property', 'Local laws and customs'] },
+      { type: 'list', lead: 'We reserve the right to refuse service or terminate participation without refund in cases of:', items: [
+        'Illegal behavior', 'Dangerous conduct', 'Harassment', 'Violation of house rules or contractual terms',
+      ] },
+    ],
+  },
+  {
+    n: '10',
+    title: 'Third-Party Services',
+    blocks: [
+      { type: 'list', lead: 'VEDA may assist with or recommend third-party services such as:', items: ['Transport', 'Tours', 'Guides', 'Equipment providers'] },
+      { type: 'list', lead: 'Such services are provided by independent third parties. The Company:', items: [
+        'Does not control or operate these services',
+        'Is not responsible for their acts or omissions',
+        'Acts solely as a facilitator, where applicable',
+      ] },
+    ],
+  },
+  {
+    n: '11',
+    title: 'Intellectual Property',
+    blocks: [
+      { type: 'p', text: 'All content on the Website, including text, images, videos, logos, and branding, is the property of the Company or its licensors and is protected by applicable intellectual property laws.' },
+      { type: 'p', text: 'No content may be copied, reproduced, or used without prior written permission.' },
+    ],
+  },
+  {
+    n: '12',
+    title: 'Disclaimer of Warranties',
+    blocks: [
+      { type: 'p', text: 'The Website and its content are provided on an "as is" and "as available" basis.' },
+      { type: 'list', lead: 'We make no warranties, express or implied, regarding:', items: ['Accuracy', 'Availability', 'Reliability', 'Suitability for any purpose'] },
+      { type: 'p', text: 'Use of the Website and participation in any services is entirely at your own risk.' },
+    ],
+  },
+  {
+    n: '13',
+    title: 'Limitation of Liability',
+    blocks: [
+      { type: 'list', lead: 'To the maximum extent permitted by applicable law, the Company shall not be liable for any indirect, incidental, consequential, or punitive damages arising from:', items: [
+        'Use of the Website', 'Participation in activities', 'Acts of third parties', 'Force majeure events',
+      ] },
+      { type: 'p', text: 'Nothing in these Terms excludes liability that cannot be excluded under applicable law.' },
+    ],
+  },
+  {
+    n: '14',
+    title: 'Force Majeure',
+    blocks: [
+      { type: 'list', lead: 'The Company shall not be liable for failure or delay in performance due to events beyond its reasonable control, including but not limited to:', items: [
+        'Weather conditions', 'Natural disasters', 'Government actions', 'Port closures', 'Political events', 'Safety concerns',
+      ] },
+    ],
+  },
+  {
+    n: '15',
+    title: 'Governing Law & Jurisdiction',
+    blocks: [
+      { type: 'p', text: 'These Terms shall be governed by and construed in accordance with the laws of the Arab Republic of Egypt.' },
+      { type: 'p', text: 'Any disputes shall be subject to the exclusive jurisdiction of the competent courts of Egypt.' },
+    ],
+  },
+  {
+    n: '16',
+    title: 'Changes to These Terms',
+    blocks: [
+      { type: 'p', text: 'We may update these Terms at any time. Changes take effect once published on the Website. Continued use of the Website constitutes acceptance of the updated Terms.' },
+    ],
+  },
+];
+---
+
+<MainLayout
+  title="Terms & Conditions — VEDA Egypt"
+  description="The terms and conditions governing your use of the VEDA Egypt website and any inquiry, reservation, retreat, or boat charter with VEDA / Back to Gaia."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover object-center opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-void/20 to-void"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-ultra uppercase text-gold">VEDA / Back to Gaia</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Terms &amp;<br /><em class="italic text-gold-pale">Conditions</em>
+      </h1>
+      <p class="font-sans text-sm text-white/55 font-light tracking-wide">
+        Last updated: 14 January 2026
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="bg-linen py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+      <!-- Lead notice -->
+      <p class="font-sans text-[13px] tracking-[0.18em] uppercase text-gold-muted leading-relaxed border border-bone bg-sand rounded-2xl px-6 py-5 mb-16 reveal">
+        Please read these Terms and Conditions carefully before using this Website or making any inquiry or reservation.
+      </p>
+
+      {sections.map((section, si) => (
+        <section class:list={[si > 0 ? 'mt-14' : '']}>
+          <div class="flex items-baseline gap-4 mb-6 reveal">
+            <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">{section.n}</span>
+            <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">{section.title}</h2>
+          </div>
+          <div class="pl-0 md:pl-12 space-y-4">
+            {section.blocks.map((b) => (
+              b.type === 'p' ? (
+                <p class="font-sans text-base text-sandstone font-light leading-relaxed">{b.text}</p>
+              ) : (
+                <div class="space-y-3">
+                  {b.lead && <p class="font-sans text-base text-sandstone font-light leading-relaxed">{b.lead}</p>}
+                  <ul class="space-y-2.5">
+                    {b.items.map((it) => (
+                      <li class="flex items-start gap-3 font-sans text-base text-sandstone font-light leading-relaxed">
+                        <span class="mt-[0.6rem] h-1.5 w-1.5 rounded-full bg-gold/70 flex-shrink-0"></span>
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- 17. Contact -->
+      <section class="mt-14">
+        <div class="flex items-baseline gap-4 mb-6 reveal">
+          <span class="font-serif text-2xl text-gold/60 font-light leading-none flex-shrink-0 w-8">17</span>
+          <h2 class="font-serif text-2xl md:text-3xl text-earth font-light leading-snug">Contact Information</h2>
+        </div>
+        <div class="pl-0 md:pl-12 reveal">
+          <div class="border border-bone bg-sand rounded-2xl px-6 py-6 space-y-4">
+            <div>
+              <p class="font-sans text-[10px] tracking-[0.24em] uppercase text-gold mb-1">Website</p>
+              <a href="https://www.veda-egypt.com" class="font-sans text-base text-earth hover:text-gold transition-colors">https://www.veda-egypt.com</a>
+            </div>
+            <div>
+              <p class="font-sans text-[10px] tracking-[0.24em] uppercase text-gold mb-1">Operated by</p>
+              <p class="font-sans text-base text-sandstone font-light">Back to Gaia — Limited Liability Company</p>
+            </div>
+            <div>
+              <p class="font-sans text-[10px] tracking-[0.24em] uppercase text-gold mb-1">Authorized Representative</p>
+              <p class="font-sans text-base text-sandstone font-light">Maher Mohamed AbdelHakim Abdullah</p>
+              <div class="flex flex-col gap-1 mt-2">
+                <a href="mailto:maher@veda-egypt.com" class="font-sans text-base text-earth hover:text-gold transition-colors">maher@veda-egypt.com</a>
+                <a href="tel:+201000968212" class="font-sans text-base text-earth hover:text-gold transition-colors">+2 0100 096 8212</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</MainLayout>

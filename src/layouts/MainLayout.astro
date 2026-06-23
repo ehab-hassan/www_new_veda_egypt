@@ -397,7 +397,7 @@ const jsonLd = JSON.stringify({
               <img src="/brand_assets/veda-logo.png" alt="VEDA" width="40" height="40" class="h-10 w-10 object-contain opacity-80" />
               <span class="font-serif text-xl tracking-ultra text-earth/80">VEDA</span>
             </div>
-            <p class="font-sans text-lg text-sandstone leading-relaxed">
+            <p class="font-sans text-md text-sandstone leading-relaxed">
               Private, authentic, conscious journeys on the Nile.
             </p>
           </div>
@@ -406,10 +406,10 @@ const jsonLd = JSON.stringify({
           <div>
             <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Contact</p>
             <div class="space-y-2">
-              <a href="mailto:info@veda-egypt.com" class="block font-sans text-lg text-sandstone hover:text-earth transition-colors">
+              <a href="mailto:info@veda-egypt.com" class="block font-sans text-md text-sandstone hover:text-earth transition-colors">
                 info@veda-egypt.com
               </a>
-              <a href="mailto:reservation@veda-egypt.com" class="block font-sans text-lg text-sandstone hover:text-earth transition-colors">
+              <a href="mailto:reservation@veda-egypt.com" class="block font-sans text-md text-sandstone hover:text-earth transition-colors">
                 reservation@veda-egypt.com
               </a>
             </div>
@@ -423,15 +423,15 @@ const jsonLd = JSON.stringify({
                 { label: 'Dahabiyas', href: '/dahabiyas' },
                 { label: 'Itineraries', href: '/itineraries' },
                 { label: 'Experiences', href: '/experiences' },
-                { label: 'Plan Your Visit', href: '/plan-your-visit' },
+                // { label: 'Plan Your Visit', href: '/plan-your-visit' },
                 { label: 'Gallery', href: '/gallery' },
                 { label: 'Our Team', href: '/our-team' },
-                { label: 'Journal', href: '/journal' },
-                { label: 'Sustainability', href: '/sustainability' },
+                // { label: 'Journal', href: '/journal' },
+                // { label: 'Sustainability', href: '/sustainability' },
                 { label: 'FAQ', href: '/faq' },
               ].map((item) => (
                 <li>
-                  <a href={item.href} class="font-sans text-lg text-sandstone hover:text-earth transition-colors">
+                  <a href={item.href} class="font-sans text-sm text-sandstone hover:text-earth transition-colors">
                     {item.label}
                   </a>
                 </li>
@@ -442,7 +442,7 @@ const jsonLd = JSON.stringify({
           <!-- Newsletter -->
           <div>
             <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Stay Connected</p>
-            <p class="font-sans text-lg text-sandstone mb-4 leading-relaxed">
+            <p class="font-sans text-sm text-sandstone mb-4 leading-relaxed">
               Receive our seasonal letter. No noise.
             </p>
             <form class="flex gap-2" aria-label="Newsletter signup">
@@ -496,9 +496,9 @@ const jsonLd = JSON.stringify({
             © {new Date().getFullYear()} VEDA Egypt. All rights reserved.
           </p>
           <div class="flex gap-5">
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Impressum</a>
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Privacy Policy</a>
-            <a href="mailto:info@veda-egypt.com" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Terms & Conditions</a>
+            <a href="/impressum" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Impressum</a>
+            <a href="/privacy" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Privacy Policy</a>
+            <a href="/terms" class="font-sans text-xs text-sandstone/70 hover:text-earth transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,80 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+interface Entry {
+  label: string;
+  // Either plain lines of text, or a typed link.
+  lines?: string[];
+  link?: { kind: 'url' | 'email' | 'tel'; href: string; text: string };
+}
+
+const entries: Entry[] = [
+  { label: 'Website Operator', lines: ['Veda Egypt'], link: { kind: 'url', href: 'https://www.veda-egypt.com', text: 'https://www.veda-egypt.com' } },
+  { label: 'Operated by', lines: ['Back to Gaia', 'Limited Liability Company (LLC)'] },
+  { label: 'Company Registration Number', lines: ['21219'] },
+  { label: 'Registered Office', lines: ['Unit 5, Mall 15', 'Phase 2, Beverly Hills', 'Sheikh Zayed City', 'Giza', 'Arab Republic of Egypt'] },
+  { label: 'Tax Identification Number', lines: ['540-740-705'] },
+  { label: 'Management / Authorized Representative', lines: ['Maher Mohamed AbdelHakim Abdullah'] },
+  { label: 'Responsible for Content', lines: ['Maher Mohamed AbdelHakim Abdullah'] },
+];
+---
+
+<MainLayout
+  title="Impressum — VEDA Egypt"
+  description="Legal disclosure for VEDA Egypt, operated by Back to Gaia LLC — company registration, registered office, and responsible representative."
+>
+
+  <!-- Hero -->
+  <div class="relative bg-void pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" class="w-full h-full object-cover object-center opacity-25" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-void/20 to-void"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-ultra uppercase text-gold">VEDA / Back to Gaia</p>
+        <span class="h-px w-10 bg-gold/50"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-ivory font-light tracking-tight leading-tight mb-5">
+        Impressum<br /><em class="italic text-gold-pale">Legal Disclosure</em>
+      </h1>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="bg-linen py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+
+      <dl class="border-t border-bone reveal">
+        {entries.map((e) => (
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 border-b border-bone py-6">
+            <dt class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold sm:w-64 sm:flex-shrink-0 pt-0.5">{e.label}</dt>
+            <dd class="font-sans text-base text-earth font-light leading-relaxed">
+              {e.lines?.map((l) => <p>{l}</p>)}
+              {e.link && (
+                <a
+                  href={e.link.kind === 'email' ? `mailto:${e.link.href}` : e.link.kind === 'tel' ? `tel:${e.link.href}` : e.link.href}
+                  class="text-earth hover:text-gold transition-colors"
+                >
+                  {e.link.text}
+                </a>
+              )}
+            </dd>
+          </div>
+        ))}
+
+        <!-- Contact (multiple links) -->
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 border-b border-bone py-6">
+          <dt class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold sm:w-64 sm:flex-shrink-0 pt-0.5">Contact Information</dt>
+          <dd class="font-sans text-base text-earth font-light leading-relaxed flex flex-col gap-1">
+            <a href="tel:+201000968212" class="text-earth hover:text-gold transition-colors">Phone: +20 100 096 8212</a>
+            <a href="mailto:maher@veda-egypt.com" class="text-earth hover:text-gold transition-colors">Email: maher@veda-egypt.com</a>
+          </dd>
+        </div>
+      </dl>
+
+    </div>
+  </div>
+
+</MainLayout>
