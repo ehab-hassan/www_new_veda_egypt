@@ -1,0 +1,183 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// ── Payment schedule ────────────────────────────────────────────────────────
+const payments = [
+  { when: 'On acceptance of quotation', pct: '25%', note: 'Initial deposit to secure your booking.' },
+  { when: '60 days before embarkation', pct: '25%', note: 'Second installment.' },
+  { when: '30 days before embarkation', pct: '50%', note: 'Final payment.' },
+];
+
+// ── Cancellation charges ────────────────────────────────────────────────────
+const cancellations = [
+  { window: '120 days or less before embarkation', fee: '25%' },
+  { window: '90 days or less before embarkation', fee: '50%' },
+  { window: '60 days or less before embarkation', fee: '75%' },
+  { window: '30 days or less before embarkation', fee: '100%' },
+  { window: 'No-show (no cancellation email received)', fee: '100%' },
+];
+---
+
+<MainLayout
+  title="Charter Terms — VEDA Egypt"
+  description="Payment schedule, cancellation policy, check-in and check-out times, and charter conditions for VEDA Egypt private dahabiya cruises on the Nile."
+>
+
+  <!-- Hero -->
+  <div class="relative flex items-center min-h-[46vh] pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/dsc-1797-pano-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager" />
+    </div>
+    <div class="absolute inset-0 bg-void/55"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/80"></div>
+    <div class="relative w-full max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[12px] tracking-[0.32em] uppercase text-gold-light">Good to Know</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-white font-light tracking-tight leading-tight mb-5"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Charter <em class="italic text-gold-pale">Terms</em>
+      </h1>
+      <p class="font-sans text-md text-white/80 font-light leading-relaxed max-w-xl mx-auto">
+        Everything you need to know about booking, payment, and the practicalities of your private
+        dahabiya charter.
+      </p>
+    </div>
+  </div>
+
+  <div class="bg-linen border-t border-bone">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 py-20 lg:py-28 space-y-20">
+
+      <!-- Payment Policy -->
+      <section class="reveal">
+        <div class="flex items-center gap-4 mb-3">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Payment Policy</p>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light leading-tight mb-8">Securing your booking</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+          {payments.map((p, i) => (
+            <div class="border border-bone bg-sand rounded-2xl p-6 relative">
+              <span class="font-sans text-[11px] tracking-[0.2em] uppercase text-gold/70">Step {i + 1}</span>
+              <p class="font-serif text-4xl text-earth font-light my-2">{p.pct}</p>
+              <p class="font-sans text-sm text-earth font-light leading-snug mb-1">{p.when}</p>
+              <p class="font-sans text-[13px] text-earth-mid font-light leading-relaxed">{p.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="font-sans text-sm text-earth-mid font-light leading-relaxed">
+          All amounts are calculated on the net, non-commissionable charter rate. Payment is made by bank transfer;
+          our bank account details are sent to you on request.
+        </p>
+      </section>
+
+      <!-- Cancellation Policy -->
+      <section class="reveal">
+        <div class="flex items-center gap-4 mb-3">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Cancellation &amp; No-Show</p>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light leading-tight mb-8">If plans change</h2>
+
+        <div class="border border-bone rounded-2xl overflow-hidden">
+          {cancellations.map((c, i) => (
+            <div class={`flex items-center justify-between gap-6 px-6 py-4 ${i % 2 === 0 ? 'bg-sand' : 'bg-linen'}`}>
+              <p class="font-sans text-sm text-earth font-light leading-snug">{c.window}</p>
+              <p class="font-serif text-2xl text-gold font-light flex-shrink-0">{c.fee}</p>
+            </div>
+          ))}
+        </div>
+        <p class="font-sans text-sm text-earth-mid font-light leading-relaxed mt-5">
+          Cancellations must be received by email. The percentages above are charged on the quoted charter rate.
+        </p>
+      </section>
+
+      <!-- Practicalities -->
+      <section class="reveal">
+        <div class="flex items-center gap-4 mb-3">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Good to Know</p>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light leading-tight mb-8">Before you sail</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Check-in / out -->
+          <div class="border border-bone bg-sand rounded-2xl p-7">
+            <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mb-5">Check-in &amp; Check-out</p>
+            <div class="flex items-center justify-between border-b border-bone pb-3 mb-3">
+              <span class="font-sans text-sm text-earth-mid font-light">Check-in</span>
+              <span class="font-serif text-xl text-earth font-light">12:00 noon</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-sans text-sm text-earth-mid font-light">Check-out</span>
+              <span class="font-serif text-xl text-earth font-light">8:00 am</span>
+            </div>
+          </div>
+
+          <!-- Sightseeing & guiding -->
+          <div class="border border-bone bg-sand rounded-2xl p-7">
+            <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mb-4">Sightseeing &amp; Tour Guiding</p>
+            <p class="font-sans text-sm text-earth-mid font-light leading-relaxed">
+              VEDA Dahabeyas and the owning company, Back to Gaia L.L.C., are licensed to provide accommodation and
+              sailing only. Transportation, tour guiding, and sightseeing are arranged by your travel agency — or one
+              of your choosing.
+            </p>
+          </div>
+
+          <!-- Tour guide accommodation -->
+          <div class="border border-bone bg-sand rounded-2xl p-7 md:col-span-2">
+            <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mb-4">Tour Guide Accommodation</p>
+            <p class="font-sans text-sm text-earth-mid font-light leading-relaxed">
+              The dahabiyas do not have dedicated cabins for tour guides. If you would like a guide on board for the
+              entire cruise, a passenger cabin from your chartered cabins should be assigned for them.
+            </p>
+          </div>
+        </div>
+
+        <p class="font-sans text-xs text-earth-mid/80 font-light leading-relaxed mt-8">
+          All four VEDA dahabiyas are licensed by the Ministry of Tourism and the Ministry of Transport, and hold fire
+          safety certification from Civil Defense.
+        </p>
+      </section>
+
+      <!-- Cross-link to inclusions -->
+      <section class="reveal border-t border-bone pt-12 text-center">
+        <p class="font-serif text-2xl md:text-3xl text-earth font-light italic mb-6">
+          Wondering what's included in your rate?
+        </p>
+        <a href="/dahabiyas#included" class="group inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors">
+          See what's included
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/more_than_plan.jpg" alt="Nile at sunset" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-forest/85 to-void/95"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-24 lg:py-32 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Have a Question?</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-white font-light tracking-tight leading-[1.1] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        We're happy to help
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Reach out to our team for a quotation, bank details, or anything else about your charter.
+      </p>
+      <a href="/contact" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 reveal reveal-delay-3">
+        Contact Us
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </section>
+
+</MainLayout>

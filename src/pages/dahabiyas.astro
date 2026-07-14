@@ -32,10 +32,10 @@ const boats: Boat[] = [
   {
     id: 'veda-1',
     name: 'VEDA 1',
-    tagline: 'Our Renovated Gem',
+    tagline: 'The Renovated Gem (Flagship Balance)',
     length: '50 metres',
     capacity: 'Up to 20 guests',
-    desc: 'A 50-metre, two-deck dahabiya designed for luxury and comfort — a balance between proven performance and modern luxury. Six spacious cabins with panoramic windows and four suites, each opening onto its own private outdoor terrace, gather around a large indoor lounge, an upper-deck glasshouse restaurant, a stylish outdoor bar, and two sundecks.',
+    desc: 'Veda One strikes a perfect balance between proven performance and modern luxury. Renovated in August 2023, this 50-metre, two-deck vessel welcomes up to 20 guests across 10 cabins — including four suites with private outdoor terraces. An indoor restaurant and lounge bar sit on the main deck, with an air-conditioned outdoor restaurant and bar on the first sundeck, and a dedicated second sundeck for quiet moments. A robust 13 kW solar array and large battery bank keep the journey eco-conscious and serene, with minimal generator use.',
     specs: [
       { label: 'Length', value: '50m × 8m' },
       { label: 'Capacity', value: 'Up to 20 guests' },
@@ -52,7 +52,7 @@ const boats: Boat[] = [
     ],
     tech: [
       { label: 'Launched', value: 'December 2017' },
-      { label: 'Last renovation', value: 'August 2019' },
+      { label: 'Last renovation', value: 'August 2023' },
       { label: 'Dimensions', value: '50m × 8m · 2 decks · 2 masts' },
       { label: 'Solar power', value: '13 kW PV array + 70 kWh battery bank' },
       { label: 'Water heating', value: '33 kW solar thermal' },
@@ -99,7 +99,7 @@ const boats: Boat[] = [
     tagline: 'The Intimate Classic',
     length: '45 metres',
     capacity: 'Up to 20 guests',
-    desc: 'A classic 45-metre, single-deck dahabiya offering an elegant and intimate cruising experience. Eight standard panoramic cabins and two suites with private outdoor terraces gather around an indoor lounge and dining room, with a shaded 40-metre sundeck, outdoor bar, and dining area above.',
+    desc: "The seasoned, cozy member of the fleet, Veda Two offers a classic dahabiya experience. Its single, spacious deck fosters a warm and social atmosphere for up to 20 guests across 10 cabins — two of them suites with balconies. Facilities gather on the open deck: an outdoor restaurant, lounge, and sunbathing area, perfect for guests who wish to be fully immersed in the Nile's environment. Updated in September 2021 and supported by a 10 kW solar system, Veda Two blends timeless charm with reliable, modern amenities.",
     specs: [
       { label: 'Length', value: '45m × 8m' },
       { label: 'Capacity', value: 'Up to 20 guests' },
@@ -157,7 +157,7 @@ const boats: Boat[] = [
     tagline: 'The Exclusive Boutique',
     length: '18 metres',
     capacity: 'Up to 10 guests',
-    desc: 'A charming 18-metre, single-deck dahabiya for a more private and cozy journey. Five air-conditioned cabins — three standard panoramic cabins and two suites with balconies — open onto a shaded sundeck with an outdoor bar and dining area.',
+    desc: 'Ideal for small groups and private charters, Veda Three is exceptionally exclusive and intimate. Just 10 guests are hosted across five cabins with individually controlled air conditioning aboard this 18-metre dahabiya, ensuring personalised service and privacy. Its single-deck layout includes an outdoor restaurant and lounge for a close-knit ambiance. Despite its smaller size, it carries the same advanced water purification as the larger vessels and was last renovated in September 2024 — a perfectly appointed boutique hotel on the water.',
     specs: [
       { label: 'Length', value: '18m × 5m' },
       { label: 'Capacity', value: 'Up to 10 guests' },
@@ -174,7 +174,7 @@ const boats: Boat[] = [
     ],
     tech: [
       { label: 'Launched', value: 'September 2009' },
-      { label: 'Last renovation', value: 'September 2021' },
+      { label: 'Last renovation', value: 'September 2024' },
       { label: 'Dimensions', value: '18m × 5m · 1 deck · 2 masts' },
       { label: 'Solar power', value: '4 kW PV array + 15 kWh battery bank' },
       { label: 'Water heating', value: '7 kW solar thermal' },
@@ -209,10 +209,10 @@ const boats: Boat[] = [
   {
     id: 'veda-4',
     name: 'Veda 4',
-    tagline: 'State of the Art Flagship',
+    tagline: 'The State-of-the-Art Flagship',
     length: '55 metres',
     capacity: 'Up to 28 guests',
-    desc: 'A newly built, 55-metre, two-deck dahabiya blending modern luxury with timeless charm. Ten spacious cabins with panoramic windows and four suites with private outdoor terraces, an expansive indoor lounge and dining room on the main deck, an upper-deck fully air-conditioned glasshouse restaurant, an outdoor bar, and two sundecks. The largest, newest, and most advanced VEDA.',
+    desc: 'The newest and most advanced vessel in the fleet — launched February 2020 — Veda Four represents the pinnacle of luxury and sustainability. At 55 metres it is the largest dahabiya, accommodating up to 28 guests in 14 spacious cabins, including four suites with private terraces. Two decks hold extensive facilities: indoor and air-conditioned outdoor restaurants, multiple bars, and a dedicated relaxing sundeck. With a powerful 20 kW solar array and a recent August 2024 dry-dock inspection, Veda Four offers the latest in eco-technology and contemporary comfort.',
     specs: [
       { label: 'Length', value: '55m × 8m' },
       { label: 'Capacity', value: 'Up to 28 guests' },
@@ -400,9 +400,21 @@ const fleetSchema = JSON.stringify({
         style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
         Our Dahabiyas
       </h1>
-      <p class="font-sans text-base text-white/75 font-light max-w-md mx-auto leading-relaxed mb-10">
+      <p class="font-sans text-base text-white/75 font-light max-w-md mx-auto leading-relaxed mb-6">
         Dahabiyas are traditional sailing boats of the Nile — peaceful, private, and entirely yours.
       </p>
+
+      <!-- Licensing & safety certification -->
+      <div class="flex items-start justify-center gap-2.5 max-w-xl mx-auto mb-10">
+        <span class="flex-shrink-0 text-gold-light mt-0.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <p class="font-sans text-[13px] md:text-sm text-white/70 font-light leading-relaxed">
+          Our four dahabeyas are licensed by both the <span class="text-white">Ministry of Tourism</span> and the
+          <span class="text-white">Ministry of Transport</span>, and hold fire-safety certification from
+          <span class="text-white">Civil Defense</span>.
+        </p>
+      </div>
 
       <!-- Quick-jump buttons -->
       <div class="flex flex-wrap items-center justify-center gap-3">
@@ -510,11 +522,9 @@ const fleetSchema = JSON.stringify({
             <h2 class={`font-serif text-5xl md:text-6xl uppercase font-light tracking-tight leading-none mb-3 ${boat.headingColor}`}>
               {boat.name}
             </h2>
-            <div class="flex items-center gap-4 mb-8">
-              {/* <span class="h-px w-8 bg-gold/40"></span> */}
-              <p class={`font-sans text-[14px] tracking-[0.3em] uppercase ${boat.taglineColor}`}>{boat.length} · {boat.capacity}</p>
-            </div>
-            {/* <p class={`font-sans text-[12px] tracking-[0.28em] uppercase mb-8 ${boat.taglineColor}`}>{boat.tagline}</p> */}
+            <p class={`font-serif text-2xl md:text-3xl italic font-light leading-snug mb-8 ${boat.taglineColor}`}>
+              {boat.tagline}
+            </p>
             <p class={`font-sans text-base leading-relaxed max-w-lg mb-10 ${boat.bodyColor}`}>
               {boat.desc}
             </p>
@@ -534,7 +544,7 @@ const fleetSchema = JSON.stringify({
 
             <div class="mt-8">
               <a
-                href="/contact"
+                href={`/contact?subject=${encodeURIComponent('Enquiry about ' + boat.name)}`}
                 class="inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase px-6 py-3.5 rounded-full bg-gold hover:bg-gold-light text-white transition-all duration-300 group"
               >
                 Enquire about {boat.name}
@@ -590,6 +600,88 @@ const fleetSchema = JSON.stringify({
       <div class="h-px w-full bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
     </div>
   ))}
+
+  <!-- ── What's Included — all-inclusive charter ─────────────── -->
+  <section id="included" class="bg-linen border-t border-bone py-20 lg:py-28 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <div class="flex items-center justify-center gap-4 mb-5">
+          <span class="h-px w-8 bg-gold/50"></span>
+          <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">All-Inclusive Charter</p>
+          <span class="h-px w-8 bg-gold/50"></span>
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl text-earth font-light tracking-tight leading-tight mb-4">What's Included</h2>
+        <p class="font-sans text-base text-earth-mid leading-relaxed">
+          Your charter rate is full-board — a complete luxury sailing experience, with no hidden fees.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            title: 'Gourmet Dining',
+            items: [
+              'Breakfast — extensive open buffet with hot & cold selections',
+              'Lunch — open buffet with a live outdoor barbecue station',
+              'Dinner — generous open buffet',
+              'Daily sunset tea service on deck, with premium teas & snacks',
+            ],
+          },
+          {
+            title: 'Beverages, All Day',
+            items: [
+              '24-hour service: bottled mineral water, fresh juices (orange, lemonade, hibiscus), soft drinks & daily smoothies',
+              'Specialty coffees — espresso, macchiato, American, Egyptian — and a premium tea selection',
+              'Complimentary local premium beer & wine',
+            ],
+          },
+          {
+            title: 'No Hidden Fees',
+            items: [
+              'All onboard meals & beverages included',
+              '14% VAT (Value Added Tax) included',
+              '12% service charges included',
+            ],
+          },
+        ].map((col, ci) => (
+          <div class={`border border-bone bg-sand rounded-2xl p-8 reveal reveal-delay-${ci + 1}`}>
+            <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mb-5">{col.title}</p>
+            <ul class="space-y-3.5">
+              {col.items.map((it) => (
+                <li class="flex items-start gap-3 font-sans text-[15px] font-light leading-relaxed text-earth-mid">
+                  <span class="mt-[0.5rem] h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0"></span>
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Gratuity note -->
+      <div class="mt-6 border border-bone rounded-2xl bg-sand/60 px-6 py-5 flex items-start gap-3.5 reveal">
+        <span class="flex-shrink-0 text-gold mt-0.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        </span>
+        <p class="font-sans text-sm text-earth-mid font-light leading-relaxed">
+          <span class="text-earth font-normal">Crew gratuity is not included.</span> It is customary for guests to contribute
+          US $6 per person per night, handed to the dahabiya's manager and shared equally among the crew.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-10 mt-10 reveal">
+        <a href="/dining" class="group inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors">
+          View the full meal plan
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+        <a href="/charter-terms" class="group inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-earth hover:text-gold transition-colors">
+          View full charter terms
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Comparison table — at the end, to help decide between the fleet -->
   <FleetCompare />

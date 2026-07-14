@@ -215,6 +215,18 @@ const generalEmails = [
     if (!form) return;
     var err = document.getElementById('cf-error');
 
+    // Pre-fill the subject from ?subject= (e.g. "Enquiry about VEDA 1" from the fleet page),
+    // then move focus to the name field so the visitor can start typing right away.
+    try {
+      var qsSubject = new URLSearchParams(location.search).get('subject');
+      if (qsSubject) {
+        var subjEl = document.getElementById('cf-subject');
+        subjEl.value = qsSubject;
+        var nameEl = document.getElementById('cf-name');
+        if (nameEl) nameEl.focus({ preventScroll: true });
+      }
+    } catch (_) {}
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = document.getElementById('cf-name').value.trim();

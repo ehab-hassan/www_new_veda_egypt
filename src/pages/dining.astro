@@ -1,0 +1,289 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// ── Gourmet Meal Plan ───────────────────────────────────────────────────────
+interface Group { title: string; note?: string; items: string[] }
+interface Meal { name: string; eyebrow: string; intro?: string; groups: Group[] }
+
+const meals: Meal[] = [
+  {
+    name: 'Breakfast Buffet',
+    eyebrow: 'To Begin the Day',
+    intro: 'An elegant breakfast featuring an extensive selection of freshly prepared hot and cold specialties.',
+    groups: [
+      {
+        title: 'Hot Selections',
+        items: [
+          'Made-to-order eggs (scrambled, boiled & omelets)',
+          'Butter pancakes & crisp waffles',
+          'Traditional Egyptian fava beans',
+          'Daily sautéed potatoes & seasonal vegetables',
+          'Chicken & beef sausages',
+        ],
+      },
+      {
+        title: 'Cold Selections',
+        items: [
+          'Imported & local cheeses (4–6 varieties)',
+          'Cereals (4 varieties) with hot or cold milk',
+          'Macedonian fruit salad & seasonal fruits',
+          'Freshly sliced vegetables (6–8 varieties) with assorted dressings',
+          'Egyptian & Lebanese mezze (8 selections)',
+          'Smoked salmon with capers',
+          'Green & black olives, pickles & artisan bread basket (baladi, toast & international breads)',
+          'Honey & preserves (marmalade, strawberry, apricot, fig & pure honey)',
+          'Plain & fruit yoghurts',
+          'Fresh juices, hibiscus (karkade), lemonade, smoothies, specialty coffee & premium teas',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Lunch Buffet',
+    eyebrow: 'Midday',
+    intro: 'A refined fusion of authentic Egyptian cuisine and international classics.',
+    groups: [
+      {
+        title: 'Cold Selections',
+        items: [
+          'Fresh seasonal salads (6–8 varieties) with premium dressings',
+          'Egyptian & Lebanese mezze (8 selections)',
+          'Coleslaw & homemade pickles (3 varieties)',
+          'Imported & local cheeses (4 varieties)',
+          'Fresh Egyptian bread & toast',
+          'Fresh orange juice & hibiscus',
+        ],
+      },
+      {
+        title: 'Hot Selections',
+        note: 'Rotating daily',
+        items: [
+          'Rice, pasta, sautéed vegetables & potatoes (1 of 7 varieties each)',
+          'Traditional Egyptian specialty (1 of 7)',
+          'Beef & chicken entrées (1 of 7 varieties each)',
+          'Fresh fish (1 of 7 preparations)',
+          'Outdoor barbecue featuring homemade burgers or marinated grilled chicken',
+        ],
+      },
+      {
+        title: 'Desserts',
+        items: [
+          'Cheesecake, chocolate fudge',
+          'Carrot cake, cream caramel or rice pudding',
+          'Macedonian fruit salad & seasonal fruits',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Afternoon Tea',
+    eyebrow: 'Sunset on Deck',
+    intro: 'A relaxed afternoon selection of beverages with sweet and savory accompaniments.',
+    groups: [
+      {
+        title: 'Selection Includes',
+        items: [
+          'Freshly brewed coffee & premium teas',
+          'Fresh orange juice & hibiscus',
+          'English tea cake & toast',
+          'Imported cheeses (3 varieties)',
+          'Fresh tomatoes & cucumbers',
+          'Green & black olives',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Dinner Buffet',
+    eyebrow: 'Under the Stars',
+    groups: [
+      {
+        title: 'Cold Selections',
+        items: [
+          'Fresh salads (6–8 varieties) with dressings',
+          'Egyptian & Lebanese mezze (8 selections)',
+          'Caprese salad',
+          'Imported & local cheeses (4 varieties)',
+          'Homemade pickles (3 varieties)',
+          'Fresh Egyptian bread',
+          'Fresh orange juice & hibiscus',
+        ],
+      },
+      {
+        title: 'Hot Selections',
+        note: 'Rotating daily',
+        items: [
+          'Cream soup (1 of 7 varieties)',
+          'Rice, pasta, sautéed vegetables & potatoes (1 of 7 varieties each)',
+          'Traditional Egyptian specialty (1 of 7)',
+          'Beef & chicken entrées (1 of 7 varieties each)',
+          'Fresh fish (1 of 7 preparations)',
+        ],
+      },
+      {
+        title: 'Desserts',
+        items: [
+          'Cheesecake, chocolate fudge & carrot cake',
+          'Homemade cream caramel or rice pudding',
+          'Fresh fruit salad & seasonal fruits',
+        ],
+      },
+    ],
+  },
+];
+
+const beverages = [
+  'Bottled water',
+  'Fresh lemonade, orange juice & hibiscus (karkade)',
+  'Assorted soft drinks',
+  'American coffee, espresso, macchiato, Nescafé & Egyptian coffee',
+  'Premium teas & daily fresh fruit and vegetable smoothies',
+  'Selection of Egyptian wines & beers',
+];
+
+const colsClass = (n: number) =>
+  n >= 3 ? 'md:grid-cols-3' : n === 2 ? 'md:grid-cols-2' : 'max-w-xl mx-auto';
+---
+
+<MainLayout
+  title="Dining on Board — VEDA Egypt"
+  description="The VEDA gourmet meal plan — full-board dining aboard your dahabiya. Elegant breakfast, lunch, and dinner buffets, sunset afternoon tea, and an all-day beverage service, all included."
+>
+
+  <!-- Hero -->
+  <div class="relative flex items-center min-h-[56vh] pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/group-eating-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager" />
+    </div>
+    <div class="absolute inset-0 bg-void/55"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/80"></div>
+    <div class="relative w-full max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold-light">Gourmet Meal Plan</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight mb-6"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Dining on Board
+      </h1>
+      <p class="font-sans text-base md:text-lg text-white/80 font-light max-w-xl mx-auto leading-relaxed">
+        Every voyage is full-board — fresh, locally-sourced cuisine served as generous open buffets, with a daily
+        sunset tea and an all-day beverage service. All included in your charter.
+      </p>
+    </div>
+  </div>
+
+  <!-- Meals -->
+  {meals.map((meal, mi) => (
+    <section class={`${mi % 2 === 0 ? 'bg-linen' : 'bg-sand'} border-t border-bone py-16 lg:py-24`}>
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+        <div class="max-w-2xl mb-10 lg:mb-14 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="h-px w-8 bg-gold/50"></span>
+            <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">{meal.eyebrow}</p>
+          </div>
+          <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight">
+            {meal.name}
+          </h2>
+          {meal.intro && (
+            <p class="font-sans text-base text-earth-mid font-light leading-relaxed mt-3">{meal.intro}</p>
+          )}
+        </div>
+
+        <div class={`grid grid-cols-1 gap-6 ${colsClass(meal.groups.length)}`}>
+          {meal.groups.map((g, gi) => (
+            <div class={`border border-bone ${mi % 2 === 0 ? 'bg-sand' : 'bg-linen'} rounded-2xl p-7 reveal reveal-delay-${(gi % 3) + 1}`}>
+              <div class="flex items-baseline justify-between gap-3 mb-5">
+                <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold">{g.title}</p>
+                {g.note && (
+                  <span class="font-sans text-[10px] tracking-[0.14em] uppercase text-earth-mid/70 border border-bone rounded-full px-2.5 py-1">{g.note}</span>
+                )}
+              </div>
+              <ul class="space-y-3">
+                {g.items.map((it) => (
+                  <li class="flex items-start gap-3 font-sans text-[15px] font-light leading-relaxed text-earth-mid">
+                    <span class="mt-[0.5rem] h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0"></span>
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Beverages — dark band -->
+  <section class="relative overflow-hidden border-t border-gold/10" style="background:#0e1a0e;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-16 items-center">
+        <div class="reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="h-px w-8 bg-gold/50"></span>
+            <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold-light">All Day</p>
+          </div>
+          <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory font-light tracking-tight leading-tight mb-4">
+            Beverages
+          </h2>
+          <p class="font-sans text-base text-warm-gray font-light leading-relaxed">
+            A 24-hour service of refreshments — from fresh juices and smoothies to specialty coffees, premium teas,
+            and a selection of Egyptian wines and beers.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
+            {beverages.map((b) => (
+              <li class="flex items-start gap-3 font-sans text-[15px] font-light leading-relaxed text-ivory/85 border-b border-white/10 pb-4">
+                <span class="mt-[0.5rem] h-1.5 w-1.5 rounded-full bg-gold-light flex-shrink-0"></span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Note -->
+  <section class="bg-linen border-t border-bone py-12">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center reveal">
+      <p class="font-sans text-sm text-earth-mid font-light leading-relaxed">
+        All meals and beverages are included in your charter rate. Special diets — vegetarian, vegan, gluten-free,
+        and others — are happily accommodated; just let us know in advance.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/veda_4_Air-conditioned_Outdoor_Glass-enclosed_Restaurant_1.jpg" alt="Dining aboard a VEDA dahabiya" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/65 via-forest/85 to-void/95"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-24 lg:py-32 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Full-Board Luxury</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-white font-light tracking-tight leading-[1.1] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        Dine the length<br />of the Nile
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Meet the fleet these kitchens sail aboard, or reach out to plan your private voyage.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="/dahabiyas" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
+          View Our Fleet
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+        <a href="/contact" class="group inline-flex items-center justify-center gap-3 border border-white/25 hover:border-gold text-white/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:bg-gold/10 backdrop-blur-sm">
+          Ask a Specialist
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
