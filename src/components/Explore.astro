@@ -1,0 +1,69 @@
+---
+// Home "Explore" trio — routes visitors to the deeper pages (Itineraries, Sightseeing, Dining)
+const links = [
+  {
+    eyebrow: 'Where you go',
+    title: 'Itineraries',
+    desc: 'From three nights to two weeks — handcrafted routes between Aswan, Luxor, and beyond.',
+    href: '/itineraries',
+    image: '/images/photo-2019-03-21-12.50.06-1280x854.jpg',
+  },
+  {
+    eyebrow: 'What you see',
+    title: 'Sightseeing',
+    desc: 'The great temples and monuments of the Nile — from Karnak to Philae and Abu Simbel.',
+    href: '/sightseeing',
+    image: '/images/medinet-habu.jpg',
+  },
+  {
+    eyebrow: 'How you dine',
+    title: 'Dining',
+    desc: 'Full-board gourmet buffets, a daily sunset tea on deck, and an all-day beverage service.',
+    href: '/dining',
+    image: '/images/dining.jpg',
+  },
+];
+---
+
+<section id="explore" class="bg-linen py-24 lg:py-32 border-t border-bone">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <div class="flex items-center justify-center gap-4 mb-5">
+        <span class="h-px w-8 bg-gold/50"></span>
+        <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Explore</p>
+        <span class="h-px w-8 bg-gold/50"></span>
+      </div>
+      <h2 class="font-serif text-4xl md:text-5xl text-ink font-light tracking-tight leading-tight">
+        Everything your journey holds
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {links.map((l, i) => (
+        <a
+          href={l.href}
+          class={`group relative block overflow-hidden rounded-2xl reveal reveal-delay-${i + 1}`}
+          style="aspect-ratio:4/5;"
+        >
+          <img
+            src={l.image}
+            alt={l.title}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-void/90 via-void/30 to-void/10"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-7">
+            <p class="font-sans text-[11px] tracking-[0.28em] uppercase text-gold-light mb-2">{l.eyebrow}</p>
+            <h3 class="font-serif text-3xl text-white font-light leading-tight mb-3">{l.title}</h3>
+            <p class="font-sans text-sm text-white/80 font-light leading-relaxed mb-5">{l.desc}</p>
+            <span class="inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-white group-hover:text-gold-light transition-colors">
+              Discover
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

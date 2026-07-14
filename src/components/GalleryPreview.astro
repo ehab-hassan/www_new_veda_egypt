@@ -1,13 +1,13 @@
 ---
-// GalleryPreview — homepage taster of onboard interiors, links to /gallery.
+// GalleryPreview — homepage taster of onboard interiors (VEDA fleet photos).
 // Uses public images (plain <img>) shown in a bento grid.
 
 const shots = [
-  { src: '/images/photo-2019-03-12-09.37.30-1280x854.jpg', caption: 'Indoor lounge & bar', span: true },
-  { src: '/images/photo-2019-03-11-20.31.20-1280x854.jpg', caption: 'Panoramic cabin' },
-  { src: '/images/group-eating-1280x800.jpg',              caption: 'Glass-enclosed dining' },
-  { src: '/images/photo-2019-03-12-10-54-55edit-1-1280x800.jpg', caption: 'A room with a view' },
-  { src: '/images/photo-2019-03-11-20.38.43-676x450.jpg',  caption: 'Lounge on the water' },
+  { src: '/images/veda_2_Indoor_Lounge.jpg',                                    caption: 'Indoor lounge & bar', span: true },
+  { src: '/images/veda2_main.jpg',                       caption: 'veda 2' },
+  { src: '/images/veda_4_Air-conditioned_Outdoor_Glass-enclosed_Restaurant_1.jpg', caption: 'Glass-enclosed dining' },
+  { src: '/images/veda_1_Suite_with_Private_Outdoor_Terrace_1.jpg',             caption: 'A room with a view' },
+  { src: '/images/veda_2_Upper_Sundeck_Bar_Outdoor-Lounge.jpg',                 caption: 'Lounge on the water' },
 ];
 ---
 
@@ -51,16 +51,5 @@ const shots = [
           </figcaption>
         </figure>
       ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="flex justify-center mt-12 reveal">
-      <a
-        href="/gallery"
-        class="group inline-flex items-center gap-3 bg-sage hover:bg-sage-dark text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-sage/30"
-      >
-        View Full Gallery
-        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
-      </a>
     </div>
 </section>

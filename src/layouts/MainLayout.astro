@@ -26,6 +26,7 @@ const ogImageAbsolute = new URL(ogImage, siteURL).toString();
 const pathname = Astro.url.pathname;
 
 const navItems = [
+  { label: 'Our Philosophy', href: '/our-philosophy' },
   { label: 'Dahabiyas', href: '/dahabiyas' },
   { label: 'Itineraries', href: '/itineraries' },
   { label: 'Sightseeing', href: '/sightseeing' },
@@ -422,13 +423,15 @@ const jsonLd = JSON.stringify({
             <p class="font-sans text-sm tracking-ultra uppercase text-gold mb-5">Explore</p>
             <ul class="space-y-2">
               {[
+                { label: 'Our Philosophy', href: '/our-philosophy' },
+                // { label: 'For Partners', href: '/our-philosophy#partners' },
                 { label: 'Dahabiyas', href: '/dahabiyas' },
                 { label: 'Itineraries', href: '/itineraries' },
                 { label: 'Sightseeing', href: '/sightseeing' },
                 { label: 'Dining', href: '/dining' },
                 // { label: 'Experiences', href: '/experiences' },
                 // { label: 'Plan Your Visit', href: '/plan-your-visit' },
-                { label: 'Gallery', href: '/gallery' },
+                // { label: 'Gallery', href: '/gallery' },
                 // { label: 'Our Team', href: '/our-team' },
                 // { label: 'Journal', href: '/journal' },
                 // { label: 'Sustainability', href: '/sustainability' },
