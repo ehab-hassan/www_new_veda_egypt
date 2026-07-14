@@ -79,7 +79,7 @@ const tripSchema = JSON.stringify({
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/InStock',
-    url: `${SITE}/reserve`,
+    url: `${SITE}/contact`,
     priceSpecification: {
       '@type': 'PriceSpecification',
       description: 'On request — quoted per group, season and length of stay.',
@@ -233,7 +233,7 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
           <p class="font-sans text-base text-warm-gray font-light leading-relaxed mb-8">
             Tell us your dates and we'll share the complete itinerary, tailored to your group and chosen direction.
           </p>
-          <a href={`/reserve?tour=${entry.id}`} class="book-cta group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-3.5 rounded-full transition-all duration-300">
+          <a href="/contact" class="book-cta group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-7 py-3.5 rounded-full transition-all duration-300">
             Request the Full Itinerary
             <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </a>
@@ -404,7 +404,7 @@ const extraSchema = [tripSchema, faqSchema].filter(Boolean).join('\n');
         {it.nights} nights on the Nile, entirely private and tailored to your group. Tell us your dates and we'll do the rest.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
-        <a href={`/reserve?tour=${entry.id}&route=0`} class="book-cta group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
+        <a href="/contact" class="book-cta group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
           Request This Itinerary
           <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>

@@ -28,9 +28,11 @@ const pathname = Astro.url.pathname;
 const navItems = [
   { label: 'Dahabiyas', href: '/dahabiyas' },
   { label: 'Itineraries', href: '/itineraries' },
+  { label: 'Sightseeing', href: '/sightseeing' },
   // { label: 'Plan Your Visit', href: '/plan-your-visit' },
   { label: 'Gallery', href: '/gallery' },
   // { label: 'Our Team', href: '/our-team' },
+  { label: 'Contact', href: '/contact' },
 
 ];
 
@@ -296,7 +298,7 @@ const jsonLd = JSON.stringify({
 
         <!-- Desktop CTA -->
         <a
-          href="/reserve"
+          href="/contact"
           class="cta-fill hidden md:inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white text-xs tracking-ultra uppercase px-5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-px hover:shadow-lg hover:shadow-gold/20"
         >
         Inquire Now
@@ -368,10 +370,10 @@ const jsonLd = JSON.stringify({
       <!-- Bottom CTA + contact -->
       <div class="px-8 pb-12 pt-6 border-t border-bone">
         <a
-          href="/reserve"
+          href="/contact"
           class="cta-fill block w-full text-center bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase py-4 rounded-full transition-all duration-300"
         >
-          Reserve Your Journey
+          Contact Us
         </a>
         <div class="mt-5 flex flex-col gap-1">
           <a href="mailto:reservation@veda-egypt.com" class="font-sans text-sm text-sandstone hover:text-earth transition-colors">
@@ -422,6 +424,7 @@ const jsonLd = JSON.stringify({
               {[
                 { label: 'Dahabiyas', href: '/dahabiyas' },
                 { label: 'Itineraries', href: '/itineraries' },
+                { label: 'Sightseeing', href: '/sightseeing' },
                 // { label: 'Experiences', href: '/experiences' },
                 // { label: 'Plan Your Visit', href: '/plan-your-visit' },
                 { label: 'Gallery', href: '/gallery' },
@@ -429,6 +432,7 @@ const jsonLd = JSON.stringify({
                 // { label: 'Journal', href: '/journal' },
                 // { label: 'Sustainability', href: '/sustainability' },
                 { label: 'FAQ', href: '/faq' },
+                { label: 'Contact', href: '/contact' },
               ].map((item) => (
                 <li>
                   <a href={item.href} class="font-sans text-sm text-sandstone hover:text-earth transition-colors">

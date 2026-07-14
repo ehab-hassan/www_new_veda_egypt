@@ -16,16 +16,124 @@
       "label": "Aswan → Luxor",
       "from": "Aswan",
       "to": "Luxor",
+      "tagline": "Upstream Through the Ages",
+      "overview": "Sail north with the current from the island temples of Aswan to the monumental wonders of Luxor — Philae, Kom Ombo, Edfu, Gebel el-Silsila, and the great temples of Thebes, all in four unhurried nights aboard your dahabiya.",
       "timeline": [
-        { "title": "Detailed day-by-day coming soon", "places": [], "description": "We're finalising the full daily programme for this voyage. Contact us and we'll share the complete itinerary, tailored to your dates and group.", "image": "/images/dsc-1797-pano-1280x800.jpg" }
+        {
+          "title": "Aswan — Arrival & City Highlights",
+          "places": ["Philae Temple", "High Dam", "Old Dam", "Unfinished Obelisk"],
+          "description": "Embark your dahabiya in Aswan and explore the city's ancient and modern marvels — the beautiful Philae Temple on Agilkia Island, the monumental High Dam, the British-built Old Dam, and the Unfinished Obelisk.",
+          "image": "/images/philae_temple.jpg",
+          "schedule": [
+            { "time": "Afternoon", "text": "Embark on your dahabeya in Aswan and enjoy lunch on board." },
+            { "time": "Late afternoon", "text": "Visit the beautiful Philae Temple on Agilkia Island, followed by the High Dam, the Old Dam, and the Unfinished Obelisk." },
+            { "time": "Evening", "text": "Overnight docked in Aswan." }
+          ]
+        },
+        {
+          "title": "Kom Ombo & Sailing to Silsila",
+          "places": ["Kom Ombo", "Gebel el-Silsila"],
+          "description": "Tour the unique double Temple of Kom Ombo, dedicated to both Sobek and Haroeris, then sail north to El Silsila to explore its ancient sandstone quarries and riverside shrines.",
+          "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Tour the unique Kom Ombo Temple, dedicated to both Sobek and Haroeris." },
+            { "time": "Afternoon", "text": "Sail to El Silsila to explore its ancient sandstone quarries and riverside shrines." },
+            { "time": "Evening", "text": "Overnight moored near El Silsila." }
+          ]
+        },
+        {
+          "title": "Edfu & Sailing to Esna",
+          "places": ["Edfu Temple", "Esna Lock"],
+          "description": "Visit the remarkably preserved Temple of Horus at Edfu, then continue sailing north through the Esna Lock toward Luxor.",
+          "image": "/images/horus_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Visit the remarkably preserved Temple of Horus in Edfu." },
+            { "time": "Afternoon", "text": "Continue sailing north, passing through the Esna Lock toward Luxor." },
+            { "time": "Evening", "text": "Overnight docked near Esna." }
+          ]
+        },
+        {
+          "title": "Luxor — Temples of Thebes",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon", "Karnak Temple", "Luxor Temple"],
+          "description": "Discover the legendary West Bank of Luxor — the royal tombs, the Temple of Hatshepsut, and the Colossi of Memnon — then cross to the East Bank for the vast Karnak Temple complex and the elegant Luxor Temple along the Nile.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Discover the legendary West Bank of Luxor, home to royal tombs, the Temple of Hatshepsut, and the Colossi of Memnon." },
+            { "time": "Afternoon", "text": "Explore the vast Karnak Temple complex, then visit the elegant Luxor Temple along the Nile." },
+            { "time": "Evening", "text": "Overnight docked in Luxor." }
+          ]
+        },
+        {
+          "title": "Luxor — Departure",
+          "places": ["Luxor"],
+          "description": "After breakfast on board, disembark in Luxor, marking the end of your Nile voyage.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Disembark after breakfast by 8:00 AM." }
+          ]
+        }
       ]
     },
     {
       "label": "Luxor → Aswan",
       "from": "Luxor",
       "to": "Aswan",
+      "tagline": "Downstream to Nubia",
+      "overview": "Sail south from the world's greatest open-air museum in Luxor to the graceful city of Aswan — the Temples of Thebes, the West Bank necropolis, Edfu, Gebel el-Silsila, Kom Ombo, and the island temple of Philae, all in four unhurried nights aboard your dahabiya.",
       "timeline": [
-        { "title": "Detailed day-by-day coming soon", "places": [], "description": "We're finalising the full daily programme for this voyage. Contact us and we'll share the complete itinerary, tailored to your dates and group.", "image": "/images/dsc-1797-pano-1280x800.jpg" }
+        {
+          "title": "Luxor — Arrival & Temples of Thebes",
+          "places": ["Karnak Temple", "Luxor Temple"],
+          "description": "Embark your dahabiya in Luxor and step straight into the grandeur of ancient Thebes. In the late afternoon, explore the vast Karnak Temple complex before visiting the elegant Luxor Temple along the Nile.",
+          "image": "/images/karnak-1280x800.jpg",
+          "schedule": [
+            { "time": "Afternoon", "text": "Embark on your dahabeya in Luxor." },
+            { "time": "Late afternoon", "text": "Explore the vast Karnak Temple complex, then visit the elegant Luxor Temple along the Nile." },
+            { "time": "Evening", "text": "Overnight docked in Luxor." }
+          ]
+        },
+        {
+          "title": "West Bank & Sailing to Edfu",
+          "places": ["Valley of the Kings", "Temple of Hatshepsut", "Colossi of Memnon", "Esna Lock"],
+          "description": "Discover the legendary West Bank of Luxor — the royal tombs, the terraced Temple of Hatshepsut, and the Colossi of Memnon. In the afternoon, sail south through the Esna Lock and continue toward Edfu.",
+          "image": "/images/Temple_of_Hatshepsut.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Discover the legendary West Bank of Luxor, home to royal tombs, the Temple of Hatshepsut, and the Colossi of Memnon." },
+            { "time": "Afternoon", "text": "Sail south, passing through the Esna Lock, and continue toward Edfu." },
+            { "time": "Evening", "text": "Overnight docked in Edfu." }
+          ]
+        },
+        {
+          "title": "Edfu, Silsila & Kom Ombo",
+          "places": ["Edfu Temple", "Gebel el-Silsila", "Kom Ombo"],
+          "description": "Visit the remarkably preserved Temple of Horus at Edfu, then sail to El Silsila to explore its ancient sandstone quarries and riverside shrines, continuing on to Kom Ombo.",
+          "image": "/images/horus_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Visit the remarkably preserved Temple of Horus in Edfu." },
+            { "time": "Afternoon", "text": "Sail to El Silsila to explore its ancient sandstone quarries and riverside shrines. Continue sailing to Kom Ombo." },
+            { "time": "Evening", "text": "Overnight moored in Kom Ombo." }
+          ]
+        },
+        {
+          "title": "Kom Ombo & Aswan Highlights",
+          "places": ["Kom Ombo", "Philae Temple", "High Dam", "Old Dam", "Unfinished Obelisk"],
+          "description": "Tour the unique double Temple of Kom Ombo, dedicated to both Sobek and Haroeris. Sail on to Aswan, where you visit the beautiful Philae Temple on Agilkia Island, followed by the High Dam, the Old Dam, and the Unfinished Obelisk.",
+          "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Tour the unique Kom Ombo Temple, dedicated to both Sobek and Haroeris." },
+            { "time": "Afternoon", "text": "Sail to Aswan. Upon arrival, visit the beautiful Philae Temple on Agilkia Island, followed by the High Dam, the Old Dam, and the Unfinished Obelisk." },
+            { "time": "Evening", "text": "Overnight docked in Aswan." }
+          ]
+        },
+        {
+          "title": "Aswan — Departure",
+          "places": ["Aswan"],
+          "description": "After breakfast on board, disembark in Aswan, marking the end of your Nile voyage.",
+          "image": "/images/philae_temple.jpg",
+          "schedule": [
+            { "time": "Morning", "text": "Disembark after breakfast by 8:00 AM." }
+          ]
+        }
       ]
     }
   ],

@@ -1,0 +1,246 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// ── Sightseeing sites, grouped by region (source: VEDA "Sightseeing & tours" brief) ──
+const regions = [
+  {
+    region: 'Luxor — Thebes, East & West Bank',
+    blurb: 'The greatest open-air museum in the world — temples of the living and the dead across both banks of the Nile.',
+    sites: [
+      {
+        name: 'Temple of Karnak',
+        image: '/images/karnak-1280x800.jpg',
+        desc: "Of all Luxor's monuments, the Temple Complex of Karnak is its most astonishing feat. Within its precincts stand the Great Temple of Amun, the Temple of Khons, and the Festival Temple of Tuthmosis III. Not built to a single plan, it represents the building activity of many successive rulers who vied to adorn Egypt's greatest national sanctuary — everything here on a gigantic scale.",
+      },
+      {
+        name: 'Valley of the Kings',
+        image: '/images/valley-of-the-kings.jpg',
+        desc: "Hidden between rocky escarpments, this was the final resting place for the kings of the 18th, 19th, and 20th dynasties. Its 63 tombs — a roll-call of famous names including the boy-king Tutankhamun — are famed for wonderfully vivid wall paintings depicting the king's nightly voyage through the underworld. Tombs open on a rotation system to preserve the paintings.",
+      },
+      {
+        name: "Temple of Deir al-Bahri",
+        subtitle: "Queen Hatshepsut's Temple",
+        image: '/images/Temple_of_Hatshepsut.jpg',
+        desc: 'Magnificently set at the foot of sheer desert cliffs, the almost-white sandstone temple of Queen Hatshepsut rises on three colonnaded terraces linked by ramps. Partly hewn from the rock and richly adorned with statues, reliefs, and inscriptions — note how Hatshepsut had herself represented with the attributes of a male pharaoh to assert her royal authority.',
+      },
+      {
+        name: 'Medinet Habu',
+        image: '/images/medinet-habu.jpg',
+        desc: "Often overlooked beside the Valley of the Kings, this is one of Egypt's most beautifully decorated temples. The complex centres on the great mortuary Temple of Ramses III — modelled on the Ramesseum and dedicated to Amun — surrounded by a battlemented enclosure wall. The reliefs here are among the finest on the West Bank.",
+      },
+      {
+        name: 'Colossi of Memnon',
+        image: '/images/colossi-of-memnon.jpg',
+        desc: "Two gigantic statues of Amenophis III, carved from hard sandstone, once guarded the entrance to his mortuary temple. In Roman times they were taken for statues of Memnon; the northern 'musical statue' was famed for the plaintive note it emitted at sunrise — said to be Memnon greeting his mother, Eos — until an imperial restoration silenced it.",
+      },
+      {
+        name: 'Luxor Temple',
+        image: '/images/luxor-temple.jpg',
+        desc: 'Presiding over the modern downtown, Luxor Temple charts the changing face of Egypt across the centuries. Built first by Amenophis III and dedicated to Amun, Mut, and Khons, it was extended by a parade of pharaohs including Tutankhamun and Ramses II. Later it became a church, and the Mosque of Abu el-Haggag still stands within its grounds.',
+      },
+    ],
+  },
+  {
+    region: 'North of Luxor',
+    blurb: 'Two of the finest temples in Egypt, reached on a full-day excursion from Luxor.',
+    sites: [
+      {
+        name: 'Temple of Hathor at Dendera',
+        location: '76 km north of Luxor',
+        image: '/images/Dendera_temple.jpg',
+        desc: 'Though it lacks the scale of Karnak, the Temple of Hathor impresses with its fine proportions and superbly preserved reliefs — excellent examples of the decorative art of the Late Period. Dendera was once the capital of Upper Egypt, its remnants lying on the west bank of the Nile across from modern Qena.',
+      },
+      {
+        name: 'Temples of Abydos',
+        location: '162 km north of Luxor',
+        image: '/images/Temple_of_Seti.jpg',
+        desc: 'One of Egypt\'s oldest necropolises, associated with the first capital of Thinis, Abydos was where the earliest kings were buried and the rituals of kingly burial first celebrated. The site centres on the beautiful Temple of Seti I — a fine day out from Luxor.',
+      },
+    ],
+  },
+  {
+    region: 'Along the Nile — Esna to Kom Ombo',
+    blurb: 'The classic riverside temples that punctuate the sail between Luxor and Aswan.',
+    sites: [
+      {
+        name: 'Temple of Khnum, Esna',
+        location: '56 km south of Luxor',
+        note: 'Not included in the program',
+        image: '/images/esna-khnum-temple.jpg',
+        desc: 'In the centre of Esna, nine metres below today\'s street level, stands the Temple of Khnum, the ram-headed local god, with his associate goddesses Neith and Satet. Its outer walls bear reliefs of Roman emperors, and the seven-aisled vestibule — the only completed part — dates almost entirely from the Roman Imperial period.',
+      },
+      {
+        name: 'Temple of Horus at Edfu',
+        location: '110 km south of Luxor',
+        image: '/images/edfu_temple.jpg',
+        desc: 'The 2,000-year-old Temple of Horus is almost perfectly preserved. Begun in 237 BC under Ptolemy III and completed under Philopator, its relative youth means it remains one of the best places in Egypt to imagine the grandeur of the ancient world.',
+      },
+      {
+        name: 'Gebel Silsila',
+        image: '/images/Gebel_El.jpg',
+        desc: "A rocky gorge between Kom Ombo and Edfu where the Nile narrows and high sandstone cliffs meet the water. The principal sandstone quarry of ancient Egypt, it supplied stone for temples across the country and formed a natural frontier — its rock-cut shrines and stelae still line the banks.",
+      },
+      {
+        name: 'Kom Ombo Temple',
+        location: '168 km south of Luxor',
+        image: '/images/kom-ombo-temple.jpg',
+        desc: 'Twin-dedicated to Sobek and Haroeris, Kom Ombo was built to a unified plan that accommodates two temples in a single building. One of the finest Ptolemaic temples in Egypt, its lavish decoration recalls a time when its position on the Nile made it a major centre of trade and commerce.',
+      },
+    ],
+  },
+  {
+    region: 'Aswan & Nubia',
+    blurb: 'The graceful island temples of the south and the colossal monuments of Nubia.',
+    sites: [
+      {
+        name: 'Temple of Kalabsha',
+        image: '/images/kalabsha-temple.jpg',
+        desc: 'Reached by an imposing stone causeway from the lakeshore, Kalabsha leads through a colonnaded court into an eight-columned hypostyle hall lined with reliefs of Greek pharaohs paying homage to Egyptian deities. Built in the late Ptolemaic period and completed under the emperor Augustus, it was dedicated to the Nubian god Mandulis.',
+      },
+      {
+        name: 'Temple of Isis',
+        subtitle: 'Philae Temple',
+        image: '/images/philae_temple.jpg',
+        desc: "Built to honour the goddess Isis, this was the last temple raised in the classical Egyptian style, with worship continuing here until at least AD 550. Highlights include the first pylon, the mammisi, the Temple of Hathor, and the elegant Kiosk of Trajan ('Pharaoh's Bed'). The whole complex was moved from Philae Island to Agilkia Island by a UNESCO team after the flooding of Lake Nasser.",
+      },
+      {
+        name: 'Abu Simbel Temples',
+        image: '/images/Abu_Simbel_Temple.jpg',
+        desc: "One of the world's most breathtaking monuments. Built by Ramses II in the 13th century BC, the great temple's façade bears four colossal seated figures of the king; the smaller temple honours his wife Nefertari. Famously rescued from Lake Nasser by a UNESCO campaign and rebuilt 60 m higher, it is oriented so that twice a year the dawn sun reaches the four gods in the inner sanctuary.",
+      },
+    ],
+  },
+];
+
+const totalSites = regions.reduce((n, r) => n + r.sites.length, 0);
+---
+
+<MainLayout
+  title="Sightseeing & Tours — VEDA Egypt"
+  description="Explore the temples and monuments of the Nile — from Karnak and the Valley of the Kings to Edfu, Kom Ombo, Philae, and Abu Simbel — visited on your VEDA dahabiya journey between Luxor and Aswan."
+>
+
+  <!-- Hero -->
+  <div class="relative flex items-center min-h-[58vh] pt-40 pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/karnak-1280x800.jpg" alt="" width="1280" height="800" class="w-full h-full object-cover object-center" loading="eager" />
+    </div>
+    <div class="absolute inset-0 bg-void/55"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/80"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[14px] tracking-[0.32em] uppercase text-gold-light">Temples &amp; Monuments</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-tight leading-tight mb-6"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Sightseeing &amp; Tours
+      </h1>
+      <p class="font-sans text-base md:text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
+        Trace the path of the pharaohs. From the mighty columns of Karnak to the island temple of Philae, these are
+        the wonders you'll explore along the Nile between Luxor and Aswan.
+      </p>
+    </div>
+  </div>
+
+  <!-- Intro strip -->
+  <section class="bg-linen border-t border-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <p class="font-serif text-2xl md:text-3xl text-earth font-light italic max-w-2xl leading-snug">
+          {totalSites} sites of extraordinary history, woven into your private dahabiya journey.
+        </p>
+        <p class="font-sans text-sm text-sandstone max-w-xs leading-relaxed">
+          Your VEDA crew and expert guides tailor each day ashore to your pace and interests.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regions -->
+  {regions.map((group, gi) => (
+    <section class={`${gi % 2 === 0 ? 'bg-sand' : 'bg-linen'} border-t border-bone py-16 lg:py-24`}>
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+        <div class="mb-10 lg:mb-14 reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="h-px w-8 bg-gold/50"></span>
+            <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold">Region</p>
+          </div>
+          <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-earth font-light tracking-tight leading-tight mb-3">
+            {group.region}
+          </h2>
+          <p class="font-sans text-base text-sandstone max-w-2xl leading-relaxed">{group.blurb}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {group.sites.map((site, i) => (
+            <article class={`group flex flex-col bg-linen border border-bone rounded-2xl overflow-hidden hover:border-gold/40 transition-all duration-500 reveal reveal-delay-${(i % 3) + 1}`}>
+              <div class="relative overflow-hidden" style="aspect-ratio:16/10;">
+                <img
+                  src={site.image}
+                  alt={site.name}
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-void/55 via-transparent to-transparent"></div>
+                {site.note && (
+                  <span class="absolute top-4 left-4 bg-void/75 backdrop-blur-sm border border-white/20 px-3 py-1.5 font-sans text-[10px] tracking-[0.18em] uppercase text-white/85">
+                    {site.note}
+                  </span>
+                )}
+                {site.location && (
+                  <span class="absolute bottom-4 left-4 inline-flex items-center gap-1.5 bg-void/70 backdrop-blur-sm border border-gold/25 px-3 py-1.5 font-sans text-[10px] tracking-[0.15em] uppercase text-gold-pale">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {site.location}
+                  </span>
+                )}
+              </div>
+              <div class="flex flex-col flex-1 p-6">
+                <h3 class="font-serif text-2xl text-earth font-light leading-tight">{site.name}</h3>
+                {site.subtitle && (
+                  <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mt-1 mb-3">{site.subtitle}</p>
+                )}
+                <p class={`font-sans text-[15px] text-sandstone font-light leading-relaxed ${site.subtitle ? '' : 'mt-3'}`}>
+                  {site.desc}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/more_than_plan.jpg" alt="Nile at sunset" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-forest/85 to-void/95"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-28 lg:py-40 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Your Journey Awaits</p>
+      <h2 class="font-serif text-4xl md:text-6xl text-white font-light tracking-tight leading-[1.05] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        See them for<br />yourself
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Every VEDA voyage is private and flexible. Choose an itinerary, and we'll build your days ashore around these
+        wonders.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="/itineraries" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
+          Explore Itineraries
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+        <a href="/contact" class="group inline-flex items-center justify-center gap-3 border border-white/25 hover:border-gold text-white/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 hover:bg-gold/10 backdrop-blur-sm">
+          Ask a Specialist
+          <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>

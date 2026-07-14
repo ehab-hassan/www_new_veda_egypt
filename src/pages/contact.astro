@@ -1,0 +1,245 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// ── Contact details ────────────────────────────────────────────────────────
+const team = [
+  {
+    name: 'Ahmed Abdalla',
+    role: 'Sales Manager',
+    email: 'ahmed@veda-egypt.com',
+    phoneDisplay: '+2 0109 483 8711',
+    phoneTel: '+201094838711',
+    whatsapp: '201094838711',
+  },
+  {
+    name: 'Maher A. Hakeim, CHA',
+    role: 'Managing Director',
+    email: 'maher@veda-egypt.com',
+    phoneDisplay: '+2 0100 096 8212',
+    phoneTel: '+201000968212',
+    whatsapp: '201000968212',
+  },
+];
+
+const generalEmails = [
+  { label: 'Reservations', email: 'info@veda-egypt.com' },
+  { label: 'General Enquiries', email: 'reservation@veda-egypt.com' },
+];
+---
+
+<MainLayout
+  title="Contact — VEDA Egypt"
+  description="Get in touch with the VEDA Egypt team. Our specialists are always available to answer questions, share details, and help craft a seamless Nile journey tailored to you."
+>
+
+  <!-- Hero -->
+  <div class="relative flex items-center min-h-[48vh] pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/photo-2019-03-11-21.08.46-1280x854.jpg" alt="" width="1305" height="869" class="w-full h-full object-cover object-center" loading="eager" />
+    </div>
+    <div class="absolute inset-0 bg-void/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void/50 via-transparent to-void/75"></div>
+    <div class="relative w-full max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span class="h-px w-10 bg-gold-light/60"></span>
+        <p class="font-sans text-[12px] tracking-[0.32em] uppercase text-gold-light">Get in Touch</p>
+        <span class="h-px w-10 bg-gold-light/60"></span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-6xl text-white font-light tracking-tight leading-tight mb-5"
+        style="text-shadow: 0 2px 28px rgba(0,0,0,0.45);">
+        Contact <em class="italic text-gold-pale">Us</em>
+      </h1>
+      <p class="font-sans text-md text-white/80 font-light leading-relaxed max-w-xl mx-auto">
+        We are here to assist you at every step. Our team is always available to answer questions,
+        share details, and help craft a seamless Nile journey tailored to your needs.
+      </p>
+    </div>
+  </div>
+
+  <!-- Contact content -->
+  <div class="bg-linen border-t border-bone">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12 py-20 lg:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+      <!-- LEFT — message form -->
+      <div class="reveal">
+        <p class="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-4">Send a Message</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light leading-tight mb-8">Write to us</h2>
+
+        <form id="contact-form" class="space-y-5" novalidate>
+          <div>
+            <label for="cf-name" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
+              placeholder="Your full name" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="cf-email" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" required
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="you@example.com" />
+            </div>
+            <div>
+              <label for="cf-phone" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">
+                Phone <span class="text-sandstone/70 normal-case tracking-normal text-xs ml-1">(optional)</span>
+              </label>
+              <input type="tel" id="cf-phone" name="phone" autocomplete="tel"
+                class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
+                placeholder="+20 …" />
+            </div>
+          </div>
+
+          <div>
+            <label for="cf-subject" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Subject</label>
+            <input type="text" id="cf-subject" name="subject" required
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors"
+              placeholder="How can we help?" />
+          </div>
+
+          <div>
+            <label for="cf-message" class="block font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required
+              class="field w-full bg-white border border-bone text-earth text-sm px-4 py-3 placeholder:text-sandstone/50 focus:outline-none focus:border-gold/60 transition-colors resize-none leading-relaxed"
+              placeholder="Tell us a little about your plans…"></textarea>
+          </div>
+
+          <p id="cf-error" class="font-sans text-xs text-red-400/80 hidden">Please complete the required fields.</p>
+
+          <button type="submit"
+            class="group inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300">
+            Send Message
+            <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </button>
+          <p class="font-sans text-xs text-sandstone/80 leading-relaxed pt-1">
+            This opens your email app with the message ready to send to info@veda-egypt.com.
+          </p>
+        </form>
+      </div>
+
+      <!-- RIGHT — contact details -->
+      <div class="reveal reveal-delay-1">
+
+      <!-- Company -->
+      <div class="mb-12">
+        <p class="font-sans text-[10px] tracking-[0.3em] uppercase text-gold mb-4">Contact Information</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-earth font-light leading-tight">Back to Gaia, LLC</h2>
+        <p class="font-sans text-base text-sandstone mt-2">Veda Dahabeya Nile Cruises</p>
+      </div>
+
+      <!-- Team cards -->
+      <div class="grid grid-cols-1 gap-6 mb-12">
+        {team.map((person, i) => (
+          <div class={`border border-bone bg-sand rounded-2xl p-8 reveal reveal-delay-${i + 1}`}>
+            <h3 class="font-serif text-2xl text-earth font-light leading-tight mb-1">{person.name}</h3>
+            <p class="font-sans text-[11px] tracking-[0.22em] uppercase text-gold mb-6">{person.role}</p>
+
+            <div class="space-y-4">
+              <!-- Email -->
+              <a href={`mailto:${person.email}`} class="group flex items-center gap-3 text-earth hover:text-gold transition-colors">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full border border-bone group-hover:border-gold/50 flex items-center justify-center transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                </span>
+                <span class="font-sans text-sm">{person.email}</span>
+              </a>
+
+              <!-- Phone -->
+              <a href={`tel:${person.phoneTel}`} class="group flex items-center gap-3 text-earth hover:text-gold transition-colors">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full border border-bone group-hover:border-gold/50 flex items-center justify-center transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <span class="font-sans text-sm">{person.phoneDisplay}</span>
+              </a>
+
+              <!-- WhatsApp -->
+              <a href={`https://wa.me/${person.whatsapp}`} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-earth hover:text-gold transition-colors">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full border border-bone group-hover:border-gold/50 flex items-center justify-center transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+                </span>
+                <span class="font-sans text-sm">Chat on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- General emails -->
+      <div class="border-t border-bone pt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {generalEmails.map((item) => (
+            <div>
+              <p class="font-sans text-[10px] tracking-[0.28em] uppercase text-gold mb-2">{item.label}</p>
+              <a href={`mailto:${item.email}`} class="font-serif text-xl text-earth font-light hover:text-gold transition-colors">{item.email}</a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      </div><!-- /right column -->
+
+    </div>
+  </div>
+
+  <!-- CTA strip -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/more_than_plan.jpg" alt="Nile at sunset" class="w-full h-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void/60 via-forest/85 to-void/95"></div>
+    </div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-24 lg:py-32 text-center">
+      <p class="font-sans text-[14px] tracking-[0.3em] uppercase text-gold-light mb-6 reveal">Begin Your Journey</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-white font-light tracking-tight leading-[1.1] mb-6 reveal reveal-delay-1"
+        style="text-shadow: 0 2px 40px rgba(0,0,0,0.4);">
+        Ready to plan<br />your Nile voyage?
+      </h2>
+      <p class="font-sans text-base text-ivory/60 max-w-md mx-auto leading-relaxed mb-12 reveal reveal-delay-2">
+        Browse our handcrafted itineraries, or reach out directly — we'll craft a private voyage around your dates and intentions.
+      </p>
+      <a href="/itineraries" class="group inline-flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-sans text-xs tracking-ultra uppercase px-8 py-4 rounded-full transition-all duration-300 reveal reveal-delay-3">
+        Explore Itineraries
+        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+      </a>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .field { color-scheme: light; }
+</style>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var err = document.getElementById('cf-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('cf-name').value.trim();
+      var email = document.getElementById('cf-email').value.trim();
+      var phone = document.getElementById('cf-phone').value.trim();
+      var subject = document.getElementById('cf-subject').value.trim();
+      var message = document.getElementById('cf-message').value.trim();
+
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!name || !emailOk || !subject || !message) {
+        err.classList.remove('hidden');
+        return;
+      }
+      err.classList.add('hidden');
+
+      var body =
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        (phone ? 'Phone: ' + phone + '\n' : '') +
+        '\n' + message;
+
+      window.location.href =
+        'mailto:info@veda-egypt.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    });
+  })();
+</script>

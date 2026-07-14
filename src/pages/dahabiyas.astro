@@ -326,7 +326,7 @@ const fleetSchema = JSON.stringify({
           '@type': 'PriceSpecification',
           description: 'On request — private charters quoted per group, season and length of stay.',
         },
-        url: `${SITE}/reserve`,
+        url: `${SITE}/contact`,
       },
     })),
     {
@@ -352,7 +352,7 @@ const fleetSchema = JSON.stringify({
       offers: {
         '@type': 'Offer',
         availability: 'https://schema.org/InStock',
-        url: `${SITE}/reserve`,
+        url: `${SITE}/contact`,
         priceSpecification: {
           '@type': 'PriceSpecification',
           description: 'On request — quoted per group and season.',
@@ -534,7 +534,7 @@ const fleetSchema = JSON.stringify({
 
             <div class="mt-8">
               <a
-                href="/reserve"
+                href="/contact"
                 class="inline-flex items-center gap-3 font-sans text-[12px] tracking-[0.22em] uppercase px-6 py-3.5 rounded-full bg-gold hover:bg-gold-light text-white transition-all duration-300 group"
               >
                 Enquire about {boat.name}
@@ -614,7 +614,7 @@ const fleetSchema = JSON.stringify({
         <a href="/gallery" class="inline-flex items-center gap-2 border border-white/25 hover:border-gold text-white/80 hover:text-gold font-sans text-xs tracking-ultra uppercase px-7 py-4 rounded-full transition-all duration-300 hover:bg-gold/10 backdrop-blur-sm">
           View Gallery →
         </a>
-        <a href="/reserve" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white font-sans text-[12px] tracking-[0.22em] uppercase px-6 py-3.5 rounded-full transition-all duration-300">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-white font-sans text-[12px] tracking-[0.22em] uppercase px-6 py-3.5 rounded-full transition-all duration-300">
           Reserve Your Journey →
         </a>
       </div>

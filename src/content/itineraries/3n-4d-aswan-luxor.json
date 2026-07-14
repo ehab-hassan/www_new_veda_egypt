@@ -1,16 +1,16 @@
 {
   "title": "Aswan → Luxor",
-  "summary": "A short, refined sailing experience for travellers with limited time — the Nile's essential temples, unhurried, in three nights.",
-  "description": "Timeless charm meets the gentle rhythm of the river. This express voyage carries you from the island temples of Aswan to the monumental wonders of Luxor, with traditional sailing, curated cuisine, and a daily sunset ritual on deck.",
+  "summary": "A short, refined sailing experience for travellers with limited time — the temples and ancient quarries of the Nile between Aswan and Luxor, unhurried, in three nights.",
+  "description": "Timeless charm meets the gentle rhythm of the river. This express voyage carries you north from Aswan to Luxor, visiting the distinctive double temple of Kom Ombo, the great sandstone quarries of Gebel el-Silsila, the superbly preserved Temple of Horus at Edfu, and the ancient city of El Kab — with traditional sailing and long, relaxed hours on deck.",
   "nights": 3,
   "days": 4,
   "experience": "Classic Cruise",
   "series": "aswan-luxor-classic",
   "vessels": ["Veda I", "Veda II", "Veda III", "Veda IV"],
-  "highlights": ["Philae Temple", "Kom Ombo", "Edfu", "Valley of the Kings", "Karnak", "Luxor Temple"],
+  "highlights": ["Kom Ombo", "Gebel el-Silsila", "Edfu Temple", "El Kab", "Esna Lock"],
   "hero": "/images/dsc-1797-pano-1280x800.jpg",
   "cardImage": "/images/aswan-temple-1280x800.jpg",
-  "routeOverview": "Three nights aboard your dahabiya, sailing north with the current from Aswan to Luxor. The pace is gentle but the highlights are complete — Philae, Kom Ombo, Edfu, and the great monuments of Thebes.",
+  "routeOverview": "Three nights aboard your dahabiya, sailing north with the current from Aswan to Luxor. Highlights include Kom Ombo, the sandstone quarries of Gebel el-Silsila, the Temple of Horus at Edfu, and the ancient city of El Kab, with a passage through the Esna Lock before arriving in Luxor — the ancient city of Thebes.",
   "facts": [
     { "label": "Pace", "value": "Express · relaxed" },
     { "label": "Dining", "value": "Local & international" }
@@ -22,55 +22,49 @@
       "to": "Luxor",
       "timeline": [
         {
-          "title": "Aswan → Kom Ombo",
-          "places": ["Philae Temple"],
-          "description": "Embark aboard your elegant dahabiya and settle into the calm of the Nile. After lunch on board, a guided visit to the enchanting Philae Temple on Agilkia Island, dedicated to Isis. Begin sailing toward Kom Ombo with the silence of traditional navigation — no engine, only water and breeze — and moor beneath a starlit sky.",
-          "image": "/images/aswan-temple-1280x800.jpg",
-          "schedule": [
-            { "time": "12:00", "text": "Embarkation aboard your dahabiya" },
-            { "time": "12:00–13:00", "text": "Lunch on board — local & international cuisine" },
-            { "time": "13:00–17:00", "text": "Guided visit to Philae Temple, Agilkia Island" },
-            { "time": "17:00", "text": "Sunset afternoon tea on deck" },
-            { "time": "18:00", "text": "Begin sailing toward Kom Ombo" },
-            { "time": "19:00–20:00", "text": "Dinner on board" },
-            { "time": "Overnight", "text": "Moored near Kom Ombo" }
-          ]
-        },
-        {
-          "title": "Kom Ombo → Edfu → Luxor",
-          "places": ["Kom Ombo", "Edfu Temple"],
-          "description": "Wake to sunrise views before visiting the unique Kom Ombo Temple, dedicated to Sobek and Horus. Sail on past palm groves and villages to Edfu, home to the best-preserved temple in Egypt, then continue toward Luxor via Esna with long, relaxed hours on deck.",
+          "title": "Embarkation in Aswan — Kom Ombo & Gebel el-Silsila",
+          "places": ["Kom Ombo"],
+          "description": "Your journey begins in Aswan, where you board the vessel around midday before sailing north along the Nile. Enjoy lunch and your first views of traditional Nile villages and desert landscapes, then visit the remarkable Temple of Kom Ombo before continuing to the dramatic sandstone cliffs of Gebel el-Silsila.",
           "image": "/images/egypte-veda-248-van-577-2-1280x800.jpg",
           "schedule": [
-            { "time": "06:00–07:00", "text": "Breakfast with sunrise views" },
-            { "time": "07:00–08:00", "text": "Visit Kom Ombo Temple" },
-            { "time": "08:00", "text": "Sail toward Edfu" },
-            { "time": "13:00–15:00", "text": "Explore the Temple of Edfu" },
-            { "time": "15:00", "text": "Continue sailing to Luxor via Esna" },
-            { "time": "Overnight", "text": "Arrival and overnight in Luxor" }
+            { "time": "12:00", "text": "Begin sailing toward Kom Ombo (approx. 4 hours downstream with the Nile current). Enjoy lunch and your first views of traditional Nile villages and desert landscapes." },
+            { "time": "16:00–17:00", "text": "Visit the remarkable Temple of Kom Ombo, uniquely dedicated to two gods: Sobek, the crocodile god, and Horus the Elder. The temple's symmetrical design and beautifully carved reliefs make it one of the most distinctive temples in Egypt." },
+            { "time": "17:00", "text": "Continue sailing north to Gebel el-Silsila (approximately 3 hours)." },
+            { "time": "Overnight", "text": "Moored at Gebel el-Silsila, surrounded by the dramatic sandstone cliffs that once supplied stone for many of Egypt's great temples." }
           ]
         },
         {
-          "title": "Luxor — West & East Banks",
-          "places": ["Valley of the Kings", "Karnak Temple", "Luxor Temple"],
-          "description": "An early start for Luxor's West Bank and the Valley of the Kings, where pharaohs were laid to rest in painted rock-cut tombs. In the afternoon, the vast Karnak Temple complex and the elegant Luxor Temple on the Nile Corniche, luminous as the day softens.",
+          "title": "Gebel el-Silsila — Edfu & El Kab",
+          "places": ["Gebel el-Silsila", "Edfu Temple", "El Kab"],
+          "description": "This morning explores one of the Nile Valley's lesser-visited but historically important quarry sites, before sailing on to the best-preserved temple in Egypt at Edfu and continuing toward the ancient city of El Kab.",
+          "image": "/images/Gebel_El.jpg",
+          "schedule": [
+            { "time": "08:00–09:00", "text": "Visit Gebel el-Silsila, the principal sandstone quarry of ancient Egypt. Explore the rock-cut shrines, stelae, and quarries where blocks were extracted for temples across the country." },
+            { "time": "09:00", "text": "Sail north toward Edfu (approximately 3 hours)." },
+            { "time": "12:00–14:00", "text": "Visit the magnificent Temple of Horus at Edfu, the best-preserved temple in Egypt. Built during the Ptolemaic period, its towering pylons, monumental statues of Horus, and detailed reliefs illustrate ancient rituals and mythological scenes." },
+            { "time": "14:00", "text": "Resume sailing toward El Kab (about 4 hours)." },
+            { "time": "Overnight", "text": "El Kab, near the ancient city of Nekheb, once an important religious centre dedicated to the vulture goddess Nekhbet." }
+          ]
+        },
+        {
+          "title": "Esna & Sailing to Luxor",
+          "places": ["Esna Lock"],
+          "description": "An early start allows for smooth navigation through the Nile's only lock on this section of the river, followed by a full day's sail through the fertile Nile Valley to Luxor.",
+          "image": "/images/Esna_lock.jpg",
+          "schedule": [
+            { "time": "06:00", "text": "Early morning sailing toward Esna (approximately 2 hours)." },
+            { "time": "08:00–09:00", "text": "Passage through the Esna Lock, an interesting experience as the vessel is raised to match the water level upstream." },
+            { "time": "09:00", "text": "Continue sailing north toward Luxor (approximately 6 hours), enjoying the scenery of the Nile Valley with its fertile fields, palm groves, and riverside villages." },
+            { "time": "Overnight", "text": "Moored in Luxor." }
+          ]
+        },
+        {
+          "title": "Disembarkation in Luxor",
+          "places": ["Luxor"],
+          "description": "After breakfast, disembark in Luxor — the ancient city of Thebes and one of the world's greatest archaeological regions.",
           "image": "/images/karnak-1280x800.jpg",
           "schedule": [
-            { "time": "05:00–05:30", "text": "Early breakfast" },
-            { "time": "05:30–12:00", "text": "West Bank — Valley of the Kings" },
-            { "time": "13:00–17:00", "text": "Karnak Temple, then Luxor Temple" },
-            { "time": "17:00", "text": "Sunset afternoon tea on deck" },
-            { "time": "Overnight", "text": "Moored in Luxor" }
-          ]
-        },
-        {
-          "title": "Disembarkation",
-          "places": ["Luxor"],
-          "description": "After breakfast on board, check out and disembark in Luxor, concluding your tranquil sailing experience.",
-          "image": "/images/more_than_plan.jpg",
-          "schedule": [
-            { "time": "06:00–07:00", "text": "Breakfast on board" },
-            { "time": "08:00", "text": "Check-out & disembarkation" }
+            { "time": "Morning", "text": "After breakfast on board, disembark in Luxor, marking the end of your Nile journey." }
           ]
         }
       ]
@@ -79,7 +73,7 @@
   "faq": [
     {
       "q": "Is this itinerary too short to see the highlights?",
-      "a": "Not at all — three nights covers the Nile's essential temples: Philae, Kom Ombo, Edfu, and the great monuments of Luxor. It is ideal for travellers with limited time who still want the full dahabiya experience."
+      "a": "Not at all — three nights covers a rich sequence of Nile temples and sites: Kom Ombo, Gebel el-Silsila, Edfu, and El Kab, ending in Luxor. It is ideal for travellers with limited time who still want the full dahabiya experience."
     },
     {
       "q": "What is included on board?",

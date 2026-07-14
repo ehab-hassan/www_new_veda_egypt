@@ -20,7 +20,14 @@
       "Bash(pnpm dev *)",
       "Bash(ls veda_*.jpg veda2_main.jpg veda4*.jpg who_we.jpg yoga-on-deck*.jpg group-eating*.jpg karnak*.jpg)",
       "Bash(ls egypte-veda-88* egypte-veda-68* egypte-veda-568*)",
-      "WebFetch(domain:princessdonia.com)"
+      "WebFetch(domain:princessdonia.com)",
+      "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|webp\\)$\")",
+      "Bash(command -v pdfimages)",
+      "Bash(command -v python python3 py)",
+      "Bash(command -v magick convert)",
+      "Bash(python -c \"import fitz; print\\('pymupdf', fitz.__doc__\\)\")",
+      "PowerShell($py = Get-Command python -ErrorAction SilentlyContinue; if \\($py\\) { Write-Output \\(\"python: \" + $py.Source\\); python --version } ; $py3 = Get-Command py -ErrorAction SilentlyContinue; if \\($py3\\) { Write-Output \\(\"py: \" + $py3.Source\\) }; Write-Output \"--- node ---\"; node --version)",
+      "Bash(node extract.js ./extracted)"
     ]
   }
 }
